@@ -1,8 +1,9 @@
 {
     "name": "cue",
     "displayName": "CUE",
-    "description": "Basic support for the CUE configuration language.",
+    "description": "CUE language support for Visual Studio Code",
     "version": "0.0.1",
+    "publisher": "cuelang.org",
     "engines": {
         "vscode": "^1.37.0"
     },
@@ -10,16 +11,28 @@
         "Programming Languages"
     ],
     "contributes": {
-        "languages": [{
-            "id": "cue",
-            "aliases": ["CUE", "cue"],
-            "extensions": [".cue"],
-            "configuration": "./language-configuration.json"
-        }],
-        "grammars": [{
-            "language": "cue",
-            "scopeName": "source.cue",
-            "path": "./syntaxes/cue.tmLanguage.json"
-        }]
+        "languages": [
+            {
+                "id": "cue",
+                "aliases": [
+                    "CUE",
+                    "cue"
+                ],
+                "extensions": [
+                    ".cue"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "cue",
+                "scopeName": "source.cue",
+                "path": "./syntaxes/cue.tmLanguage.json",
+                "embeddedLanguages": {
+                    "source.cue.embedded": "source.cue"
+                }
+            }
+        ]
     }
 }

@@ -30,6 +30,13 @@ var patterns = Includes(
 )
 
 var repository = RuleMap{
+	"alias": {
+		Match: `(` + identAny + `)[ \t]*(=)`,
+		Captures: Captures{
+			1: Capture{Name: "variable.other"},
+			2: Capture{Name: "punctuation.alias"},
+		},
+	},
 	"attribute": {
 		Begin: `(@)(` + identAny + `)(\()`,
 		BeginCaptures: Captures{
@@ -93,15 +100,6 @@ var repository = RuleMap{
 			},
 		},
 	},
-	"binding": {
-		Match: `(<)(` + identAny + `|_)(>)`,
-		Captures: Captures{
-			1: Capture{Name: "punctuation.definition.generic.begin"},
-			2: Capture{Name: "variable.other"},
-			3: Capture{Name: "punctuation.definition.generic.end"},
-		},
-		Name: "meta.generic",
-	},
 	"bool": {
 		Match: beforeIdent + `(?:true|false)` + afterIdent,
 		Name:  "constant.language.bool",
@@ -125,6 +123,7 @@ var repository = RuleMap{
 			"#punctuation_colon",
 			"#punctuation_comma",
 			"#punctuation_ellipsis",
+			"#alias",
 			"#expression",
 			"#invalid_in_brakets",
 		),
@@ -226,7 +225,6 @@ var repository = RuleMap{
 	"declaration": {
 		Patterns: Includes(
 			"#attribute",
-			"#binding",
 			"#punctuation_isa",
 			"#punctuation_colon",
 			"#punctuation_option",
@@ -590,6 +588,7 @@ func EscapeRules(quote, hashes string, bytes bool) Rules {
 			},
 			ContentName: "source.cue.embedded",
 			Patterns: Includes(
+				"#whitespace",
 				"#expression",
 				"#invalid_in_parens",
 			),

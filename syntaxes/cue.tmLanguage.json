@@ -238,21 +238,6 @@
 					"name": "meta.annotation"
 				},
 				{
-					"match": "(<)(\\p{L}[\\p{L}\\p{Nd}_]*|_[\\p{L}\\p{Nd}_]+|_)(>)",
-					"captures": {
-						"1": {
-							"name": "punctuation.definition.generic.begin"
-						},
-						"2": {
-							"name": "variable.other"
-						},
-						"3": {
-							"name": "punctuation.definition.generic.end"
-						}
-					},
-					"name": "meta.generic"
-				},
-				{
 					"match": "(?<!:)::(?!:)",
 					"name": "punctuation.isa"
 				},
@@ -581,6 +566,17 @@
 									"include": "#punctuation_ellipsis"
 								},
 								{
+									"match": "(\\p{L}[\\p{L}\\p{Nd}_]*|_[\\p{L}\\p{Nd}_]+)[ \\t]*(=)",
+									"captures": {
+										"1": {
+											"name": "variable.other"
+										},
+										"2": {
+											"name": "punctuation.alias"
+										}
+									}
+								},
+								{
 									"include": "#expression"
 								},
 								{
@@ -687,6 +683,9 @@
 							"contentName": "source.cue.embedded",
 							"patterns": [
 								{
+									"include": "#whitespace"
+								},
+								{
 									"include": "#expression"
 								},
 								{
@@ -740,6 +739,9 @@
 							},
 							"contentName": "source.cue.embedded",
 							"patterns": [
+								{
+									"include": "#whitespace"
+								},
 								{
 									"include": "#expression"
 								},
@@ -795,6 +797,9 @@
 							"contentName": "source.cue.embedded",
 							"patterns": [
 								{
+									"include": "#whitespace"
+								},
+								{
 									"include": "#expression"
 								},
 								{
@@ -848,6 +853,9 @@
 							},
 							"contentName": "source.cue.embedded",
 							"patterns": [
+								{
+									"include": "#whitespace"
+								},
 								{
 									"include": "#expression"
 								},
@@ -903,6 +911,9 @@
 							"contentName": "source.cue.embedded",
 							"patterns": [
 								{
+									"include": "#whitespace"
+								},
+								{
 									"include": "#expression"
 								},
 								{
@@ -956,6 +967,9 @@
 							},
 							"contentName": "source.cue.embedded",
 							"patterns": [
+								{
+									"include": "#whitespace"
+								},
 								{
 									"include": "#expression"
 								},
@@ -1011,6 +1025,9 @@
 							"contentName": "source.cue.embedded",
 							"patterns": [
 								{
+									"include": "#whitespace"
+								},
+								{
 									"include": "#expression"
 								},
 								{
@@ -1064,6 +1081,9 @@
 							},
 							"contentName": "source.cue.embedded",
 							"patterns": [
+								{
+									"include": "#whitespace"
+								},
 								{
 									"include": "#expression"
 								},

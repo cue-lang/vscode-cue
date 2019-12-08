@@ -528,10 +528,10 @@ const (
 )
 
 const (
-	identChar     = `[\p{L}\p{Nd}_]`
+	identChar     = `[\p{L}\p{Nd}_\$]`
 	identExported = `\p{Lu}` + identChar + `*`
 	identLocal    = `\p{Ll}` + identChar + `*`
-	identNormal   = `\p{L}` + identChar + `*`
+	identNormal   = `[\p{L}\$]` + identChar + `*`
 	identHidden   = `_` + identChar + `+`
 	identPackage  = identNormal
 	identAny      = identNormal + `|` + identHidden

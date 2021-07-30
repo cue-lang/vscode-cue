@@ -1,6 +1,7 @@
 {
 	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	"name": "CUE",
+	"fileTypes": ["cue"],
 	"scopeName": "source.cue",
 	"patterns": [
 		{

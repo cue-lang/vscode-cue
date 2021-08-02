@@ -6,14 +6,16 @@ import (
 )
 
 var root = struct {
-	Schema     string  `json:"$schema"`
-	Name       string  `json:"name"`
-	ScopeName  string  `json:"scopeName"`
-	Patterns   Rules   `json:"patterns"`
-	Repository RuleMap `json:"repository"`
+	Schema     string   `json:"$schema"`
+	Name       string   `json:"name"`
+	FileTypes  []string `json:"fileTypes"`
+	ScopeName  string   `json:"scopeName"`
+	Patterns   Rules    `json:"patterns"`
+	Repository RuleMap  `json:"repository"`
 }{
 	Schema:     "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
 	Name:       "CUE",
+	FileTypes:  []string{"cue"},
 	ScopeName:  "source.cue",
 	Patterns:   patterns,
 	Repository: repository,

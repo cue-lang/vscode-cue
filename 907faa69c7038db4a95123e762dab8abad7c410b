@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "01c4ba3c_29b736e8",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 5
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1017723
+      },
+      "writtenOn": "2024-09-03T16:48:23Z",
+      "side": 1,
+      "message": "Passing tests: https://github.com/cue-lang/vscode-cue/actions/runs/10687129186/job/29624004762",
+      "revId": "907faa69c7038db4a95123e762dab8abad7c410b",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}

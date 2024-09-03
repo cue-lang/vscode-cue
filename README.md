@@ -17,12 +17,17 @@ Unfortunately, the `.cue` extension which CUE uses is squatted on in the "offici
 So for the moment, manual installation is required. This is quite simple though. Once you have VSCode installed, simply clone this repo into its extension location:
 
 ```shell
-git clone https://github.com/cue-sh/vscode-cue ~/.vscode/extensions/vscode-cue
+git clone https://github.com/cue-lang/vscode-cue ~/.vscode/extensions/vscode-cue
 ```
 
 Restart VSCode and you should have syntax highlighting for any `.cue` files you load.
 
 ## Credits
 
-This project was started by [betawaffle](https://github.com/betawaffle) who graciously permitted that it be moved
-to a more general home in the [cue-sh](https://github.com/cue-sh) organisation.
+This project was started by [betawaffle](https://github.com/betawaffle) who
+graciously permitted that it be moved to a more general home in the
+[cue-sh](https://github.com/cue-sh) (which is part of the [CUE
+Project](https://cuelang.org)), before then being migrated to the
+[cue-lang](https://github.com/cue-lang) organisation which more clearly
+identifies it as part of the CUE Project along with the [main CUE
+repository](https://github.com/cue-lang/cue).

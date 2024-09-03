@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"io"
-	"io/ioutil"
 	"log"
 	"os"
 )
@@ -16,7 +15,7 @@ func main() {
 	if err := encode(&wb); err != nil {
 		log.Fatal(err)
 	}
-	if err := ioutil.WriteFile(os.Args[1], wb.Bytes(), 0644); err != nil {
+	if err := os.WriteFile(os.Args[1], wb.Bytes(), 0644); err != nil {
 		log.Fatal(err)
 	}
 }

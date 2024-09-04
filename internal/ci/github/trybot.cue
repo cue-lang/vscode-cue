@@ -89,6 +89,15 @@ workflows: trybot: _repo.bashWorkflow & {
 				run:  "go mod tidy"
 			},
 
+			// Extension
+			for v in [...{"working-directory": "extension"}] & [
+				{
+					name:                "Compile"
+					run:                 "npm run compile"
+					"working-directory": "extension"
+				},
+			] {v},
+
 			// Final checks
 			_repo.checkGitClean,
 		]

@@ -1,0 +1,15 @@
+tsconfig.json
+package.json
+language-configuration.json
+extension_tool.cue
+esbuild.js
+.vscode-test.mjs
+syntaxes/cue.tmLanguage.json
+media/white_circle_128.png
+src/extension.ts
+_generated/vsc-extension-quickstart.md
+_generated/README.md
+_generated/CHANGELOG.md
+dist/main.js.map
+dist/main.js
+src/test/extension.test.ts

@@ -109,9 +109,10 @@ jobs:
       - name: Early git and code sanity checks
         run: go run cuelang.org/go/internal/ci/checks@v0.11.0-0.dev.0.20240903133435-46fb300df650
       - name: Add node_modules/.bin to PATH
-        run: echo "$PWD/node_modules/.bin" >> $GITHUB_ENV
+        run: echo "$PWD/extension/node_modules/.bin" >> $GITHUB_ENV
       - name: npm install
         run: npm ci
+        working-directory: extension
       - name: Verify
         run: go mod verify
       - name: Generate
@@ -129,10 +130,15 @@ jobs:
         run: go run honnef.co/go/tools/cmd/staticcheck@v0.5.1 ./...
       - name: Tidy
         run: go mod tidy
+      - name: Compile
+        run: npm run compile
+        working-directory: extension
       - name: Update manifest.txt
         run: cue cmd genManifest
+        working-directory: extension
       - name: Extension publish dry-run
         run: vsce package
+        working-directory: extension
       - if: always()
         name: Check that git is clean at the end of the job
         run: test -z "$(git status --porcelain)" || (git status; git diff; false)

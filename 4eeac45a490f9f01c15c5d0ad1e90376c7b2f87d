@@ -16,6 +16,23 @@
       "message": "Passing tests: https://github.com/cue-lang/vscode-cue/actions/runs/10696900929/job/29653013156",
       "revId": "4eeac45a490f9f01c15c5d0ad1e90376c7b2f87d",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fb0967f0_71e65996",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1017723
+      },
+      "writtenOn": "2024-09-04T07:19:04Z",
+      "side": 1,
+      "message": "This CL needs to land in order for us to be able to trigger CI via the trybots.",
+      "revId": "4eeac45a490f9f01c15c5d0ad1e90376c7b2f87d",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }

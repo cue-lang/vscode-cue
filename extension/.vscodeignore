@@ -1,8 +1,7 @@
 # This section of the file will have significant overlap with .gitignore
 # with the major difference that .vscodeignore cannot anchor to the root
 # of the repo. Hence 'bin/' ignores _all_ directories named 'bin'.
-bin/*
-extension/
+bin/
 node_modules/
 *.code-workspace
 *.vsix
@@ -14,14 +13,13 @@ manifest.txt
 # This section is more specific to the extension itself
 *.go
 *.cue
-
-# This section is more specific to the extension itself in its current
-# location at the root of the repo
+.eslintrc.json
+.vscode-test.mjs
+launch.json
 .vscode/
-codereview.cfg
-cue.mod/
-.github/
-.gitignore
-go.mod
-go.sum
-internal/
+*.map
+src/test/
+esbuild.js
+
+# Legacy files generated as part of skeleton - useful for reference only.
+_generated/

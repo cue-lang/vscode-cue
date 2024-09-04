@@ -17,3 +17,5 @@ botGitHubUserEmail: "cueckoo@gmail.com"
 linuxMachine: "ubuntu-22.04"
 
 latestGo: "1.23.x"
+
+nodeVersion: "20.17.0"

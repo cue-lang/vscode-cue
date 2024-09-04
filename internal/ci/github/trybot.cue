@@ -73,14 +73,15 @@ workflows: trybot: _repo.bashWorkflow & {
 			githubactions.#Step & {
 				name: "Add node_modules/.bin to PATH"
 				run: """
-					echo "PATH=$PWD/node_modules/.bin:$PATH" >> $GITHUB_ENV
+					echo "PATH=$PWD/extension/node_modules/.bin:$PATH" >> $GITHUB_ENV
 					"""
 			},
 
 			// npm install to ensure that npm-controlled CLIs are available during go generate
 			githubactions.#Step & {
-				name: "npm install"
-				run:  "npm ci"
+				name:                "npm install"
+				run:                 "npm ci"
+				"working-directory": "extension"
 			},
 
 			// Go steps - currently independent of the extension
@@ -110,14 +111,20 @@ workflows: trybot: _repo.bashWorkflow & {
 			},
 
 			// Extension
-			githubactions.#Step & {
-				name: "Update manifest.txt"
-				run:  "cue cmd genManifest"
-			},
-			githubactions.#Step & {
-				name: "Extension publish dry-run"
-				run:  "vsce package"
-			},
+			for v in [...{"working-directory": "extension"}] & [
+				githubactions.#Step & {
+					name: "Compile"
+					run:  "npm run compile"
+				},
+				githubactions.#Step & {
+					name: "Update manifest.txt"
+					run:  "cue cmd genManifest"
+				},
+				githubactions.#Step & {
+					name: "Extension publish dry-run"
+					run:  "vsce package"
+				},
+			] {v},
 
 			// Final checks
 			_repo.checkGitClean,

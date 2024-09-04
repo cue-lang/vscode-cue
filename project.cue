@@ -1,4 +1,4 @@
-package extension
+package project
 
 // versions specifies various tooling versions required for contributing
 // to this project.

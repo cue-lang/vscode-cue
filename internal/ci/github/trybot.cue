@@ -96,10 +96,16 @@ workflows: trybot: _repo.bashWorkflow & {
 			},
 
 			// Extension
-			githubactions.#Step & {
-				name: "npm install"
-				run:  "npm ci"
-			},
+			for v in [...{"working-directory": "extension"}] & [
+				{
+					name: "Install npm packages"
+					run:  "npm ci"
+				},
+				{
+					name: "Compile"
+					run:  "npm run compile"
+				},
+			] {v},
 
 			// Final checks
 			_repo.checkGitClean,

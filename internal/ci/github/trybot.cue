@@ -53,12 +53,20 @@ workflows: trybot: _repo.bashWorkflow & {
 
 		steps: [
 			for v in _repo.checkoutCode {v},
+
+			// Install and setup Go
 			for v in installGo {v},
+			for v in _setupGoActionsCaches {v},
+
 			// CUE setup
 			_installCUE,
 
-			for v in _setupGoActionsCaches {v},
+			// Node setup
+			_installNode,
 
+			_repo.earlyChecks,
+
+			// Go steps - currently independent of the extension
 			githubactions.#Step & {
 				name: "Verify"
 				run:  "go mod verify"
@@ -83,9 +91,23 @@ workflows: trybot: _repo.bashWorkflow & {
 				name: "Tidy"
 				run:  "go mod tidy"
 			},
+
+			// Extension
+			githubactions.#Step & {
+				name: "npm install"
+				run:  "npm ci"
+			},
+
+			// Final checks
 			_repo.checkGitClean,
 		]
 	}
+}
+
+_installNode: githubactions.#Step & {
+	name: "Install Node"
+	uses: "actions/setup-node@v4"
+	with: "node-version": _repo.nodeVersion
 }
 
 _installCUE: githubactions.#Step & {

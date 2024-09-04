@@ -1,1 +1,3 @@
 /bin/*
+/extension/dist
+/extension/node_modules

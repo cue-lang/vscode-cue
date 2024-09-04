@@ -33,6 +33,23 @@
       "message": "This CL needs to land in order for us to be able to trigger CI via the trybots.",
       "revId": "4eeac45a490f9f01c15c5d0ad1e90376c7b2f87d",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4a5c62b4_3f57c07f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 7
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1017720
+      },
+      "writtenOn": "2024-09-04T07:42:39Z",
+      "side": 1,
+      "message": "SGTM assuming it gets updated with the CI changes",
+      "revId": "4eeac45a490f9f01c15c5d0ad1e90376c7b2f87d",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }

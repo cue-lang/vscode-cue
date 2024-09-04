@@ -57,6 +57,20 @@ workflows: trybot: _repo.bashWorkflow & {
 		// after and in addition to the "on" condition above.
 		if: "\(_repo.containsTrybotTrailer) || ! \(_repo.containsDispatchTrailer)"
 
+		// Update PATH to add node_modules/.bin, for both the root level
+		// package.json used for tooling, and within the extension.
+		let npmSetup = {
+			name: "Add node_modules/.bin to PATH and npm ci"
+			run: """
+				echo "PATH=$PWD/node_modules/.bin:$PATH" >> $GITHUB_ENV
+				npm ci
+				"""
+		}
+
+		let extensionStep = {
+			"working-directory": "extension"
+		}
+
 		steps: [
 			for v in _repo.checkoutCode {v},
 
@@ -74,16 +88,11 @@ workflows: trybot: _repo.bashWorkflow & {
 
 			_centralRegistryLogin,
 
-			// Update PATH to allow for vsce and other npm-installed CLIs to be usable
-			githubactions.#Step & {
-				name: "Add node_modules/.bin to PATH"
-				run: """
-					echo "PATH=$PWD/node_modules/.bin:$PATH" >> $GITHUB_ENV
-					"""
-			},
+			npmSetup,
+			extensionStep & npmSetup,
 
 			// npm install to ensure that npm-controlled CLIs are available during go generate
-			githubactions.#Step & {
+			extensionStep & {
 				name: "npm install"
 				run:  "npm ci"
 			},
@@ -115,11 +124,19 @@ workflows: trybot: _repo.bashWorkflow & {
 			},
 
 			// Extension
-			githubactions.#Step & {
+			extensionStep & {
+				name: "Format"
+				run:  "npm run format"
+			},
+			extensionStep & {
+				name: "Compile"
+				run:  "npm run compile"
+			},
+			extensionStep & {
 				name: "Extension publish dry-run"
 				run:  "vsce package"
 			},
-			githubactions.#Step & {
+			extensionStep & {
 				name: "Update manifest.txt"
 				run:  "cue cmd genManifest"
 			},

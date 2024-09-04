@@ -107,10 +107,18 @@ jobs:
       - run: cue login --token=${CUE_TOKEN}
         env:
           CUE_TOKEN: ${{ secrets.NOTCUECKOO_CUE_TOKEN }}
-      - name: Add node_modules/.bin to PATH
-        run: echo "PATH=$PWD/node_modules/.bin:$PATH" >> $GITHUB_ENV
+      - name: Add node_modules/.bin to PATH and npm ci
+        run: |-
+          echo "PATH=$PWD/node_modules/.bin:$PATH" >> $GITHUB_ENV
+          npm ci
+      - name: Add node_modules/.bin to PATH and npm ci
+        working-directory: extension
+        run: |-
+          echo "PATH=$PWD/node_modules/.bin:$PATH" >> $GITHUB_ENV
+          npm ci
       - name: npm install
         run: npm ci
+        working-directory: extension
       - name: Verify
         run: go mod verify
       - name: Generate
@@ -123,10 +131,18 @@ jobs:
         run: go run honnef.co/go/tools/cmd/staticcheck@v0.5.1 ./...
       - name: Tidy
         run: go mod tidy
+      - name: Format
+        run: npm run format
+        working-directory: extension
+      - name: Compile
+        run: npm run compile
+        working-directory: extension
       - name: Extension publish dry-run
         run: vsce package
+        working-directory: extension
       - name: Update manifest.txt
         run: cue cmd genManifest
+        working-directory: extension
       - if: always()
         name: Check that git is clean at the end of the job
         run: test -z "$(git status --porcelain)" || (git status; git diff; false)

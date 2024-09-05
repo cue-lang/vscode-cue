@@ -1,4 +1,7 @@
-.vscode/**
-.vscode-test/**
-.gitignore
-vsc-extension-quickstart.md
+# This section of the file will have significant overlap with .gitignore
+# with the major difference that .vscodeignore cannot anchor to the root
+# of the repo. Hence 'bin/' ignores _all_ directories named 'bin'.
+bin/*
+extension/
+node_modules/
+*.code-workspace

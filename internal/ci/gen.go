@@ -14,5 +14,4 @@
 
 package ci
 
-//go:generate cue cmd importjsonschema ./vendor
 //go:generate cue cmd gen

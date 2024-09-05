@@ -17,7 +17,7 @@ package github
 import (
 	"list"
 
-	"github.com/SchemaStore/schemastore/src/schemas/json"
+	"github.com/cue-tmp/jsonschema-pub/exp1/githubactions"
 )
 
 // The trybot workflow.
@@ -59,27 +59,27 @@ workflows: trybot: _repo.bashWorkflow & {
 
 			for v in _setupGoActionsCaches {v},
 
-			json.#step & {
+			githubactions.#Step & {
 				name: "Verify"
 				run:  "go mod verify"
 			},
-			json.#step & {
+			githubactions.#Step & {
 				name: "Generate"
 				run:  "go generate ./..."
 			},
-			json.#step & {
+			githubactions.#Step & {
 				name: "Test"
 				run:  "go test ./..."
 			},
-			json.#step & {
+			githubactions.#Step & {
 				name: "Race test"
 				run:  "go test -race ./..."
 			},
-			json.#step & {
+			githubactions.#Step & {
 				name: "staticcheck"
 				run:  "go run honnef.co/go/tools/cmd/staticcheck@v0.5.1 ./..."
 			},
-			json.#step & {
+			githubactions.#Step & {
 				name: "Tidy"
 				run:  "go mod tidy"
 			},
@@ -88,7 +88,7 @@ workflows: trybot: _repo.bashWorkflow & {
 	}
 }
 
-_installCUE: json.#step & {
+_installCUE: githubactions.#Step & {
 	name: "Install CUE"
 	uses: "cue-lang/setup-cue@v1.0.1"
 	with: "cue-version": "v0.11.0-rc.1"

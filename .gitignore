@@ -1,1 +1,5 @@
+# This file will have significant overlap with .vscodeignore
 /bin/*
+/extension/
+node_modules/
+*.code-workspace

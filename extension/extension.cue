@@ -9,11 +9,13 @@ extension: npm: {
 	icon:        "media/white_circle_128.png"
 	license:     "MIT"
 	publisher:   "cuelangorg"
-	engines: vscode: ">=1.63.0"
+	engines: vscode: ">=\(devDependencies["@types/vscode"])"
 	categories: [
 		"Programming Languages",
 	]
-	activationEvents: []
+	activationEvents: [
+		"onLanguage:cue",
+	]
 	main: "./dist/main.js"
 	contributes: {
 		languages: [{
@@ -30,10 +32,49 @@ extension: npm: {
 			path:      "./syntaxes/cue.tmLanguage.json"
 			embeddedLanguages: "source.cue.embedded": "source.cue"
 		}]
-		commands: [{
-			command: "vscode-cue.welcome"
-			title:   "CUE: Welcome"
-		}]
+		commands: [
+			{
+				command: "vscode-cue.welcome"
+				title:   "CUE: Welcome"
+			},
+			{
+				command: "vscode-cue.startlsp"
+				title:   "CUE: Start CUE LSP"
+			},
+			{
+				command: "vscode-cue.stoplsp"
+				title:   "CUE: Stop CUE LSP"
+			},
+			// TODO: see comment above reference to cmdToggleAutoRestartLSP
+			// reference in activate function.
+			// {
+			// 	command: "vscode-cue.toggleautorestart"
+			// 	title:   "CUE: Toggle CUE LSP auto-restart"
+			// },
+		]
+
+		// TODO: switch to being the result of a JSON Schema "export"
+		configuration: {
+			type:  "object"
+			title: "CUE"
+			properties: {
+				"cue.useLanguageServer": {
+					type:        "boolean"
+					default:     true
+					description: "Enable cuepls, the language server for CUE."
+				}
+				"cue.languageServerCommand": {
+					type: "array"
+					default: []
+					description: "The command to run to launch the language server."
+				}
+				"cue.languageServerFlags": {
+					type: "array"
+					default: []
+					description: "Flags like -rpc.trace and -logfile to be used while running the language server."
+				}
+			}
+		}
 	}
 	scripts: {
 		"vscode:prepublish": "cue cmd genPackageJSON && npm run clean && npm run buildpackage"

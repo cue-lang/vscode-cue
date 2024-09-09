@@ -116,6 +116,10 @@ workflows: trybot: _repo.bashWorkflow & {
 			// Extension
 			for v in [...{"working-directory": "extension"}] & [
 				githubactions.#Step & {
+					name: "Format"
+					run:  "npm run format"
+				},
+				githubactions.#Step & {
 					name: "Compile"
 					run:  "npm run compile"
 				},

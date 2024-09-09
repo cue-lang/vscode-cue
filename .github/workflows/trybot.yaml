@@ -130,6 +130,9 @@ jobs:
         run: go run honnef.co/go/tools/cmd/staticcheck@v0.5.1 ./...
       - name: Tidy
         run: go mod tidy
+      - name: Format
+        run: npm run format
+        working-directory: extension
       - name: Compile
         run: npm run compile
         working-directory: extension

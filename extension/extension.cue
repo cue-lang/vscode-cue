@@ -48,6 +48,7 @@ extension: npm: {
 		"check-types":       "tsc --noEmit"
 		lint:                "eslint src --ext ts"
 		test:                "vscode-test"
+		format:              "prettier --write \"src/**/*.ts\""
 	}
 
 	// devDependencies is sort of maintained by npm. We maintain those in a separate file

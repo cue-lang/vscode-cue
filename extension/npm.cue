@@ -12,5 +12,7 @@ extension: npm: devDependencies: {
 	eslint:                             "8.57.0"
 	"npm-run-all":                      "4.1.5"
 	prettier:                           "3.3.3"
+	tar:                                "7.4.3"
 	typescript:                         "5.4.5"
+	"vscode-languageclient":            "9.0.1"
 }

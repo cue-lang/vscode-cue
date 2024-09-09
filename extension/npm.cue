@@ -4,6 +4,7 @@ extension: npm: devDependencies: {
 	esbuild:                            "0.21.5"
 	eslint:                             "8.57.0"
 	"npm-run-all":                      "4.1.5"
+	prettier:                           "3.3.3"
 	typescript:                         "5.4.5"
 	"@typescript-eslint/eslint-plugin": "7.14.1"
 	"@typescript-eslint/parser":        "7.11.0"

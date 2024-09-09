@@ -102,6 +102,10 @@ workflows: trybot: _repo.bashWorkflow & {
 					run:  "npm ci"
 				},
 				{
+					name: "Format"
+					run:  "npm run format"
+				},
+				{
 					name: "Compile"
 					run:  "npm run compile"
 				},

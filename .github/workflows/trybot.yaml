@@ -123,6 +123,9 @@ jobs:
       - name: Install npm packages
         run: npm ci
         working-directory: extension
+      - name: Format
+        run: npm run format
+        working-directory: extension
       - name: Compile
         run: npm run compile
         working-directory: extension

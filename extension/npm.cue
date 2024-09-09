@@ -11,5 +11,6 @@ extension: npm: devDependencies: {
 	esbuild:                            "0.21.5"
 	eslint:                             "8.57.0"
 	"npm-run-all":                      "4.1.5"
+	prettier:                           "3.3.3"
 	typescript:                         "5.4.5"
 }

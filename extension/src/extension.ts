@@ -7,6 +7,20 @@ import { workspace, ExtensionContext } from 'vscode';
 
 let client: LanguageClient;
 
+const supportedPlatforms = {
+  'linux-x64': { goos: 'linux', goarch: 'amd64' },
+  'linux-arm64': { goos: 'linux', goarch: 'arm64' },
+  'darwin-x64': { goos: 'darwin', goarch: 'amd64' },
+  'darwin-arm64': { goos: 'darwin', goarch: 'arm64' },
+  'win32-x64': { goos: 'windows', goarch: 'amd64' },
+  'win32-arm64': { goos: 'windows', goarch: 'arm64' }
+} as {
+  [key: string]: {
+    goos: string;
+    goarch: string;
+  };
+};
+
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export function activate(context: vscode.ExtensionContext) {
@@ -24,6 +38,24 @@ export function activate(context: vscode.ExtensionContext) {
   });
 
   context.subscriptions.push(disposable);
+
+  const fs = require('fs');
+  const { mkdir } = require('fs/promises');
+  const { Readable } = require('stream');
+  const { finished } = require('stream/promises');
+  const path = require('path');
+  const downloadFile = async (url, fileName) => {
+    const res = await fetch(url);
+    if (!fs.existsSync('downloads')) await mkdir('downloads'); //Optional if you already have downloads directory
+    const destination = path.resolve('./downloads', fileName);
+    const fileStream = fs.createWriteStream(destination, { flags: 'wx' });
+    await finished(Readable.fromWeb(res.body).pipe(fileStream));
+  };
+  await downloadFile('<url_to_fetch>', '<fileName>');
+
+  console.log(supportedPlatforms);
+  console.log(process.env.PATH);
+  console.log(context);
 
   // If the extension is launched in debug mode then the debug server options are used
   // Otherwise the run options are used

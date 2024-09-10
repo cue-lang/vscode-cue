@@ -9,5 +9,5 @@ package project
 contrib: versions: {
 	cue: v:  "v0.11.0"
 	go: v:   "go1.23.3"
-	node: v: "v20.17.0"
+	node: v: "v22.11.0"
 }

@@ -2,7 +2,7 @@ package extension
 
 extension: npm: devDependencies: {
 	"@types/mocha":                     "10.0.7"
-	"@types/node":                      "20.16.5"
+	"@types/node":                      "22.9.1"
 	"@types/vscode":                    "1.63.0"
 	"@typescript-eslint/eslint-plugin": "7.14.1"
 	"@typescript-eslint/parser":        "7.11.0"

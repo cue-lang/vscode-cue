@@ -14,7 +14,7 @@ extension: npm: {
 		"Programming Languages",
 	]
 	activationEvents: []
-	main: "./dist/extension.js"
+	main: "./dist/main.js"
 	contributes: {
 		languages: [{
 			id: "cue"

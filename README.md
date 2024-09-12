@@ -31,3 +31,10 @@ Project](https://cuelang.org)), before then being migrated to the
 [cue-lang](https://github.com/cue-lang) organisation which more clearly
 identifies it as part of the CUE Project along with the [main CUE
 repository](https://github.com/cue-lang/cue).
+
+## Contributing
+
+This section needs fleshing out, but the most important detail for now is the
+versions of tooling required for contributing the `vscode-cue` project.
+Those versions can be found in the `contrib.versions` field in the root [`site`
+package](site.cue).

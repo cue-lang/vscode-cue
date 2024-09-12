@@ -16,6 +16,7 @@ package github
 
 import (
 	"list"
+	"strings"
 
 	"github.com/cue-tmp/jsonschema-pub/exp1/githubactions"
 )
@@ -36,13 +37,18 @@ workflows: trybot: _repo.bashWorkflow & {
 
 		let runnerOSExpr = "runner.os"
 		let runnerOSVal = "${{ \(runnerOSExpr) }}"
+
+		// The repo config holds the standard string representation of a Go
+		// version. setup-go, rather unhelpfully, strips the "go" prefix.
+		let goVersion = strings.TrimPrefix(_repo.goVersion, "go")
+
 		let _setupGoActionsCaches = _repo.setupGoActionsCaches & {
-			#goVersion: _repo.latestGo
+			#goVersion: goVersion
 			#os:        runnerOSVal
 			_
 		}
 		let installGo = _repo.installGo & {
-			#setupGo: with: "go-version": _repo.latestGo
+			#setupGo: with: "go-version": goVersion
 			_
 		}
 
@@ -125,11 +131,11 @@ workflows: trybot: _repo.bashWorkflow & {
 _installNode: githubactions.#Step & {
 	name: "Install Node"
 	uses: "actions/setup-node@v4"
-	with: "node-version": _repo.nodeVersion
+	with: "node-version": strings.TrimPrefix(_repo.nodeVersion, "v")
 }
 
 _installCUE: githubactions.#Step & {
 	name: "Install CUE"
 	uses: "cue-lang/setup-cue@v1.0.1"
-	with: version: "v0.11.0-rc.1"
+	with: version: _repo.cueVersion
 }

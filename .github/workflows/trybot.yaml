@@ -57,7 +57,7 @@ jobs:
         uses: actions/setup-go@v5
         with:
           cache: false
-          go-version: 1.23.x
+          go-version: go1.23.1
       - name: Set common go env vars
         run: |-
           go env -w GOTOOLCHAIN=local
@@ -78,8 +78,8 @@ jobs:
           path: |-
             ${{ steps.go-mod-cache-dir.outputs.dir }}/cache/download
             ${{ steps.go-cache-dir.outputs.dir }}
-          key: ${{ runner.os }}-1.23.x-${{ github.run_id }}
-          restore-keys: ${{ runner.os }}-1.23.x
+          key: ${{ runner.os }}-go1.23.1-${{ github.run_id }}
+          restore-keys: ${{ runner.os }}-go1.23.1
       - if: |-
           ! (((github.ref == 'refs/heads/master') && (! (contains(github.event.head_commit.message, '
           Dispatch-Trailer: {"type":"')))) || (github.ref == 'refs/heads/ci/test'))
@@ -88,8 +88,8 @@ jobs:
           path: |-
             ${{ steps.go-mod-cache-dir.outputs.dir }}/cache/download
             ${{ steps.go-cache-dir.outputs.dir }}
-          key: ${{ runner.os }}-1.23.x-${{ github.run_id }}
-          restore-keys: ${{ runner.os }}-1.23.x
+          key: ${{ runner.os }}-go1.23.1-${{ github.run_id }}
+          restore-keys: ${{ runner.os }}-go1.23.1
       - if: |-
           github.repository == 'cue-lang/vscode-cue' && (((github.ref == 'refs/heads/master') && (! (contains(github.event.head_commit.message, '
           Dispatch-Trailer: {"type":"')))) || github.ref == 'refs/heads/ci/test')
@@ -97,7 +97,11 @@ jobs:
       - name: Install Node
         uses: actions/setup-node@v3
         with:
-          node-version: 20.17.0
+          node-version: v20.17.0
+      - name: Install CUE
+        uses: cue-lang/setup-cue@v1
+        with:
+          cue-version: v0.10.0
       - name: Early git and code sanity checks
         run: go run cuelang.org/go/internal/ci/checks@v0.11.0-0.dev.0.20240903133435-46fb300df650
       - name: Verify

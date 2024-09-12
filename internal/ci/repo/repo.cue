@@ -4,6 +4,7 @@
 package repo
 
 import (
+	"github.com/cue-lang/vscode-cue:site"
 	"github.com/cue-lang/vscode-cue/internal/ci/base"
 )
 
@@ -16,6 +17,6 @@ botGitHubUserEmail: "cueckoo@gmail.com"
 
 linuxMachine: "ubuntu-22.04"
 
-latestGo: "1.23.x"
-
-nodeVersion: "20.17.0"
+goVersion:   site.contrib.versions.go.v
+nodeVersion: site.contrib.versions.node.v
+cueVersion:  site.contrib.versions.cue.v

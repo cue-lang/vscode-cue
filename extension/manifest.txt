@@ -7,3 +7,9 @@ media/white_circle_128.png
 package.json
 src/extension.ts
 syntaxes/cue.tmLanguage.json
+<<<<<<< HEAD
+||||||| parent of ec5accd (extension: introduce extension configuration)
+tsconfig.json
+=======
+tsconfig.json
+>>>>>>> ec5accd (extension: introduce extension configuration)

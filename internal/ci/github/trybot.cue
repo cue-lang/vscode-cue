@@ -37,12 +37,12 @@ workflows: trybot: _repo.bashWorkflow & {
 		let runnerOSExpr = "runner.os"
 		let runnerOSVal = "${{ \(runnerOSExpr) }}"
 		let _setupGoActionsCaches = _repo.setupGoActionsCaches & {
-			#goVersion: _repo.latestGo
+			#goVersion: _repo.goVersion
 			#os:        runnerOSVal
 			_
 		}
 		let installGo = _repo.installGo & {
-			#setupGo: with: "go-version": _repo.latestGo
+			#setupGo: with: "go-version": _repo.goVersion
 			_
 		}
 
@@ -63,6 +63,9 @@ workflows: trybot: _repo.bashWorkflow & {
 
 			// Node setup
 			_installNode,
+
+			// CUE setup
+			_installCUE,
 
 			_repo.earlyChecks,
 
@@ -117,5 +120,5 @@ _installNode: githubactions.#Step & {
 _installCUE: githubactions.#Step & {
 	name: "Install CUE"
 	uses: "cue-lang/setup-cue@v1.0.1"
-	with: version: "v0.11.0-rc.1"
+	with: version: _repo.cueVersion
 }

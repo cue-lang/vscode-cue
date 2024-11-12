@@ -5,3 +5,17 @@ bin/*
 extension/
 node_modules/
 *.code-workspace
+
+# This section is more specific to the extension itself
+*.go
+
+# This section is more specific to the extension itself in its current
+# location at the root of the repo
+.vscode/
+codereview.cfg
+cue.mod/
+.github/
+.gitignore
+go.mod
+go.sum
+internal/

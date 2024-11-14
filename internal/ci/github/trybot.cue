@@ -97,6 +97,14 @@ workflows: trybot: _repo.bashWorkflow & {
 				name: "npm install"
 				run:  "npm ci"
 			},
+			githubactions.#Step & {
+				name: "Update manifest.txt"
+				run:  "cue cmd genManifest"
+			},
+			githubactions.#Step & {
+				name: "Extension publish dry-run"
+				run:  "vsce package"
+			},
 
 			// Final checks
 			_repo.checkGitClean,

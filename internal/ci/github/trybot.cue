@@ -92,6 +92,28 @@ workflows: trybot: _repo.bashWorkflow & {
 				run:  "go mod tidy"
 			},
 
+			// Update PATH to allow for vsce and other npm-installed CLIs to be usable
+			githubactions.#Step & {
+				name: "Add node_modules/.bin to PATH"
+				run: """
+					echo "$PWD/node_modules/.bin" >> $GITHUB_ENV
+					"""
+			},
+
+			// Extension
+			githubactions.#Step & {
+				name: "npm install"
+				run:  "npm ci"
+			},
+			githubactions.#Step & {
+				name: "Update manifest.txt"
+				run:  "cue cmd genManifest"
+			},
+			githubactions.#Step & {
+				name: "Extension publish dry-run"
+				run:  "vsce package"
+			},
+
 			// Final checks
 			_repo.checkGitClean,
 		]

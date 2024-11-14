@@ -5,6 +5,11 @@ bin/*
 extension/
 node_modules/
 *.code-workspace
+*.vsix
+
+# A static snapshot of what constitues the extension. Exclude this from
+# the extension itself.
+manifest.txt
 
 # This section is more specific to the extension itself
 *.go

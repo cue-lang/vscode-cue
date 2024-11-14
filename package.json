@@ -37,5 +37,8 @@
                 }
             }
         ]
+    },
+    "devDependencies": {
+        "@vscode/vsce": "3.2.1"
     }
 }

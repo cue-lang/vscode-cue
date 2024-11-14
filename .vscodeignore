@@ -5,6 +5,7 @@ bin/*
 extension/
 node_modules/
 *.code-workspace
+*.vsix
 
 # This section is more specific to the extension itself
 *.go

@@ -37,5 +37,12 @@
                 }
             }
         ]
+    },
+    "scripts": {
+        "package": "vsce package && cue cmd genManifest",
+        "publish": "vsce publish"
+    },
+    "devDependencies": {
+        "@vscode/vsce": "3.2.1"
     }
 }

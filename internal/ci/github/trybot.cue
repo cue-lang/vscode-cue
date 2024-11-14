@@ -66,6 +66,20 @@ workflows: trybot: _repo.bashWorkflow & {
 
 			_repo.earlyChecks,
 
+			// Update PATH to allow for vsce and other npm-installed CLIs to be usable
+			githubactions.#Step & {
+				name: "Add node_modules/.bin to PATH"
+				run: """
+					echo "$PWD/node_modules/.bin" >> $GITHUB_ENV
+					"""
+			},
+
+			// npm install to ensure that npm-controlled CLIs are available during go generate
+			githubactions.#Step & {
+				name: "npm install"
+				run:  "npm ci"
+			},
+
 			// Go steps - currently independent of the extension
 			githubactions.#Step & {
 				name: "Verify"
@@ -90,6 +104,16 @@ workflows: trybot: _repo.bashWorkflow & {
 			githubactions.#Step & {
 				name: "Tidy"
 				run:  "go mod tidy"
+			},
+
+			// Extension
+			githubactions.#Step & {
+				name: "Update manifest.txt"
+				run:  "cue cmd genManifest"
+			},
+			githubactions.#Step & {
+				name: "Extension publish dry-run"
+				run:  "vsce package"
 			},
 
 			// Final checks

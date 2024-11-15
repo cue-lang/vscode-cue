@@ -54,6 +54,8 @@ workflows: trybot: _repo.bashWorkflow & {
 		steps: [
 			for v in _repo.checkoutCode {v},
 			for v in installGo {v},
+			// CUE setup
+			_installCUE,
 
 			for v in _setupGoActionsCaches {v},
 
@@ -84,4 +86,10 @@ workflows: trybot: _repo.bashWorkflow & {
 			_repo.checkGitClean,
 		]
 	}
+}
+
+_installCUE: json.#step & {
+	name: "Install CUE"
+	uses: "cue-lang/setup-cue@v1.0.1"
+	with: "cue-version": "v0.11.0-rc.1"
 }

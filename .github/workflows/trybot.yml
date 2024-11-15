@@ -64,6 +64,10 @@ jobs:
 
           # Dump env for good measure
           go env
+      - name: Install CUE
+        uses: cue-lang/setup-cue@v1.0.1
+        with:
+          cue-version: v0.11.0-rc.1
       - id: go-mod-cache-dir
         name: Get go mod cache directory
         run: echo "dir=$(go env GOMODCACHE)" >> ${GITHUB_OUTPUT}

@@ -1,0 +1,9 @@
+# Ignore vscode workspace files
+*.code-workspace
+
+# This catches the temporary situation ahead of the extension
+# moving to this subdirectory
+/extension
+
+# Ignore node_modules everywhere
+node_modules

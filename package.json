@@ -1,48 +1,49 @@
 {
-    "name": "vscode-cue",
-    "displayName": "vscode-cue",
-    "description": "CUE language support for Visual Studio Code",
-    "repository": "https://github.com/cue-lang/vscode-cue",
-    "version": "0.0.3",
-    "icon": "media/white_circle_128.png",
-    "license": "MIT",
-    "publisher": "cuelangorg",
-    "engines": {
-        "vscode": ">=1.63.0"
-    },
-    "categories": [
-        "Programming Languages"
-    ],
-    "contributes": {
-        "languages": [
-            {
-                "id": "cue",
-                "aliases": [
-                    "CUE",
-                    "cue"
-                ],
-                "extensions": [
-                    ".cue"
-                ],
-                "configuration": "./language-configuration.json"
-            }
+  "name": "vscode-cue",
+  "displayName": "vscode-cue",
+  "description": "CUE language support for Visual Studio Code",
+  "repository": "https://github.com/cue-lang/vscode-cue",
+  "version": "0.0.3",
+  "icon": "media/white_circle_128.png",
+  "license": "MIT",
+  "publisher": "cuelangorg",
+  "engines": {
+    "vscode": ">=1.63.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "cue",
+        "aliases": [
+          "CUE",
+          "cue"
         ],
-        "grammars": [
-            {
-                "language": "cue",
-                "scopeName": "source.cue",
-                "path": "./syntaxes/cue.tmLanguage.json",
-                "embeddedLanguages": {
-                    "source.cue.embedded": "source.cue"
-                }
-            }
-        ]
-    },
-    "scripts": {
-        "package": "vsce package && cue cmd genManifest",
-        "publish": "vsce publish"
-    },
-    "devDependencies": {
-        "@vscode/vsce": "3.2.1"
-    }
+        "extensions": [
+          ".cue"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "cue",
+        "scopeName": "source.cue",
+        "path": "./syntaxes/cue.tmLanguage.json",
+        "embeddedLanguages": {
+          "source.cue.embedded": "source.cue"
+        }
+      }
+    ]
+  },
+  "scripts": {
+    "package": "vsce package && cue cmd genManifest",
+    "publish": "vsce publish"
+  },
+  "devDependencies": {
+    "@vscode/vsce": "3.2.1",
+    "prettier": "3.3.3"
+  }
 }

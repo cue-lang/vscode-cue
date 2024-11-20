@@ -1,0 +1,34 @@
+{
+	"tabWidth": 1,
+	"overrides": [
+		{
+			"files": "*.ts",
+			"options": {
+				"useTabs": true,
+				"arrowParens": "always",
+				"printWidth": 120,
+				"quoteProps": "consistent",
+				"singleQuote": true,
+				"trailingComma": "none"
+			}
+		},
+		{
+			"files": "*.js",
+			"options": {
+				"useTabs": true,
+				"arrowParens": "always",
+				"printWidth": 120,
+				"quoteProps": "consistent",
+				"singleQuote": true,
+				"trailingComma": "none"
+			}
+		},
+		{
+			"files": "*.json",
+			"options": {
+				"useTabs": false,
+				"tabWidth": 2
+			}
+		}
+	]
+}

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "d0ca9197_009f3d78",
+        "filename": "internal/ci/github/trybot.cue",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1017720
+      },
+      "writtenOn": "2024-11-21T15:36:19Z",
+      "side": 1,
+      "message": "FWIW I\u0027d be totally in favor of you making the same change to the cue repo, assuming that is the canonical place where we write these useful helpers, potentially to be published as a module.",
+      "revId": "3a62a5cfa4a04beb0a0ec1575a86563ee7317900",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}

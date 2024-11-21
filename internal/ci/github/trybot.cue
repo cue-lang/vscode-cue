@@ -26,6 +26,7 @@ workflows: trybot: _repo.bashWorkflow & {
 	name: _repo.trybot.name
 
 	on: {
+		tags: [_repo.releaseTagPattern]
 		push: {
 			branches: list.Concat([[_repo.testDefaultBranch], _repo.protectedBranchPatterns]) // do not run PR branches
 		}
@@ -69,6 +70,9 @@ workflows: trybot: _repo.bashWorkflow & {
 
 		let extensionStep = {
 			"working-directory": "extension"
+		}
+		let releaseStep = extensionStep & {
+			if: _repo.isReleaseTag
 		}
 
 		steps: [
@@ -143,6 +147,13 @@ workflows: trybot: _repo.bashWorkflow & {
 
 			// Final checks
 			_repo.checkGitClean,
+
+			// Release steps
+			releaseStep & {
+				name: "Check version match"
+				run:  "cue cmd "
+			},
+
 		]
 	}
 }

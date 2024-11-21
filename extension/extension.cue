@@ -5,7 +5,7 @@ extension: npm: {
 	displayName: "vscode-cue"
 	description: "CUE language support for Visual Studio Code"
 	repository:  "https://github.com/cue-lang/vscode-cue"
-	version:     "0.0.3"
+	version:     "0.0.5"
 	icon:        "media/white_circle_128.png"
 	license:     "MIT"
 	publisher:   "cuelangorg"

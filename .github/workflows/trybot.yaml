@@ -98,15 +98,13 @@ jobs:
           github.repository == 'cue-lang/vscode-cue' && (((github.ref == 'refs/heads/master') && (! (contains(github.event.head_commit.message, '
           Dispatch-Trailer: {"type":"')))) || github.ref == 'refs/heads/ci/test')
         run: go clean -testcache
+      - run: cue login --token=${CUE_TOKEN}
+        env:
+          CUE_TOKEN: ${{ secrets.NOTCUECKOO_CUE_TOKEN }}
       - name: Verify
         run: go mod verify
       - name: Generate
-        run: |-
-          export CUE_CONFIG_DIR=$(mktemp -d)
-          echo "$CUE_LOGINS" > $CUE_CONFIG_DIR/logins.json
-          go generate ./...
-        env:
-          CUE_LOGINS: ${{ secrets.NOTCUECKOO_CUE_LOGINS }}
+        run: go generate ./...
       - name: Test
         run: go test ./...
       - name: Race test

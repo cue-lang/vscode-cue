@@ -16,6 +16,24 @@
       "message": "FWIW I\u0027d be totally in favor of you making the same change to the cue repo, assuming that is the canonical place where we write these useful helpers, potentially to be published as a module.",
       "revId": "3a62a5cfa4a04beb0a0ec1575a86563ee7317900",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a9efd33d_0ed56e1c",
+        "filename": "internal/ci/github/trybot.cue",
+        "patchSetId": 2
+      },
+      "lineNbr": 109,
+      "author": {
+        "id": 1017723
+      },
+      "writtenOn": "2024-11-21T15:38:38Z",
+      "side": 1,
+      "message": "I thought about that. But given the potential difference in whether a naked `cue` is run vs `go run cuelang.org/go/cmd/cue` it\u0027s not (yet) obviously common.",
+      "parentUuid": "d0ca9197_009f3d78",
+      "revId": "3a62a5cfa4a04beb0a0ec1575a86563ee7317900",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }

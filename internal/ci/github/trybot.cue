@@ -27,6 +27,7 @@ workflows: trybot: _repo.bashWorkflow & {
 
 	on: {
 		push: {
+			tags: [_repo.releaseTagPattern]
 			branches: list.Concat([[_repo.testDefaultBranch], _repo.protectedBranchPatterns]) // do not run PR branches
 		}
 		pull_request: {}
@@ -69,6 +70,9 @@ workflows: trybot: _repo.bashWorkflow & {
 
 		let extensionStep = {
 			"working-directory": "extension"
+		}
+		let releaseStep = extensionStep & {
+			if: _repo.isReleaseTag
 		}
 
 		steps: [
@@ -133,9 +137,25 @@ workflows: trybot: _repo.bashWorkflow & {
 
 			// Final checks
 			_repo.checkGitClean,
+
+			// Release steps
+			releaseStep & {
+				name: "Check version match"
+				run:  "cue cmd -t tag=\(_versionRef) checkReleaseVersion"
+			},
+
+			releaseStep & {
+				name: "Release package"
+				run:  "npm run publish"
+			},
+
 		]
 	}
 }
+
+// _versionRef is a workflow job-runtime expression that evaluates to the git
+// tag (version) that is being released
+_versionRef: "${GITHUB_REF##refs/tags/}"
 
 _installNode: githubactions.#Step & {
 	name: "Install Node"

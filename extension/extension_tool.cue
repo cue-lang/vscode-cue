@@ -62,3 +62,19 @@ command: writebackPackageJSON: {
 		contents: place.stdout
 	}
 }
+
+command: checkReleaseVersion: {
+	_version: string @tag(tag)
+
+	let commitVersion = "v" + extension.npm.version
+
+	if commitVersion != _version {
+		msg: exec.Run & {
+			cmd: ["echo", "commitVersion \(commitVersion) != tag version \(_version)", "&&", "false"]
+		}
+		error: exec.Run & {
+			$after: msg
+			cmd:    "false"
+		}
+	}
+}

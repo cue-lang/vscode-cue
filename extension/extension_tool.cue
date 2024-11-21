@@ -62,3 +62,23 @@ command: writebackPackageJSON: {
 		contents: place.stdout
 	}
 }
+
+// checkReleaseVersion ensures that the extension-configured version (which is
+// not actually a true semver version) corresponds to the string "argument"
+// passed via the attribute named tag are equal. We use a rather unpleasant
+// hack to force a failure because cue cmd has no such primitive.
+command: checkReleaseVersion: {
+	_version: string @tag(tag)
+
+	let commitVersion = "v" + extension.npm.version
+
+	if commitVersion != _version {
+		msg: exec.Run & {
+			cmd: ["echo", "commitVersion \(commitVersion) != tag version \(_version)", "&&", "false"]
+		}
+		error: exec.Run & {
+			$after: msg
+			cmd:    "false"
+		}
+	}
+}

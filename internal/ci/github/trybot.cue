@@ -61,27 +61,27 @@ workflows: trybot: _repo.bashWorkflow & {
 
 			_centralRegistryLogin,
 
-			githubactions.#Step & {
+			{
 				name: "Verify"
 				run:  "go mod verify"
 			},
-			githubactions.#Step & {
+			{
 				name: "Generate"
 				run:  "go generate ./..."
 			},
-			githubactions.#Step & {
+			{
 				name: "Test"
 				run:  "go test ./..."
 			},
-			githubactions.#Step & {
+			{
 				name: "Race test"
 				run:  "go test -race ./..."
 			},
-			githubactions.#Step & {
+			{
 				name: "staticcheck"
 				run:  "go run honnef.co/go/tools/cmd/staticcheck@v0.5.1 ./..."
 			},
-			githubactions.#Step & {
+			{
 				name: "Tidy"
 				run:  "go mod tidy"
 			},

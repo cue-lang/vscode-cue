@@ -3,6 +3,8 @@
 name: TryBot
 "on":
   push:
+    tags:
+      - v*
     branches:
       - ci/test
       - master
@@ -143,3 +145,13 @@ jobs:
       - if: always()
         name: Check that git is clean at the end of the job
         run: test -z "$(git status --porcelain)" || (git status; git diff; false)
+      - working-directory: extension
+        if: github.repository == 'cue-lang/vscode-cue' && (startsWith(github.ref, 'refs/tags/v'))
+        name: Check version match
+        run: cue cmd -t tag=${GITHUB_REF##refs/tags/} checkReleaseVersion
+      - working-directory: extension
+        if: github.repository == 'cue-lang/vscode-cue' && (startsWith(github.ref, 'refs/tags/v') || (github.ref == 'refs/heads/ci/test'))
+        name: Release package
+        run: npm run publish -- -p $VSCODE_PAT
+        env:
+          VSCODE_PAT: ${{ secrets.CUECKOO_VSCODE_PAT }}

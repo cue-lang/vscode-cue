@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ac704dd2_1d7fe0b9",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 14
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1017723
+      },
+      "writtenOn": "2024-11-22T14:26:43Z",
+      "side": 1,
+      "message": "Proof that the release workflow \"works\" via a push to `ci/test`:\n\nhttps://github.com/cue-lang/vscode-cue/actions/runs/11973962257/job/33384205946\n\nIt failed because v0.0.5 has already been published, but that shows that the auth is working.",
+      "revId": "54d8b3d50b1de3f7efa7c7db5436eb412a2952b6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "a643eb97_958aed79",
+        "filename": "extension/npm.cue",
+        "patchSetId": 56
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1017720
+      },
+      "writtenOn": "2024-11-23T15:03:48Z",
+      "side": 1,
+      "message": "perhaps make a note here in terms of how you will update these. I seem to recall that npm has tooling to bump the minimum requirements in their json files, so I assume with this cue file, you have to do it manually, e.g. at the start of each release cycle?",
+      "revId": "e1f4addfb67f746a043c6269f6dc62f6b5e96f60",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}

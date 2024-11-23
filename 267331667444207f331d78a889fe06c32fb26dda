@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b7d56a3b_c3548b41",
+        "filename": "extension/package-lock.json",
+        "patchSetId": 61
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1017720
+      },
+      "writtenOn": "2024-11-23T15:05:32Z",
+      "side": 1,
+      "message": "I guess newer versions of node bettre track licenses? interesting",
+      "revId": "267331667444207f331d78a889fe06c32fb26dda",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}

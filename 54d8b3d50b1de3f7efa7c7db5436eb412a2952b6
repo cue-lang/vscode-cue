@@ -16,6 +16,23 @@
       "message": "Proof that the release workflow \"works\" via a push to `ci/test`:\n\nhttps://github.com/cue-lang/vscode-cue/actions/runs/11973962257/job/33384205946\n\nIt failed because v0.0.5 has already been published, but that shows that the auth is working.",
       "revId": "54d8b3d50b1de3f7efa7c7db5436eb412a2952b6",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2bb96153_24a142d7",
+        "filename": "extension/extension_tool.cue",
+        "patchSetId": 14
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1017720
+      },
+      "writtenOn": "2024-11-23T15:09:45Z",
+      "side": 1,
+      "message": "this makes me nervous. exec.Run runs a program with arguments, and not a shell script, so the `\u0026\u0026` here is literlaly being printed as an argument to /bin/echo rather than causing any if/then bash logic.\n\nso I think this is silently not doint what you expect? I think you need to either call `bash -c one_string_argument`, or rework this logic so that shell isn\u0027t needed.\n\nprobably best to test this command with both the positive and negative scenarios to double check it does what we intend.",
+      "revId": "54d8b3d50b1de3f7efa7c7db5436eb412a2952b6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }

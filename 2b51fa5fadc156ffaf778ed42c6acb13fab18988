@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4cc50a76_708b5423",
+        "filename": "extension/extension_tool.cue",
+        "patchSetId": 55
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1017720
+      },
+      "writtenOn": "2024-11-23T15:02:46Z",
+      "side": 1,
+      "message": "is this because json.Indent does not produce a trailing newline? I\u0027d make a small note of that because otherwise this looks odd.",
+      "revId": "2b51fa5fadc156ffaf778ed42c6acb13fab18988",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}

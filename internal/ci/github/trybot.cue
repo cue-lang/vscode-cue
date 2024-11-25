@@ -131,6 +131,16 @@ workflows: trybot: _repo.bashWorkflow & {
 				run:  "npm run package"
 			},
 
+			// For some unknown reason, 'npm install' does not do the same thing
+			// as 'npm ci' with respect to "copying over" the extension version to
+			// package-lock.json. Therefore, after going through all the
+			// generation, packaging etc, we need to then run 'npm install' to
+			// ensure that package-lock.json is current.
+			extensionStep & {
+				name: "Ensure package-lock.json up-to-date"
+				run:  "npm install"
+			},
+
 			// Final checks
 			_repo.checkGitClean,
 		]

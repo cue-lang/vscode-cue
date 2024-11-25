@@ -107,15 +107,15 @@ jobs:
       - run: cue login --token=${CUE_TOKEN}
         env:
           CUE_TOKEN: ${{ secrets.NOTCUECKOO_CUE_TOKEN }}
-      - name: Add node_modules/.bin to PATH and npm ci
+      - name: Add node_modules/.bin to PATH and npm install
         run: |-
           echo "PATH=$PWD/node_modules/.bin:$PATH" >> $GITHUB_ENV
-          npm ci
+          npm install
       - working-directory: extension
-        name: Add node_modules/.bin to PATH and npm ci
+        name: Add node_modules/.bin to PATH and npm install
         run: |-
           echo "PATH=$PWD/node_modules/.bin:$PATH" >> $GITHUB_ENV
-          npm ci
+          npm install
       - name: Verify
         run: go mod verify
       - name: Generate

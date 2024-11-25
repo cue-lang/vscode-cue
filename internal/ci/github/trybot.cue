@@ -59,11 +59,19 @@ workflows: trybot: _repo.bashWorkflow & {
 
 		// Update PATH to add node_modules/.bin, for both the root level
 		// package.json used for tooling, and within the extension.
+		//
+		// NOTE: we use 'npm install' here, rather than 'npm ci', because the
+		// latter does not appear to fail when, for example, the top-level
+		// 'version' field in package.json is out of sync with package-lock.json.
+		// So whilst 'npm install' is less efficient than 'npm ci' in a CI
+		// context, the two are identical from a "which packages got installed"
+		// perspective, because we always check that the repo is clean at the end
+		// of the workflow.
 		let npmSetup = {
-			name: "Add node_modules/.bin to PATH and npm ci"
+			name: "Add node_modules/.bin to PATH and npm install"
 			run: """
 				echo "PATH=$PWD/node_modules/.bin:$PATH" >> $GITHUB_ENV
-				npm ci
+				npm install
 				"""
 		}
 

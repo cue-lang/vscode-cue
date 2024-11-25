@@ -33,6 +33,24 @@
       "message": "this makes me nervous. exec.Run runs a program with arguments, and not a shell script, so the `\u0026\u0026` here is literlaly being printed as an argument to /bin/echo rather than causing any if/then bash logic.\n\nso I think this is silently not doint what you expect? I think you need to either call `bash -c one_string_argument`, or rework this logic so that shell isn\u0027t needed.\n\nprobably best to test this command with both the positive and negative scenarios to double check it does what we intend.",
       "revId": "54d8b3d50b1de3f7efa7c7db5436eb412a2952b6",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cb589897_a9fd3e88",
+        "filename": "extension/extension_tool.cue",
+        "patchSetId": 14
+      },
+      "lineNbr": 77,
+      "author": {
+        "id": 1017723
+      },
+      "writtenOn": "2024-11-25T14:56:33Z",
+      "side": 1,
+      "message": "This is actually a bug. You can see the `error` task below is actually the thing that causes the failure. So I\u0027ll simply remove the `\u0026\u0026 false` bit because it fails for exactly the reason you described.\n\nI\u0027ve also raised a question about a `false`-equivalent stdlib task that could/should be part of `cuelang.org/go/pkg/tool/...` somewhere. I\u0027ll raise an issue and link to that issue from the task below.\n\nI have also updated this task to be a simple print with string interpolation.",
+      "parentUuid": "2bb96153_24a142d7",
+      "revId": "54d8b3d50b1de3f7efa7c7db5436eb412a2952b6",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }

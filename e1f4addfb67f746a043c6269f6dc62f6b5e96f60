@@ -16,6 +16,24 @@
       "message": "perhaps make a note here in terms of how you will update these. I seem to recall that npm has tooling to bump the minimum requirements in their json files, so I assume with this cue file, you have to do it manually, e.g. at the start of each release cycle?",
       "revId": "e1f4addfb67f746a043c6269f6dc62f6b5e96f60",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f980f45b_104d26d7",
+        "filename": "extension/npm.cue",
+        "patchSetId": 56
+      },
+      "lineNbr": 16,
+      "author": {
+        "id": 1017723
+      },
+      "writtenOn": "2024-11-25T14:56:33Z",
+      "side": 1,
+      "message": "The previous CL aimed to document (in extension.cue) the flow. 99% of the time, npm will be in charge of versions. Then npm.cue is overwritten using the `cue cmd writebackPackageJSON` command. (the docs can\u0027t be in this file because it gets overwritten).",
+      "parentUuid": "a643eb97_958aed79",
+      "revId": "e1f4addfb67f746a043c6269f6dc62f6b5e96f60",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }

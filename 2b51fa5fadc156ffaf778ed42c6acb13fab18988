@@ -16,6 +16,24 @@
       "message": "is this because json.Indent does not produce a trailing newline? I\u0027d make a small note of that because otherwise this looks odd.",
       "revId": "2b51fa5fadc156ffaf778ed42c6acb13fab18988",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79997899_cab4e241",
+        "filename": "extension/extension_tool.cue",
+        "patchSetId": 55
+      },
+      "lineNbr": 42,
+      "author": {
+        "id": 1017723
+      },
+      "writtenOn": "2024-11-25T14:56:33Z",
+      "side": 1,
+      "message": "Correct. Comment added to clarify.",
+      "parentUuid": "4cc50a76_708b5423",
+      "revId": "2b51fa5fadc156ffaf778ed42c6acb13fab18988",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }

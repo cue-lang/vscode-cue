@@ -16,6 +16,24 @@
       "message": "v0.0.5 :)",
       "revId": "a7520f893c331b6eae49b1e2d3e5b17650c82f4c",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "90e9c39c_1bcb38c9",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 13
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1017723
+      },
+      "writtenOn": "2024-11-25T14:56:33Z",
+      "side": 1,
+      "message": "Nice spot! Fixed.",
+      "parentUuid": "25056f14_b3fc1861",
+      "revId": "a7520f893c331b6eae49b1e2d3e5b17650c82f4c",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }

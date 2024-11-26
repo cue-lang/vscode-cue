@@ -16,6 +16,24 @@
       "message": "hm, why vscode-cue-contrib rather than vscode-cue? I guess because the actual vscode-cue extension is under the extension subdirectory?",
       "revId": "ba1f55c260e0be25132ad6559a855b02e70779c3",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e6a773bd_66305ed9",
+        "filename": "package.json",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1017723
+      },
+      "writtenOn": "2024-11-26T09:14:26Z",
+      "side": 1,
+      "message": "Yeh, I just went with something hinting at the fact that this is contributor related for now, distinct from the extension subdirectory package.json.",
+      "parentUuid": "40827b56_0896935f",
+      "revId": "ba1f55c260e0be25132ad6559a855b02e70779c3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }

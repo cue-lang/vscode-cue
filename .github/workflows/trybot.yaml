@@ -80,6 +80,7 @@ jobs:
           path: |-
             ${{ steps.go-mod-cache-dir.outputs.dir }}/cache/download
             ${{ steps.go-cache-dir.outputs.dir }}
+            ~/.npm
           key: ${{ runner.os }}-1.23.3-${{ github.run_id }}
           restore-keys: ${{ runner.os }}-1.23.3
       - if: |-
@@ -90,6 +91,7 @@ jobs:
           path: |-
             ${{ steps.go-mod-cache-dir.outputs.dir }}/cache/download
             ${{ steps.go-cache-dir.outputs.dir }}
+            ~/.npm
           key: ${{ runner.os }}-1.23.3-${{ github.run_id }}
           restore-keys: ${{ runner.os }}-1.23.3
       - if: |-

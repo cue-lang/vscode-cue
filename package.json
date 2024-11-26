@@ -1,4 +1,5 @@
 {
+  "name": "vscode-cue-contrib",
   "devDependencies": {
     "prettier": "3.3.3"
   }

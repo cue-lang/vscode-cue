@@ -46,6 +46,9 @@ workflows: trybot: _repo.bashWorkflow & {
 		let _setupGoActionsCaches = _repo.setupGoActionsCaches & {
 			#goVersion: goVersion
 			#os:        runnerOSVal
+			#additionalCacheDirs: [
+				"~/.npm",
+			]
 			_
 		}
 		let installGo = _repo.installGo & {

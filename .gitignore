@@ -7,3 +7,6 @@
 
 # Ignore node_modules everywhere
 node_modules
+
+# Ignore .vsix files - they are ignored in the main repo
+*.vsix

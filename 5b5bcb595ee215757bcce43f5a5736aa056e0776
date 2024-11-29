@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "698c7751_dcea5dd1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 92
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1017723
+      },
+      "writtenOn": "2024-11-29T11:22:25Z",
+      "side": 1,
+      "message": "Happy to give you an overview of this change \"live\" - it\u0027s quite large, and talking through the shape of it might help.",
+      "revId": "5b5bcb595ee215757bcce43f5a5736aa056e0776",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}

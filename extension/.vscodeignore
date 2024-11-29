@@ -21,6 +21,7 @@ launch.json
 src/test
 esbuild.js
 tsconfig.json
+testing.md
 
 # Legacy files generated as part of skeleton - useful for reference only.
 _generated

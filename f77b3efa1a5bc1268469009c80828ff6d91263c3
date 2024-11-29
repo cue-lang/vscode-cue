@@ -16,6 +16,24 @@
       "message": "FYI: I would leave this as the generic \"issue/PR\" and redirect to ${THIS_REPO}/issues/$N, because that will correctly redirec to a PR if that number is a PR rather than an issue. Then this will work OK for any repository whether or not they have the issue tracker enabled.\n\n\nI think that will work better longer term, particularly once we start templating all of these project.config files across all repos. Otherwise we have to distinguish \"repos which have the issue tracker enabled\" from those that don\u0027t. When in practice we can configure both the same way.",
       "revId": "f77b3efa1a5bc1268469009c80828ff6d91263c3",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7f07c54f_4f5bcbe3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1017723
+      },
+      "writtenOn": "2024-11-29T15:05:59Z",
+      "side": 1,
+      "message": "Good point. I recall our conversation on this before now. Done.",
+      "parentUuid": "94221833_21887f1c",
+      "revId": "f77b3efa1a5bc1268469009c80828ff6d91263c3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }

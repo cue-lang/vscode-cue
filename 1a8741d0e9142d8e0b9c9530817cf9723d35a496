@@ -1,0 +1,191 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "1bb513a8_5875bbd4",
+        "filename": "extension/src/main.ts",
+        "patchSetId": 93
+      },
+      "lineNbr": 124,
+      "author": {
+        "id": 1038145
+      },
+      "writtenOn": "2024-12-02T11:28:15Z",
+      "side": 1,
+      "message": "I am no TS expert - there are times where I\u0027ve written a few kloc here and there, and I\u0027m generally fairly comfortable with it, but definitely no expect. So there\u0027s a high chance I don\u0027t know what I\u0027m talking about really, so please take all my comments here with that in mind.\n\nIn general, I thought it was always better to use `let` and not `var` declarations. `lets` are the same as `vars` in terms of mutability, but they add sensible scoping and temporal rules. https://www.typescriptlang.org/docs/handbook/variable-declarations.html\nSo essentially, is there any reason these decls couldn\u0027t be `let`s?",
+      "revId": "1a8741d0e9142d8e0b9c9530817cf9723d35a496",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "af5b2d96_6c1106f7",
+        "filename": "extension/src/main.ts",
+        "patchSetId": 93
+      },
+      "lineNbr": 163,
+      "author": {
+        "id": 1038145
+      },
+      "writtenOn": "2024-12-02T11:28:15Z",
+      "side": 1,
+      "message": "There seem to be a few variables here that are \"only undefined if...\".\nHere you mention \"active instance of the extension\". For `client` you mention \"if ctx\". It\u0027s not clear to me whether these two concepts are the same or different.\n\nIf they are the same, and really everything is predicated off the creation of `ctx`, then I feel it would be clearer and safer to group them all into a struct in some way so that we don\u0027t have to deal with remembering to think about \"oh if this goes undef then all of these should be undef too\" etc - you just have a single var which points to a struct and you set the whole thing to undef or not.\n\nBut maybe their lifecycles really are independent?",
+      "revId": "1a8741d0e9142d8e0b9c9530817cf9723d35a496",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fd5dc6f_82cc0041",
+        "filename": "extension/src/main.ts",
+        "patchSetId": 93
+      },
+      "lineNbr": 201,
+      "author": {
+        "id": 1038145
+      },
+      "writtenOn": "2024-12-02T11:28:15Z",
+      "side": 1,
+      "message": "What if `ctx` is already defined? Is there tidy-up work that should be done? Seems surprising to me to overwrite it, but maybe there\u0027s some invariant that means `activate` would never be called once `ctx` is defined?",
+      "revId": "1a8741d0e9142d8e0b9c9530817cf9723d35a496",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "75edfc08_0fb3aa94",
+        "filename": "extension/src/main.ts",
+        "patchSetId": 93
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1038145
+      },
+      "writtenOn": "2024-12-02T11:28:15Z",
+      "side": 1,
+      "message": "This is me showing my lack of knowledge here: I\u0027m surprised you need the `!`. If it is needed, I think it suggests we\u0027re having to deal with preemptive concurrency - for some reason in my head I thought ts/js didn\u0027t do that. If we truly are in a world of preemptive concurrency, then I don\u0027t think it\u0027s safe to read from `ctx`. To me, it seems more correct to only do the write to `ctx` and then read from `context` which is guaranteed to be defined due to its scoping, and thus the ! isn\u0027t needed. (Personally, even if it is coöperative concurrency, I\u0027d do reads from `context`, but that could just be a taste thing).",
+      "revId": "1a8741d0e9142d8e0b9c9530817cf9723d35a496",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "76a11860_b322b166",
+        "filename": "extension/src/main.ts",
+        "patchSetId": 93
+      },
+      "lineNbr": 222,
+      "author": {
+        "id": 1038145
+      },
+      "writtenOn": "2024-12-02T11:28:15Z",
+      "side": 1,
+      "message": "very minor thought: this (and calls like this) _feel_ like tracing. So is there not an `output.trace`?",
+      "revId": "1a8741d0e9142d8e0b9c9530817cf9723d35a496",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "71bbed39_969adc40",
+        "filename": "extension/src/main.ts",
+        "patchSetId": 93
+      },
+      "lineNbr": 235,
+      "author": {
+        "id": 1038145
+      },
+      "writtenOn": "2024-12-02T11:28:15Z",
+      "side": 1,
+      "message": "So, I\u0027ve read the comment, but I think I\u0027m still confused because I understand the semantics around how things get disposed. Essentially what I\u0027m worried about is here you set `ctx \u003d undefined` but we could still have `client` is defined, which contradicts what you\u0027ve written in the comments around `client`. We should probably chat about this on discord or something - from the comment you\u0027ve written here, it seems like you could be concerned about the same thing as me, so maybe I just need to understand more about these subscription things and how/when they get cancelled.",
+      "revId": "1a8741d0e9142d8e0b9c9530817cf9723d35a496",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3fc10480_cb200c6d",
+        "filename": "extension/src/main.ts",
+        "patchSetId": 93
+      },
+      "lineNbr": 264,
+      "author": {
+        "id": 1038145
+      },
+      "writtenOn": "2024-12-02T11:28:15Z",
+      "side": 1,
+      "message": "To me, whenever you write `!` then it\u0027s like a cast: you\u0027re saying to the typechecker \"I know better than you\", which always makes me whince.\nYou could make ctx an argument to this function, or, if you are able to group together a bunch of related state into a struct, then this could be a method on that struct, and thus bask in the safety of knowing the struct member ctx is always defined.",
+      "revId": "1a8741d0e9142d8e0b9c9530817cf9723d35a496",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c0ae007c_deabb4e2",
+        "filename": "extension/src/main.ts",
+        "patchSetId": 93
+      },
+      "lineNbr": 291,
+      "author": {
+        "id": 1038145
+      },
+      "writtenOn": "2024-12-02T11:28:15Z",
+      "side": 1,
+      "message": "I think you mean `startCueLsp`?",
+      "revId": "1a8741d0e9142d8e0b9c9530817cf9723d35a496",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "eaf7d569_2253b360",
+        "filename": "extension/src/main.ts",
+        "patchSetId": 93
+      },
+      "lineNbr": 316,
+      "author": {
+        "id": 1038145
+      },
+      "writtenOn": "2024-12-02T11:28:15Z",
+      "side": 1,
+      "message": "down on line 441 you declare `let err;` right near an equivalent call to `await ve(...);` which I do much prefer. Could the `let err;` on line 301 move down 13 lines?",
+      "revId": "1a8741d0e9142d8e0b9c9530817cf9723d35a496",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "5e5b4873_07c4d09f",
+        "filename": "extension/src/main.ts",
+        "patchSetId": 93
+      },
+      "lineNbr": 407,
+      "author": {
+        "id": 1038145
+      },
+      "writtenOn": "2024-12-02T11:28:15Z",
+      "side": 1,
+      "message": "Similar to my concerns around overwriting `ctx`, I\u0027m not sure I can see whether or not there\u0027s any possibility `client` could already be defined.",
+      "revId": "1a8741d0e9142d8e0b9c9530817cf9723d35a496",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "8d38c53c_82e38dbd",
+        "filename": "extension/src/main.ts",
+        "patchSetId": 93
+      },
+      "lineNbr": 495,
+      "author": {
+        "id": 1038145
+      },
+      "writtenOn": "2024-12-02T11:28:15Z",
+      "side": 1,
+      "message": "I was expecting to read `if (s \u003d\u003d\u003d undefined || !s.affectsConfiguration(\u0027cue\u0027))` but that\u0027s not what you have. Is it intentional then that you don\u0027t exit early if `s` is undef? - there\u0027s no further of `s` so I can\u0027t see any reason why it would be unsafe, but I think it is something I would like to see mentioned in a comment if so.",
+      "revId": "1a8741d0e9142d8e0b9c9530817cf9723d35a496",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}

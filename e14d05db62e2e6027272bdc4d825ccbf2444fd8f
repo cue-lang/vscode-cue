@@ -18,6 +18,24 @@
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "ceb5770b_7e7ff392",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 95
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1017723
+      },
+      "writtenOn": "2024-12-04T12:20:35Z",
+      "side": 1,
+      "message": "Very much so. As I said, my first-cut was modelled more on the \"pattern\" of vscode-go, rather than \"this is a good design\". Indeed I\u0027m less inclined to think it (the vscode-go pattern) is a good pattern, perhaps more a set of compromises based on testing. But per our conversation I\u0027m totally happy that we will be able to rework/adjust what we have here easily at a later stage. This gives us a solid base.",
+      "parentUuid": "b59c7087_6fb47e79",
+      "revId": "e14d05db62e2e6027272bdc4d825ccbf2444fd8f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "b01a70f7_43887c6d",
@@ -35,6 +53,24 @@
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "90051ad4_4848c809",
+        "filename": "extension/src/instance.ts",
+        "patchSetId": 95
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1017723
+      },
+      "writtenOn": "2024-12-04T12:20:35Z",
+      "side": 1,
+      "message": "Yes, that will save the stutter. Done.",
+      "parentUuid": "b01a70f7_43887c6d",
+      "revId": "e14d05db62e2e6027272bdc4d825ccbf2444fd8f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "533127d7_7f06b07c",
@@ -48,6 +84,24 @@
       "writtenOn": "2024-12-04T10:46:13Z",
       "side": 1,
       "message": "maybe test to see if it\u0027s already torndown? The consistency with the other methods would be appealing, but maybe there\u0027s good reason that this method needs to be idempotent?",
+      "revId": "e14d05db62e2e6027272bdc4d825ccbf2444fd8f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "732713c7_93660f46",
+        "filename": "extension/src/instance.ts",
+        "patchSetId": 95
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1017723
+      },
+      "writtenOn": "2024-12-04T12:20:35Z",
+      "side": 1,
+      "message": "Ha, yes! Would be totally bogus wrong for it already to be torn down already, so absolutely an invariant we should check. Done",
+      "parentUuid": "533127d7_7f06b07c",
       "revId": "e14d05db62e2e6027272bdc4d825ccbf2444fd8f",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     },

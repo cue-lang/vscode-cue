@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b59c7087_6fb47e79",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 95
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1038145
+      },
+      "writtenOn": "2024-12-04T10:46:13Z",
+      "side": 1,
+      "message": "Cool, I prefer this - do you think it\u0027s better than before?",
+      "revId": "e14d05db62e2e6027272bdc4d825ccbf2444fd8f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "b01a70f7_43887c6d",
+        "filename": "extension/src/instance.ts",
+        "patchSetId": 95
+      },
+      "lineNbr": 30,
+      "author": {
+        "id": 1038145
+      },
+      "writtenOn": "2024-12-04T10:46:13Z",
+      "side": 1,
+      "message": "Entirely up to you, but it\u0027s possible \"Extension\" might be a better name than \"Instance\"?",
+      "revId": "e14d05db62e2e6027272bdc4d825ccbf2444fd8f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "533127d7_7f06b07c",
+        "filename": "extension/src/instance.ts",
+        "patchSetId": 95
+      },
+      "lineNbr": 116,
+      "author": {
+        "id": 1038145
+      },
+      "writtenOn": "2024-12-04T10:46:13Z",
+      "side": 1,
+      "message": "maybe test to see if it\u0027s already torndown? The consistency with the other methods would be appealing, but maybe there\u0027s good reason that this method needs to be idempotent?",
+      "revId": "e14d05db62e2e6027272bdc4d825ccbf2444fd8f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5b08b2cf_52b23d17",
+        "filename": "extension/src/instance.ts",
+        "patchSetId": 95
+      },
+      "lineNbr": 158,
+      "author": {
+        "id": 1038145
+      },
+      "writtenOn": "2024-12-04T10:46:13Z",
+      "side": 1,
+      "message": "Awesome: using the arrow-function form to avoid the madness of JS\u0027s default \"this\" behaviour. https://www.typescriptlang.org/docs/handbook/2/classes.html#this-at-runtime-in-classes",
+      "revId": "e14d05db62e2e6027272bdc4d825ccbf2444fd8f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aba2e290_7445acf2",
+        "filename": "extension/src/main.ts",
+        "patchSetId": 95
+      },
+      "lineNbr": 98,
+      "author": {
+        "id": 1038145
+      },
+      "writtenOn": "2024-12-04T10:46:13Z",
+      "side": 1,
+      "message": "It\u0027s essential if you want to use methods as first class values - otherwise you have to manually bind `this` everywhere which becomes a major annoyance.",
+      "revId": "e14d05db62e2e6027272bdc4d825ccbf2444fd8f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}

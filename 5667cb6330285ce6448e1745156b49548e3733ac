@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "cd30d562_2afd01dd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 94
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1017723
+      },
+      "writtenOn": "2024-12-04T06:31:39Z",
+      "side": 1,
+      "message": "Thank you very much for the diligent review of my flakey code. \n\nPTAL - changes made, broadly as discussed. I\u0027ve left a couple of your previous comments open as a mind-jog to look at the reworked code.",
+      "revId": "5667cb6330285ce6448e1745156b49548e3733ac",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}

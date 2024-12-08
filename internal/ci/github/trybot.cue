@@ -73,7 +73,7 @@ workflows: trybot: _repo.bashWorkflow & {
 		// of the workflow.
 		let npmSetup = {
 			name: "Add node_modules/.bin to PATH and npm install"
-			run: """
+			#run: """
 				echo "PATH=$PWD/node_modules/.bin:$PATH" >> $GITHUB_ENV
 				npm install
 				"""
@@ -112,41 +112,41 @@ workflows: trybot: _repo.bashWorkflow & {
 			// Go steps - currently independent of the extension
 			{
 				name: "Verify"
-				run:  "go mod verify"
+				#run: "go mod verify"
 			},
 			{
 				name: "Generate"
-				run:  "go generate ./..."
+				#run: "go generate ./..."
 			},
 			{
 				name: "Test"
-				run:  "go test ./..."
+				#run: "go test ./..."
 			},
 			{
 				name: "Race test"
-				run:  "go test -race ./..."
+				#run: "go test -race ./..."
 			},
 			{
 				name: "staticcheck"
-				run:  "go run honnef.co/go/tools/cmd/staticcheck@v0.5.1 ./..."
+				#run: "go run honnef.co/go/tools/cmd/staticcheck@v0.5.1 ./..."
 			},
 			{
 				name: "Tidy"
-				run:  "go mod tidy"
+				#run: "go mod tidy"
 			},
 
 			// Extension
 			extensionStep & {
 				name: "Format"
-				run:  "npm run format"
+				#run: "npm run format"
 			},
 			extensionStep & {
 				name: "Compile"
-				run:  "npm run compile"
+				#run: "npm run compile"
 			},
 			extensionStep & {
 				name: "Extension publish dry-run"
-				run:  "npm run package"
+				#run: "npm run package"
 			},
 
 			// Final checks
@@ -155,11 +155,11 @@ workflows: trybot: _repo.bashWorkflow & {
 			// Release steps
 			releaseStep & {
 				name: "Check version match"
-				run:  "cue cmd -t tag=\(_versionRef) checkReleaseVersion"
+				#run: "cue cmd -t tag=\(_versionRef) checkReleaseVersion"
 			},
 			releaseOrTestDefaultStep & {
 				name: "Release package"
-				run:  "npm run publish -- -p $VSCODE_PAT"
+				#run: "npm run publish -- -p $VSCODE_PAT"
 				env: VSCODE_PAT: "${{ secrets.CUECKOO_VSCODE_PAT }}"
 			},
 
@@ -191,7 +191,7 @@ _centralRegistryLogin: githubactions.#Step & {
 		// The token is owned by notcueckoo and described as "ci readonly".
 		CUE_TOKEN: "${{ secrets.NOTCUECKOO_CUE_TOKEN }}"
 	}
-	run: """
+	#run: """
 		cue login --token=${CUE_TOKEN}
 		"""
 }

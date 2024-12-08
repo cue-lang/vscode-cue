@@ -16,7 +16,7 @@ trybotWorkflows: {
 	}
 	"\(trybot.key)_dispatch":    trybotDispatchWorkflow
 	"push_tip_to_\(trybot.key)": pushTipToTrybotWorkflow
-	"evict_caches":              evictCaches
+	evict_caches:                evictCaches
 }
 
 #dispatch: {
@@ -41,66 +41,65 @@ trybotDispatchWorkflow: bashWorkflow & {
 		}
 	}
 	jobs: [string]: defaults: run: shell: "bash"
-	jobs: {
-		(trybot.key): {
-			"runs-on": linuxMachine
+	jobs: (trybot.key): {
+		"runs-on": linuxMachine
 
-			let goodDummyData = [if json.Marshal(#dummyDispatch) != _|_ {true}, false][0]
+		let goodDummyData = [if json.Marshal(#dummyDispatch) != _|_ {true}, false][0]
 
-			// We set the "on" conditions above, but this would otherwise mean we
-			// run for all dispatch events.
-			if: "${{ (\(isTestDefaultBranch) && \(goodDummyData)) || github.event.client_payload.type == '\(trybot.key)' }}"
+		// We set the "on" conditions above, but this would otherwise mean we
+		// run for all dispatch events.
+		if: "${{ (\(isTestDefaultBranch) && \(goodDummyData)) || github.event.client_payload.type == '\(trybot.key)' }}"
 
-			// See the comment below about the need for cases
-			let cases = [
-				{
-					condition:  "!="
-					expr:       "fromJSON(steps.payload.outputs.value)"
-					nameSuffix: "fake data"
-				},
-				{
-					condition:  "=="
-					expr:       "github.event.client_payload"
-					nameSuffix: "repository_dispatch payload"
-				},
-			]
+		// See the comment below about the need for cases
+		let cases = [
+			{
+				condition:  "!="
+				expr:       "fromJSON(steps.payload.outputs.value)"
+				nameSuffix: "fake data"
+			},
+			{
+				condition:  "=="
+				expr:       "github.event.client_payload"
+				nameSuffix: "repository_dispatch payload"
+			},
+		]
 
-			steps: [
-				writeNetrcFile,
+		steps: [
+			writeNetrcFile,
 
-				githubactions.#Step & {
-					name: "Write fake payload"
-					id:   "payload"
-					if:   "github.repository == '\(githubRepositoryPath)' && \(isTestDefaultBranch)"
+			githubactions.#Step & {
+				name: "Write fake payload"
+				id:   "payload"
+				if:   "github.repository == '\(githubRepositoryPath)' && \(isTestDefaultBranch)"
 
-					// Use bash heredocs so that JSON's use of double quotes does
-					// not get interpreted as shell.  Both in the running of the
-					// command itself, which itself is the echo-ing of a command to
-					// $GITHUB_OUTPUT.
-					run: #"""
+				// Use bash heredocs so that JSON's use of double quotes does
+				// not get interpreted as shell.  Both in the running of the
+				// command itself, which itself is the echo-ing of a command to
+				// $GITHUB_OUTPUT.
+				#run: #"""
 						cat <<EOD >> $GITHUB_OUTPUT
 						value<<DOE
 						\#(*json.Marshal(#dummyDispatch) | "null")
 						DOE
 						EOD
 						"""#
-				},
+			},
 
-				// GitHub does not allow steps with the same ID, even if (by virtue
-				// of runtime 'if' expressions) both would not actually run. So
-				// we have to duplciate the steps that follow with those same
-				// runtime expressions
-				//
-				// Hence we have to create two steps, one to trigger if the
-				// repository_dispatch payload is set, and one if not (i.e. we use
-				// the fake payload).
-				for v in cases {
-					let localBranchExpr = "local_${{ \(v.expr).targetBranch }}"
-					let targetBranchExpr = "${{ \(v.expr).targetBranch }}"
-					githubactions.#Step & {
-						name: "Trigger \(trybot.name) (\(v.nameSuffix))"
-						if:   "github.event.client_payload.type \(v.condition) '\(trybot.key)'"
-						run:  """
+			// GitHub does not allow steps with the same ID, even if (by virtue
+			// of runtime 'if' expressions) both would not actually run. So
+			// we have to duplciate the steps that follow with those same
+			// runtime expressions
+			//
+			// Hence we have to create two steps, one to trigger if the
+			// repository_dispatch payload is set, and one if not (i.e. we use
+			// the fake payload).
+			for v in cases {
+				let localBranchExpr = "local_${{ \(v.expr).targetBranch }}"
+				let targetBranchExpr = "${{ \(v.expr).targetBranch }}"
+				githubactions.#Step & {
+					name: "Trigger \(trybot.name) (\(v.nameSuffix))"
+					if:   "github.event.client_payload.type \(v.condition) '\(trybot.key)'"
+					#run: """
 						mkdir tmpgit
 						cd tmpgit
 						git init -b initialbranch
@@ -149,19 +148,16 @@ trybotDispatchWorkflow: bashWorkflow & {
 							exit 1
 						fi
 						"""
-					}
-				},
-			]
-		}
+				}
+			},
+		]
 	}
 }
 
 pushTipToTrybotWorkflow: bashWorkflow & {
 	jobs: [string]: defaults: run: shell: "bash"
 
-	on: {
-		push: branches: protectedBranchPatterns
-	}
+	on: push: branches: protectedBranchPatterns
 	jobs: push: {
 		"runs-on": linuxMachine
 		if:        "${{github.repository == '\(githubRepositoryPath)'}}"
@@ -171,12 +167,11 @@ pushTipToTrybotWorkflow: bashWorkflow & {
 
 	concurrency: "push_tip_to_trybot"
 
-	jobs: push: {
-		steps: [
-			writeNetrcFile,
-			githubactions.#Step & {
-				name: "Push tip to trybot"
-				run:  """
+	jobs: push: steps: [
+		writeNetrcFile,
+		githubactions.#Step & {
+			name: "Push tip to trybot"
+			#run: """
 						mkdir tmpgit
 						cd tmpgit
 						git init -b initialbranch
@@ -202,9 +197,8 @@ pushTipToTrybotWorkflow: bashWorkflow & {
 							 exit 1
 						fi
 						"""
-			},
-		]
-	}
+		},
+	]
 
 }
 
@@ -234,23 +228,20 @@ pushTipToTrybotWorkflow: bashWorkflow & {
 evictCaches: bashWorkflow & {
 	name: "Evict caches"
 
-	on: {
-		schedule: [
-			{cron: "0 2 * * *"},
-		]
-	}
+	on: schedule: [
+		{cron: "0 2 * * *"},
+	]
 
-	jobs: {
-		test: {
-			// We only want to run this in the main repo
-			if:        "${{github.repository == '\(githubRepositoryPath)'}}"
-			"runs-on": linuxMachine
-			steps: [
-				for v in checkoutCode {v},
+	jobs: test: {
+		// We only want to run this in the main repo
+		if:        "${{github.repository == '\(githubRepositoryPath)'}}"
+		"runs-on": linuxMachine
+		steps: [
+			for v in checkoutCode {v},
 
-				githubactions.#Step & {
-					name: "Delete caches"
-					run:  """
+			githubactions.#Step & {
+				name: "Delete caches"
+				#run: """
 						set -x
 
 						echo ${{ secrets.\(botGitHubUserTokenSecretsKey) }} | gh auth login --with-token
@@ -267,13 +258,13 @@ evictCaches: bashWorkflow & {
 							done
 						done
 						"""
-				},
+			},
 
-				githubactions.#Step & {
-					name: "Trigger workflow runs to repopulate caches"
-					let branchPatterns = strings.Join(protectedBranchPatterns, " ")
+			githubactions.#Step & {
+				name: "Trigger workflow runs to repopulate caches"
+				let branchPatterns = strings.Join(protectedBranchPatterns, " ")
 
-					run: """
+				#run: """
 						# Prepare git for pushes to trybot repo. Note
 						# because we have already checked out code we don't
 						# need origin. Fetch origin default branch for later use
@@ -337,15 +328,14 @@ evictCaches: bashWorkflow & {
 							done
 						done
 						"""
-				},
-			]
-		}
+			},
+		]
 	}
 }
 
 writeNetrcFile: githubactions.#Step & {
 	name: "Write netrc file for \(botGerritHubUser) Gerrithub"
-	run:  """
+	#run: """
 			cat <<EOD > ~/.netrc
 			machine \(gerritHubHostname)
 			login \(botGerritHubUser)

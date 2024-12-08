@@ -9,9 +9,14 @@ concurrency: push_tip_to_trybot
 jobs:
   push:
     runs-on: ubuntu-22.04
+    defaults:
+      run:
+        shell: bash
+    if: ${{github.repository == 'cue-lang/vscode-cue'}}
     steps:
       - name: Write netrc file for cueckoo Gerrithub
         run: |-
+          set -o nounset
           cat <<EOD > ~/.netrc
           machine review.gerrithub.io
           login cueckoo
@@ -20,6 +25,7 @@ jobs:
           chmod 600 ~/.netrc
       - name: Push tip to trybot
         run: |-
+          set -o nounset
           mkdir tmpgit
           cd tmpgit
           git init -b initialbranch
@@ -44,7 +50,3 @@ jobs:
           	 echo "Giving up"
           	 exit 1
           fi
-    defaults:
-      run:
-        shell: bash
-    if: ${{github.repository == 'cue-lang/vscode-cue'}}

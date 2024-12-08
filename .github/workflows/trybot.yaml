@@ -27,12 +27,15 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
       - name: Reset git directory modification times
-        run: touch -t 202211302355 $(find * -type d)
+        run: |-
+          set -o nounset
+          touch -t 202211302355 $(find * -type d)
       - name: Restore git file modification times
         uses: chetan/git-restore-mtime-action@075f9bc9d159805603419d50f794bd9f33252ebe
       - id: DispatchTrailer
         name: Try to extract Dispatch-Trailer
         run: |-
+          set -o nounset
           x="$(git log -1 --pretty='%(trailers:key=Dispatch-Trailer,valueonly)')"
           if [[ "$x" == "" ]]
           then
@@ -53,6 +56,7 @@ jobs:
           Dispatch-Trailer: {"type":"'))
         name: Check we don't have Dispatch-Trailer on a protected branch
         run: |-
+          set -o nounset
           echo "github.event.head_commit.message contains Dispatch-Trailer but we are on a protected branch"
           false
       - name: Install Go
@@ -62,16 +66,21 @@ jobs:
           go-version: 1.23.3
       - name: Set common go env vars
         run: |-
+          set -o nounset
           go env -w GOTOOLCHAIN=local
 
           # Dump env for good measure
           go env
       - id: go-mod-cache-dir
         name: Get go mod cache directory
-        run: echo "dir=$(go env GOMODCACHE)" >> ${GITHUB_OUTPUT}
+        run: |-
+          set -o nounset
+          echo "dir=$(go env GOMODCACHE)" >> ${GITHUB_OUTPUT}
       - id: go-cache-dir
         name: Get go build/test cache directory
-        run: echo "dir=$(go env GOCACHE)" >> ${GITHUB_OUTPUT}
+        run: |-
+          set -o nounset
+          echo "dir=$(go env GOCACHE)" >> ${GITHUB_OUTPUT}
       - if: |-
           (((github.ref == 'refs/heads/master') && (! (contains(github.event.head_commit.message, '
           Dispatch-Trailer: {"type":"')))) || (github.ref == 'refs/heads/ci/test'))
@@ -97,7 +106,9 @@ jobs:
       - if: |-
           github.repository == 'cue-lang/vscode-cue' && (((github.ref == 'refs/heads/master') && (! (contains(github.event.head_commit.message, '
           Dispatch-Trailer: {"type":"')))) || github.ref == 'refs/heads/ci/test')
-        run: go clean -testcache
+        run: |-
+          set -o nounset
+          go clean -testcache
       - name: Install CUE
         uses: cue-lang/setup-cue@v1.0.1
         with:
@@ -107,50 +118,80 @@ jobs:
         with:
           node-version: 22.11.0
       - name: Early git and code sanity checks
-        run: go run cuelang.org/go/internal/ci/checks@v0.11.0-0.dev.0.20240903133435-46fb300df650
-      - run: cue login --token=${CUE_TOKEN}
+        run: |-
+          set -o nounset
+          go run cuelang.org/go/internal/ci/checks@v0.11.0-0.dev.0.20240903133435-46fb300df650
+      - run: |-
+          set -o nounset
+          cue login --token=${CUE_TOKEN}
         env:
           CUE_TOKEN: ${{ secrets.NOTCUECKOO_CUE_TOKEN }}
       - name: Add node_modules/.bin to PATH and npm install
         run: |-
+          set -o nounset
           echo "PATH=$PWD/node_modules/.bin:$PATH" >> $GITHUB_ENV
           npm install
       - working-directory: extension
         name: Add node_modules/.bin to PATH and npm install
         run: |-
+          set -o nounset
           echo "PATH=$PWD/node_modules/.bin:$PATH" >> $GITHUB_ENV
           npm install
       - name: Verify
-        run: go mod verify
+        run: |-
+          set -o nounset
+          go mod verify
       - name: Generate
-        run: go generate ./...
+        run: |-
+          set -o nounset
+          go generate ./...
       - name: Test
-        run: go test ./...
+        run: |-
+          set -o nounset
+          go test ./...
       - name: Race test
-        run: go test -race ./...
+        run: |-
+          set -o nounset
+          go test -race ./...
       - name: staticcheck
-        run: go run honnef.co/go/tools/cmd/staticcheck@v0.5.1 ./...
+        run: |-
+          set -o nounset
+          go run honnef.co/go/tools/cmd/staticcheck@v0.5.1 ./...
       - name: Tidy
-        run: go mod tidy
+        run: |-
+          set -o nounset
+          go mod tidy
       - working-directory: extension
         name: Format
-        run: npm run format
+        run: |-
+          set -o nounset
+          npm run format
       - working-directory: extension
         name: Compile
-        run: npm run compile
+        run: |-
+          set -o nounset
+          npm run compile
       - working-directory: extension
         name: Extension publish dry-run
-        run: npm run package
+        run: |-
+          set -o nounset
+          npm run package
       - if: always()
         name: Check that git is clean at the end of the job
-        run: test -z "$(git status --porcelain)" || (git status; git diff; false)
+        run: |-
+          set -o nounset
+          test -z "$(git status --porcelain)" || (git status; git diff; false)
       - working-directory: extension
         if: github.repository == 'cue-lang/vscode-cue' && (startsWith(github.ref, 'refs/tags/v'))
         name: Check version match
-        run: cue cmd -t tag=${GITHUB_REF##refs/tags/} checkReleaseVersion
+        run: |-
+          set -o nounset
+          cue cmd -t tag=${GITHUB_REF##refs/tags/} checkReleaseVersion
       - working-directory: extension
         if: github.repository == 'cue-lang/vscode-cue' && (startsWith(github.ref, 'refs/tags/v') || (github.ref == 'refs/heads/ci/test'))
         name: Release package
-        run: npm run publish -- -p $VSCODE_PAT
         env:
           VSCODE_PAT: ${{ secrets.CUECKOO_VSCODE_PAT }}
+        run: |-
+          set -o nounset
+          npm run publish -- -p $VSCODE_PAT

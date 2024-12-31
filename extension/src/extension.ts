@@ -165,19 +165,20 @@ export class Extension {
 		// For some unknown reason, we get random callbacks (during development at
 		// least) for configuration changes where there is no actual configuration
 		// change. That is to say, there is no observable configuration change when
-		// considering the concrete configuration, at any point in the configuration
-		// graph. This appears to be mitigated by calling
-		// s.affectsConfiguration('cue') to determine if there has been a change. We
-		// might need to modify this to be a comparison of the net configuration
-		// (post applyConfigDefaults) but for now, given the defaults are static, the
-		// VSCode check suffices.
+		// considering the concrete configuration, at any point in the
+		// configuration graph. This appears to be mitigated by calling
+		// s.affectsConfiguration('cue') to determine if there has been a change.
 		if (s !== undefined && !s.affectsConfiguration('cue')) {
 			return Promise.resolve();
 		}
 
+		// As https://github.com/Microsoft/vscode/issues/35451 clearly explains,
+		// the object value returned by vscode.workspace.getConfiguration always
+		// has a defined value for each field in the configuration schema. As such,
+		// we cannot predicate any logic in this extension on a field _not_ having
+		// been set, because we simply cannot distinguish that case.
 		let vscodeConfig = vscode.workspace.getConfiguration('cue');
-		let configCopy = JSON.parse(JSON.stringify(vscodeConfig)) as CueConfiguration;
-		this.config = applyConfigDefaults(configCopy);
+		this.config = JSON.parse(JSON.stringify(vscodeConfig)) as CueConfiguration;
 		this.output.info(`configuration updated to: ${JSON.stringify(this.config, null, 2)}`);
 
 		let err;
@@ -427,24 +428,6 @@ type CueConfiguration = {
 	languageServerCommand: string[];
 	languageServerFlags: string[];
 };
-
-// applyConfigDefaults updates c to apply defaults. Note this returns a value
-// that is only a shallow copy of c. So in effect, the caller must consider
-// that c is in effect mutated by a called to applyConfigDefaults, because the
-// value return can, in general, cause mutations to c.
-function applyConfigDefaults(c: CueConfiguration): CueConfiguration {
-	const defaultConfig: CueConfiguration = {
-		languageServerCommand: ['cue', 'lsp'],
-		languageServerFlags: [],
-		useLanguageServer: true
-	};
-
-	// TODO: switch to using CUE as the source of truth for defaults (somehow)
-	return {
-		...defaultConfig,
-		...c
-	};
-}
 
 // humanReadableState returns a human readable version of the language client
 // state.

@@ -62,7 +62,7 @@ extension: npm: {
 				}
 				"cue.languageServerCommand": {
 					type: "array"
-					default: []
+					default: ["cue", "lsp"]
 					description: "The command to run to launch the language server."
 				}
 				"cue.languageServerFlags": {

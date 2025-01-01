@@ -20,6 +20,7 @@ import * as vscode from 'vscode';
 import * as lcnode from 'vscode-languageclient/node';
 import * as cp from 'node:child_process';
 import * as lc from 'vscode-languageclient';
+import { config } from './gen_userCommands';
 
 let errTornDown = new Error('Extenssion instance already torn down');
 
@@ -92,9 +93,9 @@ export class Extension {
 		let configChangeListener = vscode.workspace.onDidChangeConfiguration(this.extensionConfigurationChange);
 		this.ctx.subscriptions.push(configChangeListener);
 
-		this.registerCommand('vscode-cue.welcome', this.cmdWelcomeCUE);
-		this.registerCommand('vscode-cue.startlsp', this.cmdStartLSP);
-		this.registerCommand('vscode-cue.stoplsp', this.cmdStopLSP);
+		this.registerCommand('welcome', this.cmdWelcomeCUE);
+		this.registerCommand('startlsp', this.cmdStartLSP);
+		this.registerCommand('stoplsp', this.cmdStopLSP);
 
 		// TODO(myitcv): in the early days of 'cue lsp', it might be worthwhile
 		// adding a command that toggles the enabled-ness of the LSP in the active
@@ -120,7 +121,8 @@ export class Extension {
 	};
 
 	// registerCommand is a light wrapper around the vscode API for registering a
-	// command but also simultaneously adding a dispose callback.
+	// command but also simultaneously adding a dispose callback. It also takes care
+	// of namespacing the command within the config.npm.name namespace.
 	//
 	// TODO(myitcv): it isn't really documented anywhere, but the expected signature
 	// of callback is:
@@ -140,6 +142,7 @@ export class Extension {
 	// the command, such that the user would otherwise be left surprised if nothing
 	// happened because of the error.
 	registerCommand = (cmd: string, callback: (context?: any) => Promise<void>) => {
+		cmd = config.npm.name + '.' + cmd;
 		if (this.tornDown) {
 			throw errTornDown;
 		}

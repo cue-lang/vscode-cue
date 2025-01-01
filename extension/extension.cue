@@ -60,10 +60,10 @@ extension: npm: {
 					default:     true
 					description: "Enable cue lsp, the language server for CUE."
 				}
-				"cue.languageServerCommand": {
-					type: "array"
-					default: ["cue", "lsp"]
-					description: "The command to run to launch the language server."
+				"cue.cueCommand": {
+					type:        "string"
+					default:     "cue"
+					description: "The command or path used to run the CUE command, cmd/cue"
 				}
 				"cue.languageServerFlags": {
 					type: "array"

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "16b099b0_6afbecbf",
+        "filename": "extension/src/extension.ts",
+        "patchSetId": 9
+      },
+      "lineNbr": 297,
+      "author": {
+        "id": 1017720
+      },
+      "writtenOn": "2025-01-01T20:54:35Z",
+      "side": 1,
+      "message": "We could consider a `cue version -json` FWIW",
+      "revId": "3897c7cbb10019589bd444f49aabd8f032dd720a",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}

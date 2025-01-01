@@ -1,0 +1,2 @@
+# Ignore generated TypeScript files
+gen_*.ts

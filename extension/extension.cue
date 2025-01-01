@@ -89,7 +89,7 @@ extension: npm: {
 		"check-types":       "tsc --noEmit"
 		lint:                "eslint src --ext ts"
 		test:                "vscode-test"
-		format:              "prettier --write \"src/**/*.ts\""
+		format:              "prettier --write \"src/**/*.ts\" --ignore-path ../.prettierignore"
 	}
 
 	// devDependencies is sort of maintained by npm. We maintain those in a

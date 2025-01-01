@@ -93,7 +93,7 @@
     "check-types": "tsc --noEmit",
     "lint": "eslint src --ext ts",
     "test": "vscode-test",
-    "format": "prettier --write \"src/**/*.ts\""
+    "format": "prettier --write \"src/**/*.ts\" --ignore-path ../.prettierignore"
   },
   "devDependencies": {
     "@types/mocha": "10.0.7",

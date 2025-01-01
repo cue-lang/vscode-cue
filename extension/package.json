@@ -43,16 +43,16 @@
     ],
     "commands": [
       {
-        "command": "vscode-cue.welcome",
-        "title": "CUE: Welcome"
-      },
-      {
         "command": "vscode-cue.startlsp",
-        "title": "CUE: Start CUE LSP"
+        "title": "CUE: : Start CUE LSP"
       },
       {
         "command": "vscode-cue.stoplsp",
-        "title": "CUE: Stop CUE LSP"
+        "title": "CUE: : Stop CUE LSP"
+      },
+      {
+        "command": "vscode-cue.welcome",
+        "title": "CUE: : Welcome"
       }
     ],
     "configuration": {

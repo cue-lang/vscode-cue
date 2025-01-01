@@ -81,6 +81,16 @@ export class Extension {
 	// methods, throwing errors in case we get callbacks after tearDown.
 	private tornDown: boolean = false;
 
+	// cueCommand keeps track of the last output from 'cue version' using the
+	// configured languageServerCommand[0] command as a proxy for cmd/cue. An
+	// empty string means that we were unable to interrogate the output of 'cue
+	// version'.
+	private cueVersion: string = '';
+
+	// statusBarItem shows the CUE extension status, including version and a
+	// :zap: icon in case the LSP is running.
+	private statusBarItem: vscode.StatusBarItem;
+
 	constructor(
 		ctx: vscode.ExtensionContext,
 		output: vscode.LogOutputChannel,
@@ -95,6 +105,8 @@ export class Extension {
 		this.registerCommand('vscode-cue.welcome', this.cmdWelcomeCUE);
 		this.registerCommand('vscode-cue.startlsp', this.cmdStartLSP);
 		this.registerCommand('vscode-cue.stoplsp', this.cmdStopLSP);
+
+		this.statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
 
 		// TODO(myitcv): in the early days of 'cue lsp', it might be worthwhile
 		// adding a command that toggles the enabled-ness of the LSP in the active
@@ -185,6 +197,11 @@ export class Extension {
 		let vscodeConfig = vscode.workspace.getConfiguration('cue');
 		let newConfig = JSON.parse(JSON.stringify(vscodeConfig)) as CueConfiguration;
 
+		// We need to re-run 'cue version' in case the cue command implied by
+		// languageServerCommand[0] changes.
+		let currentCueCmd = this.config?.languageServerCommand?.[0] ?? '';
+		let newCueCmd = newConfig.languageServerCommand?.[0] ?? '';
+
 		this.config = newConfig;
 		this.output.info(`configuration updated to: ${JSON.stringify(this.config, null, 2)}`);
 
@@ -238,6 +255,13 @@ export class Extension {
 			return;
 		}
 
+		// Update the status bar item
+		[, err] = await ve(this.updateStatus(currentCueCmd == newCueCmd));
+		if (err !== null) {
+			return Promise.reject(err);
+		}
+
+		// Run the LSP as required
 		if (this.config.useLanguageServer) {
 			// TODO: we might want to revisit just blindly restarting the LSP, for
 			// example in case the configuration for the LSP client or server hasn't
@@ -255,6 +279,17 @@ export class Extension {
 	// vscode.window.showErrorMessage for early return in void call sites.
 	showErrorMessage = (message: string, ...items: string[]): void => {
 		vscode.window.showErrorMessage(message, ...items);
+	};
+
+	// updateStatus ensures that the status bar item reflects the current state
+	// of the extension.
+	updateStatus = async (updateCueVersion: boolean): Promise<void> => {
+		let version = this.cueVersion;
+		if (updateCueVersion) {
+			// We need to run 'cue version' (according to the config cueCommand)
+			// for the updated version string.
+		}
+		return Promise.resolve();
 	};
 
 	// cmdWelcomeCUE is a basic command that can be used to verify whether the

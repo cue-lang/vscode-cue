@@ -157,6 +157,11 @@ export class Extension {
 	//
 	// Note that this function updates config with a deep copy of the configuration
 	// reported by VSCode (then extended with defaults).
+	//
+	// Because the caller of this callback does not handle promises (citation
+	// needed), we need to determine how to report errors to the user. Hence we
+	// either use showErrorMessage or this.output.error, with a mild preference
+	// for the former because it surfaces problems to the user.
 	extensionConfigurationChange = async (s: vscode.ConfigurationChangeEvent | undefined): Promise<void> => {
 		if (this.tornDown) {
 			throw errTornDown;
@@ -178,10 +183,61 @@ export class Extension {
 		// we cannot predicate any logic in this extension on a field _not_ having
 		// been set, because we simply cannot distinguish that case.
 		let vscodeConfig = vscode.workspace.getConfiguration('cue');
-		this.config = JSON.parse(JSON.stringify(vscodeConfig)) as CueConfiguration;
+		let newConfig = JSON.parse(JSON.stringify(vscodeConfig)) as CueConfiguration;
+
+		this.config = newConfig;
 		this.output.info(`configuration updated to: ${JSON.stringify(this.config, null, 2)}`);
 
 		let err;
+
+		// Sanity check the cueCommand config Show an error message in case we do
+		// not have a valid value. Note that this does not try to ensure the binary
+		// exists on disk; that in effect happens each time we try and run the
+		// command and so failure (e.g. file not existing) is handled at each of
+		// those sites.
+		//
+		// By the this stage, config represents the defaults-populated
+		// configuration we should use. The field cueCommand is the command that
+		// should be run. We need to handle the normal cases:
+		//
+		// 1. cue - a simple relative path, no slashes
+		// 2. ./relative/path/to/cue - a non-simple (!) relative path, >=1 slashes
+		// 3. /absolute/path/to/cue - absolute filepath
+		//
+		// For now, we err on the side of caution by only allowing simple relative
+		// and absolute file paths. Reason being, it's not clear (yet) what this
+		// means in the case of the running VSCode, workspace etc. And we might
+		// want to support expanding special VSCode variables in the path.
+		let cueCommand = this.config!.cueCommand;
+
+		let validCueCommand = false;
+		let invalidMsgSuffix = '';
+
+		switch (true) {
+			case cueCommand.trim() == '':
+				// Simply broken and obviously so.
+				break;
+			case !path.isAbsolute(cueCommand) && cueCommand.includes(path.sep):
+				invalidMsgSuffix = 'only simple relative or absolute file paths supported';
+				break;
+			default:
+				validCueCommand = true;
+		}
+		if (!validCueCommand) {
+			let msg = `invalid cue.cueCommand config value ${JSON.stringify(cueCommand)}`;
+			if (invalidMsgSuffix.trim() !== '') {
+				msg += `; ${invalidMsgSuffix}`;
+			}
+			this.showErrorMessage(msg);
+
+			// Stop the LSP if it is running.
+			[, err] = await ve(this.stopCueLsp());
+			if (err !== null) {
+				return this.showErrorMessage(`failed to stop cue lsp: ${err}`);
+			}
+			return;
+		}
+
 		if (this.config.useLanguageServer) {
 			// TODO: we might want to revisit just blindly restarting the LSP, for
 			// example in case the configuration for the LSP client or server hasn't
@@ -191,10 +247,14 @@ export class Extension {
 			[, err] = await ve(this.stopCueLsp());
 		}
 		if (err !== null) {
-			return Promise.reject(err);
+			return this.showErrorMessage(`${err}`);
 		}
+	};
 
-		return Promise.resolve();
+	// showErrorMessage is a convenience void return type wrapper around
+	// vscode.window.showErrorMessage for early return in void call sites.
+	showErrorMessage = (message: string, ...items: string[]): void => {
+		vscode.window.showErrorMessage(message, ...items);
 	};
 
 	// cmdWelcomeCUE is a basic command that can be used to verify whether the
@@ -259,7 +319,7 @@ export class Extension {
 			source = `${source} `;
 		}
 
-		let err;
+		let cueCommand, err;
 
 		// Stop the running instance if there is one.
 		[, err] = await ve(this.stopCueLsp());
@@ -267,36 +327,9 @@ export class Extension {
 			return Promise.reject(err);
 		}
 
-		// By the this stage, config represents the defaults-populated configuration
-		// we should use. The field cueCommand is the command that should be run.
-		// We need to handle the normal cases:
-		//
-		// 1. cue - a simple relative path, no slashes
-		// 2. ./relative/path/to/cue - a non-simple (!) relative path, >=1 slashes
-		// 3. /absolute/path/to/cue - absolute filepath
-		//
-		// For now, we err on the side of caution by only allowing simple relative
-		// and absolute file paths. Reason being, it's not clear (yet) what this
-		// means in the case of the running VSCode, workspace etc. And we might want
-		// to support expanding special VSCode variables in the path.
-
-		let cueCommand = this.config!.cueCommand;
-
-		if (!path.isAbsolute(cueCommand) && cueCommand.includes(path.sep)) {
-			vscode.window.showErrorMessage(
-				`invalid command path ${JSON.stringify(cueCommand)}; only simple relative or absolute file paths supported`
-			);
-			return Promise.resolve();
-		}
-
-		if (!path.isAbsolute(cueCommand)) {
-			let resolvedCommand: string | null;
-			[resolvedCommand, err] = await ve(which(cueCommand));
-			if (err !== null) {
-				vscode.window.showErrorMessage(`failed to find ${JSON.stringify(cueCommand)} in PATH: ${err}`);
-				return Promise.resolve();
-			}
-			cueCommand = resolvedCommand!;
+		[cueCommand, err] = await ve(this.absCueCommand(this.config!.cueCommand));
+		if (err !== null) {
+			return Promise.reject(err);
 		}
 
 		// TODO(myitcv): version-related checks would go here. Run 'cue help lsp' as
@@ -308,7 +341,7 @@ export class Extension {
 		// Note: we do not worry about the working directory here. The command we are
 		// running should not care at all about the working directory.
 		let cueHelpLsp: Cmd = {
-			Args: [cueCommand, 'help', 'lsp']
+			Args: [cueCommand!, 'help', 'lsp']
 		};
 		[, err] = await ve(osexecRun(cueHelpLsp));
 		if (err !== null) {
@@ -324,7 +357,7 @@ export class Extension {
 		}
 
 		const serverOptions: lcnode.ServerOptions = {
-			command: cueCommand,
+			command: cueCommand!,
 			args: ['lsp', ...this.config!.languageServerFlags]
 
 			// NOTE: we do not set the working directory. The 'cue lsp' ignores the
@@ -416,6 +449,22 @@ export class Extension {
 		let oldState = JSON.stringify(humanReadableState(s.oldState));
 		let newState = JSON.stringify(humanReadableState(s.newState));
 		this.output.info(`cue lsp client state change: from ${oldState} to ${newState}`);
+	};
+
+	// absCueCommand computes an absolute path for a non-absolute cueCommand
+	// value. If cueCommand is already absolute, cueCommand is returned. Note
+	// that despite using which to resolve a non-absolute value the caller can
+	// still not make any guarantees about the existence of the binary on disk
+	// when it comes to running it. Races possible everywhere.
+	absCueCommand = async (cueCommand: string): Promise<string> => {
+		if (path.isAbsolute(cueCommand)) {
+			return Promise.resolve(cueCommand);
+		}
+		let [resolvedCommand, err] = await ve(which(cueCommand));
+		if (err !== null) {
+			return Promise.reject(new Error(`failed to find ${JSON.stringify(cueCommand)} in PATH: ${err}`));
+		}
+		return Promise.resolve(resolvedCommand!);
 	};
 }
 

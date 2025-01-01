@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "bbb923ac_fc74b709",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1017720
+      },
+      "writtenOn": "2025-01-01T12:01:45Z",
+      "side": 1,
+      "message": "I kinda like the old approach better to be honest. It\u0027s more straightforward to understand, as it\u0027s literally the command that the extension runs, and the user can see for themselves via e.g. `cue lsp --help`.\n\nI also think this will work better in the long term if/when any other LSP appears in the CUE space, either as an alternative or something on top, kinda like the earlier dagger LSP. In such cases, constraining the command to always end with an implicit \"lsp\" argument is a bit odd.\n\nI agree that the common case for cmd/cue users is that they just want to say where CUE is installed. But why is that necessary in the common case? Shouldn\u0027t $PATH, or whatever \"install\" logic we may provide as part of the extension, already take care of this for the common case?",
+      "revId": "5550d2eac7efad95d22b34fdbf7932331f9a9b8d",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}

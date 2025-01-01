@@ -174,7 +174,7 @@ export class Extension {
 		// configuration graph. This appears to be mitigated by calling
 		// s.affectsConfiguration('cue') to determine if there has been a change.
 		if (s !== undefined && !s.affectsConfiguration('cue')) {
-			return Promise.resolve();
+			return;
 		}
 
 		// As https://github.com/Microsoft/vscode/issues/35451 clearly explains,
@@ -267,7 +267,7 @@ export class Extension {
 		}
 
 		vscode.window.showInformationMessage('Welcome to CUE!');
-		return Promise.resolve();
+		return;
 	};
 
 	// cmdStartLSP is used to explicitly (re)start the LSP server. It can only be
@@ -278,8 +278,7 @@ export class Extension {
 		}
 
 		if (!this.config!.useLanguageServer) {
-			vscode.window.showErrorMessage(`useLanguageServer is configured to false`);
-			return Promise.resolve();
+			return this.showErrorMessage(`useLanguageServer is configured to false`);
 		}
 		this.manualLspStop = false;
 		return this.startCueLsp('manually');
@@ -314,7 +313,7 @@ export class Extension {
 			// handled elsewhere. And in case the user has manually stopped the LSP,
 			// we should only run it if explicitly asked to via a command. And if we
 			// had been through that path, then manualLspStop would be false.
-			return Promise.resolve();
+			return;
 		}
 
 		if (source !== '') {
@@ -348,14 +347,12 @@ export class Extension {
 		[, err] = await ve(osexecRun(cueHelpLsp));
 		if (err !== null) {
 			if (isErrnoException(err)) {
-				vscode.window.showErrorMessage(`failed to run ${JSON.stringify(cueHelpLsp)}: ${err}`);
-				return Promise.resolve();
+				return this.showErrorMessage(`failed to run ${JSON.stringify(cueHelpLsp)}: ${err}`);
 			}
 			// Probably running an early version of CUE with no LSP support.
-			vscode.window.showErrorMessage(
+			return this.showErrorMessage(
 				`the version of cmd/cue at ${JSON.stringify(cueCommand)} does not support 'cue lsp'. Please upgrade to at least v0.11.0`
 			);
-			return Promise.resolve();
 		}
 
 		const serverOptions: lcnode.ServerOptions = {
@@ -403,8 +400,6 @@ export class Extension {
 
 		// At this point, all events happend via callbacks in terms of state changes,
 		// or the client-server interaction of the LSP protocol.
-
-		return Promise.resolve();
 	};
 
 	// stopCueLsp kills the running LSP client, if there is one.
@@ -414,7 +409,7 @@ export class Extension {
 		}
 
 		if (this.client === undefined) {
-			return Promise.resolve();
+			return;
 		}
 
 		if (source !== '') {
@@ -439,8 +434,6 @@ export class Extension {
 			// process?
 			return Promise.reject(new Error(`failed to stop cue lsp: ${err}`));
 		}
-
-		return Promise.resolve();
 	};
 
 	cueLspStateChange = (s: lc.StateChangeEvent): void => {

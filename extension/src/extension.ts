@@ -268,8 +268,8 @@ export class Extension {
 		}
 
 		// By the this stage, config represents the defaults-populated configuration
-		// we should use. The first element of the languageServerCommand is the
-		// command that should be run. We need to handle the normal cases:
+		// we should use. The field cueCommand is the command that should be run.
+		// We need to handle the normal cases:
 		//
 		// 1. cue - a simple relative path, no slashes
 		// 2. ./relative/path/to/cue - a non-simple (!) relative path, >=1 slashes
@@ -280,23 +280,23 @@ export class Extension {
 		// means in the case of the running VSCode, workspace etc. And we might want
 		// to support expanding special VSCode variables in the path.
 
-		let command = this.config!.languageServerCommand[0];
+		let cueCommand = this.config!.cueCommand;
 
-		if (!path.isAbsolute(command) && command.includes(path.sep)) {
+		if (!path.isAbsolute(cueCommand) && cueCommand.includes(path.sep)) {
 			vscode.window.showErrorMessage(
-				`invalid command path ${JSON.stringify(command)}; only simple relative or absolute file paths supported`
+				`invalid command path ${JSON.stringify(cueCommand)}; only simple relative or absolute file paths supported`
 			);
 			return Promise.resolve();
 		}
 
-		if (!path.isAbsolute(command)) {
+		if (!path.isAbsolute(cueCommand)) {
 			let resolvedCommand: string | null;
-			[resolvedCommand, err] = await ve(which(command));
+			[resolvedCommand, err] = await ve(which(cueCommand));
 			if (err !== null) {
-				vscode.window.showErrorMessage(`failed to find ${JSON.stringify(command)} in PATH: ${err}`);
+				vscode.window.showErrorMessage(`failed to find ${JSON.stringify(cueCommand)} in PATH: ${err}`);
 				return Promise.resolve();
 			}
-			command = resolvedCommand!;
+			cueCommand = resolvedCommand!;
 		}
 
 		// TODO(myitcv): version-related checks would go here. Run 'cue help lsp' as
@@ -308,7 +308,7 @@ export class Extension {
 		// Note: we do not worry about the working directory here. The command we are
 		// running should not care at all about the working directory.
 		let cueHelpLsp: Cmd = {
-			Args: [command, 'help', 'lsp']
+			Args: [cueCommand, 'help', 'lsp']
 		};
 		[, err] = await ve(osexecRun(cueHelpLsp));
 		if (err !== null) {
@@ -318,14 +318,14 @@ export class Extension {
 			}
 			// Probably running an early version of CUE with no LSP support.
 			vscode.window.showErrorMessage(
-				`the version of cmd/cue at ${JSON.stringify(command)} does not support 'cue lsp'. Please upgrade to at least v0.11.0`
+				`the version of cmd/cue at ${JSON.stringify(cueCommand)} does not support 'cue lsp'. Please upgrade to at least v0.11.0`
 			);
 			return Promise.resolve();
 		}
 
 		const serverOptions: lcnode.ServerOptions = {
-			command: command,
-			args: [...this.config!.languageServerCommand.slice(1), ...this.config!.languageServerFlags]
+			command: cueCommand,
+			args: ['lsp', ...this.config!.languageServerFlags]
 
 			// NOTE: we do not set the working directory. The 'cue lsp' ignores the
 			// working directory and always will. It will always rely on the paths of
@@ -425,7 +425,7 @@ export class Extension {
 // TODO: keep this in sync with the configuration schema in CUE.
 type CueConfiguration = {
 	useLanguageServer: boolean;
-	languageServerCommand: string[];
+	cueCommand: string;
 	languageServerFlags: string[];
 };
 

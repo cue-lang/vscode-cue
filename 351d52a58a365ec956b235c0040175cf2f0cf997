@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "c411b128_96ad3255",
+        "filename": "extension/src/extension.ts",
+        "patchSetId": 4
+      },
+      "lineNbr": 193,
+      "author": {
+        "id": 1017720
+      },
+      "writtenOn": "2025-01-01T16:00:10Z",
+      "side": 1,
+      "message": "missing period before Show?",
+      "revId": "351d52a58a365ec956b235c0040175cf2f0cf997",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "46880502_e71b50c9",
+        "filename": "extension/src/extension.ts",
+        "patchSetId": 4
+      },
+      "lineNbr": 203,
+      "author": {
+        "id": 1017720
+      },
+      "writtenOn": "2025-01-01T16:00:10Z",
+      "side": 1,
+      "message": "This is for $PATH I assume, and not to do with relative paths, no?",
+      "revId": "351d52a58a365ec956b235c0040175cf2f0cf997",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}

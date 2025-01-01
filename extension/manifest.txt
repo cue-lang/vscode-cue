@@ -6,5 +6,6 @@ language-configuration.json
 media/white_circle_128.png
 package.json
 src/extension.ts
+src/gen_userCommands.ts
 src/main.ts
 syntaxes/cue.tmLanguage.json

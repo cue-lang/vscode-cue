@@ -34,6 +34,24 @@
       "parentUuid": "bbb923ac_fc74b709",
       "revId": "5550d2eac7efad95d22b34fdbf7932331f9a9b8d",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "79ddb80d_63fe5bc5",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1017723
+      },
+      "writtenOn": "2025-01-01T13:26:54Z",
+      "side": 1,
+      "message": "Per our offline chat, vscode-cue is relatively closely tied to `cmd/cue` for now. That could change down the line, but I would rather build on known primitives for now, otherwise we\u0027re slightly solving for the unknown.",
+      "parentUuid": "bbb923ac_fc74b709",
+      "revId": "5550d2eac7efad95d22b34fdbf7932331f9a9b8d",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }

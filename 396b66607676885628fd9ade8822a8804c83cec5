@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "cc921a97_8a2bbe6b",
+        "filename": "extension/package.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1017720
+      },
+      "writtenOn": "2025-01-01T20:52:48Z",
+      "side": 1,
+      "message": "Duplicate colons?\n\nAlso, is the order here relevant?",
+      "revId": "396b66607676885628fd9ade8822a8804c83cec5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}

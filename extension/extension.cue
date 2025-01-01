@@ -1,8 +1,29 @@
 package extension
 
+import (
+	"list"
+)
+
+// TODO(myitcv): generate a CUE schema, because there does not appear to be a
+// JSON Schema or other schema for validating VSCode extensions.
+
+extension: commandTitlePrefix: "CUE: "
+
+extension: commands: [string]: {
+	// Title is the non-prefixed title to use for the command.
+	// _commandTitlePrefix will be templated into the npm configuration.
+	title!: string
+}
+
+extension: commands: {
+	welcome: title:  "Welcome"
+	startlsp: title: "Start CUE LSP"
+	stoplsp: title:  "Stop CUE LSP"
+}
+
 extension: npm: {
 	name:        "vscode-cue"
-	displayName: "vscode-cue"
+	displayName: name
 	description: "CUE language support for Visual Studio Code"
 	repository:  "https://github.com/cue-lang/vscode-cue"
 	version:     "0.0.8"
@@ -32,18 +53,16 @@ extension: npm: {
 			path:      "./syntaxes/cue.tmLanguage.json"
 			embeddedLanguages: "source.cue.embedded": "source.cue"
 		}]
+
+		// sort the commands by id for stability
+		let sortedKeys = list.SortStrings([
+			for k, _ in extension.commands {k},
+		])
 		commands: [
-			{
-				command: "vscode-cue.welcome"
-				title:   "CUE: Welcome"
-			},
-			{
-				command: "vscode-cue.startlsp"
-				title:   "CUE: Start CUE LSP"
-			},
-			{
-				command: "vscode-cue.stoplsp"
-				title:   "CUE: Stop CUE LSP"
+			for _, k in sortedKeys
+			let v = extension.commands[k] {
+				command: "\(npm.name).\(k)"
+				title:   "\(extension.commandTitlePrefix): \(v.title)"
 			},
 		]
 

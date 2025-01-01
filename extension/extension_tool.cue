@@ -3,12 +3,15 @@ package extension
 import (
 	"encoding/json"
 	"list"
+	"path"
 	"strings"
 
 	"tool/cli"
 	"tool/exec"
 	"tool/file"
 )
+
+_os: string @tag(os, var=os)
 
 // genManifest writes out a manifest.txt file that captures the contents
 // of the extension. This command should be run after vsce package.
@@ -85,4 +88,28 @@ command: checkReleaseVersion: {
 			cmd:    "false"
 		}
 	}
+}
+
+command: genTS: file.Create & {
+	filename: path.FromSlash("src/gen_userCommands.ts", _os)
+
+	contents: """
+		// Copyright 2024 The CUE Authors
+		//
+		// Licensed under the Apache License, Version 2.0 (the "License");
+		// you may not use this file except in compliance with the License.
+		// You may obtain a copy of the License at
+		//
+		//     http://www.apache.org/licenses/LICENSE-2.0
+		//
+		// Unless required by applicable law or agreed to in writing, software
+		// distributed under the License is distributed on an "AS IS" BASIS,
+		// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+		// See the License for the specific language governing permissions and
+		// limitations under the License.
+
+		let _config = \(json.Marshal(extension));
+		export const config: Readonly<typeof _config> = Object.freeze(_config);
+
+		"""
 }

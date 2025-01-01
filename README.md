@@ -1,26 +1,45 @@
-# VSCode Extension for the CUE Language
+# CUE for Visual Studio Code
 
-## What it's for
+[The VS Code CUE
+extension](https://marketplace.visualstudio.com/items?itemName=cuelangorg.vscode-cue)
+provides rich language support for the [CUE language](https://cuelang.org/).
 
-CUE - Configure, Unify, Execute - is a language designed for designing,
-generating, and validating data. Read more about it on [the official site, cuelang.org](https://cuelang.org).
+## What is CUE?
 
-## Why this extension is useful
+CUE makes it easy to validate data, write schemas, and ensure configurations
+align with policies.
 
-[Visual Studio Code](https://code.visualstudio.com/) is an awesome, extensible, multi-platform editor and IDE.
-Its ecosystem has a massive number of plugins for different languages, and this one implements syntax highlighting
-(and potentially more functionality in the future) for the CUE language.
+CUE works with a wide range of tools and formats that you're already using such
+as Go, JSON, YAML, OpenAPI, and JSON Schema.
 
-## How you can use it
+For more information and documentation, including __tutorials and guides__, see
+[cuelang.org](https://cuelang.org).
 
-Unfortunately, the `.cue` extension which CUE uses is squatted on in the "official" VSCode registry by the file format used to describe audio CD tracklistings.
-So for the moment, manual installation is required. This is quite simple though. Once you have VSCode installed, simply clone this repo into its extension location:
+## Why is this extension useful?
 
-```shell
-git clone https://github.com/cue-lang/vscode-cue ~/.vscode/extensions/vscode-cue
-```
+[Visual Studio Code](https://code.visualstudio.com/) is an awesome, extensible,
+multi-platform editor and IDE. Its ecosystem has a massive number of plugins for
+different languages, and this one implements syntax highlighting (and
+potentially more functionality in the future) for the CUE language.
 
-Restart VSCode and you should have syntax highlighting for any `.cue` files you load.
+## Quick Start
+
+Whether you are new or experienced CUE user, we hope this extension fits your
+needs and enhances your configuration, data and policy experience.
+
+1. Install [CUE](https://cuelang.org/docs/introduction/installation/) v0.11.0 or
+   newer if you haven't already.
+
+1. Install the [VS Code CUE extension].
+
+1. Open any CUE file file to automatically activate the extension. The CUE
+   status bar appears in the bottom right corner of the window and displays your
+   CUE version. The :zap: sign next to the CUE version indicates the language
+   server is running, and you are ready to go.
+
+1. Use the Command Palette, `Shift+Command+P` (Mac) / `Ctrl+Shift+P`
+   (Windows/Linux), to run CUE-specific commands. They are all prefixed with
+   `CUE:`.
 
 ## Credits
 
@@ -34,7 +53,4 @@ repository](https://github.com/cue-lang/cue).
 
 ## Contributing
 
-This section needs fleshing out, but the most important detail for now is the
-versions of tooling required for contributing the `vscode-cue` project.
-Those versions can be found in the `contrib.versions` field in the root [`site`
-package](site.cue).
+See [Contributing](https://github.com/cue-lang/vscode-cue/wiki/Contributing).

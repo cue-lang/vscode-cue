@@ -24,6 +24,8 @@ import { config } from './gen_userCommands';
 
 let errTornDown = new Error('Extenssion instance already torn down');
 
+const CopyStatusVersionToClipboardCmd = 'copyversiontoclipboard';
+
 // An instance of Extension represents the active instance (!!) of the VSCode
 // extension that is this project. An instance of Extension is created when the
 // extension is activated, and tearDown-ed when the extension is deactivated.
@@ -82,6 +84,16 @@ export class Extension {
 	// methods, throwing errors in case we get callbacks after tearDown.
 	private tornDown: boolean = false;
 
+	// cueCommand keeps track of the last output from 'cue version' using the
+	// configured cueCommand command as a proxy for cmd/cue. An
+	// empty string means that we were unable to interrogate the output of 'cue
+	// version'.
+	private cueVersion: string = '';
+
+	// statusBarItem shows the CUE extension status, including version and a
+	// :zap: icon in case the LSP is running.
+	private statusBarItem: vscode.StatusBarItem;
+
 	constructor(
 		ctx: vscode.ExtensionContext,
 		output: vscode.LogOutputChannel,
@@ -96,6 +108,11 @@ export class Extension {
 		this.registerCommand('welcome', this.cmdWelcomeCUE);
 		this.registerCommand('startlsp', this.cmdStartLSP);
 		this.registerCommand('stoplsp', this.cmdStopLSP);
+
+		// Not visible to users via the command palette
+		this.registerCommand(CopyStatusVersionToClipboardCmd, this.copyStatusVersionToClipboard);
+
+		this.statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
 
 		// TODO(myitcv): in the early days of 'cue lsp', it might be worthwhile
 		// adding a command that toggles the enabled-ness of the LSP in the active
@@ -194,6 +211,11 @@ export class Extension {
 		let vscodeConfig = vscode.workspace.getConfiguration('cue');
 		let newConfig = JSON.parse(JSON.stringify(vscodeConfig)) as CueConfiguration;
 
+		// We need to re-run 'cue version' in case the cue command implied by
+		// languageServerCommand[0] changes.
+		let currentCueCmd = this.config?.cueCommand ?? '';
+		let newCueCmd = newConfig.cueCommand;
+
 		this.config = newConfig;
 		this.output.info(`configuration updated to: ${JSON.stringify(this.config, null, 2)}`);
 
@@ -249,6 +271,43 @@ export class Extension {
 			return;
 		}
 
+		// We have a valid value for cueCommand. Update the version string if the
+		// value of cueCommand changed.
+		if (currentCueCmd !== newCueCmd) {
+			// We need to run 'cue version' (according to the config cueCommand)
+			// for the updated version string.
+			let [cueCommand, err] = await ve(this.absCueCommand(this.config!.cueCommand));
+			if (err !== null) {
+				return Promise.reject(err);
+			}
+			let cueVersion: Cmd = {
+				Args: [cueCommand!, 'version']
+			};
+			[, err] = await ve(osexecRun(cueVersion));
+			if (err !== null) {
+				let msgSuffix = '';
+				if (isErrnoException(err)) {
+					msgSuffix = `: ${err}`;
+				} else {
+					msgSuffix = cueVersion.Stderr!;
+				}
+				return Promise.reject(new Error(`failed to run ${JSON.stringify(cueVersion)}: ${msgSuffix}`));
+			}
+			let versionOutput = cueVersion.Stdout!.trim();
+			const versionRegex = /^cue version (.*)/m;
+			let match = versionOutput.match(versionRegex);
+			if (!match) {
+				return Promise.reject(
+					new Error(`failed to parse version output from ${JSON.stringify(cueVersion)}: ${JSON.stringify(versionOutput)}`)
+				);
+			}
+			this.cueVersion = match[1];
+		}
+
+		// Update the status bar item
+		this.updateStatus();
+
+		// Run the LSP as required
 		if (this.config.useLanguageServer) {
 			// TODO: we might want to revisit just blindly restarting the LSP, for
 			// example in case the configuration for the LSP client or server hasn't
@@ -266,6 +325,38 @@ export class Extension {
 	// vscode.window.showErrorMessage for early return in void call sites.
 	showErrorMessage = (message: string, ...items: string[]): void => {
 		vscode.window.showErrorMessage(message, ...items);
+	};
+
+	// updateStatus ensures that the status bar item reflects the current state
+	// of the extension.
+	updateStatus = (): Promise<void> => {
+		let version = this.cueVersion;
+		let tooltip = 'Click to copy version';
+		let command = this.commandID(CopyStatusVersionToClipboardCmd);
+		if (version === '') {
+			version = '??'; // TODO(myitcv): do we need to do better here?
+			tooltip = '';
+			command = '';
+		}
+		let status = version;
+		if (this.client !== undefined) {
+			status += ' $(zap)';
+		}
+		this.statusBarItem.text = status;
+		this.statusBarItem.tooltip = tooltip;
+		this.statusBarItem.command = command;
+		this.statusBarItem.show();
+		return Promise.resolve();
+	};
+
+	// copyStatusVersionToClipboard is the target of the
+	// CopyStatusVersionToClipboardCmd hidden command (i.e. not visible via the
+	// Command Palette) that is triggered by the user clicking on the CUE status
+	// bar item.
+	copyStatusVersionToClipboard = async (): Promise<void> => {
+		// This method is Thenable, not a Promise.
+		await vscode.env.clipboard.writeText(this.cueVersion);
+		vscode.window.showInformationMessage(`Copied to clipboard: ${this.cueVersion}`);
 	};
 
 	// cmdWelcomeCUE is a basic command that can be used to verify whether the
@@ -409,6 +500,7 @@ export class Extension {
 
 		// At this point, all events happend via callbacks in terms of state changes,
 		// or the client-server interaction of the LSP protocol.
+		this.updateStatus();
 	};
 
 	// stopCueLsp kills the running LSP client, if there is one.
@@ -436,6 +528,10 @@ export class Extension {
 		[, err] = await ve(this.client.stop());
 		this.client = undefined;
 		this.clientStateChangeHandler = undefined;
+
+		// Update the status
+		this.updateStatus();
+
 		if (err !== null) {
 			// TODO: we get an error message here relating to the process for stopping
 			// the server timing out, when providing an argument to stop(). Why? And

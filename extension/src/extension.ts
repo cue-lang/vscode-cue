@@ -519,15 +519,19 @@ export class Extension {
 
 		this.output.info(`${source}stopping cue lsp`);
 
-		// Stop listening to the event first so that we don't handle state changes
-		// in the usual way.
-		this.clientStateChangeHandler!.dispose();
-
 		let err;
 		// TODO: use a different timeout?
 		[, err] = await ve(this.client.stop());
-		this.client = undefined;
+
+		// Above we have awaited the stop, so by this point will have received the
+		// state change associated with the stop. We can now safely dispose of the
+		// handler, and drop our reference.
+		this.clientStateChangeHandler!.dispose();
 		this.clientStateChangeHandler = undefined;
+
+		// Tidy up our state to reflect the fact we don't have a valid client any
+		// more.
+		this.client = undefined;
 
 		if (err !== null) {
 			// TODO: we get an error message here relating to the process for stopping

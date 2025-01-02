@@ -16,6 +16,24 @@
       "message": "should we be documenting which funcs directly show errors to the user, versus returning error promises, and why? or is that already obvious enough from the func signature and existing docs?",
       "revId": "1740ae844355010a3b37dd624525d69be7854c92",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c1ac037e_2b1d1b6e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1017723
+      },
+      "writtenOn": "2025-01-02T10:49:39Z",
+      "side": 1,
+      "message": "I\u0027ve started to do this as I understand the factors involved. For example, the doc comment for `Extension.extensionConfigurationChange` states that because the caller does not handle rejected promises, we have to show error messages to the user (not only that, it\u0027s highly likely the user triggered the configuration change, and so a synchronous shown error message will not be a surprise).\n\nI suspect however that it will take time to understand the vagaries of VSCode, interaction models etc... and as such the approach will need to adapt to user reports.",
+      "parentUuid": "56cda457_f3ef82ab",
+      "revId": "1740ae844355010a3b37dd624525d69be7854c92",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }

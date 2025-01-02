@@ -16,6 +16,24 @@
       "message": "Duplicate colons?\n\nAlso, is the order here relevant?",
       "revId": "396b66607676885628fd9ade8822a8804c83cec5",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "22d7b542_5650540c",
+        "filename": "extension/package.json",
+        "patchSetId": 3
+      },
+      "lineNbr": 55,
+      "author": {
+        "id": 1017723
+      },
+      "writtenOn": "2025-01-02T06:15:47Z",
+      "side": 1,
+      "message": "\u003e Duplicate colons?\n\nVery good catch, thanks. Not testing after a refactor... and lack of good tests in the first place 😞\n\n\u003e Also, is the order here relevant?\n\nI don\u0027t believe it\u0027s hugely relevant. Reason being, whilst the order of the commands is relevant to what appears in the Command Palette, the Command Palette is generally used as a fuzzy finder, and also has the concept of ordering things according to whether they were recently used or not (a priority section at the top). So if nothing is typed as a filter into the Command Palette, there commands are not guaranteed to be presented in order. That said, I have switched to order to them by title for some human consistency if/where the order is \"significant\", as opposed to the key (which the user will not see).",
+      "parentUuid": "cc921a97_8a2bbe6b",
+      "revId": "396b66607676885628fd9ade8822a8804c83cec5",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }

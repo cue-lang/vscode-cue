@@ -98,6 +98,10 @@ export class Extension {
 	// :zap: icon in case the LSP is running.
 	private statusBarItem: vscode.StatusBarItem;
 
+	// showStatusBarItem encapsulates the logic determining whether to show
+	// statusBarItem or not.
+	private showStatusBarItem: boolean = false;
+
 	constructor(
 		ctx: vscode.ExtensionContext,
 		output: vscode.LogOutputChannel,
@@ -116,7 +120,20 @@ export class Extension {
 		// Not visible to users via the command palette
 		this.registerCommand(copyStatusVersionToClipboardCmd, this.copyStatusVersionToClipboard);
 
-		this.statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right);
+		this.statusBarItem = vscode.window.createStatusBarItem(
+			'CUE',
+			vscode.StatusBarAlignment.Right,
+
+			// Borrowed from vscode-go, place the item right after the language
+			// status item
+			// https://github.com/microsoft/vscode-python/issues/18040#issuecomment-992567670.
+			100.09999
+		);
+
+		// Capture the current editor state, and
+		let activeTextEditorListener = vscode.window.onDidChangeActiveTextEditor(this.activeTextEditorChanged);
+		this.ctx.subscriptions.push(activeTextEditorListener);
+		this.updateStatusBarVisibilityFromEditor(vscode.window.activeTextEditor);
 
 		// TODO(myitcv): in the early days of 'cue lsp', it might be worthwhile
 		// adding a command that toggles the enabled-ness of the LSP in the active
@@ -333,7 +350,11 @@ export class Extension {
 
 	// updateStatus ensures that the status bar item reflects the current state
 	// of the extension.
-	updateStatus = (): Promise<void> => {
+	updateStatus = (): void => {
+		if (!this.showStatusBarItem) {
+			this.statusBarItem.hide();
+			return;
+		}
 		let version = this.cueVersion;
 		let tooltip = 'Click to copy version';
 		let command = this.commandID(copyStatusVersionToClipboardCmd);
@@ -350,7 +371,6 @@ export class Extension {
 		this.statusBarItem.tooltip = tooltip;
 		this.statusBarItem.command = command;
 		this.statusBarItem.show();
-		return Promise.resolve();
 	};
 
 	// copyStatusVersionToClipboard is the target of the
@@ -579,6 +599,23 @@ export class Extension {
 			return Promise.reject(new Error(`failed to find ${JSON.stringify(cueCommand)} in PATH: ${err}`));
 		}
 		return Promise.resolve(resolvedCommand!);
+	};
+
+	// activeTextEditorChanged handles a change in text editor (appears to
+	// include active tab) in VSCode. In VSCode window there is only one status
+	// bar. The status bar shows, amongst other things, the file type of the
+	// active tab. There is only one active tab. Correspondingly, we should only
+	// show the CUE status bar when the active tab is CUE.
+	activeTextEditorChanged = async (editor: vscode.TextEditor | undefined): Promise<void> => {
+		this.updateStatusBarVisibilityFromEditor(editor);
+		this.updateStatus();
+	};
+
+	// updateStatusBarVisibilityFromEditor determines whether the editor's active
+	// document is a CUE file or not, and updates the state of the status bar
+	// visibility accordingly.
+	updateStatusBarVisibilityFromEditor = (editor: vscode.TextEditor | undefined): void => {
+		this.showStatusBarItem = editor?.document.languageId.toLowerCase() === 'cue';
 	};
 }
 

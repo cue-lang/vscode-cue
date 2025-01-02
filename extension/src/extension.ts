@@ -116,7 +116,7 @@ export class Extension {
 		// Not visible to users via the command palette
 		this.registerCommand(copyStatusVersionToClipboardCmd, this.copyStatusVersionToClipboard);
 
-		this.statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
+		this.statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right);
 
 		// TODO(myitcv): in the early days of 'cue lsp', it might be worthwhile
 		// adding a command that toggles the enabled-ness of the LSP in the active
@@ -282,7 +282,7 @@ export class Extension {
 			// for the updated version string.
 			let [cueCommand, err] = await ve(this.absCueCommand(this.config!.cueCommand));
 			if (err !== null) {
-				return Promise.reject(err);
+				return this.showErrorMessage(`${err}`);
 			}
 			let cueVersion: Cmd = {
 				Args: [cueCommand!, 'version']
@@ -295,14 +295,14 @@ export class Extension {
 				} else {
 					msgSuffix = cueVersion.Stderr!;
 				}
-				return Promise.reject(new Error(`failed to run ${JSON.stringify(cueVersion)}: ${msgSuffix}`));
+				return this.showErrorMessage(`failed to run ${JSON.stringify(cueVersion)}: ${msgSuffix}`);
 			}
 			let versionOutput = cueVersion.Stdout!.trim();
 			const versionRegex = /^cue version (.*)/m;
 			let match = versionOutput.match(versionRegex);
 			if (!match) {
-				return Promise.reject(
-					new Error(`failed to parse version output from ${JSON.stringify(cueVersion)}: ${JSON.stringify(versionOutput)}`)
+				return this.showErrorMessage(
+					`failed to parse version output from ${JSON.stringify(cueVersion)}: ${JSON.stringify(versionOutput)}`
 				);
 			}
 			this.cueVersion = match[1];
@@ -385,7 +385,10 @@ export class Extension {
 			return this.showErrorMessage(`useLanguageServer is configured to false`);
 		}
 		this.manualLspStop = false;
-		return this.startCueLsp('manually');
+		let [, err] = await ve(this.startCueLsp('manually'));
+		if (err !== null) {
+			return this.showErrorMessage(`${err}`);
+		}
 	};
 
 	// cmdStopLSP is used to explicitly stop the LSP server.
@@ -395,7 +398,10 @@ export class Extension {
 		}
 
 		this.manualLspStop = true;
-		return this.stopCueLsp('manually');
+		let [, err] = await ve(this.stopCueLsp('manually'));
+		if (err !== null) {
+			return this.showErrorMessage(`${err}`);
+		}
 	};
 
 	// startCueLsp is responsible for starting 'cue lsp'. It stops an existing client
@@ -451,11 +457,13 @@ export class Extension {
 		[, err] = await ve(osexecRun(cueHelpLsp));
 		if (err !== null) {
 			if (isErrnoException(err)) {
-				return this.showErrorMessage(`failed to run ${JSON.stringify(cueHelpLsp)}: ${err}`);
+				return Promise.reject(new Error(`failed to run ${JSON.stringify(cueHelpLsp)}: ${err}`));
 			}
 			// Probably running an early version of CUE with no LSP support.
-			return this.showErrorMessage(
-				`the version of cmd/cue at ${JSON.stringify(cueCommand)} does not support 'cue lsp'. Please upgrade to at least v0.11.0`
+			return Promise.reject(
+				new Error(
+					`the version of cmd/cue at ${JSON.stringify(cueCommand)} does not support 'cue lsp'. Please upgrade to at least v0.11.0`
+				)
 			);
 		}
 

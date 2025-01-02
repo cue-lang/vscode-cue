@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "98478c07_3ee18b00",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 11
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1017723
+      },
+      "writtenOn": "2025-01-02T06:50:21Z",
+      "side": 1,
+      "message": "FYI I made a tweak to the logic for handling state changes in the LSP client. My logic was incomplete/wrong. We need to listen to the process state as the source of truth. It was a small change so I made it without requesting further review.",
+      "revId": "9fbfe6d12416fbacad880c06be8b6ae66d2217e3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}

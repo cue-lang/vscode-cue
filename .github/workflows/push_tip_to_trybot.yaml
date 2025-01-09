@@ -46,5 +46,5 @@ jobs:
           fi
     defaults:
       run:
-        shell: bash
+        shell: bash --noprofile --norc -euo pipefail {0}
     if: ${{github.repository == 'cue-lang/vscode-cue'}}

@@ -104,7 +104,7 @@ workflows: trybot: _repo.bashWorkflow & {
 
 			_repo.earlyChecks,
 
-			_centralRegistryLogin,
+			_repo.loginCentralRegistry,
 
 			npmSetup,
 			extensionStep & npmSetup,
@@ -181,17 +181,4 @@ _installCUE: githubactions.#Step & {
 	name: "Install CUE"
 	uses: "cue-lang/setup-cue@v1.0.1"
 	with: version: _repo.cueVersion
-}
-
-_centralRegistryLogin: githubactions.#Step & {
-	env: {
-		// Note: this token has read-only access to the registry
-		// and is used only because we need some credentials
-		// to pull dependencies from the Central Registry.
-		// The token is owned by notcueckoo and described as "ci readonly".
-		CUE_TOKEN: "${{ secrets.NOTCUECKOO_CUE_TOKEN }}"
-	}
-	run: """
-		cue login --token=${CUE_TOKEN}
-		"""
 }

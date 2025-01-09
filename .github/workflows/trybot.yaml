@@ -19,7 +19,7 @@ jobs:
       Dispatch-Trailer: {"type":"'))
     defaults:
       run:
-        shell: bash
+        shell: bash --noprofile --norc -euo pipefail {0}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -108,9 +108,7 @@ jobs:
           node-version: 22.11.0
       - name: Early git and code sanity checks
         run: go run cuelang.org/go/internal/ci/checks@v0.11.0-0.dev.0.20240903133435-46fb300df650
-      - run: cue login --token=${CUE_TOKEN}
-        env:
-          CUE_TOKEN: ${{ secrets.NOTCUECKOO_CUE_TOKEN }}
+      - run: cue login --token=${{ secrets.NOTCUECKOO_CUE_TOKEN }}
       - name: Add node_modules/.bin to PATH and npm install
         run: |-
           echo "PATH=$PWD/node_modules/.bin:$PATH" >> $GITHUB_ENV

@@ -148,7 +148,7 @@ workflows: trybot: _repo.bashWorkflow & {
 			// Release steps
 			releaseStep & {
 				name: "Check version match"
-				run:  "cue cmd -t tag=\(_versionRef) checkReleaseVersion"
+				run:  "go tool cue cmd -t tag=\(_versionRef) checkReleaseVersion"
 			},
 			releaseOrTestDefaultStep & {
 				name: "Release package"
@@ -185,6 +185,6 @@ _centralRegistryLogin: githubactions.#Step & {
 		CUE_TOKEN: "${{ secrets.NOTCUECKOO_CUE_TOKEN }}"
 	}
 	run: """
-		cue login --token=${CUE_TOKEN}
+		go tool cue login --token=${CUE_TOKEN}
 		"""
 }

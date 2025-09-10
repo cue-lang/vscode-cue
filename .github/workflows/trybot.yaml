@@ -61,7 +61,7 @@ jobs:
         uses: actions/setup-go@v5
         with:
           cache: false
-          go-version: 1.23.3
+          go-version: 1.25.1
       - name: Set common go env vars
         run: |-
           go env -w GOTOOLCHAIN=local
@@ -113,10 +113,12 @@ jobs:
         run: go test ./...
       - name: Race test
         run: go test -race ./...
-      - name: staticcheck
-        run: go run honnef.co/go/tools/cmd/staticcheck@v0.5.1 ./...
-      - name: Tidy
-        run: go mod tidy
+      - env:
+          STATICCHECK_CACHE: /cache/staticcheck
+        run: go tool staticcheck ./...
+      - run: |-
+          go mod tidy -diff
+          go vet ./...
       - name: Format
         run: npm run format
         working-directory: extension

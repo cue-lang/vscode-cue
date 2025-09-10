@@ -119,14 +119,9 @@ workflows: trybot: _repo.bashWorkflow & {
 				name: "Race test"
 				run:  "go test -race ./..."
 			},
-			{
-				name: "staticcheck"
-				run:  "go run honnef.co/go/tools/cmd/staticcheck@v0.5.1 ./..."
-			},
-			{
-				name: "Tidy"
-				run:  "go mod tidy"
-			},
+
+			_repo.staticcheck,
+			_repo.goChecks,
 
 			// Extension
 			extensionStep & {

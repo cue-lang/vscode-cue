@@ -110,7 +110,7 @@ jobs:
         run: go run cuelang.org/go/internal/ci/checks@v0.11.0-0.dev.0.20240903133435-46fb300df650
       - env:
           CUE_TOKEN: ${{ secrets.NOTCUECKOO_CUE_TOKEN }}
-        run: cue login --token=${CUE_TOKEN}
+        run: go tool cue login --token=${CUE_TOKEN}
       - name: Add node_modules/.bin to PATH and npm install
         run: |-
           echo "PATH=$PWD/node_modules/.bin:$PATH" >> $GITHUB_ENV
@@ -146,7 +146,7 @@ jobs:
         run: test -z "$(git status --porcelain)" || (git status; git diff; false)
       - if: github.repository == 'cue-lang/vscode-cue' && (startsWith(github.ref, 'refs/tags/v'))
         name: Check version match
-        run: cue cmd -t tag=${GITHUB_REF##refs/tags/} checkReleaseVersion
+        run: go tool cue cmd -t tag=${GITHUB_REF##refs/tags/} checkReleaseVersion
         working-directory: extension
       - if: github.repository == 'cue-lang/vscode-cue' && (startsWith(github.ref, 'refs/tags/v') || (github.ref == 'refs/heads/ci/test'))
         name: Release package

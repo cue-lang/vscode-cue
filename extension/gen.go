@@ -1,3 +1,4 @@
 package extension
 
-//go:generate cue cmd genPackageJSON
+//go:generate go tool cue cmd genPackageJSON
+//go:generate go tool cue cmd genTS

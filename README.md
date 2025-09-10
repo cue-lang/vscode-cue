@@ -1,8 +1,9 @@
 # CUE for Visual Studio Code
 
-[The VS Code CUE
+[The official VS Code CUE
 extension](https://marketplace.visualstudio.com/items?itemName=cuelangorg.vscode-cue)
-provides rich language support for the [CUE language](https://cuelang.org/).
+provides rich language support for [the CUE language](https://cuelang.org/)
+through syntax highlighting and language server integration (LSP).
 
 ## What is CUE?
 
@@ -15,17 +16,7 @@ as Go, JSON, YAML, OpenAPI, and JSON Schema.
 For more information and documentation, including __tutorials and guides__, see
 [cuelang.org](https://cuelang.org).
 
-## Why is this extension useful?
-
-[Visual Studio Code](https://code.visualstudio.com/) is an awesome, extensible,
-multi-platform editor and IDE. Its ecosystem has a massive number of plugins for
-different languages, and this one implements syntax highlighting (and
-potentially more functionality in the future) for the CUE language.
-
 ## Quick Start
-
-Whether you are new or experienced CUE user, we hope this extension fits your
-needs and enhances your configuration, data and policy experience.
 
 1. Make sure you have
    [CUE installed](https://cuelang.org/docs/introduction/installation/) on the
@@ -34,24 +25,29 @@ needs and enhances your configuration, data and policy experience.
 1. Install the
    [VS Code CUE extension](https://marketplace.visualstudio.com/items?itemName=cuelangorg.vscode-cue).
 
-1. Open any CUE file file to automatically activate the extension. The CUE
+1. Open any CUE file to automatically activate the extension. The CUE
    status bar appears in the bottom right corner of the window and displays your
    CUE version. The :zap: sign next to the CUE version indicates the language
    server is running, and you are ready to go.
 
 1. Use the Command Palette, `Shift+Command+P` (Mac) / `Ctrl+Shift+P`
-   (Windows/Linux), to run CUE-specific commands. They are all prefixed with
-   `CUE:`.
+   (Windows/Linux), to run CUE-specific commands. Find them through their
+   common `CUE: ` prefix.
+
+## Feedback
+
+Whether you're new to CUE, or an experienced user, we hope this extension fits
+your needs and enhances your configuration, data and policy experience.
+
+Please give us feedback through GitHub [issues](https://cuelang.org/issues) and
+[discussions](https://cuelang.org/discussions) in the main CUE repo - we really
+value your input, experiences with the extension, and ideas!
 
 ## Credits
 
 This project was started by [betawaffle](https://github.com/betawaffle) who
-graciously permitted that it be moved to a more general home in the
-[cue-sh](https://github.com/cue-sh) (which is part of the [CUE
-Project](https://cuelang.org)), before then being migrated to the
-[cue-lang](https://github.com/cue-lang) organisation which more clearly
-identifies it as part of the CUE Project along with the [main CUE
-repository](https://github.com/cue-lang/cue).
+graciously permitted that it be moved to a new location to help identify it as
+part of [the CUE project](https://cuelang.org).
 
 ## Contributing
 

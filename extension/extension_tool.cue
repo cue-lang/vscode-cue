@@ -54,12 +54,12 @@ command: genPackageJSON: write: file.Create & {
 command: writebackPackageJSON: {
 	// extract the relevant config value
 	extract: exec.Run & {
-		cmd: ["cue", "export", "--out=json", "-e=devDependencies", "package.json"]
+		cmd: ["go", "tool", "cue", "export", "--out=json", "-e=devDependencies", "package.json"]
 		stdout: string
 	}
 	// place at a path: extension.npm
 	place: exec.Run & {
-		cmd: ["cue", "export", "--out=cue", "-l=extension:", "-l=npm:", "-l=devDependencies:", "-p=extension", "json:", "-"]
+		cmd: ["go", "tool", "cue", "export", "--out=cue", "-l=extension:", "-l=npm:", "-l=devDependencies:", "-p=extension", "json:", "-"]
 		stdin:  extract.stdout
 		stdout: string
 	}

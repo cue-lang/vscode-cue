@@ -89,9 +89,6 @@ workflows: trybot: _repo.bashWorkflow & {
 			for v in installGo {v},
 			for v in _setupCaches {v},
 
-			// CUE setup
-			_installCUE,
-
 			// Node setup
 			_installNode,
 
@@ -148,7 +145,7 @@ workflows: trybot: _repo.bashWorkflow & {
 			// Release steps
 			releaseStep & {
 				name: "Check version match"
-				run:  "cue cmd -t tag=\(_versionRef) checkReleaseVersion"
+				run:  "go tool cue cmd -t tag=\(_versionRef) checkReleaseVersion"
 			},
 			releaseOrTestDefaultStep & {
 				name: "Release package"
@@ -170,12 +167,6 @@ _installNode: githubactions.#Step & {
 	with: "node-version": strings.TrimPrefix(_repo.nodeVersion, "v")
 }
 
-_installCUE: githubactions.#Step & {
-	name: "Install CUE"
-	uses: "cue-lang/setup-cue@v1.0.1"
-	with: version: _repo.cueVersion
-}
-
 _centralRegistryLogin: githubactions.#Step & {
 	env: {
 		// Note: this token has read-only access to the registry
@@ -185,6 +176,6 @@ _centralRegistryLogin: githubactions.#Step & {
 		CUE_TOKEN: "${{ secrets.NOTCUECKOO_CUE_TOKEN }}"
 	}
 	run: """
-		cue login --token=${CUE_TOKEN}
+		go tool cue login --token=${CUE_TOKEN}
 		"""
 }

@@ -27,10 +27,12 @@ potentially more functionality in the future) for the CUE language.
 Whether you are new or experienced CUE user, we hope this extension fits your
 needs and enhances your configuration, data and policy experience.
 
-1. Install [CUE](https://cuelang.org/docs/introduction/installation/) v0.11.0 or
-   newer if you haven't already.
+1. Make sure you have
+   [CUE installed](https://cuelang.org/docs/introduction/installation/) on the
+   computer that's running VS Code. We recommend installing the latest version.
 
-1. Install the [VS Code CUE extension].
+1. Install the
+   [VS Code CUE extension](https://marketplace.visualstudio.com/items?itemName=cuelangorg.vscode-cue).
 
 1. Open any CUE file file to automatically activate the extension. The CUE
    status bar appears in the bottom right corner of the window and displays your

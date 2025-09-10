@@ -94,14 +94,14 @@ extension: npm: {
 		}
 	}
 	scripts: {
-		"vscode:prepublish": "cue cmd genPackageJSON && npm run clean && npm run buildpackage"
+		"vscode:prepublish": "go tool cue cmd genPackageJSON && npm run clean && npm run buildpackage"
 		clean:               "rm -rf dist"
 		compile:             "npm run check-types && npm run lint && node esbuild.js"
 		watch:               "npm-run-all -p watch:*"
 		"watch:esbuild":     "node esbuild.js --watch"
 		"watch:tsc":         "tsc --noEmit --watch --project tsconfig.json"
 		buildpackage:        "npm run check-types && npm run lint && node esbuild.js --production"
-		package:             "vsce package && cue cmd genManifest"
+		package:             "vsce package && go tool cue cmd genManifest"
 		publish:             "vsce publish"
 		"compile-tests":     "tsc -p . --outDir out"
 		"watch-tests":       "tsc -p . -w --outDir out"

@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa0e2a76_04ac79d1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1021694
+      },
+      "writtenOn": "2025-09-10T12:43:20Z",
+      "side": 1,
+      "message": "PTAL. I\u0027ve manually tested that the symlink is followed correctly when the release package gets built.",
+      "revId": "f6e5b3888c90e9e681b063c050ea51fba9ef5aa1",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}

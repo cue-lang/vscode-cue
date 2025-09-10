@@ -1,3 +1,3 @@
 module github.com/cue-lang/vscode-cue
 
-go 1.23.0
+go 1.25.1

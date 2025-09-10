@@ -8,6 +8,6 @@ package project
 // a JSON file and embed (probably better).
 contrib: versions: {
 	cue: v:  "v0.14.1"
-	go: v:   "go1.23.3"
+	go: v:   "go1.25.1"
 	node: v: "v22.11.0"
 }

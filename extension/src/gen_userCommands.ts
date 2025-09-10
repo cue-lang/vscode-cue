@@ -16,7 +16,7 @@ let _config = {
   "npm": {
     "name": "vscode-cue",
     "displayName": "vscode-cue",
-    "description": "CUE language support for Visual Studio Code",
+    "description": "The offical CUE extension for VS Code, providing syntax highlighting and language server integration - from the team that builds CUE and cuelang.org",
     "repository": "https://github.com/cue-lang/vscode-cue",
     "version": "0.0.11",
     "icon": "media/white_circle_128.png",

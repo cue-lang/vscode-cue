@@ -8,18 +8,18 @@ name: TryBot
     branches:
       - ci/test
       - master
-  workflow_dispatch: {}
   pull_request: {}
+  workflow_dispatch: {}
 jobs:
   test:
+    defaults:
+      run:
+        shell: bash
     runs-on: ubuntu-22.04
     if: |-
       (contains(github.event.head_commit.message, '
       Dispatch-Trailer: {"type":"trybot"')) || ! (contains(github.event.head_commit.message, '
       Dispatch-Trailer: {"type":"'))
-    defaults:
-      run:
-        shell: bash
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -101,25 +101,25 @@ jobs:
       - name: Install CUE
         uses: cue-lang/setup-cue@v1.0.1
         with:
-          version: v0.11.0
+          version: v0.14.1
       - name: Install Node
         uses: actions/setup-node@v4
         with:
           node-version: 22.11.0
       - name: Early git and code sanity checks
         run: go run cuelang.org/go/internal/ci/checks@v0.11.0-0.dev.0.20240903133435-46fb300df650
-      - run: cue login --token=${CUE_TOKEN}
-        env:
+      - env:
           CUE_TOKEN: ${{ secrets.NOTCUECKOO_CUE_TOKEN }}
+        run: cue login --token=${CUE_TOKEN}
       - name: Add node_modules/.bin to PATH and npm install
         run: |-
           echo "PATH=$PWD/node_modules/.bin:$PATH" >> $GITHUB_ENV
           npm install
-      - working-directory: extension
-        name: Add node_modules/.bin to PATH and npm install
+      - name: Add node_modules/.bin to PATH and npm install
         run: |-
           echo "PATH=$PWD/node_modules/.bin:$PATH" >> $GITHUB_ENV
           npm install
+        working-directory: extension
       - name: Verify
         run: go mod verify
       - name: Generate
@@ -132,25 +132,25 @@ jobs:
         run: go run honnef.co/go/tools/cmd/staticcheck@v0.5.1 ./...
       - name: Tidy
         run: go mod tidy
-      - working-directory: extension
-        name: Format
+      - name: Format
         run: npm run format
-      - working-directory: extension
-        name: Compile
+        working-directory: extension
+      - name: Compile
         run: npm run compile
-      - working-directory: extension
-        name: Extension publish dry-run
+        working-directory: extension
+      - name: Extension publish dry-run
         run: npm run package
+        working-directory: extension
       - if: always()
         name: Check that git is clean at the end of the job
         run: test -z "$(git status --porcelain)" || (git status; git diff; false)
-      - working-directory: extension
-        if: github.repository == 'cue-lang/vscode-cue' && (startsWith(github.ref, 'refs/tags/v'))
+      - if: github.repository == 'cue-lang/vscode-cue' && (startsWith(github.ref, 'refs/tags/v'))
         name: Check version match
         run: cue cmd -t tag=${GITHUB_REF##refs/tags/} checkReleaseVersion
-      - working-directory: extension
-        if: github.repository == 'cue-lang/vscode-cue' && (startsWith(github.ref, 'refs/tags/v') || (github.ref == 'refs/heads/ci/test'))
+        working-directory: extension
+      - if: github.repository == 'cue-lang/vscode-cue' && (startsWith(github.ref, 'refs/tags/v') || (github.ref == 'refs/heads/ci/test'))
         name: Release package
         run: npm run publish -- -p $VSCODE_PAT
         env:
           VSCODE_PAT: ${{ secrets.CUECKOO_VSCODE_PAT }}
+        working-directory: extension

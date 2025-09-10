@@ -7,7 +7,7 @@ package project
 // versions without need CUE to evaluate, or move the contrib.versions data to
 // a JSON file and embed (probably better).
 contrib: versions: {
-	cue: v:  "v0.11.0"
+	cue: v:  "v0.14.1"
 	go: v:   "go1.23.3"
 	node: v: "v22.11.0"
 }

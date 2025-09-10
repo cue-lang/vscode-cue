@@ -128,7 +128,7 @@ workflows: trybot: _repo.bashWorkflow & {
 			},
 			{
 				name: "staticcheck"
-				run:  "go run honnef.co/go/tools/cmd/staticcheck@v0.5.1 ./..."
+				run:  "go tool staticcheck ./..."
 			},
 			{
 				name: "Tidy"

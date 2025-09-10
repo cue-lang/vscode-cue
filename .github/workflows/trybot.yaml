@@ -59,7 +59,7 @@ jobs:
         uses: actions/setup-go@v5
         with:
           cache: false
-          go-version: 1.23.3
+          go-version: 1.25.1
       - name: Set common go env vars
         run: |-
           go env -w GOTOOLCHAIN=local
@@ -81,8 +81,8 @@ jobs:
             ${{ steps.go-mod-cache-dir.outputs.dir }}/cache/download
             ${{ steps.go-cache-dir.outputs.dir }}
             ~/.npm
-          key: ${{ runner.os }}-1.23.3-${{ github.run_id }}
-          restore-keys: ${{ runner.os }}-1.23.3
+          key: ${{ runner.os }}-1.25.1-${{ github.run_id }}
+          restore-keys: ${{ runner.os }}-1.25.1
       - if: |-
           ! (((github.ref == 'refs/heads/master') && (! (contains(github.event.head_commit.message, '
           Dispatch-Trailer: {"type":"')))) || (github.ref == 'refs/heads/ci/test'))
@@ -92,8 +92,8 @@ jobs:
             ${{ steps.go-mod-cache-dir.outputs.dir }}/cache/download
             ${{ steps.go-cache-dir.outputs.dir }}
             ~/.npm
-          key: ${{ runner.os }}-1.23.3-${{ github.run_id }}
-          restore-keys: ${{ runner.os }}-1.23.3
+          key: ${{ runner.os }}-1.25.1-${{ github.run_id }}
+          restore-keys: ${{ runner.os }}-1.25.1
       - if: |-
           github.repository == 'cue-lang/vscode-cue' && (((github.ref == 'refs/heads/master') && (! (contains(github.event.head_commit.message, '
           Dispatch-Trailer: {"type":"')))) || github.ref == 'refs/heads/ci/test')
@@ -129,7 +129,7 @@ jobs:
       - name: Race test
         run: go test -race ./...
       - name: staticcheck
-        run: go run honnef.co/go/tools/cmd/staticcheck@v0.5.1 ./...
+        run: go tool staticcheck ./...
       - name: Tidy
         run: go mod tidy
       - name: Format

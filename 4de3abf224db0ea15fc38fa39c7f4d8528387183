@@ -16,6 +16,23 @@
       "message": "PTAL",
       "revId": "4de3abf224db0ea15fc38fa39c7f4d8528387183",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "73db0e53_d8f6fd11",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1017723
+      },
+      "writtenOn": "2025-09-11T09:54:51Z",
+      "side": 1,
+      "message": "Per comments in https://review.gerrithub.io/c/cue-lang/vscode-cue/+/1222337",
+      "revId": "4de3abf224db0ea15fc38fa39c7f4d8528387183",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }

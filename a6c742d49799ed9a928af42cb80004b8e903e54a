@@ -39,6 +39,30 @@
       },
       "revId": "a6c742d49799ed9a928af42cb80004b8e903e54a",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "974146d4_cceba327",
+        "filename": "extension/extension.cue",
+        "patchSetId": 1
+      },
+      "lineNbr": 27,
+      "author": {
+        "id": 1038145
+      },
+      "writtenOn": "2025-09-11T11:08:22Z",
+      "side": 1,
+      "message": "I\u0027m not massively fussed, and I think \"language server\" is less of a mouthful than \"LSP server\".",
+      "parentUuid": "78092f75_231c6032",
+      "range": {
+        "startLine": 27,
+        "startChar": 88,
+        "endLine": 27,
+        "endChar": 103
+      },
+      "revId": "a6c742d49799ed9a928af42cb80004b8e903e54a",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }

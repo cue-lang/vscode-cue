@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7be9e07b_6d09246c",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1021694
+      },
+      "writtenOn": "2025-09-15T13:00:52Z",
+      "side": 1,
+      "message": "PTAL. Whilst not critical to the stack, this is a generated file that\u0027s gone stale, and which I can now update locally (given the previous CL unblocks `go generate ./...`, for me).",
+      "revId": "3b8ddeef1a43987b35a0a6e16b03320e64594c58",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}

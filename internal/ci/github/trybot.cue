@@ -35,23 +35,17 @@ workflows: trybot: _repo.bashWorkflow & {
 	jobs: test: {
 		"runs-on": _repo.linuxMachine
 
-		let runnerOSExpr = "runner.os"
-		let runnerOSVal = "${{ \(runnerOSExpr) }}"
-
 		// The repo config holds the standard string representation of a Go
 		// version. setup-go, rather unhelpfully, strips the "go" prefix.
 		let goVersion = strings.TrimPrefix(_repo.goVersion, "go")
 
-		let _setupGoActionsCaches = _repo.setupGoActionsCaches & {
-			#goVersion: goVersion
-			#os:        runnerOSVal
-			#additionalCacheDirs: [
-				"~/.npm",
-			]
-			_
-		}
 		let installGo = _repo.installGo & {
 			#setupGo: with: "go-version": goVersion
+			_
+		}
+
+		let _setupCaches = _repo.setupCaches & {
+			#in: additionalCaches: ["npm"]
 			_
 		}
 
@@ -93,7 +87,7 @@ workflows: trybot: _repo.bashWorkflow & {
 
 			// Install and setup Go
 			for v in installGo {v},
-			for v in _setupGoActionsCaches {v},
+			for v in _setupCaches {v},
 
 			// CUE setup
 			_installCUE,

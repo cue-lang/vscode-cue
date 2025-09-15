@@ -5,7 +5,7 @@ package repo
 
 import (
 	"github.com/cue-lang/vscode-cue:project"
-	"github.com/cue-lang/vscode-cue/internal/ci/base"
+	"github.com/cue-lang/tmp/internal/ci/base"
 )
 
 base
@@ -14,8 +14,6 @@ githubRepositoryPath: "cue-lang/vscode-cue"
 
 botGitHubUser:      "cueckoo"
 botGitHubUserEmail: "cueckoo@gmail.com"
-
-linuxMachine: "ubuntu-22.04"
 
 goVersion:   project.contrib.versions.go.v
 nodeVersion: project.contrib.versions.node.v

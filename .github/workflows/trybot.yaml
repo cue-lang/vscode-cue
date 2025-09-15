@@ -9,13 +9,15 @@ name: TryBot
       - ci/test
       - master
   pull_request: {}
+  schedule:
+    - cron: 0 2 * * *
   workflow_dispatch: {}
 jobs:
   test:
     defaults:
       run:
-        shell: bash
-    runs-on: ubuntu-22.04
+        shell: bash --noprofile --norc -euo pipefail {0}
+    runs-on: namespace-profile-linux-amd64
     if: |-
       (contains(github.event.head_commit.message, '
       Dispatch-Trailer: {"type":"trybot"')) || ! (contains(github.event.head_commit.message, '
@@ -64,40 +66,23 @@ jobs:
         run: |-
           go env -w GOTOOLCHAIN=local
 
+          case $(go env GOARCH) in
+          amd64) go env -w GOAMD64=v3 ;;   # 2013 and later; makes `go test -race` 15% faster
+          arm64) go env -w GOARM64=v8.6 ;; # Apple M2 and later
+          esac
+
           # Dump env for good measure
           go env
-      - id: go-mod-cache-dir
-        name: Get go mod cache directory
-        run: echo "dir=$(go env GOMODCACHE)" >> ${GITHUB_OUTPUT}
-      - id: go-cache-dir
-        name: Get go build/test cache directory
-        run: echo "dir=$(go env GOCACHE)" >> ${GITHUB_OUTPUT}
-      - if: |-
-          (((github.ref == 'refs/heads/master') && (! (contains(github.event.head_commit.message, '
-          Dispatch-Trailer: {"type":"')))) || (github.ref == 'refs/heads/ci/test'))
-        uses: actions/cache@v4
+      - if: github.event_name != 'schedule' && matrix.runner != 'ns-windows-amd64'
+        uses: namespacelabs/nscloud-cache-action@v1
         with:
-          path: |-
-            ${{ steps.go-mod-cache-dir.outputs.dir }}/cache/download
-            ${{ steps.go-cache-dir.outputs.dir }}
-            ~/.npm
-          key: ${{ runner.os }}-1.23.3-${{ github.run_id }}
-          restore-keys: ${{ runner.os }}-1.23.3
-      - if: |-
-          ! (((github.ref == 'refs/heads/master') && (! (contains(github.event.head_commit.message, '
-          Dispatch-Trailer: {"type":"')))) || (github.ref == 'refs/heads/ci/test'))
-        uses: actions/cache/restore@v4
-        with:
-          path: |-
-            ${{ steps.go-mod-cache-dir.outputs.dir }}/cache/download
-            ${{ steps.go-cache-dir.outputs.dir }}
-            ~/.npm
-          key: ${{ runner.os }}-1.23.3-${{ github.run_id }}
-          restore-keys: ${{ runner.os }}-1.23.3
+          cache: |-
+            go
+            npm
       - if: |-
           github.repository == 'cue-lang/vscode-cue' && (((github.ref == 'refs/heads/master') && (! (contains(github.event.head_commit.message, '
-          Dispatch-Trailer: {"type":"')))) || github.ref == 'refs/heads/ci/test')
-        run: go clean -testcache
+          Dispatch-Trailer: {"type":"')))) || (github.ref == 'refs/heads/ci/test'))
+        run: go env -w GOFLAGS=-count=1
       - name: Install CUE
         uses: cue-lang/setup-cue@v1.0.1
         with:
@@ -107,7 +92,7 @@ jobs:
         with:
           node-version: 22.11.0
       - name: Early git and code sanity checks
-        run: go run cuelang.org/go/internal/ci/checks@v0.11.0-0.dev.0.20240903133435-46fb300df650
+        run: go run cuelang.org/go/internal/ci/checks@v0.13.2
       - env:
           CUE_TOKEN: ${{ secrets.NOTCUECKOO_CUE_TOKEN }}
         run: cue login --token=${CUE_TOKEN}

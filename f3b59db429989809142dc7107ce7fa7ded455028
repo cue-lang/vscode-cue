@@ -33,6 +33,24 @@
       "message": "@paul@myitcv.io please unhold.",
       "revId": "f3b59db429989809142dc7107ce7fa7ded455028",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2e014e35_531a292e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1021694
+      },
+      "writtenOn": "2025-09-15T13:22:29Z",
+      "side": 1,
+      "message": "I discovered the root cause: I had an uncommitted `.envrc` file that set\n```\nexport CUE_EXPERIMENT\u003devalv3\u003d1\n```\n... which causes a failure with this repo + cmd/cue v0.11.0.\n\n```\nCUE_EXPERIMENT\u003d go generate ./...\n```\n\n... succeeds.\n\nIt seems harmless to leave this CL in place, despite not being in the critical path for the stack.",
+      "parentUuid": "c284e02b_acda94be",
+      "revId": "f3b59db429989809142dc7107ce7fa7ded455028",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }

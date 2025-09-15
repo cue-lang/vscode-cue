@@ -33,6 +33,24 @@
       "message": "Rather than making these changes whilst this is still GitHub based as opposed to Namespace, I would suggest we first do a big flip to the Namespace+template workflow and then see if any tweaks remain.\n\ncc @mvdan@mvdan.cc",
       "revId": "5112a5205594c30a4ca731ac3e6c5ea927239a26",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "2686286f_7d638730",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1021694
+      },
+      "writtenOn": "2025-09-15T13:10:29Z",
+      "side": 1,
+      "message": "The move to Namespace is done in the stack underneath https://cue.gerrithub.io/c/cue-lang/vscode-cue/+/1222339, which this CL is now a part of.",
+      "parentUuid": "eda987f8_75523067",
+      "revId": "5112a5205594c30a4ca731ac3e6c5ea927239a26",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }

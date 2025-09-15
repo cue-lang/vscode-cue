@@ -16,6 +16,23 @@
       "message": "PTAL.\n\nI found I needed to place this first in the stack as I simply couldn\u0027t get go:generate to succeed with the repo\u0027s currently-stated CUE v0.11.0.",
       "revId": "f3b59db429989809142dc7107ce7fa7ded455028",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "776efe65_42c95ff1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1021694
+      },
+      "writtenOn": "2025-09-15T13:03:16Z",
+      "side": 1,
+      "message": "@paul@myitcv.io please unhold.",
+      "revId": "f3b59db429989809142dc7107ce7fa7ded455028",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }

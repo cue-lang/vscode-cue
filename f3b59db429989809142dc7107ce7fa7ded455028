@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c284e02b_acda94be",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1021694
+      },
+      "writtenOn": "2025-09-15T12:59:33Z",
+      "side": 1,
+      "message": "PTAL.\n\nI found I needed to place this first in the stack as I simply couldn\u0027t get go:generate to succeed with the repo\u0027s currently-stated CUE v0.11.0.",
+      "revId": "f3b59db429989809142dc7107ce7fa7ded455028",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}

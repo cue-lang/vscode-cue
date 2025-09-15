@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "39ef6a0e_727b327e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1021694
+      },
+      "writtenOn": "2025-09-15T13:02:46Z",
+      "side": 1,
+      "message": "PTAL.\n\n@myitcv please unhold.",
+      "revId": "0e38876b04d334f9b6ea3a6fef1ef374f3e93933",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}

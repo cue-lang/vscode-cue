@@ -17,8 +17,7 @@ package github
 import (
 	"list"
 	"strings"
-
-	"github.com/cue-tmp/jsonschema-pub/exp1/githubactions"
+	"cue.dev/x/githubactions"
 )
 
 // The trybot workflow.

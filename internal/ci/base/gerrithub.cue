@@ -5,8 +5,7 @@ package base
 import (
 	"encoding/json"
 	"strings"
-
-	"github.com/cue-tmp/jsonschema-pub/exp1/githubactions"
+	"cue.dev/x/githubactions"
 )
 
 // trybotWorkflows is a template for trybot-based repos

@@ -3,8 +3,7 @@ language: {
 	version: "v0.8.0"
 }
 deps: {
-	"github.com/cue-tmp/jsonschema-pub/exp1/githubactions@v0": {
-		v:       "v0.4.0"
-		default: true
+	"cue.dev/x/githubactions@v0": {
+		v: "v0.1.0"
 	}
 }

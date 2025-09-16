@@ -16,6 +16,23 @@
       "message": "PTAL",
       "revId": "c21a5471b659c399363ce3481b2ceac7dd435d24",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "62f28d52_b9adcf55",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1017723
+      },
+      "writtenOn": "2025-09-16T13:32:31Z",
+      "side": 1,
+      "message": "But this change should be at the top of the stack, not the bottom. We want the \"breaking\" change to be the most easy to revert.",
+      "revId": "c21a5471b659c399363ce3481b2ceac7dd435d24",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }

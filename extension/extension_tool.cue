@@ -78,15 +78,17 @@ command: checkReleaseVersion: {
 	_version: string @tag(tag)
 
 	let commitVersion = "v" + extension.npm.version
+	let versionMatch = ( commitVersion == _version ) & bool
 
-	if commitVersion != _version {
-		msg: cli.Print & {
-			text: "commitVersion \(commitVersion) != tag version \(_version)"
-		}
-		error: exec.Run & {
-			$after: msg
-			cmd:    "false"
-		}
+	msg: cli.Print & {
+		text: #"Checking if commitVersion "\#(commitVersion)" is equal to tag version "\#(_version)": \#(versionMatch)"#
+	}
+	check: exec.Run & {
+		$after: msg
+		// versionMatch, being a bool, has string representation "true"
+		// or "false", both of which happen to be POSIX commands that
+		// succeed and fail respectively when we invoke them.
+		cmd: "\(versionMatch)"
 	}
 }
 

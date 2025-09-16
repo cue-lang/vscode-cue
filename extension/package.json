@@ -1,6 +1,6 @@
 {
   "name": "vscode-cue",
-  "displayName": "vscode-cue",
+  "displayName": "CUE",
   "description": "CUE language support for Visual Studio Code",
   "repository": "https://github.com/cue-lang/vscode-cue",
   "version": "0.0.11",

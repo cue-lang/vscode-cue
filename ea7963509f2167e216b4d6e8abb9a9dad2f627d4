@@ -51,6 +51,24 @@
       "parentUuid": "b980b12d_a03f0e2b",
       "revId": "ea7963509f2167e216b4d6e8abb9a9dad2f627d4",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f9113ced_784309e4",
+        "filename": "extension/gen.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 1021694
+      },
+      "writtenOn": "2025-09-16T14:12:35Z",
+      "side": 1,
+      "message": "Approach updated to remove the TODO entirely, along with the follow up step.",
+      "parentUuid": "f91b6452_ccdc31e1",
+      "revId": "ea7963509f2167e216b4d6e8abb9a9dad2f627d4",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }

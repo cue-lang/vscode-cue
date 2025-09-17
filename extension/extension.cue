@@ -1,4 +1,3 @@
-@extern(embed)
 package extension
 
 import (
@@ -20,14 +19,6 @@ extension: commands: {
 	welcome: title:  "Welcome"
 	startlsp: title: "Start CUE LSP"
 	stoplsp: title:  "Stop CUE LSP"
-}
-
-_packageJson:     _packageJsonSchema     @embed(file=package.json)
-_packageLockJson: _packageLockJsonSchema @embed(file=package-lock.json)
-
-_packageJsonSchema: version!: extension.npm.version
-_packageLockJsonSchema: _packageJsonSchema & {
-	packages!: ""!: version!: extension.npm.version
 }
 
 extension: npm: {

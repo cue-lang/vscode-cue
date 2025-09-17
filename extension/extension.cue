@@ -1,4 +1,3 @@
-@extern(embed)
 package extension
 
 import (
@@ -20,14 +19,6 @@ extension: commands: {
 	welcome: title:  "Welcome"
 	startlsp: title: "Start CUE LSP"
 	stoplsp: title:  "Stop CUE LSP"
-}
-
-_packageJson:     _packageJsonSchema     @embed(file=package.json)
-_packageLockJson: _packageLockJsonSchema @embed(file=package-lock.json)
-
-_packageJsonSchema: version!: extension.npm.version
-_packageLockJsonSchema: _packageJsonSchema & {
-	packages!: ""!: version!: extension.npm.version
 }
 
 extension: npm: {
@@ -103,14 +94,14 @@ extension: npm: {
 		}
 	}
 	scripts: {
-		"vscode:prepublish": "go tool cue cmd genPackageJSON && npm run clean && npm run buildpackage"
+		"vscode:prepublish": "go tool cue cmd genPackageJSON .:extension && npm run clean && npm run buildpackage"
 		clean:               "rm -rf dist"
 		compile:             "npm run check-types && npm run lint && node esbuild.js"
 		watch:               "npm-run-all -p watch:*"
 		"watch:esbuild":     "node esbuild.js --watch"
 		"watch:tsc":         "tsc --noEmit --watch --project tsconfig.json"
 		buildpackage:        "npm run check-types && npm run lint && node esbuild.js --production"
-		package:             "vsce package && go tool cue cmd genManifest"
+		package:             "vsce package && go tool cue cmd genManifest .:extension"
 		publish:             "vsce publish"
 		"compile-tests":     "tsc -p . --outDir out"
 		"watch-tests":       "tsc -p . -w --outDir out"

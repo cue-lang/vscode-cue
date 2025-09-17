@@ -140,7 +140,7 @@ workflows: trybot: _repo.bashWorkflow & {
 			// Release steps
 			releaseStep & {
 				name: "Check version match"
-				run:  "go tool cue cmd -t tag=\(_versionRef) checkReleaseVersion"
+				run:  "go tool cue cmd -t tag=\(_versionRef) checkReleaseVersion .:extension"
 			},
 			releaseOrTestDefaultStep & {
 				name: "Release package"

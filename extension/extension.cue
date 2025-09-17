@@ -23,7 +23,7 @@ extension: commands: {
 
 extension: npm: {
 	name:        "vscode-cue"
-	displayName: "CUE"
+	displayName: name
 	description: "CUE language support for Visual Studio Code"
 	repository:  "https://github.com/cue-lang/vscode-cue"
 	version:     "0.0.13"

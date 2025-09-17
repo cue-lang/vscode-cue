@@ -45,7 +45,10 @@ workflows: trybot: _repo.bashWorkflow & {
 		}
 
 		let _setupCaches = _repo.setupCaches & {
-			#in: additionalCaches: ["npm"]
+			#in: additionalCachePaths: [
+				"~/.npm",
+				#"${ github.workspace }/\#(extensionStep["working-directory"])/node_modules"#,
+			]
 			_
 		}
 

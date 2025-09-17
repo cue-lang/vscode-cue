@@ -45,7 +45,13 @@ workflows: trybot: _repo.bashWorkflow & {
 		}
 
 		let _setupCaches = _repo.setupCaches & {
-			#in: additionalCaches: ["npm"]
+			#in: additionalCachePaths: [
+				"~/.npm",
+				// TODO(jm): Update path when the correct way to resolve
+				// in-repo subdirectories is confirmed.
+				// cf. https://discord.com/channels/975088590705012777/1417814176855752755
+				#"\#(extensionStep["working-directory"])/node_modules"#,
+			]
 			_
 		}
 

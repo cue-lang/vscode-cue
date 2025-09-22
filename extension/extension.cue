@@ -113,7 +113,7 @@ extension: npm: {
 	}
 
 	// devDependencies is sort of maintained by npm. We maintain those in a
-	// separate file in order that 'cue cmd writeback' can be used to "push"
-	// changes from npm back to the source of truth CUE files.
+	// separate file in order that 'cue cmd writebackPackageJSON' can be used to
+	// "push" changes from npm back to the source of truth CUE files.
 	devDependencies: _
 }

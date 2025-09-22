@@ -119,10 +119,10 @@ jobs:
       - name: Format
         run: npm run format
         working-directory: extension
-      - name: Compile
+      - name: Compile extension
         run: npm run compile
         working-directory: extension
-      - name: Extension publish dry-run
+      - name: Package extension
         run: npm run package
         working-directory: extension
       - if: always()
@@ -133,8 +133,14 @@ jobs:
         run: go tool cue cmd -t tag=${GITHUB_REF##refs/tags/} checkReleaseVersion
         working-directory: extension
       - if: github.repository == 'cue-lang/vscode-cue' && (startsWith(github.ref, 'refs/tags/v') || (github.ref == 'refs/heads/ci/test'))
-        name: Release package
-        run: npm run publish -- -p $VSCODE_PAT
+        name: Publish extension to the OpenVSX registry
+        run: npm run publish:ovsx
+        env:
+          OVSX_PAT: ${{ secrets.CUECKOO_OVSX_PAT }}
+        working-directory: extension
+      - if: github.repository == 'cue-lang/vscode-cue' && (startsWith(github.ref, 'refs/tags/v') || (github.ref == 'refs/heads/ci/test'))
+        name: Publish extension to the Microsoft VSCode Marketplace
+        run: npm run publish:msft -- -p $VSCODE_PAT
         env:
           VSCODE_PAT: ${{ secrets.CUECKOO_VSCODE_PAT }}
         working-directory: extension

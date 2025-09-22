@@ -129,11 +129,11 @@ workflows: trybot: _repo.bashWorkflow & {
 				run:  "npm run format"
 			},
 			extensionStep & {
-				name: "Compile"
+				name: "Compile extension"
 				run:  "npm run compile"
 			},
 			extensionStep & {
-				name: "Extension publish dry-run"
+				name: "Package extension"
 				run:  "npm run package"
 			},
 
@@ -146,8 +146,13 @@ workflows: trybot: _repo.bashWorkflow & {
 				run:  "go tool cue cmd -t tag=\(_versionRef) checkReleaseVersion"
 			},
 			releaseOrTestDefaultStep & {
-				name: "Release package"
-				run:  "npm run publish -- -p $VSCODE_PAT"
+				name: "Publish extension to the OpenVSX registry"
+				run:  "npm run publish:ovsx"
+				env: OVSX_PAT: "${{ secrets.CUECKOO_OVSX_PAT }}"
+			},
+			releaseOrTestDefaultStep & {
+				name: "Publish extension to the Microsoft VSCode Marketplace"
+				run:  "npm run publish:msft -- -p $VSCODE_PAT"
 				env: VSCODE_PAT: "${{ secrets.CUECKOO_VSCODE_PAT }}"
 			},
 

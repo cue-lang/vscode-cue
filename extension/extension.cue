@@ -26,7 +26,7 @@ extension: npm: {
 	displayName: "CUE"
 	description: "The offical CUE extension for VS Code, providing syntax highlighting and language server integration (LSP) - from the team that builds CUE and cuelang.org"
 	repository:  "https://github.com/cue-lang/vscode-cue"
-	version:     "0.0.16"
+	version:     "0.0.17"
 	icon:        "media/white_circle_128.png"
 	license:     "MIT"
 	publisher:   "cuelangorg"

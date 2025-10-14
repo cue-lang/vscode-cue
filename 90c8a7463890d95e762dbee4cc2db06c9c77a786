@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "4dcbab91_2cba3c19",
+        "filename": "README.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1017723
+      },
+      "writtenOn": "2025-10-14T04:58:23Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this read \"language server (LSP) integration\"?",
+      "range": {
+        "startLine": 6,
+        "startChar": 32,
+        "endLine": 6,
+        "endChar": 65
+      },
+      "revId": "90c8a7463890d95e762dbee4cc2db06c9c77a786",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "e12f8a14_24effe42",
+        "filename": "README.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1017723
+      },
+      "writtenOn": "2025-10-14T04:58:23Z",
+      "side": 1,
+      "message": "Lots of text again; I think we can tighten this. Perhaps something like:\n\n\u003e We welcome feedback on your experience with the extension. Please file bug reports and share ideas via GitHub issues and discussions in the main CUE repository.\n\nThe current wording sounds overly ingratiating.",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 0
+      },
+      "revId": "90c8a7463890d95e762dbee4cc2db06c9c77a786",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "fad93e19_d728f66d",
+        "filename": "README.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1017723
+      },
+      "writtenOn": "2025-10-14T04:58:23Z",
+      "side": 1,
+      "message": "\"be\" - trying to tighten the sentence a bit.",
+      "range": {
+        "startLine": 49,
+        "startChar": 41,
+        "endLine": 49,
+        "endChar": 78
+      },
+      "revId": "90c8a7463890d95e762dbee4cc2db06c9c77a786",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}

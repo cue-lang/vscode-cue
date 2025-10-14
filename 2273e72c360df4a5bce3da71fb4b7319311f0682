@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "3ca768d5_b8886788",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1017723
+      },
+      "writtenOn": "2025-10-14T04:59:26Z",
+      "side": 1,
+      "message": "Nit: I would make clear that this change is \"ahead of the tag and release of v0.0.17\"",
+      "revId": "2273e72c360df4a5bce3da71fb4b7319311f0682",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}

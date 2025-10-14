@@ -16,6 +16,24 @@
       "message": "Nit: I would make clear that this change is \"ahead of the tag and release of v0.0.17\"",
       "revId": "2273e72c360df4a5bce3da71fb4b7319311f0682",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "922ddf83_723344be",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 3
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1021694
+      },
+      "writtenOn": "2025-10-14T07:31:19Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "3ca768d5_b8886788",
+      "revId": "2273e72c360df4a5bce3da71fb4b7319311f0682",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }

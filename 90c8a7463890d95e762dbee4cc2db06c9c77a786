@@ -24,6 +24,30 @@
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "da7f4aa1_9f7969e7",
+        "filename": "README.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1021694
+      },
+      "writtenOn": "2025-10-14T07:31:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "4dcbab91_2cba3c19",
+      "range": {
+        "startLine": 6,
+        "startChar": 32,
+        "endLine": 6,
+        "endChar": 65
+      },
+      "revId": "90c8a7463890d95e762dbee4cc2db06c9c77a786",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "e12f8a14_24effe42",
@@ -47,6 +71,30 @@
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     },
     {
+      "unresolved": false,
+      "key": {
+        "uuid": "bfdc0907_cd88370a",
+        "filename": "README.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1021694
+      },
+      "writtenOn": "2025-10-14T07:31:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "e12f8a14_24effe42",
+      "range": {
+        "startLine": 39,
+        "startChar": 0,
+        "endLine": 45,
+        "endChar": 0
+      },
+      "revId": "90c8a7463890d95e762dbee4cc2db06c9c77a786",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
       "unresolved": true,
       "key": {
         "uuid": "fad93e19_d728f66d",
@@ -60,6 +108,30 @@
       "writtenOn": "2025-10-14T04:58:23Z",
       "side": 1,
       "message": "\"be\" - trying to tighten the sentence a bit.",
+      "range": {
+        "startLine": 49,
+        "startChar": 41,
+        "endLine": 49,
+        "endChar": 78
+      },
+      "revId": "90c8a7463890d95e762dbee4cc2db06c9c77a786",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ede0add9_fc341147",
+        "filename": "README.md",
+        "patchSetId": 7
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1021694
+      },
+      "writtenOn": "2025-10-14T07:31:08Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "fad93e19_d728f66d",
       "range": {
         "startLine": 49,
         "startChar": 41,

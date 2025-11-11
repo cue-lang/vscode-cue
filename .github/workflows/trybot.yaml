@@ -24,14 +24,14 @@ jobs:
       Dispatch-Trailer: {"type":"'))
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
       - name: Reset git directory modification times
         run: touch -t 202211302355 $(find * -type d)
       - name: Restore git file modification times
-        uses: chetan/git-restore-mtime-action@075f9bc9d159805603419d50f794bd9f33252ebe
+        uses: chetan/git-restore-mtime-action@cbf8161ddb4e9b162409104954fb540e8a38c1da
       - id: DispatchTrailer
         name: Try to extract Dispatch-Trailer
         run: |-
@@ -58,14 +58,12 @@ jobs:
           echo "github.event.head_commit.message contains Dispatch-Trailer but we are on a protected branch"
           false
       - name: Install Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v6
         with:
           cache: false
           go-version: 1.25.1
       - name: Set common go env vars
         run: |-
-          go env -w GOTOOLCHAIN=local
-
           case $(go env GOARCH) in
           amd64) go env -w GOAMD64=v3 ;;   # 2013 and later; makes `go test -race` 15% faster
           arm64) go env -w GOARM64=v8.6 ;; # Apple M2 and later
@@ -89,7 +87,7 @@ jobs:
         with:
           node-version: 22.11.0
       - name: Early git and code sanity checks
-        run: go run cuelang.org/go/internal/ci/checks@v0.13.2
+        run: go run cuelang.org/go/internal/ci/checks@v0.14.1
       - env:
           CUE_TOKEN: ${{ secrets.NOTCUECKOO_CUE_TOKEN }}
         run: go tool cue login --token=${CUE_TOKEN}

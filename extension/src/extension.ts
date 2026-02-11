@@ -508,8 +508,21 @@ export class Extension {
 
 		// Options to control the language client. For example, which file events
 		// (open, modified etc) get sent to the server.
+		// Build documentSelector based on configuration
+		let documentSelector: lcnode.DocumentSelector = [
+			{ scheme: 'file', language: 'cue' }
+		];
+
+		if (this.config!.enableEmbeddedFilesSupport) {
+			documentSelector.push(
+				{ scheme: 'file', language: 'json' },
+				{ scheme: 'file', language: 'yaml' }
+			);
+			this.output.info('Embedded files support enabled for CUE LSP');
+		}
+
 		const clientOptions: lcnode.LanguageClientOptions = {
-			documentSelector: [{ scheme: 'file', language: 'cue' }],
+			documentSelector: documentSelector,
 			outputChannel: this.lspOutput
 		};
 
@@ -615,7 +628,11 @@ export class Extension {
 	// document is a CUE file or not, and updates the state of the status bar
 	// visibility accordingly.
 	updateStatusBarVisibilityFromEditor = (editor: vscode.TextEditor | undefined): void => {
-		this.showStatusBarItem = editor?.document.languageId.toLowerCase() === 'cue';
+		let languageId = editor?.document.languageId.toLowerCase() || "";
+		let isCueFile = languageId === 'cue';
+		let isEmbeddedFile = (this.config?.enableEmbeddedFilesSupport || false) &&
+			(languageId === 'json' || languageId === 'yaml');
+		this.showStatusBarItem = isCueFile || isEmbeddedFile;
 	};
 }
 
@@ -627,6 +644,7 @@ type CueConfiguration = {
 	useLanguageServer: boolean;
 	cueCommand: string;
 	languageServerFlags: string[];
+	enableEmbeddedFilesSupport: boolean;
 };
 
 // humanReadableState returns a human readable version of the language client

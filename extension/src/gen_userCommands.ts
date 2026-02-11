@@ -29,7 +29,8 @@ let _config = {
       "Programming Languages"
     ],
     "activationEvents": [
-      "onLanguage:cue"
+      "onLanguage:json",
+      "onLanguage:yaml"
     ],
     "main": "./dist/main.js",
     "contributes": {
@@ -88,6 +89,11 @@ let _config = {
             "type": "array",
             "default": [],
             "description": "Flags like -rpc.trace and -logfile to be used while running the language server."
+          },
+          "cue.enableEmbeddedFilesSupport": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable CUE LSP for JSON and YAML files. When enabled, the CUE language server will provide features for .json, .yaml, and .yml files based on how they are embedded into .cue files."
           }
         }
       }

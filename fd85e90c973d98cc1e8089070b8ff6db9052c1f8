@@ -16,6 +16,24 @@
       "message": "I\u0027ll assume you\u0027ve tested this 😉\n\nPlease add a brief comment in the commit message about the expected behaviour with respect to JSON (or other) files that are _not_ embedded that are opened in VSCode, which I assume would trigger the extension, and how they are treated.",
       "revId": "fd85e90c973d98cc1e8089070b8ff6db9052c1f8",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d75b2e11_d475c6d6",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 6
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1038145
+      },
+      "writtenOn": "2026-02-12T13:56:31Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "0f980a05_c9f4190a",
+      "revId": "fd85e90c973d98cc1e8089070b8ff6db9052c1f8",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }

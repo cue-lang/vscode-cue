@@ -34,6 +34,9 @@ For more information and documentation, including __tutorials and guides__, see
    (Windows/Linux), to run CUE-specific commands. Find them through their
    common `CUE: ` prefix.
 
+For more details on configuring and using the CUE language server, see
+[LSP: Getting started](https://github.com/cue-lang/cue/wiki/LSP:-Getting-started).
+
 ## Feedback
 
 We welcome feedback on your experience with the extension.

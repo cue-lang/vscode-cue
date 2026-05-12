@@ -67,7 +67,7 @@
         "cue.cueCommand": {
           "type": "string",
           "default": "cue",
-          "description": "The command or path used to run the CUE command, cmd/cue"
+          "description": "The command or path used to run the CUE command, cmd/cue. Supports the VS Code variables ${workspaceFolder}, ${workspaceFolder:name} and ${userHome}. The value must be a PATH-resolved command name or an absolute path, after variable expansion; relative paths are not supported."
         },
         "cue.languageServerFlags": {
           "type": "array",

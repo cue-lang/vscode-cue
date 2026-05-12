@@ -5,6 +5,10 @@ README.md
 dist/main.js
 language-configuration.json
 media/white_circle_128.png
+out/extension.js
+out/gen_userCommands.js
+out/main.js
+out/test/extension.test.js
 package.json
 src/extension.ts
 src/gen_userCommands.ts

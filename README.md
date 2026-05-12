@@ -37,6 +37,62 @@ For more information and documentation, including __tutorials and guides__, see
 For more details on configuring and using the CUE language server, see
 [LSP: Getting started](https://github.com/cue-lang/cue/wiki/LSP:-Getting-started).
 
+## Configuration
+
+The extension can be configured through VS Code settings. Access settings via:
+- `Code` → `Preferences` → `Settings` (Mac)
+- `File` → `Preferences` → `Settings` (Windows/Linux)
+
+### CUE Binary Path
+
+By default, the extension uses the `cue` command from your system PATH. You can customize this using the `cue.cueCommand` setting to point to a specific CUE installation.
+
+**Supported path formats:**
+
+1. **VS Code Variables** (recommended for portability):
+   ```json
+   {
+     "cue.cueCommand": "${workspaceFolder}/bin/cue"
+   }
+   ```
+   ```json
+   {
+     "cue.cueCommand": "${userHome}/.local/bin/cue"
+   }
+   ```
+
+2. **Relative paths** (resolved against workspace folder):
+   ```json
+   {
+     "cue.cueCommand": "./bin/cue"
+   }
+   ```
+
+3. **Absolute paths**:
+   ```json
+   {
+     "cue.cueCommand": "/usr/local/bin/cue"
+   }
+   ```
+
+4. **PATH-resolved commands** (default):
+   ```json
+   {
+     "cue.cueCommand": "cue"
+   }
+   ```
+
+**Supported VS Code variables:**
+- `${workspaceFolder}` - The path of the workspace folder
+- `${workspaceFolderBasename}` - The workspace folder name
+- `${userHome}` - The user's home directory
+
+### Other Settings
+
+- `cue.useLanguageServer` - Enable/disable the CUE language server (default: `true`)
+- `cue.languageServerFlags` - Additional flags to pass to the language server (e.g., `["-rpc.trace"]`)
+- `cue.enableEmbeddedFilesSupport` - Enable CUE LSP for JSON and YAML files (default: `true`)
+
 ## Feedback
 
 We welcome feedback on your experience with the extension.

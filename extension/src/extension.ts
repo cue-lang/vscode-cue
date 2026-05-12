@@ -271,10 +271,9 @@ export class Extension {
 			case cueCommand.trim() === '':
 				// Simply broken and obviously so.
 				break;
-			case !path.isAbsolute(cueCommand) && cueCommand.includes(path.sep):
-				invalidMsgSuffix = 'only PATH-resolved command names or absolute file paths supported';
-				break;
 			default:
+				// Accept all non-empty values: absolute paths, relative paths,
+				// PATH-resolved commands, and paths with VS Code variables
 				validCueCommand = true;
 		}
 		if (!validCueCommand) {
@@ -593,18 +592,59 @@ export class Extension {
 		this.updateStatus();
 	};
 
+	// expandVSCodeVariables expands VS Code variables in a string.
+	// Supported variables:
+	// - ${workspaceFolder} - the path of the folder opened in VS Code
+	// - ${workspaceFolderBasename} - the name of the folder opened in VS Code without any slashes (/)
+	// - ${userHome} - the path of the user's home folder
+	expandVSCodeVariables = (str: string): string => {
+		const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
+		
+		let expanded = str;
+		
+		// Expand ${workspaceFolder}
+		if (workspaceFolder) {
+			expanded = expanded.replace(/\$\{workspaceFolder\}/g, workspaceFolder.uri.fsPath);
+			expanded = expanded.replace(/\$\{workspaceFolderBasename\}/g, path.basename(workspaceFolder.uri.fsPath));
+		}
+		
+		// Expand ${userHome}
+		const homeDir = process.env.HOME || process.env.USERPROFILE || '';
+		if (homeDir) {
+			expanded = expanded.replace(/\$\{userHome\}/g, homeDir);
+		}
+		
+		return expanded;
+	};
+
 	// absCueCommand computes an absolute path for a non-absolute cueCommand
 	// value. If cueCommand is already absolute, cueCommand is returned. Note
 	// that despite using which to resolve a non-absolute value the caller can
 	// still not make any guarantees about the existence of the binary on disk
 	// when it comes to running it. Races possible everywhere.
 	absCueCommand = async (cueCommand: string): Promise<string> => {
-		if (path.isAbsolute(cueCommand)) {
-			return Promise.resolve(cueCommand);
+		// First, expand any VS Code variables
+		const expandedCommand = this.expandVSCodeVariables(cueCommand);
+		
+		// Handle absolute paths (after variable expansion)
+		if (path.isAbsolute(expandedCommand)) {
+			return Promise.resolve(expandedCommand);
 		}
-		let [resolvedCommand, err] = await ve(which(cueCommand));
+		
+		// Handle relative paths (after variable expansion)
+		if (expandedCommand.includes(path.sep)) {
+			const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
+			if (!workspaceFolder) {
+				return Promise.reject(new Error('No workspace folder available to resolve relative path'));
+			}
+			const resolvedPath = path.resolve(workspaceFolder.uri.fsPath, expandedCommand);
+			return Promise.resolve(resolvedPath);
+		}
+		
+		// Handle PATH-resolved commands
+		let [resolvedCommand, err] = await ve(which(expandedCommand));
 		if (err !== null) {
-			return Promise.reject(new Error(`failed to find ${JSON.stringify(cueCommand)} in PATH: ${err}`));
+			return Promise.reject(new Error(`failed to find ${JSON.stringify(expandedCommand)} in PATH: ${err}`));
 		}
 		return Promise.resolve(resolvedCommand!);
 	};

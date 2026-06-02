@@ -29,8 +29,7 @@ let _config = {
       "Programming Languages"
     ],
     "activationEvents": [
-      "onLanguage:json",
-      "onLanguage:yaml"
+      "workspaceContains:**/*.cue"
     ],
     "main": "./dist/main.js",
     "contributes": {

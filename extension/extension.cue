@@ -36,8 +36,7 @@ extension: npm: {
 	]
 	activationEvents: [
 		// "onLanguage:cue" is not needed: VSCode adds this automatically due to contributions below.
-		"onLanguage:json",
-		"onLanguage:yaml",
+		"workspaceContains:**/*.cue",
 	]
 	main: "./dist/main.js"
 	contributes: {

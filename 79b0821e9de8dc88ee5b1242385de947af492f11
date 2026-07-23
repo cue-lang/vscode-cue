@@ -1,0 +1,7 @@
+Code-Review+2: Paul Jolly <paul@myitcv.io>
+TryBot-Result+1: CUEcueckoo <cueckoo@cuelang.org>
+Submitted-by: Matthew Sackman <matthew@cue.works>
+Submitted-at: Thu, 23 Jul 2026 12:40:36 +0000
+Reviewed-on: https://cue.gerrithub.io/c/cue-lang/vscode-cue/+/1242897
+Project: cue-lang/vscode-cue
+Branch: refs/heads/master

@@ -37,6 +37,67 @@ For more information and documentation, including __tutorials and guides__, see
 For more details on configuring and using the CUE language server, see
 [LSP: Getting started](https://github.com/cue-lang/cue/wiki/LSP:-Getting-started).
 
+## Configuration
+
+The extension can be configured through VS Code settings. Access settings via:
+- `Code` → `Preferences` → `Settings` (Mac)
+- `File` → `Preferences` → `Settings` (Windows/Linux)
+
+### CUE Binary Path
+
+By default, the extension uses the `cue` command from your system PATH. You can customize this using the `cue.cueCommand` setting to point to a specific CUE installation.
+
+**Supported path formats:**
+
+1. **VS Code Variables** (recommended for portability):
+   ```json
+   {
+     "cue.cueCommand": "${workspaceFolder}/bin/cue"
+   }
+   ```
+   ```json
+   {
+     "cue.cueCommand": "${workspaceFolder:my-folder}/bin/cue"
+   }
+   ```
+
+   ```json
+   {
+     "cue.cueCommand": "${userHome}/.local/bin/cue"
+   }
+   ```
+
+2. **Absolute paths**:
+   ```json
+   {
+     "cue.cueCommand": "/usr/local/bin/cue"
+   }
+   ```
+
+3. **PATH-resolved commands** (default):
+   ```json
+   {
+     "cue.cueCommand": "cue"
+   }
+   ```
+
+**Supported VS Code variables:**
+- `${workspaceFolder}` - The path of the first workspace folder
+- `${workspaceFolder:name}` - The path of the workspace folder named `name` in a multi-root setup
+- `${userHome}` - The user's home directory
+
+Any other `${...}` variable, or a variable that cannot be resolved (for
+example a workspace folder name that does not match), is reported as an
+error. Relative paths such as `./bin/cue` are not supported; use a
+variable to construct an absolute path instead, e.g.
+`${workspaceFolder}/bin/cue`.
+
+### Other Settings
+
+- `cue.useLanguageServer` - Enable/disable the CUE language server (default: `true`)
+- `cue.languageServerFlags` - Additional flags to pass to the language server (e.g., `["-rpc.trace"]`)
+- `cue.enableEmbeddedFilesSupport` - Enable CUE LSP for JSON and YAML files (default: `true`)
+
 ## Feedback
 
 We welcome feedback on your experience with the extension.

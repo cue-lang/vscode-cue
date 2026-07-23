@@ -14,12 +14,13 @@
 
 'use strict';
 
-import * as path from 'node:path';
-import which from 'which';
-import * as vscode from 'vscode';
-import * as lcnode from 'vscode-languageclient/node';
 import * as cp from 'node:child_process';
+import * as os from 'node:os';
+import * as path from 'node:path';
+import * as vscode from 'vscode';
 import * as lc from 'vscode-languageclient';
+import * as lcnode from 'vscode-languageclient/node';
+import which from 'which';
 import { config } from './gen_userCommands';
 
 let errTornDown = new Error('Extenssion instance already torn down');
@@ -94,6 +95,14 @@ export class Extension {
 	// version'.
 	private cueVersion: string = '';
 
+	// cueVersionCommand is the resolved absolute path of the cueCommand for
+	// which cueVersion was computed. The resolved path, rather than the raw
+	// config value, is tracked because the resolution of a config value can
+	// change without the config value itself changing, e.g. when the value
+	// references ${workspaceFolder} and the workspace folders change. An
+	// empty string means cueVersion has not been computed.
+	private cueVersionCommand: string = '';
+
 	// statusBarItem shows the CUE extension status, including version and a
 	// :zap: icon in case the LSP is running.
 	private statusBarItem: vscode.StatusBarItem;
@@ -112,6 +121,9 @@ export class Extension {
 
 		let configChangeListener = vscode.workspace.onDidChangeConfiguration(this.extensionConfigurationChange);
 		this.ctx.subscriptions.push(configChangeListener);
+
+		let workspaceFoldersListener = vscode.workspace.onDidChangeWorkspaceFolders(this.workspaceFoldersChange);
+		this.ctx.subscriptions.push(workspaceFoldersListener);
 
 		this.registerCommand('welcome', this.cmdWelcomeCUE);
 		this.registerCommand('startlsp', this.cmdStartLSP);
@@ -232,58 +244,21 @@ export class Extension {
 		let vscodeConfig = vscode.workspace.getConfiguration('cue');
 		let newConfig = JSON.parse(JSON.stringify(vscodeConfig)) as CueConfiguration;
 
-		// We need to re-run 'cue version' in case the cue command implied by
-		// languageServerCommand[0] changes.
-		let currentCueCmd = this.config?.cueCommand ?? '';
-		let newCueCmd = newConfig.cueCommand;
-
 		this.config = newConfig;
 		this.output.info(`configuration updated to: ${JSON.stringify(this.config, null, 2)}`);
 
 		let err;
 
-		// Sanity check the cueCommand config. Show an error message in case we do
-		// not have a valid value. Note that this does not try to ensure the binary
-		// exists on disk; that in effect happens each time we try and run the
-		// command and so failure (e.g. file not existing) is handled at each of
-		// those sites.
-		//
-		// By the this stage, config represents the defaults-populated
-		// configuration we should use. The field cueCommand is the command that
-		// should be run. We need to handle the normal cases:
-		//
-		// 1. cue - a simple PATH-resolved command name, no slashes
-		// 2. ./relative/path/to/cue - a relative path, >=1 slashes
-		// 3. /absolute/path/to/cue - absolute filepath
-		//
-		// TODO(myitcv): handle windows in these documentation cases.
-		//
-		// For now, we err on the side of caution by only allowing PATH-resolved
-		// commands and absolute file paths. Reason being, it's not clear (yet)
-		// what this means in the case of the running VSCode, workspace etc. And we
-		// might want to support expanding special VSCode variables in the path.
-		let cueCommand = this.config!.cueCommand;
-
-		let validCueCommand = false;
-		let invalidMsgSuffix = '';
-
-		switch (true) {
-			case cueCommand.trim() === '':
-				// Simply broken and obviously so.
-				break;
-			case !path.isAbsolute(cueCommand) && cueCommand.includes(path.sep):
-				invalidMsgSuffix = 'only PATH-resolved command names or absolute file paths supported';
-				break;
-			default:
-				validCueCommand = true;
-		}
-		if (!validCueCommand) {
-			let msg = `invalid cue.cueCommand config value ${JSON.stringify(cueCommand)}`;
-			if (invalidMsgSuffix.trim() !== '') {
-				msg += `; ${invalidMsgSuffix}`;
-			}
-			this.showErrorMessage(msg);
-
+		// Sanity check the cueCommand config by resolving it to an absolute
+		// path via absCueCommand, which also expands VS Code variables; see
+		// its doc comment for the validation rules. Show an error message
+		// and stop the LSP in case we do not have a valid value. Note that
+		// this does not try to ensure the binary exists on disk; that in
+		// effect happens each time we try and run the command and so failure
+		// (e.g. file not existing) is handled at each of those sites.
+		let [cueCommandAbs, resolveErr] = await ve(this.absCueCommand(this.config!.cueCommand));
+		if (resolveErr !== null) {
+			this.showErrorMessage(`${resolveErr}`);
 			// Stop the LSP if it is running.
 			[, err] = await ve(this.stopCueLsp());
 			if (err !== null) {
@@ -292,17 +267,17 @@ export class Extension {
 			return;
 		}
 
-		// We have a valid value for cueCommand. Update the version string if the
-		// value of cueCommand changed.
-		if (currentCueCmd !== newCueCmd) {
-			// We need to run 'cue version' (according to the config cueCommand)
-			// for the updated version string.
-			let [cueCommand, err] = await ve(this.absCueCommand(this.config!.cueCommand));
-			if (err !== null) {
-				return this.showErrorMessage(`${err}`);
-			}
+		// We have a valid value for cueCommand, resolved to an absolute
+		// path. Update the version string if the resolved path changed. The
+		// resolved path is compared, rather than the raw config value,
+		// because the resolution can also change with the workspace folders,
+		// e.g. when the value references ${workspaceFolder}.
+		if (this.cueVersionCommand !== cueCommandAbs) {
+			// We need to run 'cue version' (according to
+			// the resolved cueCommandAbs) for the updated
+			// version string.
 			let cueVersion: Cmd = {
-				Args: [cueCommand!, 'version']
+				Args: [cueCommandAbs!, 'version']
 			};
 			[, err] = await ve(osexecRun(cueVersion));
 			if (err !== null) {
@@ -323,6 +298,7 @@ export class Extension {
 				);
 			}
 			this.cueVersion = match[1];
+			this.cueVersionCommand = cueCommandAbs!;
 		}
 
 		// Update the status bar item
@@ -593,18 +569,63 @@ export class Extension {
 		this.updateStatus();
 	};
 
-	// absCueCommand computes an absolute path for a non-absolute cueCommand
-	// value. If cueCommand is already absolute, cueCommand is returned. Note
-	// that despite using which to resolve a non-absolute value the caller can
-	// still not make any guarantees about the existence of the binary on disk
-	// when it comes to running it. Races possible everywhere.
-	absCueCommand = async (cueCommand: string): Promise<string> => {
-		if (path.isAbsolute(cueCommand)) {
-			return Promise.resolve(cueCommand);
+	// workspaceFoldersChange handles a change in the set of workspace folders.
+	// The effective cueCommand can depend on the workspace folders via
+	// ${workspaceFolder...} variables, in which case the command needs
+	// re-resolving via the configuration logic. 'cue lsp' itself is notified
+	// of workspace folder changes by the LSP client, so for other cueCommand
+	// values there is nothing to do.
+	workspaceFoldersChange = async (e: vscode.WorkspaceFoldersChangeEvent): Promise<void> => {
+		if (this.tornDown) {
+			throw errTornDown;
 		}
-		let [resolvedCommand, err] = await ve(which(cueCommand));
+
+		if (!this.config?.cueCommand.includes('${')) {
+			return;
+		}
+		return this.extensionConfigurationChange(undefined);
+	};
+
+	// absCueCommand computes an absolute path for a cueCommand value,
+	// expanding VS Code variables first (see expandVSCodeVariables for the
+	// supported set). An empty value is invalid. An expanded value that is
+	// absolute is returned as is. A relative path after expansion (see
+	// isRelativePath) is invalid; use e.g. ${workspaceFolder} to construct
+	// an absolute path instead. Any other value is resolved as a command
+	// name via PATH. Note that despite this resolution the caller can still
+	// not make any guarantees about the existence of the binary on disk when
+	// it comes to running it. Races possible everywhere.
+	absCueCommand = async (cueCommand: string): Promise<string> => {
+		if (cueCommand.trim() === '') {
+			return Promise.reject(new Error('invalid empty cue.cueCommand config value'));
+		}
+		let [expandedCommand, expandErr] = expandVSCodeVariables(cueCommand, vscode.workspace.workspaceFolders, os.homedir());
+		if (expandErr !== null) {
+			return Promise.reject(
+				new Error(`invalid cue.cueCommand config value ${JSON.stringify(cueCommand)}: ${expandErr.message}`)
+			);
+		}
+		if (path.isAbsolute(expandedCommand!)) {
+			return Promise.resolve(expandedCommand!);
+		}
+		if (isRelativePath(expandedCommand!)) {
+			let value = JSON.stringify(cueCommand);
+			if (expandedCommand !== cueCommand) {
+				value += ` (expanded to ${JSON.stringify(expandedCommand)})`;
+			}
+			return Promise.reject(
+				new Error(
+					`invalid cue.cueCommand config value ${value}; only PATH-resolved command names or absolute file paths supported`
+				)
+			);
+		}
+		let [resolvedCommand, err] = await ve(which(expandedCommand!));
 		if (err !== null) {
-			return Promise.reject(new Error(`failed to find ${JSON.stringify(cueCommand)} in PATH: ${err}`));
+			let value = JSON.stringify(cueCommand);
+			if (expandedCommand !== cueCommand) {
+				value += ` (expanded to ${JSON.stringify(expandedCommand)})`;
+			}
+			return Promise.reject(new Error(`failed to find ${value} in PATH: ${err}`));
 		}
 		return Promise.resolve(resolvedCommand!);
 	};
@@ -641,6 +662,71 @@ type CueConfiguration = {
 	languageServerFlags: string[];
 	enableEmbeddedFilesSupport: boolean;
 };
+
+// isRelativePath reports whether p is a relative path: a non-absolute value
+// that contains a path separator. Such values are not supported as
+// cueCommand values: following POSIX shell conventions, a value containing a
+// separator is not subject to PATH lookup, and it is not clear what a
+// relative path should be relative to in the context of a running VS Code
+// instance. Both '/' and path.sep are treated as separators, matching the
+// separator detection of the which package. Exported for testing.
+export function isRelativePath(p: string): boolean {
+	return !path.isAbsolute(p) && (p.includes('/') || p.includes(path.sep));
+}
+
+// expandVSCodeVariables expands the supported VS Code variables in str,
+// returning the expanded string, or an error for a variable that is not
+// supported or cannot be resolved. The supported variables are:
+//
+// - ${workspaceFolder} - the path of the first workspace folder
+// - ${workspaceFolder:name} - the path of the workspace folder named 'name'
+//   in a multi-root setup
+// - ${userHome} - the path of the user's home folder
+//
+// The workspace folders and home directory are parameters so that the
+// function is pure; it is exported for testing.
+export function expandVSCodeVariables(
+	str: string,
+	folders: readonly vscode.WorkspaceFolder[] | undefined,
+	homeDir: string
+): ValErr<string> {
+	let err: Error | null = null;
+	// Expand in a single pass using a function replacement. This ensures that
+	// expanded values are never themselves re-scanned for variables, and that
+	// '$' characters within them are not interpreted as special replacement
+	// patterns.
+	let expanded = str.replace(/\$\{([^}]*)\}/g, (match: string, name: string): string => {
+		if (name === 'userHome') {
+			if (homeDir === '') {
+				err ??= new Error(`cannot expand ${match}: the user's home directory is unknown`);
+				return match;
+			}
+			return homeDir;
+		}
+		if (name === 'workspaceFolder' || name.startsWith('workspaceFolder:')) {
+			let folder: vscode.WorkspaceFolder | undefined;
+			if (name === 'workspaceFolder') {
+				// Consistent with the resolution of relative paths, the first
+				// workspace folder is used.
+				folder = folders?.[0];
+			} else {
+				let folderName = name.slice('workspaceFolder:'.length);
+				folder = folders?.find((f) => f.name === folderName);
+			}
+			if (folder === undefined) {
+				err ??= new Error(`cannot expand ${match}: no matching workspace folder`);
+				return match;
+			}
+			return folder.uri.fsPath;
+		}
+		err ??= new Error(`unsupported variable ${match}`);
+		return match;
+	});
+	if (err !== null) {
+		return [null, err];
+	}
+	return [expanded, null];
+}
 
 // humanReadableState returns a human readable version of the language client
 // state.

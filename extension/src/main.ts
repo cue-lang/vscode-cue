@@ -156,7 +156,7 @@ let inst: Extension | undefined;
 
 // output is a singleton output channel used for extension logging (at various
 // levels) to the user via the 'Output' window, in the 'CUE' context.
-let output = vscode.window.createOutputChannel('CUE', { log: true });
+const output = vscode.window.createOutputChannel('CUE', { log: true });
 
 // lspOutput is established as a singleton the first time we run cue lsp. Log
 // and error output from the running cue lsp instance is logged to the output

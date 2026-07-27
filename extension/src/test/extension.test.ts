@@ -13,32 +13,32 @@ suite('expandVSCodeVariables', () => {
 
 	test('values without variables are unchanged', () => {
 		for (const val of ['cue', '/abs/path/cue', './bin/cue', '', 'weird$name']) {
-			let [expanded, err] = expandVSCodeVariables(val, folders, home);
+			const [expanded, err] = expandVSCodeVariables(val, folders, home);
 			assert.strictEqual(err, null);
 			assert.strictEqual(expanded, val);
 		}
 	});
 
 	test('${workspaceFolder} expands to the first workspace folder', () => {
-		let [expanded, err] = expandVSCodeVariables('${workspaceFolder}/bin/cue', folders, home);
+		const [expanded, err] = expandVSCodeVariables('${workspaceFolder}/bin/cue', folders, home);
 		assert.strictEqual(err, null);
 		assert.strictEqual(expanded, '/w/one/bin/cue');
 	});
 
 	test('${workspaceFolder:name} expands to the named workspace folder', () => {
-		let [expanded, err] = expandVSCodeVariables('${workspaceFolder:two}/bin/cue', folders, home);
+		const [expanded, err] = expandVSCodeVariables('${workspaceFolder:two}/bin/cue', folders, home);
 		assert.strictEqual(err, null);
 		assert.strictEqual(expanded, '/w/two/bin/cue');
 	});
 
 	test('${userHome} expands to the home directory', () => {
-		let [expanded, err] = expandVSCodeVariables('${userHome}/.local/bin/cue', folders, home);
+		const [expanded, err] = expandVSCodeVariables('${userHome}/.local/bin/cue', folders, home);
 		assert.strictEqual(err, null);
 		assert.strictEqual(expanded, '/home/tester/.local/bin/cue');
 	});
 
 	test('multiple variables expand in one value', () => {
-		let [expanded, err] = expandVSCodeVariables('${workspaceFolder:one}/x/${workspaceFolder:two}/y', folders, home);
+		const [expanded, err] = expandVSCodeVariables('${workspaceFolder:one}/x/${workspaceFolder:two}/y', folders, home);
 		assert.strictEqual(err, null);
 		assert.strictEqual(expanded, '/w/one/x//w/two/y');
 	});
@@ -55,34 +55,34 @@ suite('expandVSCodeVariables', () => {
 
 	test('expanded values are not re-expanded', () => {
 		const trickyFolders = [workspaceFolder('main', '/w/${userHome}', 0)];
-		let [expanded, err] = expandVSCodeVariables('${workspaceFolder}/bin/cue', trickyFolders, home);
+		const [expanded, err] = expandVSCodeVariables('${workspaceFolder}/bin/cue', trickyFolders, home);
 		assert.strictEqual(err, null);
 		assert.strictEqual(expanded, '/w/${userHome}/bin/cue');
 	});
 
 	test('${workspaceFolder} errors when there are no workspace folders', () => {
 		for (const noFolders of [undefined, []]) {
-			let [expanded, err] = expandVSCodeVariables('${workspaceFolder}/bin/cue', noFolders, home);
+			const [expanded, err] = expandVSCodeVariables('${workspaceFolder}/bin/cue', noFolders, home);
 			assert.strictEqual(expanded, null);
 			assert.match(`${err}`, /cannot expand \$\{workspaceFolder\}: no matching workspace folder/);
 		}
 	});
 
 	test('${workspaceFolder:name} errors when no folder matches', () => {
-		let [expanded, err] = expandVSCodeVariables('${workspaceFolder:three}/bin/cue', folders, home);
+		const [expanded, err] = expandVSCodeVariables('${workspaceFolder:three}/bin/cue', folders, home);
 		assert.strictEqual(expanded, null);
 		assert.match(`${err}`, /cannot expand \$\{workspaceFolder:three\}: no matching workspace folder/);
 	});
 
 	test('${userHome} errors when the home directory is unknown', () => {
-		let [expanded, err] = expandVSCodeVariables('${userHome}/bin/cue', folders, '');
+		const [expanded, err] = expandVSCodeVariables('${userHome}/bin/cue', folders, '');
 		assert.strictEqual(expanded, null);
 		assert.match(`${err}`, /cannot expand \$\{userHome\}/);
 	});
 
 	test('unsupported variables error', () => {
 		for (const val of ['${env:GOBIN}/cue', '${workspaceFolderBasename}/cue', '${}/cue']) {
-			let [expanded, err] = expandVSCodeVariables(val, folders, home);
+			const [expanded, err] = expandVSCodeVariables(val, folders, home);
 			assert.strictEqual(expanded, null);
 			assert.match(`${err}`, /unsupported variable/);
 		}

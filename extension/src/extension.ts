@@ -23,7 +23,7 @@ import * as lcnode from 'vscode-languageclient/node';
 import which from 'which';
 import { config } from './gen_userCommands';
 
-let errTornDown = new Error('Extension instance already torn down');
+const errTornDown = new Error('Extension instance already torn down');
 
 const copyStatusVersionToClipboardCmd = 'copyversiontoclipboard';
 
@@ -120,10 +120,10 @@ export class Extension {
 		this.output = output;
 		this.lspOutput = lspOutput;
 
-		let configChangeListener = vscode.workspace.onDidChangeConfiguration(this.extensionConfigurationChange);
+		const configChangeListener = vscode.workspace.onDidChangeConfiguration(this.extensionConfigurationChange);
 		this.ctx.subscriptions.push(configChangeListener);
 
-		let workspaceFoldersListener = vscode.workspace.onDidChangeWorkspaceFolders(this.workspaceFoldersChange);
+		const workspaceFoldersListener = vscode.workspace.onDidChangeWorkspaceFolders(this.workspaceFoldersChange);
 		this.ctx.subscriptions.push(workspaceFoldersListener);
 
 		this.registerCommand('welcome', this.cmdWelcomeCUE);
@@ -144,7 +144,7 @@ export class Extension {
 		);
 
 		// Capture the current editor state, and
-		let activeTextEditorListener = vscode.window.onDidChangeActiveTextEditor(this.activeTextEditorChanged);
+		const activeTextEditorListener = vscode.window.onDidChangeActiveTextEditor(this.activeTextEditorChanged);
 		this.ctx.subscriptions.push(activeTextEditorListener);
 		this.updateStatusBarVisibilityFromEditor(vscode.window.activeTextEditor);
 
@@ -193,12 +193,12 @@ export class Extension {
 	// the command, such that the user would otherwise be left surprised if nothing
 	// happened because of the error.
 	registerCommand = (cmd: string, callback: (context?: any) => Promise<void>) => {
-		let cmdID = this.commandID(cmd);
+		const cmdID = this.commandID(cmd);
 		if (this.tornDown) {
 			throw errTornDown;
 		}
 
-		let disposable = vscode.commands.registerCommand(cmdID, callback);
+		const disposable = vscode.commands.registerCommand(cmdID, callback);
 		this.ctx.subscriptions.push(disposable);
 	};
 
@@ -242,8 +242,8 @@ export class Extension {
 		// has a defined value for each field in the configuration schema. As such,
 		// we cannot predicate any logic in this extension on a field _not_ having
 		// been set, because we simply cannot distinguish that case.
-		let vscodeConfig = vscode.workspace.getConfiguration('cue');
-		let newConfig = JSON.parse(JSON.stringify(vscodeConfig)) as CueConfiguration;
+		const vscodeConfig = vscode.workspace.getConfiguration('cue');
+		const newConfig = JSON.parse(JSON.stringify(vscodeConfig)) as CueConfiguration;
 
 		this.config = newConfig;
 		this.output.info(`configuration updated to: ${JSON.stringify(this.config, null, 2)}`);
@@ -257,7 +257,7 @@ export class Extension {
 		// this does not try to ensure the binary exists on disk; that in
 		// effect happens each time we try and run the command and so failure
 		// (e.g. file not existing) is handled at each of those sites.
-		let [cueCommandAbs, resolveErr] = await ve(this.absCueCommand(this.config!.cueCommand));
+		const [cueCommandAbs, resolveErr] = await ve(this.absCueCommand(this.config!.cueCommand));
 		if (resolveErr !== null) {
 			this.showErrorMessage(`${resolveErr}`);
 			// Stop the LSP if it is running.
@@ -277,7 +277,7 @@ export class Extension {
 			// We need to run 'cue version' (according to
 			// the resolved cueCommandAbs) for the updated
 			// version string.
-			let cueVersion: Cmd = {
+			const cueVersion: Cmd = {
 				Args: [cueCommandAbs!, 'version']
 			};
 			[, err] = await ve(osexecRun(cueVersion));
@@ -290,9 +290,9 @@ export class Extension {
 				}
 				return this.showErrorMessage(`failed to run ${JSON.stringify(cueVersion)}: ${msgSuffix}`);
 			}
-			let versionOutput = cueVersion.Stdout!.trim();
+			const versionOutput = cueVersion.Stdout!.trim();
 			const versionRegex = /^cue version (.*)/m;
-			let match = versionOutput.match(versionRegex);
+			const match = versionOutput.match(versionRegex);
 			if (!match) {
 				return this.showErrorMessage(
 					`failed to parse version output from ${JSON.stringify(cueVersion)}: ${JSON.stringify(versionOutput)}`
@@ -362,7 +362,7 @@ export class Extension {
 
 	// cmdWelcomeCUE is a basic command that can be used to verify whether the
 	// vscode-cue extension is loaded at all (beyond checking output logs).
-	cmdWelcomeCUE = async (context?: any): Promise<void> => {
+	cmdWelcomeCUE = async (_context?: any): Promise<void> => {
 		if (this.tornDown) {
 			throw errTornDown;
 		}
@@ -373,7 +373,7 @@ export class Extension {
 
 	// cmdStartLSP is used to explicitly (re)start the LSP server. It can only be
 	// called if the extension configuration allows for it.
-	cmdStartLSP = async (context?: any): Promise<void> => {
+	cmdStartLSP = async (_context?: any): Promise<void> => {
 		if (this.tornDown) {
 			throw errTornDown;
 		}
@@ -382,20 +382,20 @@ export class Extension {
 			return this.showErrorMessage(`useLanguageServer is configured to false`);
 		}
 		this.manualLspStop = false;
-		let [, err] = await ve(this.startCueLsp('manually'));
+		const [, err] = await ve(this.startCueLsp('manually'));
 		if (err !== null) {
 			return this.showErrorMessage(`${err}`);
 		}
 	};
 
 	// cmdStopLSP is used to explicitly stop the LSP server.
-	cmdStopLSP = async (context?: any): Promise<void> => {
+	cmdStopLSP = async (_context?: any): Promise<void> => {
 		if (this.tornDown) {
 			throw errTornDown;
 		}
 
 		this.manualLspStop = true;
-		let [, err] = await ve(this.stopCueLsp('manually'));
+		const [, err] = await ve(this.stopCueLsp('manually'));
 		if (err !== null) {
 			return this.showErrorMessage(`${err}`);
 		}
@@ -448,7 +448,7 @@ export class Extension {
 		//
 		// Note: we do not worry about the working directory here. The command we are
 		// running should not care at all about the working directory.
-		let cueHelpLsp: Cmd = {
+		const cueHelpLsp: Cmd = {
 			Args: [cueCommand!, 'help', 'lsp']
 		};
 		[, err] = await ve(osexecRun(cueHelpLsp));
@@ -486,7 +486,7 @@ export class Extension {
 		// Options to control the language client. For example, which file events
 		// (open, modified etc) get sent to the server.
 		// Build documentSelector based on configuration
-		let documentSelector: lcnode.DocumentSelector = [{ scheme: 'file', language: 'cue' }];
+		const documentSelector: lcnode.DocumentSelector = [{ scheme: 'file', language: 'cue' }];
 
 		if (this.config!.enableEmbeddedFilesSupport) {
 			documentSelector.push({ scheme: 'file', language: 'json' }, { scheme: 'file', language: 'yaml' });
@@ -532,9 +532,8 @@ export class Extension {
 
 		this.output.info(`${source}stopping cue lsp`);
 
-		let err;
 		// TODO: use a different timeout?
-		[, err] = await ve(this.client.stop());
+		const [, err] = await ve(this.client.stop());
 
 		// Above we have awaited the stop, so by this point will have received the
 		// state change associated with the stop. We can now safely dispose of the
@@ -563,8 +562,8 @@ export class Extension {
 		// TODO(myitcv): possibly handle of this.clientState does not agree with
 		// s.oldState, initial undefined state allowing.
 
-		let oldState = JSON.stringify(humanReadableState(s.oldState));
-		let newState = JSON.stringify(humanReadableState(s.newState));
+		const oldState = JSON.stringify(humanReadableState(s.oldState));
+		const newState = JSON.stringify(humanReadableState(s.newState));
 		this.output.info(`cue lsp client state change: from ${oldState} to ${newState}`);
 		this.clientState = s.newState;
 		this.updateStatus();
@@ -576,7 +575,7 @@ export class Extension {
 	// re-resolving via the configuration logic. 'cue lsp' itself is notified
 	// of workspace folder changes by the LSP client, so for other cueCommand
 	// values there is nothing to do.
-	workspaceFoldersChange = async (e: vscode.WorkspaceFoldersChangeEvent): Promise<void> => {
+	workspaceFoldersChange = async (_e: vscode.WorkspaceFoldersChangeEvent): Promise<void> => {
 		if (this.tornDown) {
 			throw errTornDown;
 		}
@@ -600,7 +599,11 @@ export class Extension {
 		if (cueCommand.trim() === '') {
 			return Promise.reject(new Error('invalid empty cue.cueCommand config value'));
 		}
-		let [expandedCommand, expandErr] = expandVSCodeVariables(cueCommand, vscode.workspace.workspaceFolders, os.homedir());
+		const [expandedCommand, expandErr] = expandVSCodeVariables(
+			cueCommand,
+			vscode.workspace.workspaceFolders,
+			os.homedir()
+		);
 		if (expandErr !== null) {
 			return Promise.reject(
 				new Error(`invalid cue.cueCommand config value ${JSON.stringify(cueCommand)}: ${expandErr.message}`)
@@ -620,7 +623,7 @@ export class Extension {
 				)
 			);
 		}
-		let [resolvedCommand, err] = await ve(which(expandedCommand!));
+		const [resolvedCommand, err] = await ve(which(expandedCommand!));
 		if (err !== null) {
 			let value = JSON.stringify(cueCommand);
 			if (expandedCommand !== cueCommand) {
@@ -645,9 +648,9 @@ export class Extension {
 	// document is a CUE file or not, and updates the state of the status bar
 	// visibility accordingly.
 	updateStatusBarVisibilityFromEditor = (editor: vscode.TextEditor | undefined): void => {
-		let languageId = editor?.document.languageId.toLowerCase() || '';
-		let isCueFile = languageId === 'cue';
-		let isEmbeddedFile =
+		const languageId = editor?.document.languageId.toLowerCase() || '';
+		const isCueFile = languageId === 'cue';
+		const isEmbeddedFile =
 			(this.config?.enableEmbeddedFilesSupport || false) && (languageId === 'json' || languageId === 'yaml');
 		this.showStatusBarItem = isCueFile || isEmbeddedFile;
 	};
@@ -696,7 +699,7 @@ export function expandVSCodeVariables(
 	// expanded values are never themselves re-scanned for variables, and that
 	// '$' characters within them are not interpreted as special replacement
 	// patterns.
-	let expanded = str.replace(/\$\{([^}]*)\}/g, (match: string, name: string): string => {
+	const expanded = str.replace(/\$\{([^}]*)\}/g, (match: string, name: string): string => {
 		if (name === 'userHome') {
 			if (homeDir === '') {
 				err ??= new Error(`cannot expand ${match}: the user's home directory is unknown`);
@@ -711,7 +714,7 @@ export function expandVSCodeVariables(
 				// workspace folder is used.
 				folder = folders?.[0];
 			} else {
-				let folderName = name.slice('workspaceFolder:'.length);
+				const folderName = name.slice('workspaceFolder:'.length);
 				folder = folders?.find((f) => f.name === folderName);
 			}
 			if (folder === undefined) {

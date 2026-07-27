@@ -114,7 +114,7 @@ extension: npm: {
 		"watch-tests":       "tsc -p . -w --outDir out"
 		pretest:             "npm run compile-tests && npm run compile && npm run lint"
 		"check-types":       "tsc --noEmit"
-		lint:                "eslint src --ext ts"
+		lint:                "eslint src"
 		test:                "vscode-test"
 		format:              "prettier --write \"src/**/*.ts\" --ignore-path ../.prettierignore"
 	}

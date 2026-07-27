@@ -13,7 +13,7 @@ manifest.txt
 # This section is more specific to the extension itself
 *.go
 *.cue
-.eslintrc.json
+eslint.config.mjs
 .vscode-test.mjs
 launch.json
 .vscode

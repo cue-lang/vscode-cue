@@ -3,17 +3,18 @@
 # of the repo. Hence 'bin/' ignores _all_ directories named 'bin'.
 bin/
 node_modules/
+out/
 *.code-workspace
 *.vsix
 
-# A static snapshot of what constitues the extension. Exclude this from
+# A static snapshot of what constitutes the extension. Exclude this from
 # the extension itself.
 manifest.txt
 
 # This section is more specific to the extension itself
 *.go
 *.cue
-.eslintrc.json
+eslint.config.mjs
 .vscode-test.mjs
 launch.json
 .vscode
@@ -21,7 +22,3 @@ launch.json
 src/test
 esbuild.js
 tsconfig.json
-testing.md
-
-# Legacy files generated as part of skeleton - useful for reference only.
-_generated

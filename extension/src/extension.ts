@@ -23,7 +23,7 @@ import * as lcnode from 'vscode-languageclient/node';
 import which from 'which';
 import { config } from './gen_userCommands';
 
-let errTornDown = new Error('Extenssion instance already torn down');
+let errTornDown = new Error('Extension instance already torn down');
 
 const copyStatusVersionToClipboardCmd = 'copyversiontoclipboard';
 
@@ -47,7 +47,7 @@ export class Extension {
 	// events/changes etc within the VSCode instance.
 	//
 	// (We ignore for one second that an instance of 'cue lsp' can act simply as
-	// a forwarded to a true LSP server. That point can, and is, abstracted away:
+	// a forwarder to a true LSP server. That point can, and is, abstracted away:
 	// we can simply treat the running 'cue lsp' instance as the LSP server.)
 	//
 	// Hence, an instance of this extension is never directly responsible for
@@ -89,7 +89,7 @@ export class Extension {
 	// methods, throwing errors in case we get callbacks after tearDown.
 	private tornDown: boolean = false;
 
-	// cueCommand keeps track of the last output from 'cue version' using the
+	// cueVersion keeps track of the last output from 'cue version' using the
 	// configured cueCommand command as a proxy for cmd/cue. An
 	// empty string means that we were unable to interrogate the output of 'cue
 	// version'.
@@ -477,7 +477,7 @@ export class Extension {
 
 		// Create an output channel for logging, errors etc received from 'cue lsp'
 		// and the LanguageClient. To include this in the extension logging would
-		// clutter things unncessarily.
+		// clutter things unnecessarily.
 		if (this.lspOutput === undefined) {
 			this.lspOutput = vscode.window.createOutputChannel('CUE Language Server');
 		}

@@ -111,6 +111,14 @@ export class Extension {
 	// statusBarItem or not.
 	private showStatusBarItem: boolean = false;
 
+	// opQueue is the tail of a promise chain that serializes the async
+	// operations which reconfigure the extension instance and start/stop
+	// the LSP client. Without this serialization, concurrent runs of those
+	// operations (e.g. two configuration change events in quick
+	// succession) can interleave at their await points, in the worst case
+	// leaving two LSP clients running. See enqueue.
+	private opQueue: Promise<void> = Promise.resolve();
+
 	constructor(
 		ctx: vscode.ExtensionContext,
 		output: vscode.LogOutputChannel,
@@ -142,6 +150,7 @@ export class Extension {
 			// https://github.com/microsoft/vscode-python/issues/18040#issuecomment-992567670.
 			100.09999
 		);
+		this.ctx.subscriptions.push(this.statusBarItem);
 
 		// Capture the current editor state, and
 		const activeTextEditorListener = vscode.window.onDidChangeActiveTextEditor(this.activeTextEditorChanged);
@@ -208,12 +217,41 @@ export class Extension {
 		return config.npm.name + '.' + cmd;
 	};
 
+	// enqueue returns a promise that runs fn once all previously enqueued
+	// operations have completed. It is used to serialize the operations
+	// that reconfigure the extension instance and start/stop the LSP
+	// client: their callers (VSCode configuration events and commands) do
+	// nothing to prevent concurrent runs from interleaving at await
+	// points. A rejection from fn propagates to the returned promise, but
+	// does not prevent later operations from running.
+	//
+	// Functions that run via enqueue must not themselves call enqueue;
+	// doing so would deadlock the queue.
+	private enqueue = (fn: () => Promise<void>): Promise<void> => {
+		const op = this.opQueue.then(fn);
+		this.opQueue = op.then(
+			() => undefined,
+			() => undefined
+		);
+		return op;
+	};
+
 	// extensionConfigurationChange is the callback that fires when the extension
 	// instance's configuration has changed, including the initial configuration
 	// change that happens at activation time.
 	//
 	// s will be undefined in the case that extensionConfigurationChange is called
 	// during activation.
+	//
+	// The body of the callback runs via enqueue so that a configuration
+	// change event which arrives while a previous one is still being
+	// processed cannot interleave with it.
+	extensionConfigurationChange = (s: vscode.ConfigurationChangeEvent | undefined): Promise<void> => {
+		return this.enqueue(() => this.extensionConfigurationChangeImpl(s));
+	};
+
+	// extensionConfigurationChangeImpl implements extensionConfigurationChange;
+	// it must only be called via enqueue.
 	//
 	// Note that this function updates config with a deep copy of the configuration
 	// reported by VSCode (then extended with defaults).
@@ -222,7 +260,7 @@ export class Extension {
 	// needed), we need to determine how to report errors to the user. Hence we
 	// either use showErrorMessage or this.output.error, with a mild preference
 	// for the former because it surfaces problems to the user.
-	extensionConfigurationChange = async (s: vscode.ConfigurationChangeEvent | undefined): Promise<void> => {
+	extensionConfigurationChangeImpl = async (s: vscode.ConfigurationChangeEvent | undefined): Promise<void> => {
 		if (this.tornDown) {
 			throw errTornDown;
 		}
@@ -260,12 +298,7 @@ export class Extension {
 		const [cueCommandAbs, resolveErr] = await ve(this.absCueCommand(this.config!.cueCommand));
 		if (resolveErr !== null) {
 			this.showErrorMessage(`${resolveErr}`);
-			// Stop the LSP if it is running.
-			[, err] = await ve(this.stopCueLsp());
-			if (err !== null) {
-				return this.showErrorMessage(`failed to stop cue lsp: ${err}`);
-			}
-			return;
+			return this.handleUnusableCueCommand();
 		}
 
 		// We have a valid value for cueCommand, resolved to an absolute
@@ -288,21 +321,26 @@ export class Extension {
 				} else {
 					msgSuffix = cueVersion.Stderr!;
 				}
-				return this.showErrorMessage(`failed to run ${JSON.stringify(cueVersion)}: ${msgSuffix}`);
+				this.showErrorMessage(`failed to run ${JSON.stringify(cueVersion)}: ${msgSuffix}`);
+				return this.handleUnusableCueCommand();
 			}
 			const versionOutput = cueVersion.Stdout!.trim();
 			const versionRegex = /^cue version (.*)/m;
 			const match = versionOutput.match(versionRegex);
 			if (!match) {
-				return this.showErrorMessage(
+				this.showErrorMessage(
 					`failed to parse version output from ${JSON.stringify(cueVersion)}: ${JSON.stringify(versionOutput)}`
 				);
+				return this.handleUnusableCueCommand();
 			}
 			this.cueVersion = match[1];
 			this.cueVersionCommand = cueCommandAbs!;
 		}
 
-		// Update the status bar item
+		// Update the status bar item. The visibility of the status bar item
+		// depends on the configuration (via enableEmbeddedFilesSupport), so
+		// recompute the visibility for the active editor first.
+		this.updateStatusBarVisibilityFromEditor(vscode.window.activeTextEditor);
 		this.updateStatus();
 
 		// Run the LSP as required
@@ -316,6 +354,24 @@ export class Extension {
 		}
 		if (err !== null) {
 			return this.showErrorMessage(`${err}`);
+		}
+	};
+
+	// handleUnusableCueCommand is called by extensionConfigurationChangeImpl
+	// when the configured cueCommand cannot be resolved or run, or its
+	// version output cannot be parsed; the specific error has already been
+	// shown to the user by the caller. Clear the version state, so that the
+	// status bar does not keep reporting the version of a previously
+	// configured command, and stop any running LSP client, because it too
+	// would otherwise be (re)started with the unusable command.
+	handleUnusableCueCommand = async (): Promise<void> => {
+		this.cueVersion = '';
+		this.cueVersionCommand = '';
+		this.updateStatusBarVisibilityFromEditor(vscode.window.activeTextEditor);
+		this.updateStatus();
+		const [, err] = await ve(this.stopCueLsp());
+		if (err !== null) {
+			return this.showErrorMessage(`failed to stop cue lsp: ${err}`);
 		}
 	};
 
@@ -333,12 +389,12 @@ export class Extension {
 			return;
 		}
 		let version = this.cueVersion;
-		let tooltip = 'Click to copy version';
-		let command = this.commandID(copyStatusVersionToClipboardCmd);
+		let tooltip: string | undefined = 'Click to copy version';
+		let command: string | undefined = this.commandID(copyStatusVersionToClipboardCmd);
 		if (version === '') {
 			version = '??'; // TODO(myitcv): do we need to do better here?
-			tooltip = '';
-			command = '';
+			tooltip = undefined;
+			command = undefined;
 		}
 		let status = version;
 		if (this.clientState === lcnode.State.Running) {
@@ -372,8 +428,16 @@ export class Extension {
 	};
 
 	// cmdStartLSP is used to explicitly (re)start the LSP server. It can only be
-	// called if the extension configuration allows for it.
-	cmdStartLSP = async (_context?: any): Promise<void> => {
+	// called if the extension configuration allows for it. The body of the
+	// command runs via enqueue so that it cannot interleave with a
+	// configuration change or another command that is still being processed.
+	cmdStartLSP = (_context?: any): Promise<void> => {
+		return this.enqueue(this.cmdStartLSPImpl);
+	};
+
+	// cmdStartLSPImpl implements cmdStartLSP; it must only be called via
+	// enqueue.
+	cmdStartLSPImpl = async (): Promise<void> => {
 		if (this.tornDown) {
 			throw errTornDown;
 		}
@@ -388,8 +452,16 @@ export class Extension {
 		}
 	};
 
-	// cmdStopLSP is used to explicitly stop the LSP server.
-	cmdStopLSP = async (_context?: any): Promise<void> => {
+	// cmdStopLSP is used to explicitly stop the LSP server. The body of the
+	// command runs via enqueue so that it cannot interleave with a
+	// configuration change or another command that is still being processed.
+	cmdStopLSP = (_context?: any): Promise<void> => {
+		return this.enqueue(this.cmdStopLSPImpl);
+	};
+
+	// cmdStopLSPImpl implements cmdStopLSP; it must only be called via
+	// enqueue.
+	cmdStopLSPImpl = async (): Promise<void> => {
 		if (this.tornDown) {
 			throw errTornDown;
 		}
@@ -511,8 +583,18 @@ export class Extension {
 		// is deactivating).
 		this.ctx.subscriptions.push(this.clientStateChangeHandler);
 
-		// Start the client, which in turn will start 'cue lsp'
-		this.client.start();
+		// Start the client, which in turn will start 'cue lsp', and await
+		// the start.
+		[, err] = await ve(this.client.start());
+		if (err !== null) {
+			// The client failed to start; per the above it cannot be
+			// stopped, so there is nothing useful we can do with it beyond
+			// dropping our references to it.
+			this.clientStateChangeHandler.dispose();
+			this.clientStateChangeHandler = undefined;
+			this.client = undefined;
+			return Promise.reject(new Error(`failed to start cue lsp: ${err}`));
+		}
 		this.ctx.subscriptions.push(this.client);
 	};
 
@@ -531,6 +613,22 @@ export class Extension {
 		}
 
 		this.output.info(`${source}stopping cue lsp`);
+
+		if (this.client.state === lcnode.State.Starting) {
+			// A client that has not finished starting cannot be stopped:
+			// vscode-languageclient's stop throws for such a client,
+			// without disposing anything the client has registered, which
+			// would leave the client running as a zombie holding
+			// registrations (e.g. commands) that block any later client
+			// from starting. startCueLsp awaits the start, so under
+			// enqueue this state should not be observable from another
+			// operation; however the client re-enters the Starting state
+			// by itself when it restarts the server after a crash. start()
+			// on a starting client returns the in-flight start promise, so
+			// wait for that to settle before stopping. A start failure
+			// also means there is nothing to stop.
+			await ve(this.client.start());
+		}
 
 		// TODO: use a different timeout?
 		const [, err] = await ve(this.client.stop());

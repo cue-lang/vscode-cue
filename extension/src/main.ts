@@ -65,8 +65,8 @@ import { Extension } from './extension';
 // is really designed to capture the high-level thinking in one place. It is
 // very much open to revision:
 //
-// 1. If the user has invokved a command provided by this extension, and the
-//    error occurs during the excution of the command, use showErrorMessage.
+// 1. If the user has invoked a command provided by this extension, and the
+//    error occurs during the execution of the command, use showErrorMessage.
 // 2. If an error occurs during startup, use showErrorMessage.
 // 3. Otherwise log errors in the output using output.error.
 //
@@ -75,7 +75,7 @@ import { Extension } from './extension';
 // deals with an error by informing the user via showErrorMessage, but it
 // also then returns a rejected promise in the handler, the end user will get:
 //
-// * a popup error modal dialog wtih an 'ok' button directing the user to
+// * a popup error modal dialog with an 'ok' button directing the user to
 //   consult the output window. This corresponds to the rejected promise.
 // * a non-modal elegant error message popup bottom right, informing them of
 //   the error message.
@@ -150,8 +150,8 @@ import { Extension } from './extension';
 // the extension instance and represent its lifetime. When an instance of the
 // extension is restarted, or shutdown for whatever reason, the deactivate
 // function below is called, in which we perform any final tidy-ups via
-// inst.tearDown, and then set inst to undefiend to represent the start of the
-// extension not current being active in the current VSCode window.
+// inst.tearDown, and then set inst to undefined to represent that the
+// extension not active in the current VSCode window.
 let inst: Extension | undefined;
 
 // output is a singleton output channel used for extension logging (at various

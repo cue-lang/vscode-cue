@@ -1,6 +1,8 @@
 # This file will have significant overlap with .vscodeignore
 /bin/*
 /extension/dist/
+/extension/out/
+/extension/.vscode-test/
 node_modules/
 *.code-workspace
 *.vsix

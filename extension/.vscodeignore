@@ -6,7 +6,7 @@ node_modules/
 *.code-workspace
 *.vsix
 
-# A static snapshot of what constitues the extension. Exclude this from
+# A static snapshot of what constitutes the extension. Exclude this from
 # the extension itself.
 manifest.txt
 
@@ -21,7 +21,3 @@ launch.json
 src/test
 esbuild.js
 tsconfig.json
-testing.md
-
-# Legacy files generated as part of skeleton - useful for reference only.
-_generated

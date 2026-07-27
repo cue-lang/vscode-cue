@@ -118,6 +118,7 @@ export class Extension {
 	) {
 		this.ctx = ctx;
 		this.output = output;
+		this.lspOutput = lspOutput;
 
 		let configChangeListener = vscode.workspace.onDidChangeConfiguration(this.extensionConfigurationChange);
 		this.ctx.subscriptions.push(configChangeListener);

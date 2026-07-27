@@ -3,6 +3,7 @@
 # of the repo. Hence 'bin/' ignores _all_ directories named 'bin'.
 bin/
 node_modules/
+out/
 *.code-workspace
 *.vsix
 

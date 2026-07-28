@@ -33,7 +33,10 @@ import { Extension } from './extension';
 //
 // In a similar vein, we keep the number of TypeScript modules to a minimum for
 // now. It is unfortunate that TypeScript does not have an analog to Go's
-// packages.
+// packages. The exception is util.ts, which holds helpers that do not depend
+// on the vscode module at runtime; unit tests for those helpers can therefore
+// run under plain Node ('npm run test:unit'), without requiring a VSCode
+// (Electron) instance.
 //
 // Extension instances and configuration
 // =====================================
@@ -122,7 +125,10 @@ import { Extension } from './extension';
 // Promise<void> functions are used when there is no return value. They are
 // equivalent to a Go function that results only in an error. In this
 // situation, ve() is still used to wrap the call; it translates a
-// resolve/reject into a
+// resolve/reject into a [value, error] pair whose value element is always
+// undefined for a Promise<void>. Call sites ignore that element by
+// destructuring with an empty slot, as in '[, err]'; see also the TODO on
+// ve() about handling this case more cleverly.
 //
 // Output log
 // ===========

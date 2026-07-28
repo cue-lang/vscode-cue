@@ -114,6 +114,8 @@ const _config = {
       "check-types": "tsc --noEmit",
       "lint": "eslint src",
       "test": "vscode-test",
+      "pretest:unit": "rm -rf out && npm run compile-tests",
+      "test:unit": "mocha --ui tdd \"out/test/**/*.test.js\"",
       "format": "prettier --write \"src/**/*.ts\" --ignore-path ../.prettierignore"
     },
     "devDependencies": {
@@ -127,6 +129,7 @@ const _config = {
       "@vscode/vsce": "3.2.1",
       "esbuild": "0.28.1",
       "eslint": "9.39.5",
+      "mocha": "11.7.6",
       "npm-run-all": "4.1.5",
       "ovsx": "0.10.12",
       "typescript": "5.9.3",

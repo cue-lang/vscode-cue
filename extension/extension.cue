@@ -116,7 +116,15 @@ extension: npm: {
 		"check-types":       "tsc --noEmit"
 		lint:                "eslint src"
 		test:                "vscode-test"
-		format:              "prettier --write \"src/**/*.ts\" --ignore-path ../.prettierignore"
+
+		// test:unit runs the tests under plain Node, without a VSCode
+		// (Electron) instance. This is only possible while every test
+		// file is free of a runtime dependence on the vscode module; see
+		// the comment in src/util.ts. The out directory is removed first
+		// so that stale compiled output cannot be picked up by the glob.
+		"pretest:unit": "rm -rf out && npm run compile-tests"
+		"test:unit":    "mocha --ui tdd \"out/test/**/*.test.js\""
+		format:         "prettier --write \"src/**/*.ts\" --ignore-path ../.prettierignore"
 	}
 
 	// devDependencies is sort of maintained by npm. We maintain those in a

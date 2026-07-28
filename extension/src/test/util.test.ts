@@ -1,10 +1,19 @@
+// This file must not depend on the vscode module (or any other module
+// with side effects) at runtime, only type-only imports of vscode are
+// permitted: see the comment in util.ts. This allows the tests to run
+// under plain Node via 'npm run test:unit', without requiring a VSCode
+// (Electron) instance. The tests also run as part of 'npm run test',
+// i.e. under vscode-test.
+
 import * as assert from 'assert';
-import * as vscode from 'vscode';
-import { expandVSCodeVariables, isRelativePath } from '../extension';
+import type * as vscode from 'vscode';
+import { expandVSCodeVariables, isRelativePath } from '../util';
 
 // workspaceFolder is a convenience constructor for a vscode.WorkspaceFolder.
+// expandVSCodeVariables only uses the fsPath of a workspace folder's uri,
+// so a plain object suffices in place of a real vscode.Uri.
 function workspaceFolder(name: string, fsPath: string, index: number): vscode.WorkspaceFolder {
-	return { uri: vscode.Uri.file(fsPath), name, index };
+	return { uri: { fsPath } as unknown as vscode.Uri, name, index };
 }
 
 suite('expandVSCodeVariables', () => {

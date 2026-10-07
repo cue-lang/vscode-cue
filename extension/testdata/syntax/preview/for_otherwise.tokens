@@ -25,7 +25,7 @@
 4:9	"x"	meta.struct variable.other
 5:0	"}"	meta.struct punctuation.definition.struct.end
 5:1	" "
-5:2	"otherwise"	variable.other
+5:2	"otherwise"	keyword.control.conditional
 5:11	" "
 5:12	"{"	meta.struct punctuation.definition.struct.begin
 6:0	"\t"	meta.struct

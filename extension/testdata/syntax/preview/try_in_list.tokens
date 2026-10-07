@@ -13,7 +13,7 @@
 4:1	":"	punctuation.colon
 4:2	" "
 4:3	"["	meta.brackets punctuation.section.brackets.begin
-4:4	"try"	meta.brackets variable.other
+4:4	"try"	meta.brackets keyword.control.try
 4:7	" "	meta.brackets
 4:8	"{"	meta.brackets meta.struct punctuation.definition.struct.begin
 4:9	"a"	meta.brackets meta.struct variable.other

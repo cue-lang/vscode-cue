@@ -7,7 +7,7 @@
 3:0	"f"	variable.other
 3:1	":"	punctuation.colon
 3:2	" "
-3:3	"func"	variable.other
+3:3	"func"	keyword.function
 3:7	"("	meta.parens punctuation.section.parens.begin
 3:8	"a"	meta.parens variable.other
 3:9	":"	meta.parens punctuation.colon
@@ -28,7 +28,7 @@
 4:0	"g"	variable.other
 4:1	":"	punctuation.colon
 4:2	" "
-4:3	"func"	variable.other
+4:3	"func"	keyword.function
 4:7	"("	meta.parens punctuation.section.parens.begin
 4:8	"a"	meta.parens variable.other
 4:9	"!"	meta.parens keyword.operator.logical

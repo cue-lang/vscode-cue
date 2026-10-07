@@ -116,7 +116,9 @@ const _config = {
       "test": "vscode-test",
       "pretest:unit": "rm -rf out && npm run compile-tests",
       "test:unit": "mocha --ui tdd \"out/test/**/*.test.js\"",
-      "format": "prettier --write \"src/**/*.ts\" --ignore-path ../.prettierignore"
+      "format": "prettier --write \"src/**/*.ts\" --ignore-path ../.prettierignore",
+      "update-grammar-goldens": "npm run compile-tests && node out/test/updateGrammarGoldens.js",
+      "sync-syntax-corpus": "npm run compile-tests && node out/test/syncSyntaxCorpus.js"
     },
     "devDependencies": {
       "@eslint/js": "9.39.5",
@@ -135,6 +137,8 @@ const _config = {
       "typescript": "5.9.3",
       "typescript-eslint": "8.65.0",
       "vscode-languageclient": "9.0.1",
+      "vscode-oniguruma": "2.0.1",
+      "vscode-textmate": "9.3.2",
       "which": "5.0.0"
     }
   }

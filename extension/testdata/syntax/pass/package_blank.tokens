@@ -1,0 +1,15 @@
+1:0	"@"	meta.annotation punctuation.definition.annotation
+1:1	"extern"	meta.annotation variable.annotation
+1:7	"("	meta.annotation punctuation.attribute-elements.begin
+1:8	"x"	meta.annotation string.unquoted
+1:9	")"	meta.annotation punctuation.attribute-elements.end
+2:0	""
+3:0	"package"	variable.other
+3:7	" "
+3:8	"_"	constant.language.top
+4:0	""
+5:0	"a"	variable.other
+5:1	":"	punctuation.colon
+5:2	" "
+5:3	"1"	constant.numeric.integer.decimal
+6:0	""

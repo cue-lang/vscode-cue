@@ -1,0 +1,65 @@
+1:0	"x"	variable.other
+1:1	":"	punctuation.colon
+1:2	" "
+1:3	"{"	meta.struct punctuation.definition.struct.begin
+1:4	"if"	meta.struct keyword.control.conditional
+1:6	":"	meta.struct punctuation.colon
+1:7	" "	meta.struct
+1:8	"1"	meta.struct constant.numeric.integer.decimal
+1:9	","	meta.struct punctuation.separator
+1:10	" "	meta.struct
+1:11	"try"	meta.struct variable.other
+1:14	":"	meta.struct punctuation.colon
+1:15	" "	meta.struct
+1:16	"2"	meta.struct constant.numeric.integer.decimal
+1:17	","	meta.struct punctuation.separator
+1:18	" "	meta.struct
+1:19	"func"	meta.struct variable.other
+1:23	":"	meta.struct punctuation.colon
+1:24	" "	meta.struct
+1:25	"3"	meta.struct constant.numeric.integer.decimal
+1:26	","	meta.struct punctuation.separator
+1:27	" "	meta.struct
+1:28	"else"	meta.struct variable.other
+1:32	":"	meta.struct punctuation.colon
+1:33	" "	meta.struct
+1:34	"4"	meta.struct constant.numeric.integer.decimal
+1:35	","	meta.struct punctuation.separator
+1:36	" "	meta.struct
+1:37	"\""	meta.struct meta.string punctuation.definition.string.begin
+1:38	"a-b"	meta.struct meta.string string.quoted.double
+1:41	"\""	meta.struct meta.string punctuation.definition.string.end
+1:42	":"	meta.struct punctuation.colon
+1:43	" "	meta.struct
+1:44	"5"	meta.struct constant.numeric.integer.decimal
+1:45	"}"	meta.struct punctuation.definition.struct.end
+2:0	"y"	variable.other
+2:1	":"	punctuation.colon
+2:2	" "
+2:3	"x"	variable.other
+2:4	"."	punctuation.accessor
+2:5	"if"	variable.other.member
+2:7	" "
+2:8	"+"	keyword.operator
+2:9	" "
+2:10	"x"	variable.other
+2:11	"."	punctuation.accessor
+2:12	"try"	variable.other.member
+2:15	" "
+2:16	"+"	keyword.operator
+2:17	" "
+2:18	"x"	variable.other
+2:19	"."	punctuation.accessor
+2:20	"func"	variable.other.member
+2:24	" "
+2:25	"+"	keyword.operator
+2:26	" "
+2:27	"x"	variable.other
+2:28	"."	punctuation.accessor
+2:29	"else"	variable.other.member
+2:33	" "
+2:34	"+"	keyword.operator
+2:35	" "
+2:36	"x"	variable.other
+2:37	".\"a-b\""	invalid
+3:0	""

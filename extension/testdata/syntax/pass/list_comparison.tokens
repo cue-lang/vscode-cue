@@ -1,0 +1,42 @@
+1:0	"l"	variable.other
+1:1	":"	punctuation.colon
+1:2	" "
+1:3	"["	meta.brackets punctuation.section.brackets.begin
+1:4	"1"	meta.brackets constant.numeric.integer.decimal
+1:5	","	meta.brackets punctuation.separator
+1:6	" "	meta.brackets
+1:7	"2"	meta.brackets constant.numeric.integer.decimal
+1:8	"]"	meta.brackets punctuation.section.brackets.end
+2:0	"a"	variable.other
+2:1	":"	punctuation.colon
+2:2	" "
+2:3	"1"	constant.numeric.integer.decimal
+3:0	"x"	variable.other
+3:1	":"	punctuation.colon
+3:2	" "
+3:3	"["	meta.brackets punctuation.section.brackets.begin
+3:4	"for"	meta.brackets keyword.control.for
+3:7	" "	meta.brackets
+3:8	"v"	meta.brackets variable.other
+3:9	" "	meta.brackets
+3:10	"in"	meta.brackets keyword.control.in
+3:12	" "	meta.brackets
+3:13	"l"	meta.brackets variable.other
+3:14	" "	meta.brackets
+3:15	"if"	meta.brackets keyword.control.conditional
+3:17	" "	meta.brackets
+3:18	"v"	meta.brackets variable.other
+3:19	" "	meta.brackets
+3:20	"="	meta.brackets punctuation.alias
+3:21	"= 1 {v}"	meta.brackets invalid
+3:28	"]"	meta.brackets punctuation.section.brackets.end
+4:0	"y"	variable.other
+4:1	":"	punctuation.colon
+4:2	" "
+4:3	"["	meta.brackets punctuation.section.brackets.begin
+4:4	"a"	meta.brackets variable.other
+4:5	" "	meta.brackets
+4:6	"="	meta.brackets punctuation.alias
+4:7	"= 1, \"s\" =~ \"s\", \"s\" !~ \"t\", a != 2"	meta.brackets invalid
+4:42	"]"	meta.brackets punctuation.section.brackets.end
+5:0	""

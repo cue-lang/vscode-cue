@@ -1,0 +1,14 @@
+1:0	"a"	variable.other
+1:1	"~(K, V): {b: 1"	invalid
+1:15	"}"
+2:0	"c"	variable.other
+2:1	":"	punctuation.colon
+2:2	" "
+2:3	"K"	variable.other
+3:0	"d"	variable.other
+3:1	":"	punctuation.colon
+3:2	" "
+3:3	"V"	variable.other
+3:4	"."	punctuation.accessor
+3:5	"b"	variable.other.member
+4:0	""

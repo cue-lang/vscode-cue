@@ -1,0 +1,13 @@
+1:0	"#\""	meta.string punctuation.definition.string.begin
+1:2	"foo"	meta.string string.quoted.double
+1:5	"\"#"	meta.string punctuation.definition.string.end
+1:7	":"	punctuation.colon
+1:8	" "
+1:9	"1"	constant.numeric.integer.decimal
+2:0	"#\""	meta.string punctuation.definition.string.begin
+2:2	"a b"	meta.string string.quoted.double
+2:5	"\"#"	meta.string punctuation.definition.string.end
+2:7	":"	punctuation.colon
+2:8	" "
+2:9	"2"	constant.numeric.integer.decimal
+3:0	""

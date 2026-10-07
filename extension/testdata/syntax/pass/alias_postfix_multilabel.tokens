@@ -1,0 +1,7 @@
+1:0	"a"	variable.other
+1:1	"~X: b~Y: 1"	invalid
+2:0	"c"	variable.other
+2:1	":"	punctuation.colon
+2:2	" "
+2:3	"Y"	variable.other
+3:0	""

@@ -1,0 +1,35 @@
+1:0	"@"	meta.annotation punctuation.definition.annotation
+1:1	"experiment"	meta.annotation variable.annotation
+1:11	"("	meta.annotation punctuation.attribute-elements.begin
+1:12	"try"	meta.annotation string.unquoted
+1:15	")"	meta.annotation punctuation.attribute-elements.end
+2:0	""
+3:0	"a"	variable.other
+3:1	"?"	punctuation.option
+3:2	":"	punctuation.colon
+3:3	" "
+3:4	"int"	support.type
+4:0	"b"	variable.other
+4:1	":"	punctuation.colon
+4:2	" "
+4:3	"{"	meta.struct punctuation.definition.struct.begin
+5:0	"\t"	meta.struct
+5:1	"try"	meta.struct variable.other
+5:4	" "	meta.struct
+5:5	"_"	meta.struct constant.language.top
+5:6	" "	meta.struct
+5:7	"="	meta.struct punctuation.bind
+5:8	" "	meta.struct
+5:9	"a"	meta.struct variable.other
+5:10	"?"	meta.struct punctuation.option
+5:11	" "	meta.struct
+5:12	"{"	meta.struct meta.struct punctuation.definition.struct.begin
+6:0	"\t\t"	meta.struct meta.struct
+6:2	"f"	meta.struct meta.struct variable.other
+6:3	":"	meta.struct meta.struct punctuation.colon
+6:4	" "	meta.struct meta.struct
+6:5	"1"	meta.struct meta.struct constant.numeric.integer.decimal
+7:0	"\t"	meta.struct meta.struct
+7:1	"}"	meta.struct meta.struct punctuation.definition.struct.end
+8:0	"}"	meta.struct punctuation.definition.struct.end
+9:0	""

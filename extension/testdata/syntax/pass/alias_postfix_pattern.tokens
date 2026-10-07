@@ -1,0 +1,11 @@
+1:0	"["	meta.brackets punctuation.section.brackets.begin
+1:1	"string"	meta.brackets support.type
+1:7	"]"	meta.brackets punctuation.section.brackets.end
+1:8	"~(K, V): {name: K"	invalid
+1:25	"}"
+2:0	"x"	variable.other
+2:1	":"	punctuation.colon
+2:2	" "
+2:3	"{"	meta.struct punctuation.definition.struct.begin
+2:4	"}"	meta.struct punctuation.definition.struct.end
+3:0	""

@@ -1,0 +1,9 @@
+1:0	"a"	variable.other
+1:1	"~import: 1"	invalid
+2:0	"c"	variable.other
+2:1	"~(package, v): 3"	invalid
+3:0	"d"	variable.other
+3:1	":"	punctuation.colon
+3:2	" "
+3:3	"import"	variable.other
+4:0	""

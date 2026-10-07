@@ -524,7 +524,7 @@ var repository = RuleMap{
 		},
 	},
 	"string": {
-		Patterns: StringRules(1),
+		Patterns: StringRules(4),
 	},
 	"string_backtick": {
 		Begin: "`",
@@ -621,7 +621,7 @@ func EscapeRules(quote, hashes string, bytes bool) Rules {
 	} else {
 		byteName = "invalid.illegal"
 	}
-	return Rules{
+	rules := Rules{
 		{
 			Match: `\\` + hashes + `(?:` + quote + `|` + escapeCommon + `)`,
 			Name:  "constant.character.escape",
@@ -648,11 +648,19 @@ func EscapeRules(quote, hashes string, bytes bool) Rules {
 			),
 			Name: "meta.interpolation",
 		},
-		{
-			Match: `\\` + hashes + `.`,
-			Name:  "invalid.illegal",
-		},
 	}
+	if len(quote) == 3 {
+		// In a multiline string, a backslash at the end of a line escapes
+		// the newline.
+		rules = append(rules, Rule{
+			Match: `\\` + hashes + `$`,
+			Name:  "constant.character.escape",
+		})
+	}
+	return append(rules, Rule{
+		Match: `\\` + hashes + `.`,
+		Name:  "invalid.illegal",
+	})
 }
 
 func Includes(keys ...string) Rules {

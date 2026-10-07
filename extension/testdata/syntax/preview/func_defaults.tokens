@@ -10,7 +10,13 @@
 3:3	"func"	variable.other
 3:7	"("	meta.parens punctuation.section.parens.begin
 3:8	"a"	meta.parens variable.other
-3:9	": int = 5"	meta.parens invalid
+3:9	":"	meta.parens invalid
+3:10	" "	meta.parens
+3:11	"int"	meta.parens support.type
+3:14	" "	meta.parens
+3:15	"="	meta.parens invalid
+3:16	" "	meta.parens
+3:17	"5"	meta.parens constant.numeric.integer.decimal
 3:18	")"	meta.parens punctuation.section.parens.end
 3:19	" "
 3:20	"-"	keyword.operator
@@ -27,7 +33,13 @@
 4:7	"("	meta.parens punctuation.section.parens.begin
 4:8	"a"	meta.parens variable.other
 4:9	"!"	meta.parens keyword.operator.logical
-4:10	": int = 5"	meta.parens invalid
+4:10	":"	meta.parens invalid
+4:11	" "	meta.parens
+4:12	"int"	meta.parens support.type
+4:15	" "	meta.parens
+4:16	"="	meta.parens invalid
+4:17	" "	meta.parens
+4:18	"5"	meta.parens constant.numeric.integer.decimal
 4:19	")"	meta.parens punctuation.section.parens.end
 4:20	" "
 4:21	"-"	keyword.operator

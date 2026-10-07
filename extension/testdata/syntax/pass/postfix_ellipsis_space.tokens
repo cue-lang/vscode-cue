@@ -12,7 +12,9 @@
 2:2	" "
 2:3	"#A"	variable.other
 2:5	" "
-2:6	"..."	invalid
+2:6	"."	invalid
+2:7	"."	invalid
+2:8	"."	invalid
 3:0	"c"	variable.other
 3:1	":"	punctuation.colon
 3:2	" "

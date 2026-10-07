@@ -583,7 +583,7 @@
 									"include": "#expression"
 								},
 								{
-									"match": "[^\\]]+",
+									"match": "[^\\s\\]]",
 									"name": "invalid"
 								}
 							],
@@ -626,11 +626,11 @@
 			]
 		},
 		"invalid_in_braces": {
-			"match": "[^\\}]+",
+			"match": "[^\\s\\}]",
 			"name": "invalid"
 		},
 		"invalid_in_parens": {
-			"match": "[^\\)]+",
+			"match": "[^\\s\\)]",
 			"name": "invalid"
 		},
 		"punctuation_colon": {

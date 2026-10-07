@@ -1,6 +1,16 @@
 1:0	"a"	variable.other
-1:1	"~(X): {b: 1"	invalid
-1:12	"}"
+1:1	"~"	invalid
+1:2	"("	meta.parens punctuation.section.parens.begin
+1:3	"X"	meta.parens variable.other
+1:4	")"	meta.parens punctuation.section.parens.end
+1:5	":"	punctuation.colon
+1:6	" "
+1:7	"{"	meta.struct punctuation.definition.struct.begin
+1:8	"b"	meta.struct variable.other
+1:9	":"	meta.struct punctuation.colon
+1:10	" "	meta.struct
+1:11	"1"	meta.struct constant.numeric.integer.decimal
+1:12	"}"	meta.struct punctuation.definition.struct.end
 2:0	"c"	variable.other
 2:1	":"	punctuation.colon
 2:2	" "

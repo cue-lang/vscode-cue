@@ -12,7 +12,9 @@
 3:8	"int"	meta.parens support.type
 3:11	","	meta.parens punctuation.separator
 3:12	" "	meta.parens
-3:13	"..."	meta.parens invalid
+3:13	"."	meta.parens invalid
+3:14	"."	meta.parens invalid
+3:15	"."	meta.parens invalid
 3:16	")"	meta.parens punctuation.section.parens.end
 3:17	" "
 3:18	"-"	keyword.operator

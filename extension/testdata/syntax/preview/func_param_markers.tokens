@@ -10,7 +10,25 @@
 3:3	"func"	variable.other
 3:7	"("	meta.parens punctuation.section.parens.begin
 3:8	"_"	meta.parens constant.language.top
-3:9	"~x: int, a!: int, b?: int"	meta.parens invalid
+3:9	"~"	meta.parens invalid
+3:10	"x"	meta.parens variable.other
+3:11	":"	meta.parens invalid
+3:12	" "	meta.parens
+3:13	"int"	meta.parens support.type
+3:16	","	meta.parens punctuation.separator
+3:17	" "	meta.parens
+3:18	"a"	meta.parens variable.other
+3:19	"!"	meta.parens keyword.operator.logical
+3:20	":"	meta.parens invalid
+3:21	" "	meta.parens
+3:22	"int"	meta.parens support.type
+3:25	","	meta.parens punctuation.separator
+3:26	" "	meta.parens
+3:27	"b"	meta.parens variable.other
+3:28	"?"	meta.parens invalid
+3:29	":"	meta.parens invalid
+3:30	" "	meta.parens
+3:31	"int"	meta.parens support.type
 3:34	")"	meta.parens punctuation.section.parens.end
 3:35	" "
 3:36	"-"	keyword.operator

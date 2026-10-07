@@ -3,7 +3,7 @@
 2:0	"a"	variable.other
 2:1	":"	punctuation.colon
 2:2	" "
-2:3	"`"	meta.string punctuation.definition.string.begin
-2:4	"foo"	meta.string string.quoted.backtick
-2:7	"`"	meta.string punctuation.definition.string.end
+2:3	"`"	invalid
+2:4	"foo"	variable.other
+2:7	"`"	invalid
 3:0	""

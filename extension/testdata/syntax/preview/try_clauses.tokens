@@ -20,7 +20,7 @@
 5:2	" "
 5:3	"{"	meta.struct punctuation.definition.struct.begin
 6:0	"\t"	meta.struct
-6:1	"try"	meta.struct variable.other
+6:1	"try"	meta.struct keyword.control.try
 6:4	" "	meta.struct
 6:5	"for"	meta.struct keyword.control.for
 6:8	" "	meta.struct
@@ -39,7 +39,7 @@
 8:0	"\t"	meta.struct meta.struct
 8:1	"}"	meta.struct meta.struct punctuation.definition.struct.end
 9:0	"\t"	meta.struct
-9:1	"try"	meta.struct variable.other
+9:1	"try"	meta.struct keyword.control.try
 9:4	" "	meta.struct
 9:5	"if"	meta.struct keyword.control.conditional
 9:7	" "	meta.struct
@@ -59,7 +59,7 @@
 11:0	"\t"	meta.struct meta.struct
 11:1	"}"	meta.struct meta.struct punctuation.definition.struct.end
 12:0	"\t"	meta.struct
-12:1	"try"	meta.struct variable.other
+12:1	"try"	meta.struct keyword.control.try
 12:4	" "	meta.struct
 12:5	"let"	meta.struct keyword.control.let
 12:8	" "	meta.struct

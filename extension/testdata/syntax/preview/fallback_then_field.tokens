@@ -16,7 +16,7 @@
 4:4	"1"	meta.struct constant.numeric.integer.decimal
 5:0	"}"	meta.struct punctuation.definition.struct.end
 5:1	" "
-5:2	"else"	variable.other
+5:2	"else"	keyword.control.conditional
 5:6	" "
 5:7	"{"	meta.struct punctuation.definition.struct.begin
 6:0	"\t"	meta.struct
@@ -46,7 +46,7 @@
 10:4	"v"	meta.struct variable.other
 11:0	"}"	meta.struct punctuation.definition.struct.end
 11:1	" "
-11:2	"otherwise"	variable.other
+11:2	"otherwise"	keyword.control.conditional
 11:11	" "
 11:12	"{"	meta.struct punctuation.definition.struct.begin
 12:0	"\t"	meta.struct

@@ -302,7 +302,7 @@
 				{
 					"patterns": [
 						{
-							"match": "(?<![\\p{L}\\p{Nd}_\\$\\#])(for)[ \\t]+([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+)(?:[ \\t]*(,)[ \\t]*([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+))?[ \\t]+(in)(?![\\p{L}\\p{Nd}_\\$\\#])",
+							"match": "(?<![\\p{L}\\p{Nd}_\\$\\#])(for)[ \\t]+([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+)(?:[ \\t]*(,)[ \\t]*([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+))?[ \\t]+(in)(?![\\p{L}\\p{Nd}_\\$\\#])(?:[ \\t]+(else|otherwise|fallback|try)(?![\\p{L}\\p{Nd}_\\$\\#]))?",
 							"captures": {
 								"1": {
 									"name": "keyword.control.for"
@@ -318,12 +318,48 @@
 								},
 								"5": {
 									"name": "keyword.control.in"
+								},
+								"6": {
+									"name": "variable.other"
 								}
 							}
 						},
 						{
-							"match": "(?<![\\p{L}\\p{Nd}_\\$\\#])if(?![\\p{L}\\p{Nd}_\\$\\#])",
+							"match": "(?<![\\p{L}\\p{Nd}_\\$\\#])(if)(?![\\p{L}\\p{Nd}_\\$\\#])(?:[ \\t]+(else|otherwise|fallback|try)(?![\\p{L}\\p{Nd}_\\$\\#]))?",
+							"captures": {
+								"1": {
+									"name": "keyword.control.conditional"
+								},
+								"2": {
+									"name": "variable.other"
+								}
+							}
+						},
+						{
+							"match": "(?<![\\p{L}\\p{Nd}_\\$\\#])(try)[ \\t]+([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+|_)[ \\t]*(=)(?![=~])",
+							"captures": {
+								"1": {
+									"name": "keyword.control.try"
+								},
+								"2": {
+									"name": "variable.other"
+								},
+								"3": {
+									"name": "punctuation.bind"
+								}
+							}
+						},
+						{
+							"match": "(?<![\\p{L}\\p{Nd}_\\$\\#])try(?=[ \\t]*\\{|[ \\t]+(?:for|if|let|try)(?![\\p{L}\\p{Nd}_\\$\\#]))",
+							"name": "keyword.control.try"
+						},
+						{
+							"match": "(?<![\\p{L}\\p{Nd}_\\$\\#])(?:else|otherwise|fallback)(?=[ \\t]*\\{)",
 							"name": "keyword.control.conditional"
+						},
+						{
+							"match": "(?<![\\p{L}\\p{Nd}_\\$\\#])func(?=[ \\t]*\\()",
+							"name": "keyword.function"
 						},
 						{
 							"match": "(?<![\\p{L}\\p{Nd}_\\$\\#])(let)[ \\t]+([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+)[ \\t]*(=)(?![=])",
@@ -470,9 +506,13 @@
 							"name": "support.type"
 						},
 						{
+							"match": "(?<![\\p{L}\\p{Nd}_\\$\\#])(?:__)?self(?![\\p{L}\\p{Nd}_\\$\\#])(?![ \\t]*+(?:[?!][ \\t]*+)?:|[ \\t]*+~|[ \\t]*+=(?![=~]))",
+							"name": "variable.language.self"
+						},
+						{
 							"patterns": [
 								{
-									"begin": "(?<![\\p{L}\\p{Nd}_\\$\\#])(len|close|and|or)(\\()",
+									"begin": "(?<![\\p{L}\\p{Nd}_\\$\\#])(len|close|and|or|div|mod|quo|rem|matchN|matchIf|error|validator)(\\()",
 									"beginCaptures": {
 										"1": {
 											"name": "support.function"

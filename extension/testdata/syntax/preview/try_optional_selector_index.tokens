@@ -25,7 +25,7 @@
 5:2	" "
 5:3	"{"	meta.struct punctuation.definition.struct.begin
 6:0	"\t"	meta.struct
-6:1	"try"	meta.struct variable.other
+6:1	"try"	meta.struct keyword.control.try
 6:4	" "	meta.struct
 6:5	"{"	meta.struct meta.struct punctuation.definition.struct.begin
 6:6	"v"	meta.struct meta.struct variable.other

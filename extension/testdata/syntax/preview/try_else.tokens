@@ -14,7 +14,7 @@
 4:2	" "
 4:3	"{"	meta.struct punctuation.definition.struct.begin
 5:0	"\t"	meta.struct
-5:1	"try"	meta.struct variable.other
+5:1	"try"	meta.struct keyword.control.try
 5:4	" "	meta.struct
 5:5	"{"	meta.struct meta.struct punctuation.definition.struct.begin
 5:6	"v"	meta.struct meta.struct variable.other
@@ -24,7 +24,7 @@
 5:10	"?"	meta.struct meta.struct punctuation.option
 5:11	"}"	meta.struct meta.struct punctuation.definition.struct.end
 5:12	" "	meta.struct
-5:13	"else"	meta.struct variable.other
+5:13	"else"	meta.struct keyword.control.conditional
 5:17	" "	meta.struct
 5:18	"{"	meta.struct meta.struct punctuation.definition.struct.begin
 5:19	"v"	meta.struct meta.struct variable.other

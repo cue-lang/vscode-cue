@@ -1,17 +1,17 @@
 1:0	"a"	variable.other
-1:1	"~"	invalid
+1:1	"~"	punctuation.alias
 1:2	"import"	variable.other
 1:8	":"	punctuation.colon
 1:9	" "
 1:10	"1"	constant.numeric.integer.decimal
 2:0	"c"	variable.other
-2:1	"~"	invalid
-2:2	"("	meta.parens punctuation.section.parens.begin
-2:3	"package"	meta.parens variable.other
-2:10	","	meta.parens punctuation.separator
-2:11	" "	meta.parens
-2:12	"v"	meta.parens variable.other
-2:13	")"	meta.parens punctuation.section.parens.end
+2:1	"~"	punctuation.alias
+2:2	"("	punctuation.section.parens.begin
+2:3	"package"	variable.other
+2:10	","	punctuation.separator
+2:11	" "
+2:12	"v"	variable.other
+2:13	")"	punctuation.section.parens.end
 2:14	":"	punctuation.colon
 2:15	" "
 2:16	"3"	constant.numeric.integer.decimal

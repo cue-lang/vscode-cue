@@ -241,6 +241,35 @@
 					"name": "meta.annotation"
 				},
 				{
+					"match": "(~)[ \\t]*(?:([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+|_)|(\\()[ \\t]*([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+|_)(?:[ \\t]*(,)[ \\t]*([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+|_))?[ \\t]*(\\)))",
+					"captures": {
+						"1": {
+							"name": "punctuation.alias"
+						},
+						"2": {
+							"name": "variable.other"
+						},
+						"3": {
+							"name": "punctuation.section.parens.begin"
+						},
+						"4": {
+							"name": "variable.other"
+						},
+						"5": {
+							"name": "punctuation.separator"
+						},
+						"6": {
+							"name": "variable.other"
+						},
+						"7": {
+							"name": "punctuation.section.parens.end"
+						}
+					}
+				},
+				{
+					"include": "#punctuation_ellipsis"
+				},
+				{
 					"match": "(?<!:)::(?!:)",
 					"name": "punctuation.isa"
 				},
@@ -311,6 +340,10 @@
 				{
 					"patterns": [
 						{
+							"match": "->",
+							"name": "keyword.operator.arrow"
+						},
+						{
 							"match": "[\\+\\-\\*]|/(?![/*])",
 							"name": "keyword.operator"
 						},
@@ -333,15 +366,27 @@
 					]
 				},
 				{
-					"match": "(?<!\\.)(\\.)([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+)(?![\\p{L}\\p{Nd}_\\$\\#])",
-					"captures": {
-						"1": {
-							"name": "punctuation.accessor"
+					"patterns": [
+						{
+							"match": "(?<!\\.)(\\.)([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+)(?![\\p{L}\\p{Nd}_\\$\\#])",
+							"captures": {
+								"1": {
+									"name": "punctuation.accessor"
+								},
+								"2": {
+									"name": "variable.other.member"
+								}
+							}
 						},
-						"2": {
-							"name": "variable.other.member"
+						{
+							"match": "(?<!\\.)(\\.)(?=#*\")",
+							"captures": {
+								"1": {
+									"name": "punctuation.accessor"
+								}
+							}
 						}
-					}
+					]
 				},
 				{
 					"patterns": [

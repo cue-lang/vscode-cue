@@ -23,8 +23,7 @@
 5:7	","	meta.parens punctuation.separator
 6:0	")"	meta.parens punctuation.section.parens.end
 6:1	" "
-6:2	"-"	keyword.operator
-6:3	">"	keyword.operator.comparison
+6:2	"->"	keyword.operator.arrow
 6:4	" "
 6:5	"int"	support.type
 6:8	":"	punctuation.colon

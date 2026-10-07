@@ -1,0 +1,63 @@
+1:0	"@"	meta.annotation punctuation.definition.annotation
+1:1	"experiment"	meta.annotation variable.annotation
+1:11	"("	meta.annotation punctuation.attribute-elements.begin
+1:12	"try"	meta.annotation string.unquoted
+1:15	")"	meta.annotation punctuation.attribute-elements.end
+2:0	""
+3:0	"a"	variable.other
+3:1	"?"	punctuation.option
+3:2	":"	punctuation.colon
+3:3	" "
+3:4	"int"	support.type
+4:0	"y"	variable.other
+4:1	":"	punctuation.colon
+4:2	" "
+4:3	"["	meta.brackets punctuation.section.brackets.begin
+4:4	"1"	meta.brackets constant.numeric.integer.decimal
+4:5	"]"	meta.brackets punctuation.section.brackets.end
+5:0	"x"	variable.other
+5:1	":"	punctuation.colon
+5:2	" "
+5:3	"{"	meta.struct punctuation.definition.struct.begin
+6:0	"\t"	meta.struct
+6:1	"for"	meta.struct keyword.control.for
+6:4	" "	meta.struct
+6:5	"v"	meta.struct variable.other
+6:6	" "	meta.struct
+6:7	"in"	meta.struct keyword.control.in
+6:9	" "	meta.struct
+6:10	"y"	meta.struct variable.other
+6:11	" "	meta.struct
+6:12	"try"	meta.struct variable.other
+7:0	"\t"	meta.struct
+7:1	"{"	meta.struct meta.struct punctuation.definition.struct.begin
+7:2	"b"	meta.struct meta.struct variable.other
+7:3	":"	meta.struct meta.struct punctuation.colon
+7:4	" "	meta.struct meta.struct
+7:5	"v"	meta.struct meta.struct variable.other
+7:6	"}"	meta.struct meta.struct punctuation.definition.struct.end
+8:0	"}"	meta.struct punctuation.definition.struct.end
+9:0	"z"	variable.other
+9:1	":"	punctuation.colon
+9:2	" "
+9:3	"["	meta.brackets punctuation.section.brackets.begin
+10:0	"\t"	meta.brackets
+10:1	"for"	meta.brackets keyword.control.for
+10:4	" "	meta.brackets
+10:5	"v"	meta.brackets variable.other
+10:6	" "	meta.brackets
+10:7	"in"	meta.brackets keyword.control.in
+10:9	" "	meta.brackets
+10:10	"y"	meta.brackets variable.other
+10:11	" "	meta.brackets
+10:12	"try"	meta.brackets variable.other
+11:0	"\t"	meta.brackets
+11:1	"{"	meta.brackets meta.struct punctuation.definition.struct.begin
+11:2	"c"	meta.brackets meta.struct variable.other
+11:3	":"	meta.brackets meta.struct punctuation.colon
+11:4	" "	meta.brackets meta.struct
+11:5	"v"	meta.brackets meta.struct variable.other
+11:6	"}"	meta.brackets meta.struct punctuation.definition.struct.end
+11:7	","	meta.brackets punctuation.separator
+12:0	"]"	meta.brackets punctuation.section.brackets.end
+13:0	""

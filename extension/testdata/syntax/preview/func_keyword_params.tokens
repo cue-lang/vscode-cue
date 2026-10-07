@@ -1,0 +1,47 @@
+1:0	"@"	meta.annotation punctuation.definition.annotation
+1:1	"experiment"	meta.annotation variable.annotation
+1:11	"("	meta.annotation punctuation.attribute-elements.begin
+1:12	"functions"	meta.annotation string.unquoted
+1:21	")"	meta.annotation punctuation.attribute-elements.end
+2:0	""
+3:0	"f"	variable.other
+3:1	":"	punctuation.colon
+3:2	" "
+3:3	"func"	variable.other
+3:7	"("	meta.parens punctuation.section.parens.begin
+3:8	"import"	meta.parens variable.other
+3:14	": int, package?: int"	meta.parens invalid
+3:34	")"	meta.parens punctuation.section.parens.end
+3:35	" "
+3:36	"-"	keyword.operator
+3:37	">"	keyword.operator.comparison
+3:38	" "
+3:39	"int"	support.type
+3:42	":"	punctuation.colon
+3:43	" "
+3:44	"import"	variable.other
+4:0	"g"	variable.other
+4:1	":"	punctuation.colon
+4:2	" "
+4:3	"f"	variable.other
+4:4	"("	meta.parens punctuation.section.parens.begin
+4:5	"import"	meta.parens variable.other
+4:11	": 1"	meta.parens invalid
+4:14	")"	meta.parens punctuation.section.parens.end
+5:0	"h"	variable.other
+5:1	":"	punctuation.colon
+5:2	" "
+5:3	"func"	variable.other
+5:7	"("	meta.parens punctuation.section.parens.begin
+5:8	"a"	meta.parens variable.other
+5:9	"~import: int"	meta.parens invalid
+5:21	")"	meta.parens punctuation.section.parens.end
+5:22	" "
+5:23	"-"	keyword.operator
+5:24	">"	keyword.operator.comparison
+5:25	" "
+5:26	"int"	support.type
+5:29	":"	punctuation.colon
+5:30	" "
+5:31	"import"	variable.other
+6:0	""

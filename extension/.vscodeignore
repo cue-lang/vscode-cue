@@ -20,5 +20,6 @@ launch.json
 .vscode
 **/*.map
 src/test
+testdata
 esbuild.js
 tsconfig.json

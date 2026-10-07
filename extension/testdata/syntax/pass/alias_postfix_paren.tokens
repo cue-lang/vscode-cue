@@ -1,0 +1,10 @@
+1:0	"a"	variable.other
+1:1	"~(X): {b: 1"	invalid
+1:12	"}"
+2:0	"c"	variable.other
+2:1	":"	punctuation.colon
+2:2	" "
+2:3	"X"	variable.other
+2:4	"."	punctuation.accessor
+2:5	"b"	variable.other.member
+3:0	""

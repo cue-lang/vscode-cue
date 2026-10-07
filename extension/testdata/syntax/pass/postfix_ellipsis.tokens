@@ -1,0 +1,41 @@
+1:0	"#A"	variable.other
+1:2	":"	punctuation.colon
+1:3	" "
+1:4	"{"	meta.struct punctuation.definition.struct.begin
+1:5	"a"	meta.struct variable.other
+1:6	":"	meta.struct punctuation.colon
+1:7	" "	meta.struct
+1:8	"int"	meta.struct support.type
+1:11	"}"	meta.struct punctuation.definition.struct.end
+2:0	"b"	variable.other
+2:1	":"	punctuation.colon
+2:2	" "
+2:3	"#A"	variable.other
+2:5	"..."	invalid
+3:0	"c"	variable.other
+3:1	":"	punctuation.colon
+3:2	" "
+3:3	"{"	meta.struct punctuation.definition.struct.begin
+3:4	"x"	meta.struct variable.other
+3:5	":"	meta.struct punctuation.colon
+3:6	" "	meta.struct
+3:7	"1"	meta.struct constant.numeric.integer.decimal
+3:8	"}"	meta.struct punctuation.definition.struct.end
+3:9	"..."	invalid
+4:0	"d"	variable.other
+4:1	":"	punctuation.colon
+4:2	" "
+4:3	"("	meta.parens punctuation.section.parens.begin
+4:4	"#A"	meta.parens variable.other
+4:6	" "	meta.parens
+4:7	"&"	meta.parens keyword.operator.set
+4:8	" "	meta.parens
+4:9	"{"	meta.parens meta.struct punctuation.definition.struct.begin
+4:10	"a"	meta.parens meta.struct variable.other
+4:11	":"	meta.parens meta.struct punctuation.colon
+4:12	" "	meta.parens meta.struct
+4:13	"1"	meta.parens meta.struct constant.numeric.integer.decimal
+4:14	"}"	meta.parens meta.struct punctuation.definition.struct.end
+4:15	")"	meta.parens punctuation.section.parens.end
+4:16	"..."	invalid
+5:0	""

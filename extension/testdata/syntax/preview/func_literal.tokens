@@ -1,0 +1,37 @@
+1:0	"@"	meta.annotation punctuation.definition.annotation
+1:1	"experiment"	meta.annotation variable.annotation
+1:11	"("	meta.annotation punctuation.attribute-elements.begin
+1:12	"functions"	meta.annotation string.unquoted
+1:21	")"	meta.annotation punctuation.attribute-elements.end
+2:0	""
+3:0	"add"	variable.other
+3:3	":"	punctuation.colon
+3:4	" "
+3:5	"func"	variable.other
+3:9	"("	meta.parens punctuation.section.parens.begin
+3:10	"a"	meta.parens variable.other
+3:11	": int, b: int"	meta.parens invalid
+3:24	")"	meta.parens punctuation.section.parens.end
+3:25	" "
+3:26	"-"	keyword.operator
+3:27	">"	keyword.operator.comparison
+3:28	" "
+3:29	"int"	support.type
+3:32	":"	punctuation.colon
+3:33	" "
+3:34	"a"	variable.other
+3:35	" "
+3:36	"+"	keyword.operator
+3:37	" "
+3:38	"b"	variable.other
+4:0	"c"	variable.other
+4:1	":"	punctuation.colon
+4:2	"   "
+4:5	"add"	variable.other
+4:8	"("	meta.parens punctuation.section.parens.begin
+4:9	"1"	meta.parens constant.numeric.integer.decimal
+4:10	","	meta.parens punctuation.separator
+4:11	" "	meta.parens
+4:12	"2"	meta.parens constant.numeric.integer.decimal
+4:13	")"	meta.parens punctuation.section.parens.end
+5:0	""

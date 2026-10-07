@@ -1,0 +1,7 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" error: 2:4: illegal integer number"	comment.line
+2:0	"a"	variable.other
+2:1	":"	punctuation.colon
+2:2	" "
+2:3	"0755"	constant.numeric.integer.octal
+3:0	""

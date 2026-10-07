@@ -1,0 +1,5 @@
+1:0	"a"	variable.other
+1:1	"~X?: int"	invalid
+2:0	"b"	variable.other
+2:1	"~(Y)!: int"	invalid
+3:0	""

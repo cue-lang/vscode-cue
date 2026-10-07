@@ -1,0 +1,9 @@
+1:0	"$foo"	variable.other
+1:4	":"	punctuation.colon
+1:5	" "
+1:6	"1"	constant.numeric.integer.decimal
+2:0	"b$"	variable.other
+2:2	":"	punctuation.colon
+2:3	" "
+2:4	"$foo"	variable.other
+3:0	""

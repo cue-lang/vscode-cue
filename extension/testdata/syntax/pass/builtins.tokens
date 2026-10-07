@@ -44,13 +44,13 @@
 5:0	"e"	variable.other
 5:1	":"	punctuation.colon
 5:2	" "
-5:3	"div"	keyword.operator.word
-5:6	"("	meta.parens punctuation.section.parens.begin
-5:7	"5"	meta.parens constant.numeric.integer.decimal
-5:8	","	meta.parens punctuation.separator
-5:9	" "	meta.parens
-5:10	"2"	meta.parens constant.numeric.integer.decimal
-5:11	")"	meta.parens punctuation.section.parens.end
+5:3	"div"	meta.function-call support.function
+5:6	"("	meta.function-call punctuation.section.parens.begin
+5:7	"5"	meta.function-call constant.numeric.integer.decimal
+5:8	","	meta.function-call punctuation.separator
+5:9	" "	meta.function-call
+5:10	"2"	meta.function-call constant.numeric.integer.decimal
+5:11	")"	meta.function-call punctuation.section.parens.end
 6:0	"f"	variable.other
 6:1	":"	punctuation.colon
 6:2	" "
@@ -62,21 +62,21 @@
 7:0	"g"	variable.other
 7:1	":"	punctuation.colon
 7:2	" "
-7:3	"quo"	keyword.operator.word
-7:6	"("	meta.parens punctuation.section.parens.begin
-7:7	"5"	meta.parens constant.numeric.integer.decimal
-7:8	","	meta.parens punctuation.separator
-7:9	" "	meta.parens
-7:10	"2"	meta.parens constant.numeric.integer.decimal
-7:11	")"	meta.parens punctuation.section.parens.end
+7:3	"quo"	meta.function-call support.function
+7:6	"("	meta.function-call punctuation.section.parens.begin
+7:7	"5"	meta.function-call constant.numeric.integer.decimal
+7:8	","	meta.function-call punctuation.separator
+7:9	" "	meta.function-call
+7:10	"2"	meta.function-call constant.numeric.integer.decimal
+7:11	")"	meta.function-call punctuation.section.parens.end
 8:0	"h"	variable.other
 8:1	":"	punctuation.colon
 8:2	" "
-8:3	"rem"	keyword.operator.word
-8:6	"("	meta.parens punctuation.section.parens.begin
-8:7	"5"	meta.parens constant.numeric.integer.decimal
-8:8	","	meta.parens punctuation.separator
-8:9	" "	meta.parens
-8:10	"2"	meta.parens constant.numeric.integer.decimal
-8:11	")"	meta.parens punctuation.section.parens.end
+8:3	"rem"	meta.function-call support.function
+8:6	"("	meta.function-call punctuation.section.parens.begin
+8:7	"5"	meta.function-call constant.numeric.integer.decimal
+8:8	","	meta.function-call punctuation.separator
+8:9	" "	meta.function-call
+8:10	"2"	meta.function-call constant.numeric.integer.decimal
+8:11	")"	meta.function-call punctuation.section.parens.end
 9:0	""

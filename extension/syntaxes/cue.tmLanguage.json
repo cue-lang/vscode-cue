@@ -7,6 +7,9 @@
 	"scopeName": "source.cue",
 	"patterns": [
 		{
+			"include": "#invalid_slash"
+		},
+		{
 			"include": "#whitespace"
 		},
 		{
@@ -251,16 +254,6 @@
 						}
 					},
 					"name": "comment.line"
-				},
-				{
-					"captures": {
-						"0": {
-							"name": "punctuation.definition.comment"
-						}
-					},
-					"begin": "/\\*",
-					"end": "\\*/",
-					"name": "comment.block"
 				}
 			]
 		},
@@ -276,10 +269,6 @@
 					"include": "#punctuation_ellipsis"
 				},
 				{
-					"match": "(?<!:)::(?!:)",
-					"name": "punctuation.isa"
-				},
-				{
 					"include": "#punctuation_colon"
 				},
 				{
@@ -287,10 +276,6 @@
 				},
 				{
 					"include": "#punctuation_bind"
-				},
-				{
-					"match": "<-",
-					"name": "punctuation.arrow"
 				},
 				{
 					"include": "#expression"
@@ -384,15 +369,11 @@
 							"name": "keyword.operator.arrow"
 						},
 						{
-							"match": "[\\+\\-\\*]|/(?![/*])",
+							"match": "[\\+\\-\\*]|/(?!/)",
 							"name": "keyword.operator"
 						},
 						{
-							"match": "(?<![\\p{L}\\p{Nd}_\\$\\#])(?:div|mod|quo|rem)(?![\\p{L}\\p{Nd}_\\$\\#])",
-							"name": "keyword.operator.word"
-						},
-						{
-							"match": "=[=~]|![=~]|<=|>=|[<](?![-=])|[>](?![=])",
+							"match": "=[=~]|![=~]|<=|>=|[<](?!=)|[>](?![=])",
 							"name": "keyword.operator.comparison"
 						},
 						{
@@ -469,11 +450,11 @@
 										{
 											"patterns": [
 												{
-													"match": "(?<![\\p{L}\\p{Nd}_\\.])(?:0|[1-9](?:_?[0-9])*)(?:\\.[0-9](?:_?[0-9])*)?(?:[KMGTPEYZ]i?)(?![\\p{L}\\p{Nd}_\\.])",
+													"match": "(?<![\\p{L}\\p{Nd}_\\.])(?:0|[1-9](?:_?[0-9])*)(?:\\.[0-9](?:_?[0-9])*)?(?:[KMGTP]i?)(?![\\p{L}\\p{Nd}_\\.])",
 													"name": "constant.numeric.integer.other"
 												},
 												{
-													"match": "(?<![\\p{L}\\p{Nd}_\\.])\\.[0-9](?:_?[0-9])*(?:[KMGTPEYZ]i?)(?![\\p{L}\\p{Nd}_\\.])",
+													"match": "(?<![\\p{L}\\p{Nd}_\\.])\\.[0-9](?:_?[0-9])*(?:[KMGTP]i?)(?![\\p{L}\\p{Nd}_\\.])",
 													"name": "constant.numeric.integer.other"
 												}
 											]
@@ -491,7 +472,7 @@
 											"name": "constant.numeric.integer.hexadecimal"
 										},
 										{
-											"match": "(?<![\\p{L}\\p{Nd}_\\.])0o?[0-7](?:_?[0-7])*(?![\\p{L}\\p{Nd}_\\.])",
+											"match": "(?<![\\p{L}\\p{Nd}_\\.])0o[0-7](?:_?[0-7])*(?![\\p{L}\\p{Nd}_\\.])",
 											"name": "constant.numeric.integer.octal"
 										}
 									]
@@ -644,6 +625,9 @@
 							},
 							"patterns": [
 								{
+									"include": "#invalid_slash"
+								},
+								{
 									"include": "#whitespace"
 								},
 								{
@@ -778,6 +762,14 @@
 		"invalid_in_parens": {
 			"match": "[^\\s\\)]",
 			"name": "invalid"
+		},
+		"invalid_slash": {
+			"match": "(?<=^|[\\{,:])[ \\t]*+(/)(?!/)",
+			"captures": {
+				"1": {
+					"name": "invalid"
+				}
+			}
 		},
 		"punctuation_bind": {
 			"match": "(?<![=!><])=(?![=~])",
@@ -2039,22 +2031,6 @@
 							"name": "invalid.illegal"
 						}
 					],
-					"name": "meta.string"
-				},
-				{
-					"begin": "`",
-					"beginCaptures": {
-						"0": {
-							"name": "punctuation.definition.string.begin"
-						}
-					},
-					"end": "`",
-					"endCaptures": {
-						"0": {
-							"name": "punctuation.definition.string.end"
-						}
-					},
-					"contentName": "string.quoted.backtick",
 					"name": "meta.string"
 				}
 			]

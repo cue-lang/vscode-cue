@@ -22,6 +22,7 @@ var root = struct {
 }
 
 var patterns = Includes(
+	"#invalid_slash",
 	"#whitespace",
 	"#comment",
 	"#package",
@@ -265,16 +266,7 @@ var repository = RuleMap{
 	"comment": {
 		Patterns: Includes(
 			"#comment_line",
-			"#comment_block",
 		),
-	},
-	"comment_block": {
-		Begin: `/\*`,
-		End:   `\*/`,
-		Captures: Captures{
-			0: Capture{Name: "punctuation.definition.comment"},
-		},
-		Name: "comment.block",
 	},
 	"comment_line": {
 		Match: `(//).*$\n?`,
@@ -288,11 +280,9 @@ var repository = RuleMap{
 			"#attribute",
 			"#alias_postfix",
 			"#punctuation_ellipsis",
-			"#punctuation_isa",
 			"#punctuation_colon",
 			"#punctuation_option",
 			"#punctuation_bind",
-			"#punctuation_arrow",
 			"#expression",
 		),
 	},
@@ -396,7 +386,7 @@ var repository = RuleMap{
 		Name:  "constant.numeric.integer.hexadecimal",
 	},
 	"integer_octal": {
-		Match: beforeNum + `0o?[0-7](?:_?[0-7])*` + afterNum,
+		Match: beforeNum + `0o[0-7](?:_?[0-7])*` + afterNum,
 		Name:  "constant.numeric.integer.octal",
 	},
 	"integer_si": {
@@ -422,6 +412,15 @@ var repository = RuleMap{
 	"invalid_in_parens": {
 		Match: `[^\s\)]`,
 		Name:  "invalid",
+	},
+	"invalid_slash": {
+		// A / where a declaration or a value must start, as at the start of
+		// a block comment, which CUE does not have. It comes ahead of the
+		// whitespace rule, so that it also matches after indentation.
+		Match: `(?<=^|[\{,:])[ \t]*+(/)(?!/)`,
+		Captures: Captures{
+			1: Capture{Name: "invalid"},
+		},
 	},
 	"null": {
 		Match: beforeIdent + `null` + afterIdent,
@@ -457,15 +456,11 @@ var repository = RuleMap{
 				Name:  "keyword.operator.arrow",
 			},
 			{
-				Match: `[\+\-\*]|/(?![/*])`,
+				Match: `[\+\-\*]|/(?!/)`,
 				Name:  "keyword.operator", // not *only* arithmetic, also unary
 			},
 			{
-				Match: beforeIdent + `(?:div|mod|quo|rem)` + afterIdent,
-				Name:  "keyword.operator.word",
-			},
-			{
-				Match: `=[=~]|![=~]|<=|>=|[<](?![-=])|[>](?![=])`, // ==, =~, !=, !~, <=, >=, <, >
+				Match: `=[=~]|![=~]|<=|>=|[<](?!=)|[>](?![=])`, // ==, =~, !=, !~, <=, >=, <, >
 				Name:  "keyword.operator.comparison",
 			},
 			{
@@ -509,10 +504,6 @@ var repository = RuleMap{
 		),
 		Name: "meta.parens",
 	},
-	"punctuation_arrow": {
-		Match: `<-`,
-		Name:  "punctuation.arrow",
-	},
 	"punctuation_bind": {
 		Match: `(?<![=!><])=(?![=~])`,
 		Name:  "punctuation.bind",
@@ -520,10 +511,6 @@ var repository = RuleMap{
 	"punctuation_comma": {
 		Match: `,`,
 		Name:  "punctuation.separator",
-	},
-	"punctuation_isa": {
-		Match: `(?<!:)::(?!:)`,
-		Name:  "punctuation.isa",
 	},
 	"punctuation_ellipsis": {
 		Match: `(?<!\.)\.{3}(?!\.)`,
@@ -567,18 +554,6 @@ var repository = RuleMap{
 	"string": {
 		Patterns: StringRules(4),
 	},
-	"string_backtick": {
-		Begin: "`",
-		BeginCaptures: Captures{
-			0: Capture{Name: "punctuation.definition.string.begin"},
-		},
-		End: "`",
-		EndCaptures: Captures{
-			0: Capture{Name: "punctuation.definition.string.end"},
-		},
-		ContentName: "string.quoted.backtick",
-		Name:        "meta.string",
-	},
 	"struct": {
 		Begin: `\{`,
 		BeginCaptures: Captures{
@@ -589,6 +564,7 @@ var repository = RuleMap{
 			0: Capture{Name: "punctuation.definition.struct.end"},
 		},
 		Patterns: Includes(
+			"#invalid_slash",
 			"#whitespace",
 			"#comment",
 			"#punctuation_comma",
@@ -647,7 +623,7 @@ const (
 	floatExp    = `[eE][\+\-]?` + digits
 	floatExpOpt = `(?:` + floatExp + `)?`
 	decimalInt  = `(?:0|[1-9](?:_?[0-9])*)`
-	siSuffix    = `(?:[KMGTPEYZ]i?)`
+	siSuffix    = `(?:[KMGTP]i?)`
 )
 
 const (
@@ -753,7 +729,7 @@ func StringRule(quoteName string, hashCount int) Rule {
 }
 
 func StringRules(maxHashes int) Rules {
-	rules := make(Rules, 0, maxHashes*4+1)
+	rules := make(Rules, 0, (maxHashes+1)*4)
 	for h := maxHashes; h >= 0; h-- {
 		rules = append(rules,
 			StringRule("double-multiline", h),
@@ -762,5 +738,5 @@ func StringRules(maxHashes int) Rules {
 			StringRule("single", h),
 		)
 	}
-	return append(rules, Rule{Include: "#string_backtick"})
+	return rules
 }

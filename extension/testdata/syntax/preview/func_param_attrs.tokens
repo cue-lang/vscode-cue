@@ -10,7 +10,22 @@
 3:3	"func"	variable.other
 3:7	"("	meta.parens punctuation.section.parens.begin
 3:8	"a"	meta.parens variable.other
-3:9	": int @doc(x"	meta.parens invalid
-3:21	")"	meta.parens punctuation.section.parens.end
-3:22	") -> int: a"	invalid
+3:9	":"	meta.parens invalid
+3:10	" "	meta.parens
+3:11	"int"	meta.parens support.type
+3:14	" "	meta.parens
+3:15	"@"	meta.parens invalid
+3:16	"doc"	meta.parens variable.other
+3:19	"("	meta.parens meta.parens punctuation.section.parens.begin
+3:20	"x"	meta.parens meta.parens variable.other
+3:21	")"	meta.parens meta.parens punctuation.section.parens.end
+3:22	")"	meta.parens punctuation.section.parens.end
+3:23	" "
+3:24	"-"	keyword.operator
+3:25	">"	keyword.operator.comparison
+3:26	" "
+3:27	"int"	support.type
+3:30	":"	punctuation.colon
+3:31	" "
+3:32	"a"	variable.other
 4:0	""

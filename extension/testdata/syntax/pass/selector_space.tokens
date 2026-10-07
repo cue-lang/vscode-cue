@@ -11,7 +11,9 @@
 2:1	":"	punctuation.colon
 2:2	" "
 2:3	"x"	variable.other
-2:4	". b"	invalid
+2:4	"."	invalid
+2:5	" "
+2:6	"b"	variable.other
 3:0	"c"	variable.other
 3:1	":"	punctuation.colon
 3:2	" "
@@ -23,5 +25,9 @@
 5:1	":"	punctuation.colon
 5:2	" "
 5:3	"x"	variable.other
-5:4	". \"b\""	invalid
+5:4	"."	invalid
+5:5	" "
+5:6	"\""	meta.string punctuation.definition.string.begin
+5:7	"b"	meta.string string.quoted.double
+5:8	"\""	meta.string punctuation.definition.string.end
 6:0	""

@@ -8,8 +8,7 @@
 3:0	"c"	variable.other
 3:1	":"	punctuation.colon
 3:2	" "
-3:3	"##"	variable.other
-3:5	"\"\"\""	meta.string punctuation.definition.string.begin
+3:3	"##\"\"\""	meta.string punctuation.definition.string.begin
 3:8	"##"	meta.string string.quoted.double-multiline
 4:0	"d: #'''#"	meta.string string.quoted.double-multiline
 5:0	"e: 1"	meta.string string.quoted.double-multiline

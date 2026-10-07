@@ -16,7 +16,7 @@
 4:3	"func"	variable.other
 4:7	"("	meta.parens punctuation.section.parens.begin
 4:8	"s"	meta.parens variable.other
-4:9	":"	meta.parens invalid
+4:9	":"	meta.parens punctuation.colon
 4:10	" "	meta.parens
 4:11	"{"	meta.parens meta.struct punctuation.definition.struct.begin
 4:12	"x"	meta.parens meta.struct variable.other
@@ -44,7 +44,7 @@
 5:3	"func"	variable.other
 5:7	"("	meta.parens punctuation.section.parens.begin
 5:8	"a"	meta.parens variable.other
-5:9	":"	meta.parens invalid
+5:9	":"	meta.parens punctuation.colon
 5:10	" "	meta.parens
 5:11	"["	meta.parens meta.brackets punctuation.section.brackets.begin
 5:12	"..."	meta.parens meta.brackets punctuation.ellipsis
@@ -63,7 +63,7 @@
 6:3	"func"	variable.other
 6:7	"("	meta.parens punctuation.section.parens.begin
 6:8	"a"	meta.parens variable.other
-6:9	":"	meta.parens invalid
+6:9	":"	meta.parens punctuation.colon
 6:10	" "	meta.parens
 6:11	"int"	meta.parens support.type
 6:14	")"	meta.parens punctuation.section.parens.end
@@ -80,7 +80,7 @@
 7:3	"func"	variable.other
 7:7	"("	meta.parens punctuation.section.parens.begin
 7:8	"s"	meta.parens variable.other
-7:9	":"	meta.parens invalid
+7:9	":"	meta.parens punctuation.colon
 7:10	" "	meta.parens
 7:11	"{"	meta.parens meta.struct punctuation.definition.struct.begin
 7:12	"x"	meta.parens meta.struct variable.other

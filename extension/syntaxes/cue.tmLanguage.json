@@ -122,6 +122,61 @@
 		}
 	],
 	"repository": {
+		"alias_postfix": {
+			"match": "(~)[ \\t]*(?:([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+|_)|(\\()[ \\t]*([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+|_)(?:[ \\t]*(,)[ \\t]*([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+|_))?[ \\t]*(\\)))",
+			"captures": {
+				"1": {
+					"name": "punctuation.alias"
+				},
+				"2": {
+					"name": "variable.other"
+				},
+				"3": {
+					"name": "punctuation.section.parens.begin"
+				},
+				"4": {
+					"name": "variable.other"
+				},
+				"5": {
+					"name": "punctuation.separator"
+				},
+				"6": {
+					"name": "variable.other"
+				},
+				"7": {
+					"name": "punctuation.section.parens.end"
+				}
+			}
+		},
+		"attribute": {
+			"begin": "(@)([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+)(\\()",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.definition.annotation"
+				},
+				"2": {
+					"name": "variable.annotation"
+				},
+				"3": {
+					"name": "punctuation.attribute-elements.begin"
+				}
+			},
+			"end": "\\)",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.attribute-elements.end"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#punctuation_comma"
+				},
+				{
+					"include": "#attribute_element"
+				}
+			],
+			"name": "meta.annotation"
+		},
 		"attribute_element": {
 			"patterns": [
 				{
@@ -212,59 +267,10 @@
 		"declaration": {
 			"patterns": [
 				{
-					"begin": "(@)([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+)(\\()",
-					"beginCaptures": {
-						"1": {
-							"name": "punctuation.definition.annotation"
-						},
-						"2": {
-							"name": "variable.annotation"
-						},
-						"3": {
-							"name": "punctuation.attribute-elements.begin"
-						}
-					},
-					"end": "\\)",
-					"endCaptures": {
-						"0": {
-							"name": "punctuation.attribute-elements.end"
-						}
-					},
-					"patterns": [
-						{
-							"include": "#punctuation_comma"
-						},
-						{
-							"include": "#attribute_element"
-						}
-					],
-					"name": "meta.annotation"
+					"include": "#attribute"
 				},
 				{
-					"match": "(~)[ \\t]*(?:([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+|_)|(\\()[ \\t]*([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+|_)(?:[ \\t]*(,)[ \\t]*([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+|_))?[ \\t]*(\\)))",
-					"captures": {
-						"1": {
-							"name": "punctuation.alias"
-						},
-						"2": {
-							"name": "variable.other"
-						},
-						"3": {
-							"name": "punctuation.section.parens.begin"
-						},
-						"4": {
-							"name": "variable.other"
-						},
-						"5": {
-							"name": "punctuation.separator"
-						},
-						"6": {
-							"name": "variable.other"
-						},
-						"7": {
-							"name": "punctuation.section.parens.end"
-						}
-					}
+					"include": "#alias_postfix"
 				},
 				{
 					"include": "#punctuation_ellipsis"
@@ -277,12 +283,10 @@
 					"include": "#punctuation_colon"
 				},
 				{
-					"match": "\\?",
-					"name": "punctuation.option"
+					"include": "#punctuation_option"
 				},
 				{
-					"match": "(?<![=!><])=(?![=~])",
-					"name": "punctuation.bind"
+					"include": "#punctuation_bind"
 				},
 				{
 					"match": "<-",
@@ -494,6 +498,24 @@
 											"include": "#punctuation_comma"
 										},
 										{
+											"include": "#attribute"
+										},
+										{
+											"include": "#alias_postfix"
+										},
+										{
+											"include": "#punctuation_colon"
+										},
+										{
+											"include": "#punctuation_option"
+										},
+										{
+											"include": "#punctuation_bind"
+										},
+										{
+											"include": "#punctuation_ellipsis"
+										},
+										{
 											"include": "#expression"
 										},
 										{
@@ -533,6 +555,24 @@
 										},
 										{
 											"include": "#punctuation_comma"
+										},
+										{
+											"include": "#attribute"
+										},
+										{
+											"include": "#alias_postfix"
+										},
+										{
+											"include": "#punctuation_colon"
+										},
+										{
+											"include": "#punctuation_option"
+										},
+										{
+											"include": "#punctuation_bind"
+										},
+										{
+											"include": "#punctuation_ellipsis"
 										},
 										{
 											"include": "#expression"
@@ -614,6 +654,9 @@
 									"include": "#punctuation_ellipsis"
 								},
 								{
+									"include": "#punctuation_option"
+								},
+								{
 									"match": "([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+)[ \\t]*(=)",
 									"captures": {
 										"1": {
@@ -658,6 +701,24 @@
 									"include": "#punctuation_comma"
 								},
 								{
+									"include": "#attribute"
+								},
+								{
+									"include": "#alias_postfix"
+								},
+								{
+									"include": "#punctuation_colon"
+								},
+								{
+									"include": "#punctuation_option"
+								},
+								{
+									"include": "#punctuation_bind"
+								},
+								{
+									"include": "#punctuation_ellipsis"
+								},
+								{
 									"include": "#expression"
 								},
 								{
@@ -678,6 +739,10 @@
 			"match": "[^\\s\\)]",
 			"name": "invalid"
 		},
+		"punctuation_bind": {
+			"match": "(?<![=!><])=(?![=~])",
+			"name": "punctuation.bind"
+		},
 		"punctuation_colon": {
 			"match": "(?<!:):(?!:)",
 			"name": "punctuation.colon"
@@ -689,6 +754,10 @@
 		"punctuation_ellipsis": {
 			"match": "(?<!\\.)\\.{3}(?!\\.)",
 			"name": "punctuation.ellipsis"
+		},
+		"punctuation_option": {
+			"match": "\\?",
+			"name": "punctuation.option"
 		},
 		"string": {
 			"patterns": [
@@ -732,6 +801,9 @@
 							"patterns": [
 								{
 									"include": "#whitespace"
+								},
+								{
+									"include": "#punctuation_option"
 								},
 								{
 									"include": "#expression"
@@ -791,6 +863,9 @@
 									"include": "#whitespace"
 								},
 								{
+									"include": "#punctuation_option"
+								},
+								{
 									"include": "#expression"
 								},
 								{
@@ -846,6 +921,9 @@
 							"patterns": [
 								{
 									"include": "#whitespace"
+								},
+								{
+									"include": "#punctuation_option"
 								},
 								{
 									"include": "#expression"
@@ -905,6 +983,9 @@
 									"include": "#whitespace"
 								},
 								{
+									"include": "#punctuation_option"
+								},
+								{
 									"include": "#expression"
 								},
 								{
@@ -960,6 +1041,9 @@
 							"patterns": [
 								{
 									"include": "#whitespace"
+								},
+								{
+									"include": "#punctuation_option"
 								},
 								{
 									"include": "#expression"
@@ -1019,6 +1103,9 @@
 									"include": "#whitespace"
 								},
 								{
+									"include": "#punctuation_option"
+								},
+								{
 									"include": "#expression"
 								},
 								{
@@ -1076,6 +1163,9 @@
 									"include": "#whitespace"
 								},
 								{
+									"include": "#punctuation_option"
+								},
+								{
 									"include": "#expression"
 								},
 								{
@@ -1131,6 +1221,9 @@
 							"patterns": [
 								{
 									"include": "#whitespace"
+								},
+								{
+									"include": "#punctuation_option"
 								},
 								{
 									"include": "#expression"

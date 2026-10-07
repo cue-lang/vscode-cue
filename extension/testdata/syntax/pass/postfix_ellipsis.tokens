@@ -11,9 +11,7 @@
 2:1	":"	punctuation.colon
 2:2	" "
 2:3	"#A"	variable.other
-2:5	"."	invalid
-2:6	"."	invalid
-2:7	"."	invalid
+2:5	"..."	punctuation.ellipsis
 3:0	"c"	variable.other
 3:1	":"	punctuation.colon
 3:2	" "
@@ -23,9 +21,7 @@
 3:6	" "	meta.struct
 3:7	"1"	meta.struct constant.numeric.integer.decimal
 3:8	"}"	meta.struct punctuation.definition.struct.end
-3:9	"."	invalid
-3:10	"."	invalid
-3:11	"."	invalid
+3:9	"..."	punctuation.ellipsis
 4:0	"d"	variable.other
 4:1	":"	punctuation.colon
 4:2	" "
@@ -41,7 +37,5 @@
 4:13	"1"	meta.parens meta.struct constant.numeric.integer.decimal
 4:14	"}"	meta.parens meta.struct punctuation.definition.struct.end
 4:15	")"	meta.parens punctuation.section.parens.end
-4:16	"."	invalid
-4:17	"."	invalid
-4:18	"."	invalid
+4:16	"..."	punctuation.ellipsis
 5:0	""

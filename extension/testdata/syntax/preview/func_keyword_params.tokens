@@ -22,8 +22,7 @@
 3:31	"int"	meta.parens support.type
 3:34	")"	meta.parens punctuation.section.parens.end
 3:35	" "
-3:36	"-"	keyword.operator
-3:37	">"	keyword.operator.comparison
+3:36	"->"	keyword.operator.arrow
 3:38	" "
 3:39	"int"	support.type
 3:42	":"	punctuation.colon
@@ -52,8 +51,7 @@
 5:18	"int"	meta.parens support.type
 5:21	")"	meta.parens punctuation.section.parens.end
 5:22	" "
-5:23	"-"	keyword.operator
-5:24	">"	keyword.operator.comparison
+5:23	"->"	keyword.operator.arrow
 5:25	" "
 5:26	"int"	support.type
 5:29	":"	punctuation.colon

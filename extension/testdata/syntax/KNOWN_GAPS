@@ -1,16 +1,5 @@
 # Corpus files that must be valid but that the grammar does not yet handle.
 # The grammar tests fail if a listed file no longer has invalid tokens.
-pass/alias_keyword_names.cue
-pass/alias_postfix_blank.cue
-pass/alias_postfix_dual.cue
-pass/alias_postfix_dynamic.cue
-pass/alias_postfix_interp.cue
-pass/alias_postfix_multilabel.cue
-pass/alias_postfix_optional.cue
-pass/alias_postfix_paren.cue
-pass/alias_postfix_pattern.cue
-pass/alias_postfix_simple.cue
-pass/alias_postfix_space.cue
 pass/attr_bracket_values.cue
 pass/attr_comment.cue
 pass/attr_dotted_keys.cue
@@ -20,15 +9,12 @@ pass/attr_key_after_space.cue
 pass/attr_nested_parens.cue
 pass/attr_spaced_equals.cue
 pass/import_hidden_name.cue
-pass/keyword_selectors.cue
 pass/list_comparison.cue
 pass/multi_hash_string.cue
 pass/multiline_escaped_quote.cue
 pass/number_prefix_underscore.cue
-pass/postfix_ellipsis.cue
 pass/postfix_ellipsis_int.cue
 pass/postfix_ellipsis_signed.cue
-pass/postfix_ellipsis_space.cue
 pass/selector_space.cue
 preview/call_chained.cue
 preview/call_labeled.cue

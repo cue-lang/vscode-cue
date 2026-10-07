@@ -19,8 +19,7 @@
 3:17	"5"	meta.parens constant.numeric.integer.decimal
 3:18	")"	meta.parens punctuation.section.parens.end
 3:19	" "
-3:20	"-"	keyword.operator
-3:21	">"	keyword.operator.comparison
+3:20	"->"	keyword.operator.arrow
 3:22	" "
 3:23	"int"	support.type
 3:26	":"	punctuation.colon
@@ -42,8 +41,7 @@
 4:18	"5"	meta.parens constant.numeric.integer.decimal
 4:19	")"	meta.parens punctuation.section.parens.end
 4:20	" "
-4:21	"-"	keyword.operator
-4:22	">"	keyword.operator.comparison
+4:21	"->"	keyword.operator.arrow
 4:23	" "
 4:24	"int"	support.type
 4:27	":"	punctuation.colon

@@ -1,0 +1,19 @@
+1:0	"a"	variable.other
+1:1	":"	punctuation.colon
+1:2	" "
+1:3	"1"	constant.numeric.integer.decimal
+1:4	" "
+1:5	"@"	meta.annotation punctuation.definition.annotation
+1:6	"foo"	meta.annotation variable.annotation
+1:9	"("	meta.annotation punctuation.attribute-elements.begin
+1:10	"x"	meta.annotation string.unquoted
+1:11	","	meta.annotation punctuation.separator
+1:12	" // see f"	meta.annotation string.unquoted
+1:21	"("	meta.annotation invalid
+2:0	"\ty"	meta.annotation string.unquoted
+2:2	")"	meta.annotation punctuation.attribute-elements.end
+3:0	"b"	variable.other
+3:1	":"	punctuation.colon
+3:2	" "
+3:3	"2"	constant.numeric.integer.decimal
+4:0	""

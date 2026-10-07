@@ -125,6 +125,13 @@ extension: npm: {
 		"pretest:unit": "rm -rf out && npm run compile-tests"
 		"test:unit":    "mocha --ui tdd \"out/test/**/*.test.js\""
 		format:         "prettier --write \"src/**/*.ts\" --ignore-path ../.prettierignore"
+
+		// update-grammar-goldens rewrites the golden token dumps of the
+		// grammar tests, and sync-syntax-corpus refreshes their copy of the
+		// CUE syntax corpus from a tagged cue-lang/cue checkout given as an
+		// argument; see src/test/syncSyntaxCorpus.ts.
+		"update-grammar-goldens": "npm run compile-tests && node out/test/updateGrammarGoldens.js"
+		"sync-syntax-corpus":     "npm run compile-tests && node out/test/syncSyntaxCorpus.js"
 	}
 
 	// devDependencies is sort of maintained by npm. We maintain those in a

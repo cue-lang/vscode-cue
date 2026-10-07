@@ -1,0 +1,19 @@
+1:0	"import"	meta.imports keyword.other.import
+1:6	" "	meta.imports
+1:7	"("	meta.imports punctuation.section.parens.begin
+2:0	"\t"	meta.imports
+2:1	"_s \"strings\""	meta.imports invalid
+3:0	")"	meta.imports punctuation.section.parens.end
+4:0	""
+5:0	"a"	variable.other
+5:1	":"	punctuation.colon
+5:2	" "
+5:3	"_s"	variable.other
+5:5	"."	punctuation.accessor
+5:6	"ToUpper"	variable.other.member
+5:13	"("	meta.parens punctuation.section.parens.begin
+5:14	"\""	meta.parens meta.string punctuation.definition.string.begin
+5:15	"x"	meta.parens meta.string string.quoted.double
+5:16	"\""	meta.parens meta.string punctuation.definition.string.end
+5:17	")"	meta.parens punctuation.section.parens.end
+6:0	""

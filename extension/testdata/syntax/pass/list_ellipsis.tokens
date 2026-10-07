@@ -1,0 +1,27 @@
+1:0	"a"	variable.other
+1:1	":"	punctuation.colon
+1:2	" "
+1:3	"["	meta.brackets punctuation.section.brackets.begin
+1:4	"..."	meta.brackets punctuation.ellipsis
+1:7	"int"	meta.brackets support.type
+1:10	"]"	meta.brackets punctuation.section.brackets.end
+2:0	"b"	variable.other
+2:1	":"	punctuation.colon
+2:2	" "
+2:3	"["	meta.brackets punctuation.section.brackets.begin
+2:4	"1"	meta.brackets constant.numeric.integer.decimal
+2:5	","	meta.brackets punctuation.separator
+2:6	" "	meta.brackets
+2:7	"2"	meta.brackets constant.numeric.integer.decimal
+2:8	","	meta.brackets punctuation.separator
+2:9	" "	meta.brackets
+2:10	"..."	meta.brackets punctuation.ellipsis
+2:13	"string"	meta.brackets support.type
+2:19	"]"	meta.brackets punctuation.section.brackets.end
+3:0	"c"	variable.other
+3:1	":"	punctuation.colon
+3:2	" "
+3:3	"["	meta.brackets punctuation.section.brackets.begin
+3:4	"..."	meta.brackets punctuation.ellipsis
+3:7	"]"	meta.brackets punctuation.section.brackets.end
+4:0	""

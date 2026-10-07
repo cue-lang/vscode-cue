@@ -17,5 +17,7 @@ extension: npm: devDependencies: {
 	typescript:              "5.9.3"
 	"typescript-eslint":     "8.65.0"
 	"vscode-languageclient": "9.0.1"
+	"vscode-oniguruma":      "2.0.1"
+	"vscode-textmate":       "9.3.2"
 	which:                   "5.0.0"
 }

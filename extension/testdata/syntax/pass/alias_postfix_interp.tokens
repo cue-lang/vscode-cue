@@ -1,0 +1,17 @@
+1:0	"k"	variable.other
+1:1	":"	punctuation.colon
+1:2	" "
+1:3	"\""	meta.string punctuation.definition.string.begin
+1:4	"foo"	meta.string string.quoted.double
+1:7	"\""	meta.string punctuation.definition.string.end
+2:0	"\""	meta.string punctuation.definition.string.begin
+2:1	"\\("	meta.string string.quoted.double meta.interpolation punctuation.section.interpolation.begin
+2:3	"k"	meta.string string.quoted.double meta.interpolation source.cue.embedded variable.other
+2:4	")"	meta.string string.quoted.double meta.interpolation punctuation.section.interpolation.end
+2:5	"\""	meta.string punctuation.definition.string.end
+2:6	"~X: 1"	invalid
+3:0	"y"	variable.other
+3:1	":"	punctuation.colon
+3:2	" "
+3:3	"X"	variable.other
+4:0	""

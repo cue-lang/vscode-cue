@@ -1,0 +1,16 @@
+1:0	"a"	variable.other
+1:1	":"	punctuation.colon
+1:2	" "
+1:3	"1"	constant.numeric.integer.decimal
+1:4	" "
+1:5	"@"	meta.annotation punctuation.definition.annotation
+1:6	"protobuf"	meta.annotation variable.annotation
+1:14	"("	meta.annotation punctuation.attribute-elements.begin
+1:15	"2"	meta.annotation string.unquoted
+1:16	","	meta.annotation punctuation.separator
+1:17	"bytes"	meta.annotation string.unquoted
+1:22	","	meta.annotation punctuation.separator
+1:23	"opt.name"	meta.annotation string.unquoted
+1:31	"=apiVersion"	meta.annotation invalid
+1:42	")"	meta.annotation punctuation.attribute-elements.end
+2:0	""

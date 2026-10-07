@@ -1,0 +1,14 @@
+1:0	"a"	variable.other
+1:1	"~ X: 1"	invalid
+2:0	"b"	variable.other
+2:1	" "
+2:2	"~Y: 2"	invalid
+3:0	"c"	variable.other
+3:1	":"	punctuation.colon
+3:2	" "
+3:3	"X"	variable.other
+3:4	" "
+3:5	"+"	keyword.operator
+3:6	" "
+3:7	"Y"	variable.other
+4:0	""

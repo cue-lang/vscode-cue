@@ -1,0 +1,23 @@
+1:0	"k"	variable.other
+1:1	":"	punctuation.colon
+1:2	" "
+1:3	"\""	meta.string punctuation.definition.string.begin
+1:4	"foo"	meta.string string.quoted.double
+1:7	"\""	meta.string punctuation.definition.string.end
+2:0	"("	meta.parens punctuation.section.parens.begin
+2:1	"k"	meta.parens variable.other
+2:2	")"	meta.parens punctuation.section.parens.end
+2:3	"~X: 1"	invalid
+3:0	"\""	meta.string punctuation.definition.string.begin
+3:1	"quoted"	meta.string string.quoted.double
+3:7	"\""	meta.string punctuation.definition.string.end
+3:8	"~(Y): 2"	invalid
+4:0	"z"	variable.other
+4:1	":"	punctuation.colon
+4:2	" "
+4:3	"X"	variable.other
+4:4	" "
+4:5	"+"	keyword.operator
+4:6	" "
+4:7	"Y"	variable.other
+5:0	""

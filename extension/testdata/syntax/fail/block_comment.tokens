@@ -1,0 +1,10 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" error: 2:1: expected operand, found '/'"	comment.line
+2:0	"/*"	comment.block punctuation.definition.comment
+2:2	" x "	comment.block
+2:5	"*/"	comment.block punctuation.definition.comment
+3:0	"a"	variable.other
+3:1	":"	punctuation.colon
+3:2	" "
+3:3	"1"	constant.numeric.integer.decimal
+4:0	""

@@ -9,7 +9,11 @@
 2:3	"k"	meta.string string.quoted.double meta.interpolation source.cue.embedded variable.other
 2:4	")"	meta.string string.quoted.double meta.interpolation punctuation.section.interpolation.end
 2:5	"\""	meta.string punctuation.definition.string.end
-2:6	"~X: 1"	invalid
+2:6	"~"	invalid
+2:7	"X"	variable.other
+2:8	":"	punctuation.colon
+2:9	" "
+2:10	"1"	constant.numeric.integer.decimal
 3:0	"y"	variable.other
 3:1	":"	punctuation.colon
 3:2	" "

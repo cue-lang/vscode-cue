@@ -2,7 +2,12 @@
 1:6	" "	meta.imports
 1:7	"("	meta.imports punctuation.section.parens.begin
 2:0	"\t"	meta.imports
-2:1	"_s \"strings\""	meta.imports invalid
+2:1	"_"	meta.imports invalid
+2:2	"s"	meta.imports meta.import-spec entity.name.namespace
+2:3	" "	meta.imports meta.import-spec
+2:4	"\""	meta.imports meta.import-spec punctuation.definition.string.begin
+2:5	"strings"	meta.imports meta.import-spec string.quoted.double-import
+2:12	"\""	meta.imports meta.import-spec punctuation.definition.string.end
 3:0	")"	meta.imports punctuation.section.parens.end
 4:0	""
 5:0	"a"	variable.other

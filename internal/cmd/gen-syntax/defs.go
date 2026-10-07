@@ -351,15 +351,15 @@ var repository = RuleMap{
 		},
 	},
 	"invalid_in_braces": {
-		Match: `[^\}]+`,
+		Match: `[^\s\}]`,
 		Name:  "invalid",
 	},
 	"invalid_in_brakets": {
-		Match: `[^\]]+`,
+		Match: `[^\s\]]`,
 		Name:  "invalid",
 	},
 	"invalid_in_parens": {
-		Match: `[^\)]+`,
+		Match: `[^\s\)]`,
 		Name:  "invalid",
 	},
 	"null": {

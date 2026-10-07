@@ -7,11 +7,21 @@
 2:0	"("	meta.parens punctuation.section.parens.begin
 2:1	"k"	meta.parens variable.other
 2:2	")"	meta.parens punctuation.section.parens.end
-2:3	"~X: 1"	invalid
+2:3	"~"	invalid
+2:4	"X"	variable.other
+2:5	":"	punctuation.colon
+2:6	" "
+2:7	"1"	constant.numeric.integer.decimal
 3:0	"\""	meta.string punctuation.definition.string.begin
 3:1	"quoted"	meta.string string.quoted.double
 3:7	"\""	meta.string punctuation.definition.string.end
-3:8	"~(Y): 2"	invalid
+3:8	"~"	invalid
+3:9	"("	meta.parens punctuation.section.parens.begin
+3:10	"Y"	meta.parens variable.other
+3:11	")"	meta.parens punctuation.section.parens.end
+3:12	":"	punctuation.colon
+3:13	" "
+3:14	"2"	constant.numeric.integer.decimal
 4:0	"z"	variable.other
 4:1	":"	punctuation.colon
 4:2	" "

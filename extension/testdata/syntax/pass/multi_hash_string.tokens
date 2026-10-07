@@ -1,42 +1,30 @@
 1:0	"a"	variable.other
 1:1	":"	punctuation.colon
 1:2	" "
-1:3	"##"	variable.other
-1:5	"\""	meta.string punctuation.definition.string.begin
-1:6	"foo"	meta.string string.quoted.double
-1:9	"\""	meta.string punctuation.definition.string.end
-1:10	"#bar"	variable.other
-1:14	"\""	meta.string punctuation.definition.string.begin
-1:15	"##"	meta.string string.quoted.double
-2:0	"b: ##"	meta.string string.quoted.double
-2:5	"\""	meta.string punctuation.definition.string.end
-2:6	"\""	meta.string punctuation.definition.string.begin
-2:7	"\""	meta.string punctuation.definition.string.end
-3:0	"\t"
-3:1	"x"	variable.other
-3:2	"\""	meta.string punctuation.definition.string.begin
-3:3	"#y"	meta.string string.quoted.double
-4:0	"\t"	meta.string string.quoted.double
-4:1	"\""	meta.string punctuation.definition.string.end
-4:2	"\""	meta.string punctuation.definition.string.begin
-4:3	"\""	meta.string punctuation.definition.string.end
-4:4	"##"	variable.other
+1:3	"##\""	meta.string punctuation.definition.string.begin
+1:6	"foo\"#bar"	meta.string string.quoted.double
+1:14	"\"##"	meta.string punctuation.definition.string.end
+2:0	"b"	variable.other
+2:1	":"	punctuation.colon
+2:2	" "
+2:3	"##\"\"\""	meta.string punctuation.definition.string.begin
+3:0	"\tx\"#y"	meta.string string.quoted.double-multiline
+4:0	"\t"	meta.string string.quoted.double-multiline
+4:1	"\"\"\"##"	meta.string punctuation.definition.string.end
 5:0	"c"	variable.other
 5:1	":"	punctuation.colon
 5:2	" "
-5:3	"##"	variable.other
-5:5	"'"	meta.string punctuation.definition.string.begin
+5:3	"##'"	meta.string punctuation.definition.string.begin
 5:6	"bytes"	meta.string string.quoted.single
-5:11	"'"	meta.string punctuation.definition.string.end
-5:12	"##"	variable.other
+5:11	"'##"	meta.string punctuation.definition.string.end
 6:0	"d"	variable.other
 6:1	":"	punctuation.colon
 6:2	" "
-6:3	"##"	variable.other
-6:5	"\""	meta.string punctuation.definition.string.begin
+6:3	"##\""	meta.string punctuation.definition.string.begin
 6:6	"x"	meta.string string.quoted.double
-6:7	"\\#"	meta.string string.quoted.double invalid.illegal
-6:9	"#(1)y"	meta.string string.quoted.double
-6:14	"\""	meta.string punctuation.definition.string.end
-6:15	"##"	variable.other
+6:7	"\\##("	meta.string string.quoted.double meta.interpolation punctuation.section.interpolation.begin
+6:11	"1"	meta.string string.quoted.double meta.interpolation source.cue.embedded constant.numeric.integer.decimal
+6:12	")"	meta.string string.quoted.double meta.interpolation punctuation.section.interpolation.end
+6:13	"y"	meta.string string.quoted.double
+6:14	"\"##"	meta.string punctuation.definition.string.end
 7:0	""

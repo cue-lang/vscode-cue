@@ -762,6 +762,750 @@
 		"string": {
 			"patterns": [
 				{
+					"begin": "####\"\"\"",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin"
+						}
+					},
+					"end": "\"\"\"####",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end"
+						}
+					},
+					"contentName": "string.quoted.double-multiline",
+					"patterns": [
+						{
+							"match": "\\\\####(?:\"\"\"|/|\\\\|[abfnrtv]|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})",
+							"name": "constant.character.escape"
+						},
+						{
+							"match": "\\\\####(?:[0-7]{3}|x[0-9A-Fa-f]{2})",
+							"name": "invalid.illegal"
+						},
+						{
+							"begin": "\\\\####\\(",
+							"beginCaptures": {
+								"0": {
+									"name": "punctuation.section.interpolation.begin"
+								}
+							},
+							"end": "\\)",
+							"endCaptures": {
+								"0": {
+									"name": "punctuation.section.interpolation.end"
+								}
+							},
+							"contentName": "source.cue.embedded",
+							"patterns": [
+								{
+									"include": "#whitespace"
+								},
+								{
+									"include": "#punctuation_option"
+								},
+								{
+									"include": "#expression"
+								},
+								{
+									"include": "#invalid_in_parens"
+								}
+							],
+							"name": "meta.interpolation"
+						},
+						{
+							"match": "\\\\####$",
+							"name": "constant.character.escape"
+						},
+						{
+							"match": "\\\\####.",
+							"name": "invalid.illegal"
+						}
+					],
+					"name": "meta.string"
+				},
+				{
+					"begin": "####\"",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin"
+						}
+					},
+					"end": "\"####",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end"
+						}
+					},
+					"contentName": "string.quoted.double",
+					"patterns": [
+						{
+							"match": "\\\\####(?:\"|/|\\\\|[abfnrtv]|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})",
+							"name": "constant.character.escape"
+						},
+						{
+							"match": "\\\\####(?:[0-7]{3}|x[0-9A-Fa-f]{2})",
+							"name": "invalid.illegal"
+						},
+						{
+							"begin": "\\\\####\\(",
+							"beginCaptures": {
+								"0": {
+									"name": "punctuation.section.interpolation.begin"
+								}
+							},
+							"end": "\\)",
+							"endCaptures": {
+								"0": {
+									"name": "punctuation.section.interpolation.end"
+								}
+							},
+							"contentName": "source.cue.embedded",
+							"patterns": [
+								{
+									"include": "#whitespace"
+								},
+								{
+									"include": "#punctuation_option"
+								},
+								{
+									"include": "#expression"
+								},
+								{
+									"include": "#invalid_in_parens"
+								}
+							],
+							"name": "meta.interpolation"
+						},
+						{
+							"match": "\\\\####.",
+							"name": "invalid.illegal"
+						}
+					],
+					"name": "meta.string"
+				},
+				{
+					"begin": "####'''",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin"
+						}
+					},
+					"end": "'''####",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end"
+						}
+					},
+					"contentName": "string.quoted.single-multiline",
+					"patterns": [
+						{
+							"match": "\\\\####(?:'''|/|\\\\|[abfnrtv]|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})",
+							"name": "constant.character.escape"
+						},
+						{
+							"match": "\\\\####(?:[0-7]{3}|x[0-9A-Fa-f]{2})",
+							"name": "constant.character.escape"
+						},
+						{
+							"begin": "\\\\####\\(",
+							"beginCaptures": {
+								"0": {
+									"name": "punctuation.section.interpolation.begin"
+								}
+							},
+							"end": "\\)",
+							"endCaptures": {
+								"0": {
+									"name": "punctuation.section.interpolation.end"
+								}
+							},
+							"contentName": "source.cue.embedded",
+							"patterns": [
+								{
+									"include": "#whitespace"
+								},
+								{
+									"include": "#punctuation_option"
+								},
+								{
+									"include": "#expression"
+								},
+								{
+									"include": "#invalid_in_parens"
+								}
+							],
+							"name": "meta.interpolation"
+						},
+						{
+							"match": "\\\\####$",
+							"name": "constant.character.escape"
+						},
+						{
+							"match": "\\\\####.",
+							"name": "invalid.illegal"
+						}
+					],
+					"name": "meta.string"
+				},
+				{
+					"begin": "####'",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin"
+						}
+					},
+					"end": "'####",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end"
+						}
+					},
+					"contentName": "string.quoted.single",
+					"patterns": [
+						{
+							"match": "\\\\####(?:'|/|\\\\|[abfnrtv]|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})",
+							"name": "constant.character.escape"
+						},
+						{
+							"match": "\\\\####(?:[0-7]{3}|x[0-9A-Fa-f]{2})",
+							"name": "constant.character.escape"
+						},
+						{
+							"begin": "\\\\####\\(",
+							"beginCaptures": {
+								"0": {
+									"name": "punctuation.section.interpolation.begin"
+								}
+							},
+							"end": "\\)",
+							"endCaptures": {
+								"0": {
+									"name": "punctuation.section.interpolation.end"
+								}
+							},
+							"contentName": "source.cue.embedded",
+							"patterns": [
+								{
+									"include": "#whitespace"
+								},
+								{
+									"include": "#punctuation_option"
+								},
+								{
+									"include": "#expression"
+								},
+								{
+									"include": "#invalid_in_parens"
+								}
+							],
+							"name": "meta.interpolation"
+						},
+						{
+							"match": "\\\\####.",
+							"name": "invalid.illegal"
+						}
+					],
+					"name": "meta.string"
+				},
+				{
+					"begin": "###\"\"\"",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin"
+						}
+					},
+					"end": "\"\"\"###",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end"
+						}
+					},
+					"contentName": "string.quoted.double-multiline",
+					"patterns": [
+						{
+							"match": "\\\\###(?:\"\"\"|/|\\\\|[abfnrtv]|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})",
+							"name": "constant.character.escape"
+						},
+						{
+							"match": "\\\\###(?:[0-7]{3}|x[0-9A-Fa-f]{2})",
+							"name": "invalid.illegal"
+						},
+						{
+							"begin": "\\\\###\\(",
+							"beginCaptures": {
+								"0": {
+									"name": "punctuation.section.interpolation.begin"
+								}
+							},
+							"end": "\\)",
+							"endCaptures": {
+								"0": {
+									"name": "punctuation.section.interpolation.end"
+								}
+							},
+							"contentName": "source.cue.embedded",
+							"patterns": [
+								{
+									"include": "#whitespace"
+								},
+								{
+									"include": "#punctuation_option"
+								},
+								{
+									"include": "#expression"
+								},
+								{
+									"include": "#invalid_in_parens"
+								}
+							],
+							"name": "meta.interpolation"
+						},
+						{
+							"match": "\\\\###$",
+							"name": "constant.character.escape"
+						},
+						{
+							"match": "\\\\###.",
+							"name": "invalid.illegal"
+						}
+					],
+					"name": "meta.string"
+				},
+				{
+					"begin": "###\"",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin"
+						}
+					},
+					"end": "\"###",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end"
+						}
+					},
+					"contentName": "string.quoted.double",
+					"patterns": [
+						{
+							"match": "\\\\###(?:\"|/|\\\\|[abfnrtv]|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})",
+							"name": "constant.character.escape"
+						},
+						{
+							"match": "\\\\###(?:[0-7]{3}|x[0-9A-Fa-f]{2})",
+							"name": "invalid.illegal"
+						},
+						{
+							"begin": "\\\\###\\(",
+							"beginCaptures": {
+								"0": {
+									"name": "punctuation.section.interpolation.begin"
+								}
+							},
+							"end": "\\)",
+							"endCaptures": {
+								"0": {
+									"name": "punctuation.section.interpolation.end"
+								}
+							},
+							"contentName": "source.cue.embedded",
+							"patterns": [
+								{
+									"include": "#whitespace"
+								},
+								{
+									"include": "#punctuation_option"
+								},
+								{
+									"include": "#expression"
+								},
+								{
+									"include": "#invalid_in_parens"
+								}
+							],
+							"name": "meta.interpolation"
+						},
+						{
+							"match": "\\\\###.",
+							"name": "invalid.illegal"
+						}
+					],
+					"name": "meta.string"
+				},
+				{
+					"begin": "###'''",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin"
+						}
+					},
+					"end": "'''###",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end"
+						}
+					},
+					"contentName": "string.quoted.single-multiline",
+					"patterns": [
+						{
+							"match": "\\\\###(?:'''|/|\\\\|[abfnrtv]|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})",
+							"name": "constant.character.escape"
+						},
+						{
+							"match": "\\\\###(?:[0-7]{3}|x[0-9A-Fa-f]{2})",
+							"name": "constant.character.escape"
+						},
+						{
+							"begin": "\\\\###\\(",
+							"beginCaptures": {
+								"0": {
+									"name": "punctuation.section.interpolation.begin"
+								}
+							},
+							"end": "\\)",
+							"endCaptures": {
+								"0": {
+									"name": "punctuation.section.interpolation.end"
+								}
+							},
+							"contentName": "source.cue.embedded",
+							"patterns": [
+								{
+									"include": "#whitespace"
+								},
+								{
+									"include": "#punctuation_option"
+								},
+								{
+									"include": "#expression"
+								},
+								{
+									"include": "#invalid_in_parens"
+								}
+							],
+							"name": "meta.interpolation"
+						},
+						{
+							"match": "\\\\###$",
+							"name": "constant.character.escape"
+						},
+						{
+							"match": "\\\\###.",
+							"name": "invalid.illegal"
+						}
+					],
+					"name": "meta.string"
+				},
+				{
+					"begin": "###'",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin"
+						}
+					},
+					"end": "'###",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end"
+						}
+					},
+					"contentName": "string.quoted.single",
+					"patterns": [
+						{
+							"match": "\\\\###(?:'|/|\\\\|[abfnrtv]|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})",
+							"name": "constant.character.escape"
+						},
+						{
+							"match": "\\\\###(?:[0-7]{3}|x[0-9A-Fa-f]{2})",
+							"name": "constant.character.escape"
+						},
+						{
+							"begin": "\\\\###\\(",
+							"beginCaptures": {
+								"0": {
+									"name": "punctuation.section.interpolation.begin"
+								}
+							},
+							"end": "\\)",
+							"endCaptures": {
+								"0": {
+									"name": "punctuation.section.interpolation.end"
+								}
+							},
+							"contentName": "source.cue.embedded",
+							"patterns": [
+								{
+									"include": "#whitespace"
+								},
+								{
+									"include": "#punctuation_option"
+								},
+								{
+									"include": "#expression"
+								},
+								{
+									"include": "#invalid_in_parens"
+								}
+							],
+							"name": "meta.interpolation"
+						},
+						{
+							"match": "\\\\###.",
+							"name": "invalid.illegal"
+						}
+					],
+					"name": "meta.string"
+				},
+				{
+					"begin": "##\"\"\"",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin"
+						}
+					},
+					"end": "\"\"\"##",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end"
+						}
+					},
+					"contentName": "string.quoted.double-multiline",
+					"patterns": [
+						{
+							"match": "\\\\##(?:\"\"\"|/|\\\\|[abfnrtv]|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})",
+							"name": "constant.character.escape"
+						},
+						{
+							"match": "\\\\##(?:[0-7]{3}|x[0-9A-Fa-f]{2})",
+							"name": "invalid.illegal"
+						},
+						{
+							"begin": "\\\\##\\(",
+							"beginCaptures": {
+								"0": {
+									"name": "punctuation.section.interpolation.begin"
+								}
+							},
+							"end": "\\)",
+							"endCaptures": {
+								"0": {
+									"name": "punctuation.section.interpolation.end"
+								}
+							},
+							"contentName": "source.cue.embedded",
+							"patterns": [
+								{
+									"include": "#whitespace"
+								},
+								{
+									"include": "#punctuation_option"
+								},
+								{
+									"include": "#expression"
+								},
+								{
+									"include": "#invalid_in_parens"
+								}
+							],
+							"name": "meta.interpolation"
+						},
+						{
+							"match": "\\\\##$",
+							"name": "constant.character.escape"
+						},
+						{
+							"match": "\\\\##.",
+							"name": "invalid.illegal"
+						}
+					],
+					"name": "meta.string"
+				},
+				{
+					"begin": "##\"",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin"
+						}
+					},
+					"end": "\"##",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end"
+						}
+					},
+					"contentName": "string.quoted.double",
+					"patterns": [
+						{
+							"match": "\\\\##(?:\"|/|\\\\|[abfnrtv]|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})",
+							"name": "constant.character.escape"
+						},
+						{
+							"match": "\\\\##(?:[0-7]{3}|x[0-9A-Fa-f]{2})",
+							"name": "invalid.illegal"
+						},
+						{
+							"begin": "\\\\##\\(",
+							"beginCaptures": {
+								"0": {
+									"name": "punctuation.section.interpolation.begin"
+								}
+							},
+							"end": "\\)",
+							"endCaptures": {
+								"0": {
+									"name": "punctuation.section.interpolation.end"
+								}
+							},
+							"contentName": "source.cue.embedded",
+							"patterns": [
+								{
+									"include": "#whitespace"
+								},
+								{
+									"include": "#punctuation_option"
+								},
+								{
+									"include": "#expression"
+								},
+								{
+									"include": "#invalid_in_parens"
+								}
+							],
+							"name": "meta.interpolation"
+						},
+						{
+							"match": "\\\\##.",
+							"name": "invalid.illegal"
+						}
+					],
+					"name": "meta.string"
+				},
+				{
+					"begin": "##'''",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin"
+						}
+					},
+					"end": "'''##",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end"
+						}
+					},
+					"contentName": "string.quoted.single-multiline",
+					"patterns": [
+						{
+							"match": "\\\\##(?:'''|/|\\\\|[abfnrtv]|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})",
+							"name": "constant.character.escape"
+						},
+						{
+							"match": "\\\\##(?:[0-7]{3}|x[0-9A-Fa-f]{2})",
+							"name": "constant.character.escape"
+						},
+						{
+							"begin": "\\\\##\\(",
+							"beginCaptures": {
+								"0": {
+									"name": "punctuation.section.interpolation.begin"
+								}
+							},
+							"end": "\\)",
+							"endCaptures": {
+								"0": {
+									"name": "punctuation.section.interpolation.end"
+								}
+							},
+							"contentName": "source.cue.embedded",
+							"patterns": [
+								{
+									"include": "#whitespace"
+								},
+								{
+									"include": "#punctuation_option"
+								},
+								{
+									"include": "#expression"
+								},
+								{
+									"include": "#invalid_in_parens"
+								}
+							],
+							"name": "meta.interpolation"
+						},
+						{
+							"match": "\\\\##$",
+							"name": "constant.character.escape"
+						},
+						{
+							"match": "\\\\##.",
+							"name": "invalid.illegal"
+						}
+					],
+					"name": "meta.string"
+				},
+				{
+					"begin": "##'",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.begin"
+						}
+					},
+					"end": "'##",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.string.end"
+						}
+					},
+					"contentName": "string.quoted.single",
+					"patterns": [
+						{
+							"match": "\\\\##(?:'|/|\\\\|[abfnrtv]|u[0-9A-Fa-f]{4}|U[0-9A-Fa-f]{8})",
+							"name": "constant.character.escape"
+						},
+						{
+							"match": "\\\\##(?:[0-7]{3}|x[0-9A-Fa-f]{2})",
+							"name": "constant.character.escape"
+						},
+						{
+							"begin": "\\\\##\\(",
+							"beginCaptures": {
+								"0": {
+									"name": "punctuation.section.interpolation.begin"
+								}
+							},
+							"end": "\\)",
+							"endCaptures": {
+								"0": {
+									"name": "punctuation.section.interpolation.end"
+								}
+							},
+							"contentName": "source.cue.embedded",
+							"patterns": [
+								{
+									"include": "#whitespace"
+								},
+								{
+									"include": "#punctuation_option"
+								},
+								{
+									"include": "#expression"
+								},
+								{
+									"include": "#invalid_in_parens"
+								}
+							],
+							"name": "meta.interpolation"
+						},
+						{
+							"match": "\\\\##.",
+							"name": "invalid.illegal"
+						}
+					],
+					"name": "meta.string"
+				},
+				{
 					"begin": "#\"\"\"",
 					"beginCaptures": {
 						"0": {
@@ -813,6 +1557,10 @@
 								}
 							],
 							"name": "meta.interpolation"
+						},
+						{
+							"match": "\\\\#$",
+							"name": "constant.character.escape"
 						},
 						{
 							"match": "\\\\#.",
@@ -935,6 +1683,10 @@
 							"name": "meta.interpolation"
 						},
 						{
+							"match": "\\\\#$",
+							"name": "constant.character.escape"
+						},
+						{
 							"match": "\\\\#.",
 							"name": "invalid.illegal"
 						}
@@ -1055,6 +1807,10 @@
 							"name": "meta.interpolation"
 						},
 						{
+							"match": "\\\\$",
+							"name": "constant.character.escape"
+						},
+						{
 							"match": "\\\\.",
 							"name": "invalid.illegal"
 						}
@@ -1173,6 +1929,10 @@
 								}
 							],
 							"name": "meta.interpolation"
+						},
+						{
+							"match": "\\\\$",
+							"name": "constant.character.escape"
 						},
 						{
 							"match": "\\\\.",

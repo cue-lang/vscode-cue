@@ -39,6 +39,20 @@ var repository = RuleMap{
 			2: Capture{Name: "punctuation.alias"},
 		},
 	},
+	"alias_postfix": {
+		// An alias name may be _, as in ~(K, _), and a space may follow
+		// the ~, as in a~ X.
+		Match: `(~)[ \t]*(?:(` + identAny + `|_)|(\()[ \t]*(` + identAny + `|_)(?:[ \t]*(,)[ \t]*(` + identAny + `|_))?[ \t]*(\)))`,
+		Captures: Captures{
+			1: Capture{Name: "punctuation.alias"},
+			2: Capture{Name: "variable.other"},
+			3: Capture{Name: "punctuation.section.parens.begin"},
+			4: Capture{Name: "variable.other"},
+			5: Capture{Name: "punctuation.separator"},
+			6: Capture{Name: "variable.other"},
+			7: Capture{Name: "punctuation.section.parens.end"},
+		},
+	},
 	"attribute": {
 		Begin: `(@)(` + identAny + `)(\()`,
 		BeginCaptures: Captures{
@@ -227,6 +241,8 @@ var repository = RuleMap{
 	"declaration": {
 		Patterns: Includes(
 			"#attribute",
+			"#alias_postfix",
+			"#punctuation_ellipsis",
 			"#punctuation_isa",
 			"#punctuation_colon",
 			"#punctuation_option",
@@ -391,6 +407,10 @@ var repository = RuleMap{
 	"operator": {
 		Patterns: Rules{
 			{
+				Match: `->`,
+				Name:  "keyword.operator.arrow",
+			},
+			{
 				Match: `[\+\-\*]|/(?![/*])`,
 				Name:  "keyword.operator", // not *only* arithmetic, also unary
 			},
@@ -466,10 +486,22 @@ var repository = RuleMap{
 		Name:  "punctuation.option",
 	},
 	"selector": {
-		Match: `(?<!\.)(\.)(` + identAny + `)` + afterIdent,
-		Captures: Captures{
-			1: Capture{Name: "punctuation.accessor"},
-			2: Capture{Name: "variable.other.member"},
+		Patterns: Rules{
+			{
+				Match: `(?<!\.)(\.)(` + identAny + `)` + afterIdent,
+				Captures: Captures{
+					1: Capture{Name: "punctuation.accessor"},
+					2: Capture{Name: "variable.other.member"},
+				},
+			},
+			{
+				// A quoted selector, as in x."a-b"; the string rule
+				// scopes the quoted label.
+				Match: `(?<!\.)(\.)(?=#*")`,
+				Captures: Captures{
+					1: Capture{Name: "punctuation.accessor"},
+				},
+			},
 		},
 	},
 	"string": {

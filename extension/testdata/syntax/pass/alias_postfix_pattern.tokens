@@ -1,13 +1,13 @@
 1:0	"["	meta.brackets punctuation.section.brackets.begin
 1:1	"string"	meta.brackets support.type
 1:7	"]"	meta.brackets punctuation.section.brackets.end
-1:8	"~"	invalid
-1:9	"("	meta.parens punctuation.section.parens.begin
-1:10	"K"	meta.parens variable.other
-1:11	","	meta.parens punctuation.separator
-1:12	" "	meta.parens
-1:13	"V"	meta.parens variable.other
-1:14	")"	meta.parens punctuation.section.parens.end
+1:8	"~"	punctuation.alias
+1:9	"("	punctuation.section.parens.begin
+1:10	"K"	variable.other
+1:11	","	punctuation.separator
+1:12	" "
+1:13	"V"	variable.other
+1:14	")"	punctuation.section.parens.end
 1:15	":"	punctuation.colon
 1:16	" "
 1:17	"{"	meta.struct punctuation.definition.struct.begin

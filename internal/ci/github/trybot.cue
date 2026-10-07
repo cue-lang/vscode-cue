@@ -133,6 +133,10 @@ workflows: trybot: _repo.bashWorkflow & {
 				run:  "npm run compile"
 			},
 			extensionStep & {
+				name: "Test extension"
+				run:  "npm run test:unit"
+			},
+			extensionStep & {
 				name: "Package extension"
 				run:  "npm run package"
 			},

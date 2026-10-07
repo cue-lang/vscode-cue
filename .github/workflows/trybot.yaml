@@ -120,6 +120,9 @@ jobs:
       - name: Compile extension
         run: npm run compile
         working-directory: extension
+      - name: Test extension
+        run: npm run test:unit
+        working-directory: extension
       - name: Package extension
         run: npm run package
         working-directory: extension

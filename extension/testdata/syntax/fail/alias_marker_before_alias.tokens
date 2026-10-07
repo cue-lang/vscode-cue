@@ -2,7 +2,7 @@
 1:2	" error: 2:3: missing ',' in struct literal"	comment.line
 2:0	"a"	variable.other
 2:1	"?"	punctuation.option
-2:2	"~"	invalid
+2:2	"~"	punctuation.alias
 2:3	"X"	variable.other
 2:4	":"	punctuation.colon
 2:5	" "

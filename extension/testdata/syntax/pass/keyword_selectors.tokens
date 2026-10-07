@@ -61,7 +61,7 @@
 2:34	"+"	keyword.operator
 2:35	" "
 2:36	"x"	variable.other
-2:37	"."	invalid
+2:37	"."	punctuation.accessor
 2:38	"\""	meta.string punctuation.definition.string.begin
 2:39	"a-b"	meta.string string.quoted.double
 2:42	"\""	meta.string punctuation.definition.string.end

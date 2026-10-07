@@ -1,0 +1,20 @@
+1:0	"@"	meta.annotation punctuation.definition.annotation
+1:1	"extern"	meta.annotation variable.annotation
+1:7	"("	meta.annotation punctuation.attribute-elements.begin
+1:8	"embed"	meta.annotation string.unquoted
+1:13	")"	meta.annotation punctuation.attribute-elements.end
+2:0	"@"	meta.annotation punctuation.definition.annotation
+2:1	"other"	meta.annotation variable.annotation
+2:6	"("	meta.annotation punctuation.attribute-elements.begin
+2:7	"x"	meta.annotation string.unquoted
+2:8	")"	meta.annotation punctuation.attribute-elements.end
+3:0	""
+4:0	"package"	keyword.other.package
+4:7	" "
+4:8	"p"	entity.name.namespace
+5:0	""
+6:0	"a"	variable.other
+6:1	":"	punctuation.colon
+6:2	" "
+6:3	"1"	constant.numeric.integer.decimal
+7:0	""

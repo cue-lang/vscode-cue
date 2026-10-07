@@ -1,0 +1,48 @@
+1:0	"@"	meta.annotation punctuation.definition.annotation
+1:1	"experiment"	meta.annotation variable.annotation
+1:11	"("	meta.annotation punctuation.attribute-elements.begin
+1:12	"try"	meta.annotation string.unquoted
+1:15	")"	meta.annotation punctuation.attribute-elements.end
+2:0	""
+3:0	"l"	variable.other
+3:1	":"	punctuation.colon
+3:2	" "
+3:3	"["	meta.brackets punctuation.section.brackets.begin
+3:4	"if"	meta.brackets keyword.control.conditional
+3:6	" "	meta.brackets
+3:7	"false"	meta.brackets constant.language.bool
+3:12	" "	meta.brackets
+3:13	"{"	meta.brackets meta.struct punctuation.definition.struct.begin
+3:14	"1"	meta.brackets meta.struct constant.numeric.integer.decimal
+3:15	"}"	meta.brackets meta.struct punctuation.definition.struct.end
+3:16	" "	meta.brackets
+3:17	"else"	meta.brackets variable.other
+3:21	" "	meta.brackets
+3:22	"{"	meta.brackets meta.struct punctuation.definition.struct.begin
+3:23	"2"	meta.brackets meta.struct constant.numeric.integer.decimal
+3:24	"}"	meta.brackets meta.struct punctuation.definition.struct.end
+3:25	"]"	meta.brackets punctuation.section.brackets.end
+4:0	"m"	variable.other
+4:1	":"	punctuation.colon
+4:2	" "
+4:3	"["	meta.brackets punctuation.section.brackets.begin
+4:4	"for"	meta.brackets keyword.control.for
+4:7	" "	meta.brackets
+4:8	"x"	meta.brackets variable.other
+4:9	" "	meta.brackets
+4:10	"in"	meta.brackets keyword.control.in
+4:12	" "	meta.brackets
+4:13	"["	meta.brackets meta.brackets punctuation.section.brackets.begin
+4:14	"]"	meta.brackets meta.brackets punctuation.section.brackets.end
+4:15	" "	meta.brackets
+4:16	"{"	meta.brackets meta.struct punctuation.definition.struct.begin
+4:17	"x"	meta.brackets meta.struct variable.other
+4:18	"}"	meta.brackets meta.struct punctuation.definition.struct.end
+4:19	" "	meta.brackets
+4:20	"otherwise"	meta.brackets variable.other
+4:29	" "	meta.brackets
+4:30	"{"	meta.brackets meta.struct punctuation.definition.struct.begin
+4:31	"0"	meta.brackets meta.struct constant.numeric.integer.decimal
+4:32	"}"	meta.brackets meta.struct punctuation.definition.struct.end
+4:33	"]"	meta.brackets punctuation.section.brackets.end
+5:0	""

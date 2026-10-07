@@ -1,0 +1,8 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" error: 2:4: expected operand, found ':'"	comment.line
+2:0	"a"	variable.other
+2:1	" "
+2:2	"::"	punctuation.isa
+2:4	" "
+2:5	"int"	support.type
+3:0	""

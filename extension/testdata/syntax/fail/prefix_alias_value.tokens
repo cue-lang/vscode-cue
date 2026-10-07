@@ -1,0 +1,20 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" error: 2:5: old-style alias syntax (=) is not allowed"	comment.line
+2:0	"a"	variable.other
+2:1	":"	punctuation.colon
+2:2	" "
+2:3	"X"	variable.other
+2:4	"="	punctuation.bind
+2:5	"{"	meta.struct punctuation.definition.struct.begin
+2:6	"b"	meta.struct variable.other
+2:7	":"	meta.struct punctuation.colon
+2:8	" "	meta.struct
+2:9	"1"	meta.struct constant.numeric.integer.decimal
+2:10	"}"	meta.struct punctuation.definition.struct.end
+3:0	"c"	variable.other
+3:1	":"	punctuation.colon
+3:2	" "
+3:3	"X"	variable.other
+3:4	"."	punctuation.accessor
+3:5	"b"	variable.other.member
+4:0	""

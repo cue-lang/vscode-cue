@@ -1,0 +1,53 @@
+1:0	"a"	variable.other
+1:1	":"	punctuation.colon
+1:2	" "
+1:3	"1"	constant.numeric.integer.decimal
+2:0	"b"	variable.other
+2:1	":"	punctuation.colon
+2:2	" "
+2:3	"2"	constant.numeric.integer.decimal
+3:0	"x"	variable.other
+3:1	":"	punctuation.colon
+3:2	" "
+3:3	"\"\"\""	meta.string punctuation.definition.string.begin
+4:0	"\t"	meta.string string.quoted.double-multiline
+4:1	"\\("	meta.string string.quoted.double-multiline meta.interpolation punctuation.section.interpolation.begin
+4:3	"a"	meta.string string.quoted.double-multiline meta.interpolation source.cue.embedded variable.other
+4:4	")"	meta.string string.quoted.double-multiline meta.interpolation punctuation.section.interpolation.end
+4:5	"'"	meta.string string.quoted.double-multiline
+4:6	"\\("	meta.string string.quoted.double-multiline meta.interpolation punctuation.section.interpolation.begin
+4:8	"b"	meta.string string.quoted.double-multiline meta.interpolation source.cue.embedded variable.other
+4:9	")"	meta.string string.quoted.double-multiline meta.interpolation punctuation.section.interpolation.end
+5:0	"\t"	meta.string string.quoted.double-multiline
+5:1	"\\("	meta.string string.quoted.double-multiline meta.interpolation punctuation.section.interpolation.begin
+5:3	"a"	meta.string string.quoted.double-multiline meta.interpolation source.cue.embedded variable.other
+5:4	")"	meta.string string.quoted.double-multiline meta.interpolation punctuation.section.interpolation.end
+5:5	"\""	meta.string string.quoted.double-multiline
+5:6	"\\("	meta.string string.quoted.double-multiline meta.interpolation punctuation.section.interpolation.begin
+5:8	"b"	meta.string string.quoted.double-multiline meta.interpolation source.cue.embedded variable.other
+5:9	")"	meta.string string.quoted.double-multiline meta.interpolation punctuation.section.interpolation.end
+6:0	"\t"	meta.string string.quoted.double-multiline
+6:1	"\\("	meta.string string.quoted.double-multiline meta.interpolation punctuation.section.interpolation.begin
+6:3	"a"	meta.string string.quoted.double-multiline meta.interpolation source.cue.embedded variable.other
+6:4	")"	meta.string string.quoted.double-multiline meta.interpolation punctuation.section.interpolation.end
+6:5	"\"\""	meta.string string.quoted.double-multiline
+6:7	"\\("	meta.string string.quoted.double-multiline meta.interpolation punctuation.section.interpolation.begin
+6:9	"b"	meta.string string.quoted.double-multiline meta.interpolation source.cue.embedded variable.other
+6:10	")"	meta.string string.quoted.double-multiline meta.interpolation punctuation.section.interpolation.end
+7:0	"\t"	meta.string string.quoted.double-multiline
+7:1	"\"\"\""	meta.string punctuation.definition.string.end
+8:0	"y"	variable.other
+8:1	":"	punctuation.colon
+8:2	" "
+8:3	"'''"	meta.string punctuation.definition.string.begin
+9:0	"\t"	meta.string string.quoted.single-multiline
+9:1	"\\("	meta.string string.quoted.single-multiline meta.interpolation punctuation.section.interpolation.begin
+9:3	"a"	meta.string string.quoted.single-multiline meta.interpolation source.cue.embedded variable.other
+9:4	")"	meta.string string.quoted.single-multiline meta.interpolation punctuation.section.interpolation.end
+9:5	"'"	meta.string string.quoted.single-multiline
+9:6	"\\("	meta.string string.quoted.single-multiline meta.interpolation punctuation.section.interpolation.begin
+9:8	"b"	meta.string string.quoted.single-multiline meta.interpolation source.cue.embedded variable.other
+9:9	")"	meta.string string.quoted.single-multiline meta.interpolation punctuation.section.interpolation.end
+10:0	"\t"	meta.string string.quoted.single-multiline
+10:1	"'''"	meta.string punctuation.definition.string.end
+11:0	""

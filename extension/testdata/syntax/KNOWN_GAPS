@@ -16,17 +16,3 @@ pass/number_prefix_underscore.cue
 pass/postfix_ellipsis_int.cue
 pass/postfix_ellipsis_signed.cue
 pass/selector_space.cue
-preview/call_chained.cue
-preview/call_labeled.cue
-preview/call_partial.cue
-preview/func_body_no_return.cue
-preview/func_body_postfix.cue
-preview/func_defaults.cue
-preview/func_keyword_params.cue
-preview/func_literal.cue
-preview/func_multiline.cue
-preview/func_open_signature.cue
-preview/func_param_attrs.cue
-preview/func_param_markers.cue
-preview/func_validator.cue
-preview/try_optional_paren.cue

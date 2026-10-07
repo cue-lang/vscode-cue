@@ -10,7 +10,7 @@
 3:3	"func"	variable.other
 3:7	"("	meta.parens punctuation.section.parens.begin
 3:8	"a"	meta.parens variable.other
-3:9	":"	meta.parens invalid
+3:9	":"	meta.parens punctuation.colon
 3:10	" "	meta.parens
 3:11	"int"	meta.parens support.type
 3:14	")"	meta.parens punctuation.section.parens.end

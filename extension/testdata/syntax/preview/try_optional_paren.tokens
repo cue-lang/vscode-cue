@@ -22,7 +22,7 @@
 5:8	" "	meta.struct meta.struct
 5:9	"("	meta.struct meta.struct meta.parens punctuation.section.parens.begin
 5:10	"a"	meta.struct meta.struct meta.parens variable.other
-5:11	"?"	meta.struct meta.struct meta.parens invalid
+5:11	"?"	meta.struct meta.struct meta.parens punctuation.option
 5:12	" "	meta.struct meta.struct meta.parens
 5:13	"+"	meta.struct meta.struct meta.parens keyword.operator
 5:14	" "	meta.struct meta.struct meta.parens

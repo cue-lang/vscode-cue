@@ -28,7 +28,13 @@
 3:18	"v"	meta.brackets variable.other
 3:19	" "	meta.brackets
 3:20	"="	meta.brackets punctuation.alias
-3:21	"= 1 {v}"	meta.brackets invalid
+3:21	"="	meta.brackets invalid
+3:22	" "	meta.brackets
+3:23	"1"	meta.brackets constant.numeric.integer.decimal
+3:24	" "	meta.brackets
+3:25	"{"	meta.brackets meta.struct punctuation.definition.struct.begin
+3:26	"v"	meta.brackets meta.struct variable.other
+3:27	"}"	meta.brackets meta.struct punctuation.definition.struct.end
 3:28	"]"	meta.brackets punctuation.section.brackets.end
 4:0	"y"	variable.other
 4:1	":"	punctuation.colon
@@ -37,6 +43,37 @@
 4:4	"a"	meta.brackets variable.other
 4:5	" "	meta.brackets
 4:6	"="	meta.brackets punctuation.alias
-4:7	"= 1, \"s\" =~ \"s\", \"s\" !~ \"t\", a != 2"	meta.brackets invalid
+4:7	"="	meta.brackets invalid
+4:8	" "	meta.brackets
+4:9	"1"	meta.brackets constant.numeric.integer.decimal
+4:10	","	meta.brackets punctuation.separator
+4:11	" "	meta.brackets
+4:12	"\""	meta.brackets meta.string punctuation.definition.string.begin
+4:13	"s"	meta.brackets meta.string string.quoted.double
+4:14	"\""	meta.brackets meta.string punctuation.definition.string.end
+4:15	" "	meta.brackets
+4:16	"=~"	meta.brackets keyword.operator.comparison
+4:18	" "	meta.brackets
+4:19	"\""	meta.brackets meta.string punctuation.definition.string.begin
+4:20	"s"	meta.brackets meta.string string.quoted.double
+4:21	"\""	meta.brackets meta.string punctuation.definition.string.end
+4:22	","	meta.brackets punctuation.separator
+4:23	" "	meta.brackets
+4:24	"\""	meta.brackets meta.string punctuation.definition.string.begin
+4:25	"s"	meta.brackets meta.string string.quoted.double
+4:26	"\""	meta.brackets meta.string punctuation.definition.string.end
+4:27	" "	meta.brackets
+4:28	"!~"	meta.brackets keyword.operator.comparison
+4:30	" "	meta.brackets
+4:31	"\""	meta.brackets meta.string punctuation.definition.string.begin
+4:32	"t"	meta.brackets meta.string string.quoted.double
+4:33	"\""	meta.brackets meta.string punctuation.definition.string.end
+4:34	","	meta.brackets punctuation.separator
+4:35	" "	meta.brackets
+4:36	"a"	meta.brackets variable.other
+4:37	" "	meta.brackets
+4:38	"!="	meta.brackets keyword.operator.comparison
+4:40	" "	meta.brackets
+4:41	"2"	meta.brackets constant.numeric.integer.decimal
 4:42	"]"	meta.brackets punctuation.section.brackets.end
 5:0	""

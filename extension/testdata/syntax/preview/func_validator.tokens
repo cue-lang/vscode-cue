@@ -7,7 +7,7 @@
 3:0	"f"	variable.other
 3:1	":"	punctuation.colon
 3:2	" "
-3:3	"func"	variable.other
+3:3	"func"	keyword.function
 3:7	"("	meta.parens punctuation.section.parens.begin
 3:8	"n"	meta.parens variable.other
 3:9	":"	meta.parens punctuation.colon
@@ -17,21 +17,21 @@
 3:15	" "
 3:16	"->"	keyword.operator.arrow
 3:18	" "
-3:19	"validator"	variable.other
-3:28	"("	meta.parens punctuation.section.parens.begin
-3:29	"["	meta.parens meta.brackets punctuation.section.brackets.begin
-3:30	"..."	meta.parens meta.brackets punctuation.ellipsis
-3:33	"]"	meta.parens meta.brackets punctuation.section.brackets.end
-3:34	")"	meta.parens punctuation.section.parens.end
+3:19	"validator"	meta.function-call support.function
+3:28	"("	meta.function-call punctuation.section.parens.begin
+3:29	"["	meta.function-call meta.brackets punctuation.section.brackets.begin
+3:30	"..."	meta.function-call meta.brackets punctuation.ellipsis
+3:33	"]"	meta.function-call meta.brackets punctuation.section.brackets.end
+3:34	")"	meta.function-call punctuation.section.parens.end
 4:0	"v"	variable.other
 4:1	":"	punctuation.colon
 4:2	" "
-4:3	"validator"	variable.other
-4:12	"("	meta.parens punctuation.section.parens.begin
-4:13	"bytes"	meta.parens support.type
-4:18	" "	meta.parens
-4:19	"|"	meta.parens keyword.operator.set
-4:20	" "	meta.parens
-4:21	"string"	meta.parens support.type
-4:27	")"	meta.parens punctuation.section.parens.end
+4:3	"validator"	meta.function-call support.function
+4:12	"("	meta.function-call punctuation.section.parens.begin
+4:13	"bytes"	meta.function-call support.type
+4:18	" "	meta.function-call
+4:19	"|"	meta.function-call keyword.operator.set
+4:20	" "	meta.function-call
+4:21	"string"	meta.function-call support.type
+4:27	")"	meta.function-call punctuation.section.parens.end
 5:0	""

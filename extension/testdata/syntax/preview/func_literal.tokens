@@ -7,7 +7,7 @@
 3:0	"add"	variable.other
 3:3	":"	punctuation.colon
 3:4	" "
-3:5	"func"	variable.other
+3:5	"func"	keyword.function
 3:9	"("	meta.parens punctuation.section.parens.begin
 3:10	"a"	meta.parens variable.other
 3:11	":"	meta.parens punctuation.colon

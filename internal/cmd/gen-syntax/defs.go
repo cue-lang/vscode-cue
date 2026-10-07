@@ -153,7 +153,7 @@ var repository = RuleMap{
 		),
 	},
 	"call_predefined": {
-		Begin: beforeIdent + `(len|close|and|or)(\()`,
+		Begin: beforeIdent + `(len|close|and|or|div|mod|quo|rem|matchN|matchIf|error|validator)(\()`,
 		BeginCaptures: Captures{
 			1: Capture{Name: "support.function"},
 			2: Capture{Name: "punctuation.section.parens.begin"},
@@ -207,18 +207,50 @@ var repository = RuleMap{
 	"clause": {
 		Patterns: Rules{
 			{
-				Match: beforeIdent + `(for)[ \t]+(` + identAny + `)(?:[ \t]*(,)[ \t]*(` + identAny + `))?[ \t]+(in)` + afterIdent,
+				// A keyword after in, as in for x in otherwise, is a
+				// reference.
+				Match: beforeIdent + `(for)[ \t]+(` + identAny + `)(?:[ \t]*(,)[ \t]*(` + identAny + `))?[ \t]+(in)` + afterIdent + `(?:[ \t]+(` + clauseWords + `)` + afterIdent + `)?`,
 				Captures: Captures{
 					1: Capture{Name: "keyword.control.for"},
 					2: Capture{Name: "variable.other"},
 					3: Capture{Name: "punctuation.separator"},
 					4: Capture{Name: "variable.other"},
 					5: Capture{Name: "keyword.control.in"},
+					6: Capture{Name: "variable.other"},
 				},
 			},
 			{
-				Match: beforeIdent + `if` + afterIdent,
+				// A keyword after if, as in if else, is a reference.
+				Match: beforeIdent + `(if)` + afterIdent + `(?:[ \t]+(` + clauseWords + `)` + afterIdent + `)?`,
+				Captures: Captures{
+					1: Capture{Name: "keyword.control.conditional"},
+					2: Capture{Name: "variable.other"},
+				},
+			},
+			{
+				// try starts a clause when an assignment, a struct or another
+				// clause follows; elsewhere it is an ordinary label or
+				// reference.
+				Match: beforeIdent + `(try)[ \t]+(` + identAny + `|_)[ \t]*(=)(?![=~])`,
+				Captures: Captures{
+					1: Capture{Name: "keyword.control.try"},
+					2: Capture{Name: "variable.other"},
+					3: Capture{Name: "punctuation.bind"},
+				},
+			},
+			{
+				Match: beforeIdent + `try(?=[ \t]*\{|[ \t]+(?:for|if|let|try)` + afterIdent + `)`,
+				Name:  "keyword.control.try",
+			},
+			{
+				// else, otherwise and fallback introduce the struct that
+				// follows a comprehension.
+				Match: beforeIdent + `(?:else|otherwise|fallback)(?=[ \t]*\{)`,
 				Name:  "keyword.control.conditional",
+			},
+			{
+				Match: beforeIdent + `func(?=[ \t]*\()`,
+				Name:  "keyword.function",
 			},
 			{
 				Match: beforeIdent + `(let)[ \t]+(` + identAny + `)[ \t]*(=)(?![=])`,
@@ -410,6 +442,7 @@ var repository = RuleMap{
 			"#number",
 			"#string",
 			"#type",
+			"#self",
 			"#call",
 			"#identifier",
 			"#struct",
@@ -504,6 +537,14 @@ var repository = RuleMap{
 		Match: `\?`,
 		Name:  "punctuation.option",
 	},
+	"self": {
+		// self, unless it is a field label, possibly with a postfix alias,
+		// or a prefix alias name, as in self={...}.
+		// The quantifiers are possessive, so that a long run of spaces does
+		// not make the lookahead backtrack.
+		Match: beforeIdent + `(?:__)?self` + afterIdent + `(?![ \t]*+(?:[?!][ \t]*+)?:|[ \t]*+~|[ \t]*+=(?![=~]))`,
+		Name:  "variable.language.self",
+	},
 	"selector": {
 		Patterns: Rules{
 			{
@@ -573,6 +614,12 @@ var repository = RuleMap{
 const (
 	beforeNum = `(?<![\p{L}\p{Nd}_\.])`
 	afterNum  = `(?![\p{L}\p{Nd}_\.])`
+)
+
+const (
+	// The words that start a clause or a comprehension's fallback, but
+	// are references after in or if.
+	clauseWords = `else|otherwise|fallback|try`
 )
 
 const (

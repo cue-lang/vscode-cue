@@ -14,9 +14,9 @@
 4:2	" "
 4:3	"{"	meta.struct punctuation.definition.struct.begin
 5:0	"\t"	meta.struct
-5:1	"try"	meta.struct variable.other
+5:1	"try"	meta.struct keyword.control.try
 5:4	" "	meta.struct
-5:5	"_"	meta.struct constant.language.top
+5:5	"_"	meta.struct variable.other
 5:6	" "	meta.struct
 5:7	"="	meta.struct punctuation.bind
 5:8	" "	meta.struct

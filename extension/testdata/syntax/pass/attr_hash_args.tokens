@@ -6,7 +6,7 @@
 1:5	"@"	meta.annotation punctuation.definition.annotation
 1:6	"foo"	meta.annotation variable.annotation
 1:9	"("	meta.annotation punctuation.attribute-elements.begin
-1:10	"#A"	meta.annotation invalid
+1:10	"#A"	meta.annotation string.unquoted
 1:12	")"	meta.annotation punctuation.attribute-elements.end
 2:0	"b"	variable.other
 2:1	":"	punctuation.colon
@@ -18,6 +18,6 @@
 2:9	"("	meta.annotation punctuation.attribute-elements.begin
 2:10	"a"	meta.annotation variable.other
 2:11	"="	meta.annotation punctuation.bind
-2:12	"#A"	meta.annotation invalid
+2:12	"#A"	meta.annotation string.unquoted
 2:14	")"	meta.annotation punctuation.attribute-elements.end
 3:0	""

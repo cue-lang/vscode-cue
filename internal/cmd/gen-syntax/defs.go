@@ -68,6 +68,7 @@ var repository = RuleMap{
 			0: Capture{Name: "punctuation.attribute-elements.end"},
 		},
 		Patterns: Includes(
+			"#comment",
 			"#punctuation_comma",
 			"#attribute_element",
 		),
@@ -81,18 +82,24 @@ var repository = RuleMap{
 		),
 	},
 	"attribute_label": {
-		Begin: `(` + identAny + `)(=)`,
+		// A key may be dotted, as in opt.name=x, and spaces may surround
+		// the =. An = followed by another, as in a == b, is text.
+		Begin: `[ \t]*` + beforeIdent + `((?:` + identAny + `)(?:\.(?:` + identAny + `))*)[ \t]*(=)(?!=)`,
 		BeginCaptures: Captures{
 			1: Capture{Name: "variable.other"},
 			2: Capture{Name: "punctuation.bind"},
 		},
 		End: `(?=[,\)])`,
 		Patterns: Includes(
+			"#comment",
+			"#attribute_nested",
 			"#attribute_string",
 		),
 	},
 	"attribute_nested": {
-		Begin: `(` + identAny + `)(\()`,
+		// Parentheses nest, with or without a name before them, as in
+		// b(c) and (x).
+		Begin: `[ \t]*(?:(` + identAny + `)[ \t]*)?(\()`,
 		BeginCaptures: Captures{
 			1: Capture{Name: "variable.other"},
 			2: Capture{Name: "punctuation.attribute-elements.begin"},
@@ -102,6 +109,7 @@ var repository = RuleMap{
 			0: Capture{Name: "punctuation.attribute-elements.end"},
 		},
 		Patterns: Includes(
+			"#comment",
 			"#punctuation_comma",
 			"#attribute_element",
 		),
@@ -110,7 +118,10 @@ var repository = RuleMap{
 		Patterns: Rules{
 			{Include: "#string"},
 			{
-				Match: `[^\n,"'#=\(\)]+`,
+				// A run of # that does not start a raw string, as in #A,
+				// is part of the text, and so is an = that does not
+				// follow a key. A // starts a comment.
+				Match: `(?:[^\n,"'#\(\)/]|/(?!/)|(?<!#)#++(?!["']))+`,
 				Name:  "string.unquoted",
 			},
 			{

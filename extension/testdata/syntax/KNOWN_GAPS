@@ -1,12 +1,4 @@
 # Corpus files that must be valid but that the grammar does not yet handle.
 # The grammar tests fail if a listed file no longer has invalid tokens.
-pass/attr_bracket_values.cue
-pass/attr_comment.cue
-pass/attr_dotted_keys.cue
-pass/attr_equals_anywhere.cue
-pass/attr_hash_args.cue
-pass/attr_key_after_space.cue
-pass/attr_nested_parens.cue
-pass/attr_spaced_equals.cue
 pass/import_hidden_name.cue
 pass/number_prefix_underscore.cue

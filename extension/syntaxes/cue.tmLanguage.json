@@ -172,6 +172,9 @@
 			},
 			"patterns": [
 				{
+					"include": "#comment"
+				},
+				{
 					"include": "#punctuation_comma"
 				},
 				{
@@ -183,7 +186,7 @@
 		"attribute_element": {
 			"patterns": [
 				{
-					"begin": "([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+)(=)",
+					"begin": "[ \\t]*(?<![\\p{L}\\p{Nd}_\\$\\#])((?:[\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+)(?:\\.(?:[\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+))*)[ \\t]*(=)(?!=)",
 					"beginCaptures": {
 						"1": {
 							"name": "variable.other"
@@ -195,37 +198,49 @@
 					"end": "(?=[,\\)])",
 					"patterns": [
 						{
+							"include": "#comment"
+						},
+						{
+							"include": "#attribute_nested"
+						},
+						{
 							"include": "#attribute_string"
 						}
 					]
 				},
 				{
-					"begin": "([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+)(\\()",
-					"beginCaptures": {
-						"1": {
-							"name": "variable.other"
-						},
-						"2": {
-							"name": "punctuation.attribute-elements.begin"
-						}
-					},
-					"end": "\\)",
-					"endCaptures": {
-						"0": {
-							"name": "punctuation.attribute-elements.end"
-						}
-					},
-					"patterns": [
-						{
-							"include": "#punctuation_comma"
-						},
-						{
-							"include": "#attribute_element"
-						}
-					]
+					"include": "#attribute_nested"
 				},
 				{
 					"include": "#attribute_string"
+				}
+			]
+		},
+		"attribute_nested": {
+			"begin": "[ \\t]*(?:([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+)[ \\t]*)?(\\()",
+			"beginCaptures": {
+				"1": {
+					"name": "variable.other"
+				},
+				"2": {
+					"name": "punctuation.attribute-elements.begin"
+				}
+			},
+			"end": "\\)",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.attribute-elements.end"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#comment"
+				},
+				{
+					"include": "#punctuation_comma"
+				},
+				{
+					"include": "#attribute_element"
 				}
 			]
 		},
@@ -235,7 +250,7 @@
 					"include": "#string"
 				},
 				{
-					"match": "[^\\n,\"'#=\\(\\)]+",
+					"match": "(?:[^\\n,\"'#\\(\\)/]|/(?!/)|(?<!#)#++(?![\"']))+",
 					"name": "string.unquoted"
 				},
 				{

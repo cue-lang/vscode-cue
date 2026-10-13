@@ -479,15 +479,15 @@
 											"name": "constant.numeric.integer.decimal"
 										},
 										{
-											"match": "(?<![\\p{L}\\p{Nd}_\\.])0b[0-1](?:_?[0-1])*(?![\\p{L}\\p{Nd}_]|\\.(?!\\.\\.))",
+											"match": "(?<![\\p{L}\\p{Nd}_\\.])0b_?[0-1](?:_?[0-1])*(?![\\p{L}\\p{Nd}_]|\\.(?!\\.\\.))",
 											"name": "constant.numeric.integer.binary"
 										},
 										{
-											"match": "(?<![\\p{L}\\p{Nd}_\\.])0[xX][0-9a-fA-F](?:_?[0-9a-fA-F])*(?![\\p{L}\\p{Nd}_]|\\.(?!\\.\\.))",
+											"match": "(?<![\\p{L}\\p{Nd}_\\.])0[xX]_?[0-9a-fA-F](?:_?[0-9a-fA-F])*(?![\\p{L}\\p{Nd}_]|\\.(?!\\.\\.))",
 											"name": "constant.numeric.integer.hexadecimal"
 										},
 										{
-											"match": "(?<![\\p{L}\\p{Nd}_\\.])0o[0-7](?:_?[0-7])*(?![\\p{L}\\p{Nd}_]|\\.(?!\\.\\.))",
+											"match": "(?<![\\p{L}\\p{Nd}_\\.])0o_?[0-7](?:_?[0-7])*(?![\\p{L}\\p{Nd}_]|\\.(?!\\.\\.))",
 											"name": "constant.numeric.integer.octal"
 										}
 									]

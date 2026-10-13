@@ -1,3 +1,0 @@
-# Corpus files that must be valid but that the grammar does not yet handle.
-# The grammar tests fail if a listed file no longer has invalid tokens.
-pass/number_prefix_underscore.cue

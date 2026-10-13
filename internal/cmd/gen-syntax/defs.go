@@ -646,7 +646,9 @@ func EscapeRules(quote, hashes string, bytes bool) Rules {
 	}
 	rules := Rules{
 		{
-			Match: `\\` + hashes + `(?:` + quote + `|` + escapeCommon + `)`,
+			// The string's own quote character is an escape, also in a
+			// multiline string.
+			Match: `\\` + hashes + `(?:` + quote[:1] + `|` + escapeCommon + `)`,
 			Name:  "constant.character.escape",
 		},
 		{

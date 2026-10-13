@@ -10,7 +10,6 @@ pass/attr_nested_parens.cue
 pass/attr_spaced_equals.cue
 pass/import_hidden_name.cue
 pass/list_comparison.cue
-pass/multiline_escaped_quote.cue
 pass/number_prefix_underscore.cue
 pass/postfix_ellipsis_int.cue
 pass/postfix_ellipsis_signed.cue

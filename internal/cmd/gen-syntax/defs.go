@@ -387,7 +387,7 @@ var repository = RuleMap{
 		),
 	},
 	"integer_binary": {
-		Match: beforeNum + `0b[0-1](?:_?[0-1])*` + afterNum,
+		Match: beforeNum + `0b_?[0-1](?:_?[0-1])*` + afterNum,
 		Name:  "constant.numeric.integer.binary",
 	},
 	"integer_decimal": {
@@ -395,11 +395,11 @@ var repository = RuleMap{
 		Name:  "constant.numeric.integer.decimal",
 	},
 	"integer_hex": {
-		Match: beforeNum + `0[xX][0-9a-fA-F](?:_?[0-9a-fA-F])*` + afterNum,
+		Match: beforeNum + `0[xX]_?[0-9a-fA-F](?:_?[0-9a-fA-F])*` + afterNum,
 		Name:  "constant.numeric.integer.hexadecimal",
 	},
 	"integer_octal": {
-		Match: beforeNum + `0o[0-7](?:_?[0-7])*` + afterNum,
+		Match: beforeNum + `0o_?[0-7](?:_?[0-7])*` + afterNum,
 		Name:  "constant.numeric.integer.octal",
 	},
 	"integer_si": {

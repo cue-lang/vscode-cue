@@ -8,8 +8,9 @@
 1:9	"("	meta.annotation punctuation.attribute-elements.begin
 1:10	"x"	meta.annotation string.unquoted
 1:11	","	meta.annotation punctuation.separator
-1:12	" // see f"	meta.annotation string.unquoted
-1:21	"("	meta.annotation invalid
+1:12	" "	meta.annotation string.unquoted
+1:13	"//"	meta.annotation comment.line punctuation.definition.comment
+1:15	" see f("	meta.annotation comment.line
 2:0	"\ty"	meta.annotation string.unquoted
 2:2	")"	meta.annotation punctuation.attribute-elements.end
 3:0	"b"	variable.other

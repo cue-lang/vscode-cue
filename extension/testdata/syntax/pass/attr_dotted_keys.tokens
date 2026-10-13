@@ -10,7 +10,8 @@
 1:16	","	meta.annotation punctuation.separator
 1:17	"bytes"	meta.annotation string.unquoted
 1:22	","	meta.annotation punctuation.separator
-1:23	"opt.name"	meta.annotation string.unquoted
-1:31	"=apiVersion"	meta.annotation invalid
+1:23	"opt.name"	meta.annotation variable.other
+1:31	"="	meta.annotation punctuation.bind
+1:32	"apiVersion"	meta.annotation string.unquoted
 1:42	")"	meta.annotation punctuation.attribute-elements.end
 2:0	""

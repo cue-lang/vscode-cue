@@ -223,7 +223,7 @@ var repository = RuleMap{
 			{
 				// A keyword after in, as in for x in otherwise, is a
 				// reference.
-				Match: beforeIdent + `(for)[ \t]+(` + identAny + `)(?:[ \t]*(,)[ \t]*(` + identAny + `))?[ \t]+(in)` + afterIdent + `(?:[ \t]+(` + clauseWords + `)` + afterIdent + `)?`,
+				Match: beforeIdent + `(for)[ \t]+(` + identAny + `|_)(?:[ \t]*(,)[ \t]*(` + identAny + `|_))?[ \t]+(in)` + afterIdent + `(?:[ \t]+(` + clauseWords + `)` + afterIdent + `)?`,
 				Captures: Captures{
 					1: Capture{Name: "keyword.control.for"},
 					2: Capture{Name: "variable.other"},
@@ -632,7 +632,7 @@ const (
 
 const (
 	importLocation = `[^:"]+`
-	importSpec     = `(?:(` + identAny + `)[ \t]+)?(")(` + importLocation + `)(?:(:)(` + identNormal + `))?(")`
+	importSpec     = `(?:(` + identAny + `|_)[ \t]+)?(")(` + importLocation + `)(?:(:)(` + identNormal + `))?(")`
 )
 
 const (

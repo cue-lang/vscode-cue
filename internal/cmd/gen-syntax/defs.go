@@ -535,18 +535,20 @@ var repository = RuleMap{
 		Name:  "variable.language.self",
 	},
 	"selector": {
+		// Whitespace may follow the dot, as in x. b, also a newline.
 		Patterns: Rules{
 			{
-				Match: `(?<!\.)(\.)(` + identAny + `)` + afterIdent,
+				Match: `(?<!\.)(\.)[ \t]*(` + identAny + `)` + afterIdent,
 				Captures: Captures{
 					1: Capture{Name: "punctuation.accessor"},
 					2: Capture{Name: "variable.other.member"},
 				},
 			},
 			{
-				// A quoted selector, as in x."a-b"; the string rule
-				// scopes the quoted label.
-				Match: `(?<!\.)(\.)(?=#*")`,
+				// A quoted selector, as in x."a-b", where the string rule
+				// scopes the quoted label, or a dot at the end of a line,
+				// where the label is on the next one.
+				Match: `(?<!\.)(\.)(?=[ \t]*(?:#*"|//|$))`,
 				Captures: Captures{
 					1: Capture{Name: "punctuation.accessor"},
 				},

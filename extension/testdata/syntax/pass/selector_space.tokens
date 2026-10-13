@@ -11,21 +11,21 @@
 2:1	":"	punctuation.colon
 2:2	" "
 2:3	"x"	variable.other
-2:4	"."	invalid
+2:4	"."	punctuation.accessor
 2:5	" "
-2:6	"b"	variable.other
+2:6	"b"	variable.other.member
 3:0	"c"	variable.other
 3:1	":"	punctuation.colon
 3:2	" "
 3:3	"x"	variable.other
-3:4	"."	invalid
+3:4	"."	punctuation.accessor
 4:0	"\t"
 4:1	"b"	variable.other
 5:0	"d"	variable.other
 5:1	":"	punctuation.colon
 5:2	" "
 5:3	"x"	variable.other
-5:4	"."	invalid
+5:4	"."	punctuation.accessor
 5:5	" "
 5:6	"\""	meta.string punctuation.definition.string.begin
 5:7	"b"	meta.string string.quoted.double

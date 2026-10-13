@@ -10,4 +10,3 @@ pass/attr_nested_parens.cue
 pass/attr_spaced_equals.cue
 pass/import_hidden_name.cue
 pass/number_prefix_underscore.cue
-pass/selector_space.cue

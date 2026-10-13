@@ -681,7 +681,7 @@
 									"include": "#punctuation_option"
 								},
 								{
-									"match": "([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+)[ \\t]*(=)",
+									"match": "(?<![\\p{L}\\p{Nd}_\\$\\#])([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+)[ \\t]*(=)(?![=~])",
 									"captures": {
 										"1": {
 											"name": "variable.other"

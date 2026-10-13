@@ -192,7 +192,7 @@ var repository = RuleMap{
 		Name: "meta.function-call",
 	},
 	"call_qualified": {
-		Begin: beforeIdent + `(` + identPackage + `)(\.)(` + identExported + `)(\()`,
+		Begin: beforeIdent + `(` + identAny + `)(\.)(` + identExported + `)(\()`,
 		BeginCaptures: Captures{
 			1: Capture{Name: "support.module"},
 			2: Capture{Name: "punctuation"},
@@ -632,7 +632,7 @@ const (
 
 const (
 	importLocation = `[^:"]+`
-	importSpec     = `(?:(` + identPackage + `)[ \t]+)?(")(` + importLocation + `)(?:(:)(` + identNormal + `))?(")`
+	importSpec     = `(?:(` + identAny + `)[ \t]+)?(")(` + importLocation + `)(?:(:)(` + identNormal + `))?(")`
 )
 
 const (

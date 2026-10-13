@@ -34,7 +34,9 @@ var patterns = Includes(
 
 var repository = RuleMap{
 	"alias": {
-		Match: `(` + identAny + `)[ \t]*(=)`,
+		// The = of == and =~ is not an alias. The name starts a word, so
+		// that a long name before == is not retried at every position.
+		Match: beforeIdent + `(` + identAny + `)[ \t]*(=)(?![=~])`,
 		Captures: Captures{
 			1: Capture{Name: "variable.other"},
 			2: Capture{Name: "punctuation.alias"},

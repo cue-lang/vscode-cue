@@ -6,8 +6,7 @@
 1:5	"@"	meta.annotation punctuation.definition.annotation
 1:6	"foo"	meta.annotation variable.annotation
 1:9	"("	meta.annotation punctuation.attribute-elements.begin
-1:10	"a "	meta.annotation string.unquoted
-1:12	"== b"	meta.annotation invalid
+1:10	"a == b"	meta.annotation string.unquoted
 1:16	")"	meta.annotation punctuation.attribute-elements.end
 2:0	"b"	variable.other
 2:1	":"	punctuation.colon
@@ -19,8 +18,7 @@
 2:9	"("	meta.annotation punctuation.attribute-elements.begin
 2:10	"a"	meta.annotation variable.other
 2:11	"="	meta.annotation punctuation.bind
-2:12	"b"	meta.annotation string.unquoted
-2:13	"=c"	meta.annotation invalid
+2:12	"b=c"	meta.annotation string.unquoted
 2:15	")"	meta.annotation punctuation.attribute-elements.end
 3:0	"c"	variable.other
 3:1	":"	punctuation.colon
@@ -30,6 +28,6 @@
 3:5	"@"	meta.annotation punctuation.definition.annotation
 3:6	"foo"	meta.annotation variable.annotation
 3:9	"("	meta.annotation punctuation.attribute-elements.begin
-3:10	"=x"	meta.annotation invalid
+3:10	"=x"	meta.annotation string.unquoted
 3:12	")"	meta.annotation punctuation.attribute-elements.end
 4:0	""

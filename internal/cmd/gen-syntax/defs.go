@@ -591,7 +591,9 @@ var repository = RuleMap{
 
 const (
 	beforeNum = `(?<![\p{L}\p{Nd}_\.])`
-	afterNum  = `(?![\p{L}\p{Nd}_\.])`
+	// A number may be followed by ..., as in the spread 1..., but not by
+	// another dot.
+	afterNum = `(?![\p{L}\p{Nd}_]|\.(?!\.\.))`
 )
 
 const (

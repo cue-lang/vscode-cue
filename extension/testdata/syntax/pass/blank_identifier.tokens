@@ -1,10 +1,10 @@
-1:0	"import"	variable.other
-1:6	" "
-1:7	"_"	constant.language.top
-1:8	" "
-1:9	"\""	meta.string punctuation.definition.string.begin
-1:10	"strings"	meta.string string.quoted.double
-1:17	"\""	meta.string punctuation.definition.string.end
+1:0	"import"	meta.import keyword.other.import
+1:6	" "	meta.import
+1:7	"_"	meta.import entity.name.namespace
+1:8	" "	meta.import
+1:9	"\""	meta.import punctuation.definition.string.begin
+1:10	"strings"	meta.import string.quoted.double-import
+1:17	"\""	meta.import punctuation.definition.string.end
 2:0	""
 3:0	"l"	variable.other
 3:1	":"	punctuation.colon
@@ -17,14 +17,14 @@
 4:2	" "
 4:3	"{"	meta.struct punctuation.definition.struct.begin
 5:0	"\t"	meta.struct
-5:1	"for"	meta.struct variable.other
+5:1	"for"	meta.struct keyword.control.for
 5:4	" "	meta.struct
-5:5	"_"	meta.struct constant.language.top
+5:5	"_"	meta.struct variable.other
 5:6	","	meta.struct punctuation.separator
 5:7	" "	meta.struct
 5:8	"v"	meta.struct variable.other
 5:9	" "	meta.struct
-5:10	"in"	meta.struct variable.other
+5:10	"in"	meta.struct keyword.control.in
 5:12	" "	meta.struct
 5:13	"l"	meta.struct variable.other
 5:14	" "	meta.struct
@@ -35,14 +35,14 @@
 5:19	"v"	meta.struct meta.struct variable.other
 5:20	"}"	meta.struct meta.struct punctuation.definition.struct.end
 6:0	"\t"	meta.struct
-6:1	"for"	meta.struct variable.other
+6:1	"for"	meta.struct keyword.control.for
 6:4	" "	meta.struct
 6:5	"k"	meta.struct variable.other
 6:6	","	meta.struct punctuation.separator
 6:7	" "	meta.struct
-6:8	"_"	meta.struct constant.language.top
+6:8	"_"	meta.struct variable.other
 6:9	" "	meta.struct
-6:10	"in"	meta.struct variable.other
+6:10	"in"	meta.struct keyword.control.in
 6:12	" "	meta.struct
 6:13	"l"	meta.struct variable.other
 6:14	" "	meta.struct

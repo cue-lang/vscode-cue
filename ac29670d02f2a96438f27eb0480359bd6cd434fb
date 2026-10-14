@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "22769a76_3975658b",
+        "filename": "extension/testdata/syntax/KNOWN_GAPS",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1017720
+      },
+      "writtenOn": "2026-10-14T12:55:19Z",
+      "side": 1,
+      "message": "teach the test to delete this file when the list is empty?",
+      "revId": "ac29670d02f2a96438f27eb0480359bd6cd434fb",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    }
+  ]
+}

@@ -16,6 +16,24 @@
       "message": "teach the test to delete this file when the list is empty?",
       "revId": "ac29670d02f2a96438f27eb0480359bd6cd434fb",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "fc296f45_32a557be",
+        "filename": "extension/testdata/syntax/KNOWN_GAPS",
+        "patchSetId": 2
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1038145
+      },
+      "writtenOn": "2026-10-14T14:01:40Z",
+      "side": 1,
+      "message": "Done, through the update step rather than the test itself: a missing KNOWN_GAPS now means no gaps, and `npm run update-grammar-goldens` removes entries for files that now pass and deletes the file when none are left (it never adds entries). A stale entry makes the test say to run that step. The commit that fixes the last gap now removes the file.",
+      "parentUuid": "22769a76_3975658b",
+      "revId": "ac29670d02f2a96438f27eb0480359bd6cd434fb",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735"
     }
   ]
 }

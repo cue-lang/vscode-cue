@@ -149,14 +149,20 @@ workflows: trybot: _repo.bashWorkflow & {
 				name: "Check version match"
 				run:  "go tool cue cmd -t tag=\(_versionRef) checkReleaseVersion"
 			},
+			// The publish steps must be idempotent, and the release process
+			// relies on it: a release that failed part way through, for
+			// example with OpenVSX published but not the Marketplace, is
+			// finished by re-running the job (see RELEASING.md). Each step
+			// passes --skip-duplicate so that a version the registry already
+			// has is skipped instead of failing the step. Do not remove it.
 			releaseOrTestDefaultStep & {
 				name: "Publish extension to the OpenVSX registry"
-				run:  "npm run publish:ovsx"
+				run:  "npm run publish:ovsx -- --skip-duplicate"
 				env: OVSX_PAT: "${{ secrets.CUECKOO_OVSX_PAT }}"
 			},
 			releaseOrTestDefaultStep & {
 				name: "Publish extension to the Microsoft VSCode Marketplace"
-				run:  "npm run publish:msft -- -p $VSCODE_PAT"
+				run:  "npm run publish:msft -- --skip-duplicate -p $VSCODE_PAT"
 				env: VSCODE_PAT: "${{ secrets.CUECKOO_VSCODE_PAT }}"
 			},
 

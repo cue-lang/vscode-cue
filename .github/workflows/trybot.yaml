@@ -135,13 +135,13 @@ jobs:
         working-directory: extension
       - if: github.repository == 'cue-lang/vscode-cue' && (startsWith(github.ref, 'refs/tags/v') || (github.ref == 'refs/heads/ci/test'))
         name: Publish extension to the OpenVSX registry
-        run: npm run publish:ovsx
+        run: npm run publish:ovsx -- --skip-duplicate
         env:
           OVSX_PAT: ${{ secrets.CUECKOO_OVSX_PAT }}
         working-directory: extension
       - if: github.repository == 'cue-lang/vscode-cue' && (startsWith(github.ref, 'refs/tags/v') || (github.ref == 'refs/heads/ci/test'))
         name: Publish extension to the Microsoft VSCode Marketplace
-        run: npm run publish:msft -- -p $VSCODE_PAT
+        run: npm run publish:msft -- --skip-duplicate -p $VSCODE_PAT
         env:
           VSCODE_PAT: ${{ secrets.CUECKOO_VSCODE_PAT }}
         working-directory: extension

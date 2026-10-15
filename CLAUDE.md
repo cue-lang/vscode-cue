@@ -9,3 +9,6 @@
 ## Project-specific instructions
 
 Any project specific instructions follow here.
+
+To cut a release, follow RELEASING.md. In particular, release tags are
+created in the GerritHub repository, never pushed directly to GitHub.

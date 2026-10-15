@@ -35,9 +35,17 @@ Fetch, and confirm the bump commit is on `origin/master`:
     git fetch origin
     git log --oneline -3 origin/master
 
-Confirm the post-submit TryBot run for that commit passed on GitHub:
+Confirm the bump commit has been mirrored to GitHub, where master
+should match GerritHub's, and that the post-submit TryBot run for it
+passed there:
 
+    git ls-remote origin refs/heads/master
+    git ls-remote https://github.com/cue-lang/vscode-cue refs/heads/master
     gh run list --repo cue-lang/vscode-cue --branch master --limit 5
+
+Mirroring normally takes a minute or two. If GitHub's master has not
+caught up, the post-submit TryBot run cannot have happened, so do not
+tag until it has caught up and that run has passed.
 
 Confirm the tag does not already exist, and that the version check CI
 will run passes:

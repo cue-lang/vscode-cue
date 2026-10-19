@@ -160,6 +160,47 @@ var repository = RuleMap{
 		),
 		Name: "meta.brackets",
 	},
+	"closed_list": {
+		// A closed list, as in #[1, 2], whose # the identifier rule scopes.
+		// As in CUE's parser, an ellipsis element is an error: one at the
+		// start, after a comma or at the start of a line. A spread, as in
+		// #[a...] or #[a ...], is not.
+		Begin: `(?<=^#|[^` + identChar[1:] + `#)(\[)(?:[ \t]*+(\.{3})(?!\.))?`,
+		BeginCaptures: Captures{
+			1: Capture{Name: "punctuation.section.brackets.begin"},
+			2: Capture{Name: "invalid.illegal"},
+		},
+		End: `\]`,
+		EndCaptures: Captures{
+			0: Capture{Name: "punctuation.section.brackets.end"},
+		},
+		Patterns: append(Rules{
+			{
+				Match: `(,)[ \t]*+(\.{3})(?!\.)`,
+				Captures: Captures{
+					1: Capture{Name: "punctuation.separator"},
+					2: Capture{Name: "invalid.illegal"},
+				},
+			},
+			{
+				Match: `^[ \t]*+(\.{3})(?!\.)`,
+				Captures: Captures{
+					1: Capture{Name: "invalid.illegal"},
+				},
+			},
+		}, Includes(
+			"#whitespace",
+			"#comment",
+			"#punctuation_colon",
+			"#punctuation_comma",
+			"#punctuation_ellipsis",
+			"#punctuation_option",
+			"#alias",
+			"#expression",
+			"#invalid_in_brakets",
+		)...),
+		Name: "meta.brackets",
+	},
 	"call": {
 		Patterns: Includes(
 			"#call_predefined",
@@ -290,6 +331,7 @@ var repository = RuleMap{
 	},
 	"declaration": {
 		Patterns: Includes(
+			"#label_reserved",
 			"#attribute",
 			"#alias_postfix",
 			"#punctuation_ellipsis",
@@ -435,6 +477,12 @@ var repository = RuleMap{
 			1: Capture{Name: "invalid"},
 		},
 	},
+	"label_reserved": {
+		// A field label starting with __, which CUE reserves, as in __x: 1,
+		// possibly with a postfix alias or a marker before the colon.
+		Match: beforeIdent + `__` + identChar + `*+(?=[ \t]*+(?:~[ \t]*+(?:` + identAny + `|_|\([^)]*\)))?[ \t]*+[?!]?[ \t]*+:(?!:))`,
+		Name:  "invalid.illegal",
+	},
 	"null": {
 		Match: beforeIdent + `null` + afterIdent,
 		Name:  "constant.language.null",
@@ -458,6 +506,7 @@ var repository = RuleMap{
 			"#call",
 			"#identifier",
 			"#struct",
+			"#closed_list",
 			"#brackets",
 			"#parens",
 		),

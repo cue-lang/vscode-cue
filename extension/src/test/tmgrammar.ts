@@ -31,10 +31,11 @@ export const grammarPath = path.join(__dirname, '..', '..', 'syntaxes', 'cue.tmL
 // token dump next to each corpus file and the SOURCE and KNOWN_GAPS records.
 export const corpusDir = path.join(__dirname, '..', '..', 'testdata', 'syntax');
 
-// corpusClasses are the corpus directories: pass holds syntax CUE accepts by
-// default, preview the syntax of preview experiments, and fail syntax CUE
-// rejects.
-export const corpusClasses = ['pass', 'preview', 'fail'];
+// corpusClasses are the corpus directories: pass holds syntax CUE accepts at
+// the current language version, versioned syntax it accepts only at other
+// language versions or with an experiment, and fail syntax no language
+// version accepts.
+export const corpusClasses = ['pass', 'versioned', 'fail'];
 
 // Token is one token of a line, with the scopes the grammar assigns to it.
 // The root scope, source.cue, is omitted.
@@ -133,10 +134,9 @@ export function goldenPath(name: string): string {
 }
 
 // mustBeValid reports whether the grammar must give no invalid scope to the
-// corpus file name: every file in pass and preview, and the fail/prefix_alias_*
-// files, since that syntax remains valid at language versions before v0.18.0.
+// corpus file name: every file in pass and versioned.
 export function mustBeValid(name: string): boolean {
-	return /^(pass|preview)\//.test(name) || /^fail\/prefix_alias_/.test(name);
+	return /^(pass|versioned)\//.test(name);
 }
 
 // knownGapsPath is the file listing the corpus files that must be valid but

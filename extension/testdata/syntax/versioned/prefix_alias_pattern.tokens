@@ -1,5 +1,5 @@
 1:0	"//"	comment.line punctuation.definition.comment
-1:2	" error: 2:3: old-style alias syntax (=) is not allowed"	comment.line
+1:2	" versions: v0.8.0..v0.17.0"	comment.line
 2:0	"["	meta.brackets punctuation.section.brackets.begin
 2:1	"X"	meta.brackets variable.other
 2:2	"="	meta.brackets punctuation.alias

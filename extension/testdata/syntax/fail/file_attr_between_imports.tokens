@@ -1,0 +1,20 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" error: 6:8: expected label or ':'"	comment.line
+2:0	"import"	meta.import keyword.other.import
+2:6	" "	meta.import
+2:7	"\""	meta.import punctuation.definition.string.begin
+2:8	"strings"	meta.import string.quoted.double-import
+2:15	"\""	meta.import punctuation.definition.string.end
+3:0	""
+4:0	"@"	meta.annotation punctuation.definition.annotation
+4:1	"other"	meta.annotation variable.annotation
+4:6	"("	meta.annotation punctuation.attribute-elements.begin
+4:7	"x"	meta.annotation string.unquoted
+4:8	")"	meta.annotation punctuation.attribute-elements.end
+5:0	""
+6:0	"import"	meta.import keyword.other.import
+6:6	" "	meta.import
+6:7	"\""	meta.import punctuation.definition.string.begin
+6:8	"list"	meta.import string.quoted.double-import
+6:12	"\""	meta.import punctuation.definition.string.end
+7:0	""

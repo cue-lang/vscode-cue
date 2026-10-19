@@ -49,6 +49,14 @@ suite('TextMate grammar', () => {
 		}
 	});
 
+	test('the copy holds only the corpus directories', () => {
+		for (const entry of fs.readdirSync(corpusDir, { withFileTypes: true })) {
+			if (entry.isDirectory()) {
+				assert.ok(corpusClasses.includes(entry.name), `unexpected directory ${entry.name} in ${corpusDir}`);
+			}
+		}
+	});
+
 	test('every golden has a corpus file', () => {
 		for (const dir of corpusClasses) {
 			for (const f of fs.readdirSync(path.join(corpusDir, dir)).filter((f) => f.endsWith('.tokens'))) {

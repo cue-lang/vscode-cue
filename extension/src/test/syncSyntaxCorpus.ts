@@ -13,17 +13,18 @@
 // limitations under the License.
 
 // syncSyntaxCorpus refreshes the copy of the CUE syntax corpus in
-// testdata/syntax, its pass, preview and fail directories, from a checkout of
-// cue-lang/cue, which must be exactly at a tag, and records the tag in
+// testdata/syntax, its pass, versioned and fail directories, from a checkout
+// of cue-lang/cue, which must be exactly at a tag, and records the tag in
 // testdata/syntax/SOURCE. Corpus files that the checkout no longer has are
-// removed, with their goldens. Run it with
+// removed, with their goldens, and so are directories other than the corpus
+// classes. Run it with
 // 'npm run sync-syntax-corpus -- <checkout>', then run
 // 'npm run update-grammar-goldens' and 'npm run test:unit'.
 
 import * as cp from 'node:child_process';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
-import { corpusDir, corpusFiles, corpusFilesIn, goldenPath } from './tmgrammar';
+import { corpusClasses, corpusDir, corpusFiles, corpusFilesIn, goldenPath } from './tmgrammar';
 
 function main() {
 	const checkout = process.argv[2];
@@ -45,6 +46,11 @@ function main() {
 		if (!names.includes(old)) {
 			fs.rmSync(path.join(corpusDir, old));
 			fs.rmSync(goldenPath(old), { force: true });
+		}
+	}
+	for (const entry of fs.readdirSync(corpusDir, { withFileTypes: true })) {
+		if (entry.isDirectory() && !corpusClasses.includes(entry.name)) {
+			fs.rmSync(path.join(corpusDir, entry.name), { recursive: true });
 		}
 	}
 	for (const name of names) {

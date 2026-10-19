@@ -1,0 +1,22 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: ok"	comment.line
+2:0	"x"	variable.other
+2:1	":"	punctuation.colon
+2:2	" "
+2:3	"1"	constant.numeric.integer.decimal
+3:0	"a"	variable.other
+3:1	":"	punctuation.colon
+3:2	" "
+3:3	"\""	meta.string punctuation.definition.string.begin
+3:4	"x"	meta.string string.quoted.double
+3:5	"\\("	meta.string string.quoted.double meta.interpolation punctuation.section.interpolation.begin
+4:0	"\t"	meta.string string.quoted.double meta.interpolation source.cue.embedded
+4:1	"x"	meta.string string.quoted.double meta.interpolation source.cue.embedded variable.other
+4:2	" "	meta.string string.quoted.double meta.interpolation source.cue.embedded
+4:3	"+"	meta.string string.quoted.double meta.interpolation source.cue.embedded keyword.operator
+4:4	" "	meta.string string.quoted.double meta.interpolation source.cue.embedded
+4:5	"2"	meta.string string.quoted.double meta.interpolation source.cue.embedded constant.numeric.integer.decimal
+5:0	")"	meta.string string.quoted.double meta.interpolation punctuation.section.interpolation.end
+5:1	"y"	meta.string string.quoted.double
+5:2	"\""	meta.string punctuation.definition.string.end
+6:0	""

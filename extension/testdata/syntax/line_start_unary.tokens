@@ -1,0 +1,54 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..v0.16.0; outcome: error 5:2: missing ',' before newline in list literal"	comment.line
+2:0	"//"	comment.line punctuation.definition.comment
+2:2	" versions: v0.17.0..; outcome: ok"	comment.line
+3:0	"x"	variable.other
+3:1	":"	punctuation.colon
+3:2	" "
+3:3	"["	meta.brackets punctuation.section.brackets.begin
+4:0	"\t"	meta.brackets
+4:1	"1"	meta.brackets constant.numeric.integer.decimal
+5:0	"\t"	meta.brackets
+5:1	"-"	meta.brackets keyword.operator
+5:2	"1"	meta.brackets constant.numeric.integer.decimal
+6:0	"\t"	meta.brackets
+6:1	"+"	meta.brackets keyword.operator
+6:2	"2"	meta.brackets constant.numeric.integer.decimal
+7:0	"]"	meta.brackets punctuation.section.brackets.end
+8:0	"y"	variable.other
+8:1	":"	punctuation.colon
+8:2	" "
+8:3	"["	meta.brackets punctuation.section.brackets.begin
+9:0	"\t"	meta.brackets
+9:1	"int"	meta.brackets support.type
+10:0	"\t"	meta.brackets
+10:1	"*"	meta.brackets keyword.operator
+10:2	"1"	meta.brackets constant.numeric.integer.decimal
+11:0	"]"	meta.brackets punctuation.section.brackets.end
+12:0	"z"	variable.other
+12:1	":"	punctuation.colon
+12:2	" "
+12:3	"["	meta.brackets punctuation.section.brackets.begin
+13:0	"\t"	meta.brackets
+13:1	"1"	meta.brackets constant.numeric.integer.decimal
+14:0	"\t"	meta.brackets
+14:1	"<="	meta.brackets keyword.operator.comparison
+14:3	"5"	meta.brackets constant.numeric.integer.decimal
+15:0	"]"	meta.brackets punctuation.section.brackets.end
+16:0	"w"	variable.other
+16:1	":"	punctuation.colon
+16:2	" "
+16:3	"["	meta.brackets punctuation.section.brackets.begin
+17:0	"\t"	meta.brackets
+17:1	"true"	meta.brackets constant.language.bool
+18:0	"\t"	meta.brackets
+18:1	"!"	meta.brackets keyword.operator.logical
+18:2	"false"	meta.brackets constant.language.bool
+19:0	"]"	meta.brackets punctuation.section.brackets.end
+20:0	"a"	variable.other
+20:1	":"	punctuation.colon
+20:2	" "
+20:3	"1"	constant.numeric.integer.decimal
+21:0	"-"	keyword.operator
+21:1	"2"	constant.numeric.integer.decimal
+22:0	""

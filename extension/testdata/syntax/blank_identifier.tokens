@@ -1,0 +1,62 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: ok"	comment.line
+2:0	"import"	meta.import keyword.other.import
+2:6	" "	meta.import
+2:7	"_"	meta.import entity.name.namespace
+2:8	" "	meta.import
+2:9	"\""	meta.import punctuation.definition.string.begin
+2:10	"strings"	meta.import string.quoted.double-import
+2:17	"\""	meta.import punctuation.definition.string.end
+3:0	""
+4:0	"l"	variable.other
+4:1	":"	punctuation.colon
+4:2	" "
+4:3	"["	meta.brackets punctuation.section.brackets.begin
+4:4	"1"	meta.brackets constant.numeric.integer.decimal
+4:5	"]"	meta.brackets punctuation.section.brackets.end
+5:0	"a"	variable.other
+5:1	":"	punctuation.colon
+5:2	" "
+5:3	"{"	meta.struct punctuation.definition.struct.begin
+6:0	"\t"	meta.struct
+6:1	"for"	meta.struct keyword.control.for
+6:4	" "	meta.struct
+6:5	"_"	meta.struct variable.other
+6:6	","	meta.struct punctuation.separator
+6:7	" "	meta.struct
+6:8	"v"	meta.struct variable.other
+6:9	" "	meta.struct
+6:10	"in"	meta.struct keyword.control.in
+6:12	" "	meta.struct
+6:13	"l"	meta.struct variable.other
+6:14	" "	meta.struct
+6:15	"{"	meta.struct meta.struct punctuation.definition.struct.begin
+6:16	"x"	meta.struct meta.struct variable.other
+6:17	":"	meta.struct meta.struct punctuation.colon
+6:18	" "	meta.struct meta.struct
+6:19	"v"	meta.struct meta.struct variable.other
+6:20	"}"	meta.struct meta.struct punctuation.definition.struct.end
+7:0	"\t"	meta.struct
+7:1	"for"	meta.struct keyword.control.for
+7:4	" "	meta.struct
+7:5	"k"	meta.struct variable.other
+7:6	","	meta.struct punctuation.separator
+7:7	" "	meta.struct
+7:8	"_"	meta.struct variable.other
+7:9	" "	meta.struct
+7:10	"in"	meta.struct keyword.control.in
+7:12	" "	meta.struct
+7:13	"l"	meta.struct variable.other
+7:14	" "	meta.struct
+7:15	"{"	meta.struct meta.struct punctuation.definition.struct.begin
+7:16	"y"	meta.struct meta.struct variable.other
+7:17	":"	meta.struct meta.struct punctuation.colon
+7:18	" "	meta.struct meta.struct
+7:19	"k"	meta.struct meta.struct variable.other
+7:20	"}"	meta.struct meta.struct punctuation.definition.struct.end
+8:0	"}"	meta.struct punctuation.definition.struct.end
+9:0	"_"	constant.language.top
+9:1	":"	punctuation.colon
+9:2	" "
+9:3	"1"	constant.numeric.integer.decimal
+10:0	""

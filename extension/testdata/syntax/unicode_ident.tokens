@@ -1,0 +1,11 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: ok"	comment.line
+2:0	"αβ"	variable.other
+2:2	":"	punctuation.colon
+2:3	" "
+2:4	"1"	constant.numeric.integer.decimal
+3:0	"x"	variable.other
+3:1	":"	punctuation.colon
+3:2	"  "
+3:4	"αβ"	variable.other
+4:0	""

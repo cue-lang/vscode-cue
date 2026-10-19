@@ -31,10 +31,14 @@ export const grammarPath = path.join(__dirname, '..', '..', 'syntaxes', 'cue.tmL
 // token dump next to each corpus file and the SOURCE and KNOWN_GAPS records.
 export const corpusDir = path.join(__dirname, '..', '..', 'testdata', 'syntax');
 
-// corpusClasses are the corpus directories: pass holds syntax CUE accepts by
-// default, preview the syntax of preview experiments, and fail syntax CUE
-// rejects.
-export const corpusClasses = ['pass', 'preview', 'fail'];
+// headerPrefix starts each line of a corpus file's header, which states CUE's
+// parser outcome for each run of language versions, one line per run, as in
+//
+//	// versions: v0.8.0..v0.17.0; outcome: ok
+//	// versions: v0.18.0..; outcome: error 3:2: old-style alias syntax ...
+//
+// A line that names experiments gives the outcome with them enabled.
+export const headerPrefix = '// versions: ';
 
 // Token is one token of a line, with the scopes the grammar assigns to it.
 // The root scope, source.cue, is omitted.
@@ -110,20 +114,15 @@ export function corpusFiles(): string[] {
 	return corpusFilesIn(corpusDir);
 }
 
-// corpusFilesIn returns the corpus files under root as paths relative to it,
-// such as pass/alias_postfix_paren.cue, sorted.
+// corpusFilesIn returns the names of the corpus files in root, such as
+// alias_postfix_paren.cue, sorted.
 export function corpusFilesIn(root: string): string[] {
-	return corpusClasses
-		.flatMap((dir) => {
-			const d = path.join(root, dir);
-			if (!fs.existsSync(d)) {
-				return [];
-			}
-			return fs
-				.readdirSync(d)
-				.filter((f) => f.endsWith('.cue'))
-				.map((f) => `${dir}/${f}`);
-		})
+	if (!fs.existsSync(root)) {
+		return [];
+	}
+	return fs
+		.readdirSync(root)
+		.filter((f) => f.endsWith('.cue'))
 		.sort();
 }
 
@@ -132,11 +131,19 @@ export function goldenPath(name: string): string {
 	return path.join(corpusDir, name.replace(/\.cue$/, '.tokens'));
 }
 
+// header returns the header lines of the corpus file src.
+export function header(src: string): string[] {
+	const lines = src.split('\n');
+	const end = lines.findIndex((l) => !l.startsWith(headerPrefix));
+	return end < 0 ? lines : lines.slice(0, end);
+}
+
 // mustBeValid reports whether the grammar must give no invalid scope to the
-// corpus file name: every file in pass and preview, and the fail/prefix_alias_*
-// files, since that syntax remains valid at language versions before v0.18.0.
-export function mustBeValid(name: string): boolean {
-	return /^(pass|preview)\//.test(name) || /^fail\/prefix_alias_/.test(name);
+// corpus file src: whether a line of its header has the outcome ok, so that
+// some language version accepts it, perhaps only with the experiments the
+// line names.
+export function mustBeValid(src: string): boolean {
+	return header(src).some((l) => /^\/\/ versions: [^;]*(; experiments: [^;]*)?; outcome: ok$/.test(l));
 }
 
 // knownGapsPath is the file listing the corpus files that must be valid but

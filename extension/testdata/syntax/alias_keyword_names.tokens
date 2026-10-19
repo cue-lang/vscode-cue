@@ -1,0 +1,26 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..v0.17.0; outcome: error 3:2: postfix alias syntax requires @experiment(aliasv2)"	comment.line
+2:0	"//"	comment.line punctuation.definition.comment
+2:2	" versions: v0.18.0..; outcome: ok"	comment.line
+3:0	"a"	variable.other
+3:1	"~"	punctuation.alias
+3:2	"import"	variable.other
+3:8	":"	punctuation.colon
+3:9	" "
+3:10	"1"	constant.numeric.integer.decimal
+4:0	"c"	variable.other
+4:1	"~"	punctuation.alias
+4:2	"("	punctuation.section.parens.begin
+4:3	"package"	variable.other
+4:10	","	punctuation.separator
+4:11	" "
+4:12	"v"	variable.other
+4:13	")"	punctuation.section.parens.end
+4:14	":"	punctuation.colon
+4:15	" "
+4:16	"3"	constant.numeric.integer.decimal
+5:0	"d"	variable.other
+5:1	":"	punctuation.colon
+5:2	" "
+5:3	"import"	variable.other
+6:0	""

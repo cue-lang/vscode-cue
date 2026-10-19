@@ -1,0 +1,31 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: ok"	comment.line
+2:0	"//"	comment.line punctuation.definition.comment
+2:2	" versions: v0.18.0..; experiments: functions; outcome: ok"	comment.line
+3:0	"@"	meta.annotation punctuation.definition.annotation
+3:1	"experiment"	meta.annotation variable.annotation
+3:11	"("	meta.annotation punctuation.attribute-elements.begin
+3:12	"functions"	meta.annotation string.unquoted
+3:21	")"	meta.annotation punctuation.attribute-elements.end
+4:0	""
+5:0	"func"	variable.other
+5:4	":"	punctuation.colon
+5:5	" "
+5:6	"1"	constant.numeric.integer.decimal
+6:0	"k"	variable.other
+6:1	":"	punctuation.colon
+6:2	"    "
+6:6	"\""	meta.string punctuation.definition.string.begin
+6:7	"x"	meta.string string.quoted.double
+6:8	"\""	meta.string punctuation.definition.string.end
+7:0	"a"	variable.other
+7:1	":"	punctuation.colon
+7:2	"    "
+7:6	"func"	variable.other
+8:0	"("	meta.parens punctuation.section.parens.begin
+8:1	"k"	meta.parens variable.other
+8:2	")"	meta.parens punctuation.section.parens.end
+8:3	":"	punctuation.colon
+8:4	" "
+8:5	"2"	constant.numeric.integer.decimal
+9:0	""

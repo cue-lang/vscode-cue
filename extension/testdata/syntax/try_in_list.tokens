@@ -1,0 +1,27 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: ok"	comment.line
+2:0	"//"	comment.line punctuation.definition.comment
+2:2	" versions: v0.16.0..; experiments: try; outcome: ok"	comment.line
+3:0	"@"	meta.annotation punctuation.definition.annotation
+3:1	"experiment"	meta.annotation variable.annotation
+3:11	"("	meta.annotation punctuation.attribute-elements.begin
+3:12	"try"	meta.annotation string.unquoted
+3:15	")"	meta.annotation punctuation.attribute-elements.end
+4:0	""
+5:0	"a"	variable.other
+5:1	"?"	punctuation.option
+5:2	":"	punctuation.colon
+5:3	" "
+5:4	"int"	support.type
+6:0	"l"	variable.other
+6:1	":"	punctuation.colon
+6:2	" "
+6:3	"["	meta.brackets punctuation.section.brackets.begin
+6:4	"try"	meta.brackets keyword.control.try
+6:7	" "	meta.brackets
+6:8	"{"	meta.brackets meta.struct punctuation.definition.struct.begin
+6:9	"a"	meta.brackets meta.struct variable.other
+6:10	"?"	meta.brackets meta.struct punctuation.option
+6:11	"}"	meta.brackets meta.struct punctuation.definition.struct.end
+6:12	"]"	meta.brackets punctuation.section.brackets.end
+7:0	""

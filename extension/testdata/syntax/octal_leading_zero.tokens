@@ -1,0 +1,10 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: error 2:4: illegal integer number"	comment.line
+2:0	"a"	variable.other
+2:1	":"	punctuation.colon
+2:2	" "
+2:3	"0"	invalid
+2:4	"7"	invalid
+2:5	"5"	invalid
+2:6	"5"	invalid
+3:0	""

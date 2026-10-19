@@ -21,12 +21,12 @@ import * as assert from 'assert';
 import * as fs from 'node:fs';
 import * as path from 'node:path';
 import {
-	corpusClasses,
 	corpusDir,
 	corpusFiles,
 	dump,
 	formatToken,
 	goldenPath,
+	header,
 	invalidTokens,
 	knownGaps,
 	loadGrammar,
@@ -45,23 +45,31 @@ suite('TextMate grammar', () => {
 	test('KNOWN_GAPS names corpus files that must be valid', () => {
 		for (const name of gaps) {
 			assert.ok(files.includes(name), `KNOWN_GAPS names ${name}, which is not a corpus file`);
-			assert.ok(mustBeValid(name), `KNOWN_GAPS names ${name}, which is not required to be valid`);
+			assert.ok(
+				mustBeValid(fs.readFileSync(path.join(corpusDir, name), 'utf8')),
+				`KNOWN_GAPS names ${name}, which no language version accepts`
+			);
+		}
+	});
+
+	test('the copy holds no directories', () => {
+		for (const entry of fs.readdirSync(corpusDir, { withFileTypes: true })) {
+			assert.ok(!entry.isDirectory(), `unexpected directory ${entry.name} in ${corpusDir}`);
 		}
 	});
 
 	test('every golden has a corpus file', () => {
-		for (const dir of corpusClasses) {
-			for (const f of fs.readdirSync(path.join(corpusDir, dir)).filter((f) => f.endsWith('.tokens'))) {
-				const golden = `${dir}/${f}`;
-				assert.ok(files.includes(golden.replace(/\.tokens$/, '.cue')), `${golden} has no corpus file`);
-			}
+		for (const golden of fs.readdirSync(corpusDir).filter((f) => f.endsWith('.tokens'))) {
+			assert.ok(files.includes(golden.replace(/\.tokens$/, '.cue')), `${golden} has no corpus file`);
 		}
 	});
 
 	for (const name of files) {
 		test(name, async () => {
 			const g = await loadGrammar();
-			const tokens = tokenize(g, fs.readFileSync(`${corpusDir}/${name}`, 'utf8'));
+			const src = fs.readFileSync(path.join(corpusDir, name), 'utf8');
+			assert.ok(header(src).length > 0, `${name} has no header; refresh the copy with 'npm run sync-syntax-corpus'`);
+			const tokens = tokenize(g, src);
 			const golden = goldenPath(name);
 			assert.ok(fs.existsSync(golden), `missing golden ${golden}; run 'npm run update-grammar-goldens'`);
 			assert.strictEqual(
@@ -69,7 +77,7 @@ suite('TextMate grammar', () => {
 				fs.readFileSync(golden, 'utf8'),
 				`tokens differ from ${golden}; review, then run 'npm run update-grammar-goldens'`
 			);
-			if (!mustBeValid(name)) {
+			if (!mustBeValid(src)) {
 				return;
 			}
 			const invalid = invalidTokens(tokens).map(formatToken);

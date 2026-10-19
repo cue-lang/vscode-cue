@@ -1,0 +1,48 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: ok"	comment.line
+2:0	"x"	variable.other
+2:1	":"	punctuation.colon
+2:2	" "
+2:3	"true"	constant.language.bool
+3:0	"l"	variable.other
+3:1	":"	punctuation.colon
+3:2	" "
+3:3	"["	meta.brackets punctuation.section.brackets.begin
+3:4	"1"	meta.brackets constant.numeric.integer.decimal
+3:5	"]"	meta.brackets punctuation.section.brackets.end
+4:0	"a"	variable.other
+4:1	":"	punctuation.colon
+4:2	" "
+4:3	"{"	meta.struct punctuation.definition.struct.begin
+5:0	"\t"	meta.struct
+5:1	"if"	meta.struct keyword.control.conditional
+5:3	" "	meta.struct
+5:4	"x"	meta.struct variable.other
+6:0	"\t"	meta.struct
+6:1	"{"	meta.struct meta.struct punctuation.definition.struct.begin
+7:0	"\t\t"	meta.struct meta.struct
+7:2	"b"	meta.struct meta.struct variable.other
+7:3	":"	meta.struct meta.struct punctuation.colon
+7:4	" "	meta.struct meta.struct
+7:5	"1"	meta.struct meta.struct constant.numeric.integer.decimal
+8:0	"\t"	meta.struct meta.struct
+8:1	"}"	meta.struct meta.struct punctuation.definition.struct.end
+9:0	"\t"	meta.struct
+9:1	"for"	meta.struct keyword.control.for
+9:4	" "	meta.struct
+9:5	"y"	meta.struct variable.other
+9:6	" "	meta.struct
+9:7	"in"	meta.struct keyword.control.in
+9:9	" "	meta.struct
+9:10	"l"	meta.struct variable.other
+10:0	"\t"	meta.struct
+10:1	"{"	meta.struct meta.struct punctuation.definition.struct.begin
+11:0	"\t\t"	meta.struct meta.struct
+11:2	"c"	meta.struct meta.struct variable.other
+11:3	":"	meta.struct meta.struct punctuation.colon
+11:4	" "	meta.struct meta.struct
+11:5	"y"	meta.struct meta.struct variable.other
+12:0	"\t"	meta.struct meta.struct
+12:1	"}"	meta.struct meta.struct punctuation.definition.struct.end
+13:0	"}"	meta.struct punctuation.definition.struct.end
+14:0	""

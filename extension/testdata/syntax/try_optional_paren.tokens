@@ -1,0 +1,41 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: ok"	comment.line
+2:0	"//"	comment.line punctuation.definition.comment
+2:2	" versions: v0.16.0..; experiments: try; outcome: ok"	comment.line
+3:0	"@"	meta.annotation punctuation.definition.annotation
+3:1	"experiment"	meta.annotation variable.annotation
+3:11	"("	meta.annotation punctuation.attribute-elements.begin
+3:12	"try"	meta.annotation string.unquoted
+3:15	")"	meta.annotation punctuation.attribute-elements.end
+4:0	""
+5:0	"a"	variable.other
+5:1	"?"	punctuation.option
+5:2	":"	punctuation.colon
+5:3	" "
+5:4	"int"	support.type
+6:0	"b"	variable.other
+6:1	":"	punctuation.colon
+6:2	" "
+6:3	"{"	meta.struct punctuation.definition.struct.begin
+7:0	"\t"	meta.struct
+7:1	"try"	meta.struct keyword.control.try
+7:4	" "	meta.struct
+7:5	"{"	meta.struct meta.struct punctuation.definition.struct.begin
+7:6	"v"	meta.struct meta.struct variable.other
+7:7	":"	meta.struct meta.struct punctuation.colon
+7:8	" "	meta.struct meta.struct
+7:9	"("	meta.struct meta.struct meta.parens punctuation.section.parens.begin
+7:10	"a"	meta.struct meta.struct meta.parens variable.other
+7:11	"?"	meta.struct meta.struct meta.parens punctuation.option
+7:12	" "	meta.struct meta.struct meta.parens
+7:13	"+"	meta.struct meta.struct meta.parens keyword.operator
+7:14	" "	meta.struct meta.struct meta.parens
+7:15	"1"	meta.struct meta.struct meta.parens constant.numeric.integer.decimal
+7:16	")"	meta.struct meta.struct meta.parens punctuation.section.parens.end
+7:17	" "	meta.struct meta.struct
+7:18	"*"	meta.struct meta.struct keyword.operator
+7:19	" "	meta.struct meta.struct
+7:20	"2"	meta.struct meta.struct constant.numeric.integer.decimal
+7:21	"}"	meta.struct meta.struct punctuation.definition.struct.end
+8:0	"}"	meta.struct punctuation.definition.struct.end
+9:0	""

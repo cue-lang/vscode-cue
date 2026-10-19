@@ -1,0 +1,15 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: ok"	comment.line
+2:0	"#\""	meta.string punctuation.definition.string.begin
+2:2	"foo"	meta.string string.quoted.double
+2:5	"\"#"	meta.string punctuation.definition.string.end
+2:7	":"	punctuation.colon
+2:8	" "
+2:9	"1"	constant.numeric.integer.decimal
+3:0	"#\""	meta.string punctuation.definition.string.begin
+3:2	"a b"	meta.string string.quoted.double
+3:5	"\"#"	meta.string punctuation.definition.string.end
+3:7	":"	punctuation.colon
+3:8	" "
+3:9	"2"	constant.numeric.integer.decimal
+4:0	""

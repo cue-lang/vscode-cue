@@ -1,0 +1,50 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: ok"	comment.line
+2:0	"x"	variable.other
+2:1	":"	punctuation.colon
+2:2	" "
+2:3	"int"	support.type
+2:6	"("	meta.parens punctuation.section.parens.begin
+2:7	"1"	meta.parens constant.numeric.integer.decimal
+2:8	")"	meta.parens punctuation.section.parens.end
+3:0	"y"	variable.other
+3:1	":"	punctuation.colon
+3:2	" "
+3:3	"\""	meta.string punctuation.definition.string.begin
+3:4	"s"	meta.string string.quoted.double
+3:5	"\""	meta.string punctuation.definition.string.end
+3:6	"("	meta.parens punctuation.section.parens.begin
+3:7	"1"	meta.parens constant.numeric.integer.decimal
+3:8	")"	meta.parens punctuation.section.parens.end
+4:0	"z"	variable.other
+4:1	":"	punctuation.colon
+4:2	" "
+4:3	"["	meta.brackets punctuation.section.brackets.begin
+4:4	"1"	meta.brackets constant.numeric.integer.decimal
+4:5	"]"	meta.brackets punctuation.section.brackets.end
+4:6	"("	meta.parens punctuation.section.parens.begin
+4:7	"0"	meta.parens constant.numeric.integer.decimal
+4:8	")"	meta.parens punctuation.section.parens.end
+5:0	"w"	variable.other
+5:1	":"	punctuation.colon
+5:2	" "
+5:3	"{"	meta.struct punctuation.definition.struct.begin
+5:4	"}"	meta.struct punctuation.definition.struct.end
+5:5	"("	meta.parens punctuation.section.parens.begin
+5:6	"1"	meta.parens constant.numeric.integer.decimal
+5:7	")"	meta.parens punctuation.section.parens.end
+6:0	"v"	variable.other
+6:1	":"	punctuation.colon
+6:2	" "
+6:3	"1"	constant.numeric.integer.decimal
+6:4	"("	meta.parens punctuation.section.parens.begin
+6:5	"2"	meta.parens constant.numeric.integer.decimal
+6:6	")"	meta.parens punctuation.section.parens.end
+7:0	"u"	variable.other
+7:1	":"	punctuation.colon
+7:2	" "
+7:3	"true"	constant.language.bool
+7:7	"("	meta.parens punctuation.section.parens.begin
+7:8	"1"	meta.parens constant.numeric.integer.decimal
+7:9	")"	meta.parens punctuation.section.parens.end
+8:0	""

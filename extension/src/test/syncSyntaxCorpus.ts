@@ -13,10 +13,10 @@
 // limitations under the License.
 
 // syncSyntaxCorpus refreshes the copy of the CUE syntax corpus in
-// testdata/syntax, its pass, preview and fail directories, from a checkout of
-// cue-lang/cue, which must be exactly at a tag, and records the tag in
-// testdata/syntax/SOURCE. Corpus files that the checkout no longer has are
-// removed, with their goldens. Run it with
+// testdata/syntax, the .cue files in cue/parser/testdata/syntax, from a
+// checkout of cue-lang/cue, which must be exactly at a tag, and records the
+// tag in testdata/syntax/SOURCE. Corpus files that the checkout no longer has
+// are removed, with their goldens, and so is any directory. Run it with
 // 'npm run sync-syntax-corpus -- <checkout>', then run
 // 'npm run update-grammar-goldens' and 'npm run test:unit'.
 
@@ -47,10 +47,13 @@ function main() {
 			fs.rmSync(goldenPath(old), { force: true });
 		}
 	}
+	for (const entry of fs.readdirSync(corpusDir, { withFileTypes: true })) {
+		if (entry.isDirectory()) {
+			fs.rmSync(path.join(corpusDir, entry.name), { recursive: true });
+		}
+	}
 	for (const name of names) {
-		const dst = path.join(corpusDir, name);
-		fs.mkdirSync(path.dirname(dst), { recursive: true });
-		fs.copyFileSync(path.join(src, name), dst);
+		fs.copyFileSync(path.join(src, name), path.join(corpusDir, name));
 	}
 	fs.writeFileSync(path.join(corpusDir, 'SOURCE'), `cue-lang/cue ${tag}\n`);
 	console.log(`copied ${names.length} corpus files from cue-lang/cue ${tag}`);

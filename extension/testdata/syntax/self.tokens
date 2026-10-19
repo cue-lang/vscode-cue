@@ -1,0 +1,33 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: ok"	comment.line
+2:0	"a"	variable.other
+2:1	":"	punctuation.colon
+2:2	" "
+2:3	"{"	meta.struct punctuation.definition.struct.begin
+3:0	"\t"	meta.struct
+3:1	"b"	meta.struct variable.other
+3:2	":"	meta.struct punctuation.colon
+3:3	" "	meta.struct
+3:4	"1"	meta.struct constant.numeric.integer.decimal
+4:0	"\t"	meta.struct
+4:1	"c"	meta.struct variable.other
+4:2	":"	meta.struct punctuation.colon
+4:3	" "	meta.struct
+4:4	"self"	meta.struct variable.language.self
+4:8	"."	meta.struct punctuation.accessor
+4:9	"b"	meta.struct variable.other.member
+5:0	"}"	meta.struct punctuation.definition.struct.end
+6:0	"let"	keyword.control.let
+6:3	" "
+6:4	"S"	variable.other
+6:5	" "
+6:6	"="	punctuation.bind
+6:7	" "
+6:8	"self"	variable.language.self
+7:0	"t"	variable.other
+7:1	":"	punctuation.colon
+7:2	" "
+7:3	"__self"	variable.language.self
+7:9	"."	punctuation.accessor
+7:10	"a"	variable.other.member
+8:0	""

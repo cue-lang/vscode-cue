@@ -1,0 +1,56 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: ok"	comment.line
+2:0	"a"	variable.other
+2:1	":"	punctuation.colon
+2:2	" "
+2:3	"1"	constant.numeric.integer.decimal
+2:4	" "
+2:5	"+"	keyword.operator
+2:6	" "
+2:7	"2"	constant.numeric.integer.decimal
+2:8	"*"	keyword.operator
+2:9	"3"	constant.numeric.integer.decimal
+2:10	" "
+2:11	"-"	keyword.operator
+2:12	" "
+2:13	"4"	constant.numeric.integer.decimal
+2:14	"/"	keyword.operator
+2:15	"2"	constant.numeric.integer.decimal
+3:0	"b"	variable.other
+3:1	":"	punctuation.colon
+3:2	" "
+3:3	"\""	meta.string punctuation.definition.string.begin
+3:4	"a"	meta.string string.quoted.double
+3:5	"\""	meta.string punctuation.definition.string.end
+3:6	" "
+3:7	"+"	keyword.operator
+3:8	" "
+3:9	"\""	meta.string punctuation.definition.string.begin
+3:10	"b"	meta.string string.quoted.double
+3:11	"\""	meta.string punctuation.definition.string.end
+4:0	"c"	variable.other
+4:1	":"	punctuation.colon
+4:2	" "
+4:3	"true"	constant.language.bool
+4:7	" "
+4:8	"&&"	keyword.operator.logical
+4:10	" "
+4:11	"!"	keyword.operator.logical
+4:12	"false"	constant.language.bool
+4:17	" "
+4:18	"||"	keyword.operator.logical
+4:20	" "
+4:21	"false"	constant.language.bool
+5:0	"d"	variable.other
+5:1	":"	punctuation.colon
+5:2	" "
+5:3	"["	meta.brackets punctuation.section.brackets.begin
+5:4	"1"	meta.brackets constant.numeric.integer.decimal
+5:5	"]"	meta.brackets punctuation.section.brackets.end
+5:6	" "
+5:7	"+"	keyword.operator
+5:8	" "
+5:9	"["	meta.brackets punctuation.section.brackets.begin
+5:10	"2"	meta.brackets constant.numeric.integer.decimal
+5:11	"]"	meta.brackets punctuation.section.brackets.end
+6:0	""

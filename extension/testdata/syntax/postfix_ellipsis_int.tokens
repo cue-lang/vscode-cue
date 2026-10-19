@@ -1,0 +1,10 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..v0.17.0; outcome: error 3:5: postfix ... operator requires @experiment(explicitopen)"	comment.line
+2:0	"//"	comment.line punctuation.definition.comment
+2:2	" versions: v0.18.0..; outcome: ok"	comment.line
+3:0	"a"	variable.other
+3:1	":"	punctuation.colon
+3:2	" "
+3:3	"1"	constant.numeric.integer.decimal
+3:4	"..."	punctuation.ellipsis
+4:0	""

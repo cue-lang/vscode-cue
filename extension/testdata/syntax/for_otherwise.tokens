@@ -1,0 +1,41 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: error 7:3: otherwise requires @experiment(try)"	comment.line
+2:0	"//"	comment.line punctuation.definition.comment
+2:2	" versions: v0.16.0..; experiments: try; outcome: ok"	comment.line
+3:0	"@"	meta.annotation punctuation.definition.annotation
+3:1	"experiment"	meta.annotation variable.annotation
+3:11	"("	meta.annotation punctuation.attribute-elements.begin
+3:12	"try"	meta.annotation string.unquoted
+3:15	")"	meta.annotation punctuation.attribute-elements.end
+4:0	""
+5:0	"for"	keyword.control.for
+5:3	" "
+5:4	"x"	variable.other
+5:5	" "
+5:6	"in"	keyword.control.in
+5:8	" "
+5:9	"["	meta.brackets punctuation.section.brackets.begin
+5:10	"]"	meta.brackets punctuation.section.brackets.end
+5:11	" "
+5:12	"{"	meta.struct punctuation.definition.struct.begin
+6:0	"\t"	meta.struct
+6:1	"\""	meta.struct meta.string punctuation.definition.string.begin
+6:2	"\\("	meta.struct meta.string string.quoted.double meta.interpolation punctuation.section.interpolation.begin
+6:4	"x"	meta.struct meta.string string.quoted.double meta.interpolation source.cue.embedded variable.other
+6:5	")"	meta.struct meta.string string.quoted.double meta.interpolation punctuation.section.interpolation.end
+6:6	"\""	meta.struct meta.string punctuation.definition.string.end
+6:7	":"	meta.struct punctuation.colon
+6:8	" "	meta.struct
+6:9	"x"	meta.struct variable.other
+7:0	"}"	meta.struct punctuation.definition.struct.end
+7:1	" "
+7:2	"otherwise"	keyword.control.conditional
+7:11	" "
+7:12	"{"	meta.struct punctuation.definition.struct.begin
+8:0	"\t"	meta.struct
+8:1	"empty"	meta.struct variable.other
+8:6	":"	meta.struct punctuation.colon
+8:7	" "	meta.struct
+8:8	"true"	meta.struct constant.language.bool
+9:0	"}"	meta.struct punctuation.definition.struct.end
+10:0	""

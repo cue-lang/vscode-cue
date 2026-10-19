@@ -1,0 +1,64 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: error 5:4: function syntax requires @experiment(functions)"	comment.line
+2:0	"//"	comment.line punctuation.definition.comment
+2:2	" versions: v0.18.0..; experiments: functions; outcome: ok"	comment.line
+3:0	"@"	meta.annotation punctuation.definition.annotation
+3:1	"experiment"	meta.annotation variable.annotation
+3:11	"("	meta.annotation punctuation.attribute-elements.begin
+3:12	"functions"	meta.annotation string.unquoted
+3:21	")"	meta.annotation punctuation.attribute-elements.end
+4:0	""
+5:0	"f"	variable.other
+5:1	":"	punctuation.colon
+5:2	" "
+5:3	"func"	keyword.function
+5:7	"("	meta.parens punctuation.section.parens.begin
+5:8	"import"	meta.parens variable.other
+5:14	":"	meta.parens punctuation.colon
+5:15	" "	meta.parens
+5:16	"int"	meta.parens support.type
+5:19	","	meta.parens punctuation.separator
+5:20	" "	meta.parens
+5:21	"package"	meta.parens variable.other
+5:28	"?"	meta.parens punctuation.option
+5:29	":"	meta.parens punctuation.colon
+5:30	" "	meta.parens
+5:31	"int"	meta.parens support.type
+5:34	")"	meta.parens punctuation.section.parens.end
+5:35	" "
+5:36	"->"	keyword.operator.arrow
+5:38	" "
+5:39	"int"	support.type
+5:42	":"	punctuation.colon
+5:43	" "
+5:44	"import"	variable.other
+6:0	"g"	variable.other
+6:1	":"	punctuation.colon
+6:2	" "
+6:3	"f"	variable.other
+6:4	"("	meta.parens punctuation.section.parens.begin
+6:5	"import"	meta.parens variable.other
+6:11	":"	meta.parens punctuation.colon
+6:12	" "	meta.parens
+6:13	"1"	meta.parens constant.numeric.integer.decimal
+6:14	")"	meta.parens punctuation.section.parens.end
+7:0	"h"	variable.other
+7:1	":"	punctuation.colon
+7:2	" "
+7:3	"func"	keyword.function
+7:7	"("	meta.parens punctuation.section.parens.begin
+7:8	"a"	meta.parens variable.other
+7:9	"~"	meta.parens punctuation.alias
+7:10	"import"	meta.parens variable.other
+7:16	":"	meta.parens punctuation.colon
+7:17	" "	meta.parens
+7:18	"int"	meta.parens support.type
+7:21	")"	meta.parens punctuation.section.parens.end
+7:22	" "
+7:23	"->"	keyword.operator.arrow
+7:25	" "
+7:26	"int"	support.type
+7:29	":"	punctuation.colon
+7:30	" "
+7:31	"import"	variable.other
+8:0	""

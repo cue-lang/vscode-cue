@@ -1,0 +1,34 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: error 5:4: function syntax requires @experiment(functions)"	comment.line
+2:0	"//"	comment.line punctuation.definition.comment
+2:2	" versions: v0.18.0..; experiments: functions; outcome: ok"	comment.line
+3:0	"@"	meta.annotation punctuation.definition.annotation
+3:1	"experiment"	meta.annotation variable.annotation
+3:11	"("	meta.annotation punctuation.attribute-elements.begin
+3:12	"functions"	meta.annotation string.unquoted
+3:21	")"	meta.annotation punctuation.attribute-elements.end
+4:0	""
+5:0	"f"	variable.other
+5:1	":"	punctuation.colon
+5:2	" "
+5:3	"func"	keyword.function
+5:7	"("	meta.parens punctuation.section.parens.begin
+5:8	"a"	meta.parens variable.other
+5:9	":"	meta.parens punctuation.colon
+5:10	" "	meta.parens
+5:11	"int"	meta.parens support.type
+5:14	" "	meta.parens
+5:15	"@"	meta.parens meta.annotation punctuation.definition.annotation
+5:16	"doc"	meta.parens meta.annotation variable.annotation
+5:19	"("	meta.parens meta.annotation punctuation.attribute-elements.begin
+5:20	"x"	meta.parens meta.annotation string.unquoted
+5:21	")"	meta.parens meta.annotation punctuation.attribute-elements.end
+5:22	")"	meta.parens punctuation.section.parens.end
+5:23	" "
+5:24	"->"	keyword.operator.arrow
+5:26	" "
+5:27	"int"	support.type
+5:30	":"	punctuation.colon
+5:31	" "
+5:32	"a"	variable.other
+6:0	""

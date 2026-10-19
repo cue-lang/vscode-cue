@@ -1,0 +1,22 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..v0.17.0; outcome: ok"	comment.line
+2:0	"//"	comment.line punctuation.definition.comment
+2:2	" versions: v0.18.0..; outcome: error 3:2: old-style alias syntax (=) is not allowed with @experiment(aliasv2); use postfix syntax (~X or ~(K,V))"	comment.line
+3:0	"X"	variable.other
+3:1	"="	punctuation.bind
+3:2	"a"	variable.other
+3:3	":"	punctuation.colon
+3:4	" "
+3:5	"{"	meta.struct punctuation.definition.struct.begin
+3:6	"b"	meta.struct variable.other
+3:7	":"	meta.struct punctuation.colon
+3:8	" "	meta.struct
+3:9	"1"	meta.struct constant.numeric.integer.decimal
+3:10	"}"	meta.struct punctuation.definition.struct.end
+4:0	"c"	variable.other
+4:1	":"	punctuation.colon
+4:2	" "
+4:3	"X"	variable.other
+4:4	"."	punctuation.accessor
+4:5	"b"	variable.other.member
+5:0	""

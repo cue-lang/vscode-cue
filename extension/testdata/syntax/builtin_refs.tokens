@@ -1,0 +1,23 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: ok"	comment.line
+2:0	"len"	variable.other
+2:3	":"	punctuation.colon
+2:4	" "
+2:5	"1"	constant.numeric.integer.decimal
+3:0	"x"	variable.other
+3:1	":"	punctuation.colon
+3:2	" "
+3:3	"len"	variable.other
+4:0	"close"	variable.other
+4:5	":"	punctuation.colon
+4:6	" "
+4:7	"2"	constant.numeric.integer.decimal
+5:0	"y"	variable.other
+5:1	":"	punctuation.colon
+5:2	" "
+5:3	"close"	variable.other
+5:8	" "
+5:9	"+"	keyword.operator
+5:10	" "
+5:11	"1"	constant.numeric.integer.decimal
+6:0	""

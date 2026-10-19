@@ -1,0 +1,28 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..v0.17.0; outcome: error 3:9: postfix alias syntax requires @experiment(aliasv2)"	comment.line
+2:0	"//"	comment.line punctuation.definition.comment
+2:2	" versions: v0.18.0..; outcome: ok"	comment.line
+3:0	"["	meta.brackets punctuation.section.brackets.begin
+3:1	"string"	meta.brackets support.type
+3:7	"]"	meta.brackets punctuation.section.brackets.end
+3:8	"~"	punctuation.alias
+3:9	"("	punctuation.section.parens.begin
+3:10	"K"	variable.other
+3:11	","	punctuation.separator
+3:12	" "
+3:13	"V"	variable.other
+3:14	")"	punctuation.section.parens.end
+3:15	":"	punctuation.colon
+3:16	" "
+3:17	"{"	meta.struct punctuation.definition.struct.begin
+3:18	"name"	meta.struct variable.other
+3:22	":"	meta.struct punctuation.colon
+3:23	" "	meta.struct
+3:24	"K"	meta.struct variable.other
+3:25	"}"	meta.struct punctuation.definition.struct.end
+4:0	"x"	variable.other
+4:1	":"	punctuation.colon
+4:2	" "
+4:3	"{"	meta.struct punctuation.definition.struct.begin
+4:4	"}"	meta.struct punctuation.definition.struct.end
+5:0	""

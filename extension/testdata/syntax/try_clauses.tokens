@@ -1,0 +1,86 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: ok"	comment.line
+2:0	"//"	comment.line punctuation.definition.comment
+2:2	" versions: v0.16.0..; experiments: try; outcome: ok"	comment.line
+3:0	"@"	meta.annotation punctuation.definition.annotation
+3:1	"experiment"	meta.annotation variable.annotation
+3:11	"("	meta.annotation punctuation.attribute-elements.begin
+3:12	"try"	meta.annotation string.unquoted
+3:15	")"	meta.annotation punctuation.attribute-elements.end
+4:0	""
+5:0	"a"	variable.other
+5:1	"?"	punctuation.option
+5:2	":"	punctuation.colon
+5:3	" "
+5:4	"int"	support.type
+6:0	"l"	variable.other
+6:1	":"	punctuation.colon
+6:2	" "
+6:3	"["	meta.brackets punctuation.section.brackets.begin
+6:4	"1"	meta.brackets constant.numeric.integer.decimal
+6:5	"]"	meta.brackets punctuation.section.brackets.end
+7:0	"b"	variable.other
+7:1	":"	punctuation.colon
+7:2	" "
+7:3	"{"	meta.struct punctuation.definition.struct.begin
+8:0	"\t"	meta.struct
+8:1	"try"	meta.struct keyword.control.try
+8:4	" "	meta.struct
+8:5	"for"	meta.struct keyword.control.for
+8:8	" "	meta.struct
+8:9	"x"	meta.struct variable.other
+8:10	" "	meta.struct
+8:11	"in"	meta.struct keyword.control.in
+8:13	" "	meta.struct
+8:14	"l"	meta.struct variable.other
+8:15	" "	meta.struct
+8:16	"{"	meta.struct meta.struct punctuation.definition.struct.begin
+9:0	"\t\t"	meta.struct meta.struct
+9:2	"c"	meta.struct meta.struct variable.other
+9:3	":"	meta.struct meta.struct punctuation.colon
+9:4	" "	meta.struct meta.struct
+9:5	"x"	meta.struct meta.struct variable.other
+10:0	"\t"	meta.struct meta.struct
+10:1	"}"	meta.struct meta.struct punctuation.definition.struct.end
+11:0	"\t"	meta.struct
+11:1	"try"	meta.struct keyword.control.try
+11:4	" "	meta.struct
+11:5	"if"	meta.struct keyword.control.conditional
+11:7	" "	meta.struct
+11:8	"a"	meta.struct variable.other
+11:9	"?"	meta.struct punctuation.option
+11:10	" "	meta.struct
+11:11	">"	meta.struct keyword.operator.comparison
+11:12	" "	meta.struct
+11:13	"1"	meta.struct constant.numeric.integer.decimal
+11:14	" "	meta.struct
+11:15	"{"	meta.struct meta.struct punctuation.definition.struct.begin
+12:0	"\t\t"	meta.struct meta.struct
+12:2	"d"	meta.struct meta.struct variable.other
+12:3	":"	meta.struct meta.struct punctuation.colon
+12:4	" "	meta.struct meta.struct
+12:5	"1"	meta.struct meta.struct constant.numeric.integer.decimal
+13:0	"\t"	meta.struct meta.struct
+13:1	"}"	meta.struct meta.struct punctuation.definition.struct.end
+14:0	"\t"	meta.struct
+14:1	"try"	meta.struct keyword.control.try
+14:4	" "	meta.struct
+14:5	"let"	meta.struct keyword.control.let
+14:8	" "	meta.struct
+14:9	"y"	meta.struct variable.other
+14:10	" "	meta.struct
+14:11	"="	meta.struct punctuation.bind
+14:12	" "	meta.struct
+14:13	"a"	meta.struct variable.other
+14:14	"?"	meta.struct punctuation.option
+14:15	" "	meta.struct
+14:16	"{"	meta.struct meta.struct punctuation.definition.struct.begin
+15:0	"\t\t"	meta.struct meta.struct
+15:2	"e"	meta.struct meta.struct variable.other
+15:3	":"	meta.struct meta.struct punctuation.colon
+15:4	" "	meta.struct meta.struct
+15:5	"y"	meta.struct meta.struct variable.other
+16:0	"\t"	meta.struct meta.struct
+16:1	"}"	meta.struct meta.struct punctuation.definition.struct.end
+17:0	"}"	meta.struct punctuation.definition.struct.end
+18:0	""

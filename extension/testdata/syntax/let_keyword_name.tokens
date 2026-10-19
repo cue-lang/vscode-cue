@@ -1,0 +1,25 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: ok"	comment.line
+2:0	"let"	keyword.control.let
+2:3	" "
+2:4	"import"	variable.other
+2:10	" "
+2:11	"="	punctuation.bind
+2:12	" "
+2:13	"1"	constant.numeric.integer.decimal
+3:0	"let"	keyword.control.let
+3:3	" "
+3:4	"package"	variable.other
+3:11	" "
+3:12	"="	punctuation.bind
+3:13	" "
+3:14	"2"	constant.numeric.integer.decimal
+4:0	"a"	variable.other
+4:1	":"	punctuation.colon
+4:2	" "
+4:3	"import"	variable.other
+4:9	" "
+4:10	"+"	keyword.operator
+4:11	" "
+4:12	"package"	variable.other
+5:0	""

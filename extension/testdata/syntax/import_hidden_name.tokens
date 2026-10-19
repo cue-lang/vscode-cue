@@ -1,0 +1,25 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: ok"	comment.line
+2:0	"import"	meta.imports keyword.other.import
+2:6	" "	meta.imports
+2:7	"("	meta.imports punctuation.section.parens.begin
+3:0	"\t"	meta.imports
+3:1	"_s"	meta.imports meta.import-spec entity.name.namespace
+3:3	" "	meta.imports meta.import-spec
+3:4	"\""	meta.imports meta.import-spec punctuation.definition.string.begin
+3:5	"strings"	meta.imports meta.import-spec string.quoted.double-import
+3:12	"\""	meta.imports meta.import-spec punctuation.definition.string.end
+4:0	")"	meta.imports punctuation.section.parens.end
+5:0	""
+6:0	"a"	variable.other
+6:1	":"	punctuation.colon
+6:2	" "
+6:3	"_s"	meta.function-call support.module
+6:5	"."	meta.function-call punctuation
+6:6	"ToUpper"	meta.function-call support.function
+6:13	"("	meta.function-call punctuation.section.parens.begin
+6:14	"\""	meta.function-call meta.string punctuation.definition.string.begin
+6:15	"x"	meta.function-call meta.string string.quoted.double
+6:16	"\""	meta.function-call meta.string punctuation.definition.string.end
+6:17	")"	meta.function-call punctuation.section.parens.end
+7:0	""

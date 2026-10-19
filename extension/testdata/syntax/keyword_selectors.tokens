@@ -1,0 +1,70 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: ok"	comment.line
+2:0	"x"	variable.other
+2:1	":"	punctuation.colon
+2:2	" "
+2:3	"{"	meta.struct punctuation.definition.struct.begin
+2:4	"if"	meta.struct keyword.control.conditional
+2:6	":"	meta.struct punctuation.colon
+2:7	" "	meta.struct
+2:8	"1"	meta.struct constant.numeric.integer.decimal
+2:9	","	meta.struct punctuation.separator
+2:10	" "	meta.struct
+2:11	"try"	meta.struct variable.other
+2:14	":"	meta.struct punctuation.colon
+2:15	" "	meta.struct
+2:16	"2"	meta.struct constant.numeric.integer.decimal
+2:17	","	meta.struct punctuation.separator
+2:18	" "	meta.struct
+2:19	"func"	meta.struct variable.other
+2:23	":"	meta.struct punctuation.colon
+2:24	" "	meta.struct
+2:25	"3"	meta.struct constant.numeric.integer.decimal
+2:26	","	meta.struct punctuation.separator
+2:27	" "	meta.struct
+2:28	"else"	meta.struct variable.other
+2:32	":"	meta.struct punctuation.colon
+2:33	" "	meta.struct
+2:34	"4"	meta.struct constant.numeric.integer.decimal
+2:35	","	meta.struct punctuation.separator
+2:36	" "	meta.struct
+2:37	"\""	meta.struct meta.string punctuation.definition.string.begin
+2:38	"a-b"	meta.struct meta.string string.quoted.double
+2:41	"\""	meta.struct meta.string punctuation.definition.string.end
+2:42	":"	meta.struct punctuation.colon
+2:43	" "	meta.struct
+2:44	"5"	meta.struct constant.numeric.integer.decimal
+2:45	"}"	meta.struct punctuation.definition.struct.end
+3:0	"y"	variable.other
+3:1	":"	punctuation.colon
+3:2	" "
+3:3	"x"	variable.other
+3:4	"."	punctuation.accessor
+3:5	"if"	variable.other.member
+3:7	" "
+3:8	"+"	keyword.operator
+3:9	" "
+3:10	"x"	variable.other
+3:11	"."	punctuation.accessor
+3:12	"try"	variable.other.member
+3:15	" "
+3:16	"+"	keyword.operator
+3:17	" "
+3:18	"x"	variable.other
+3:19	"."	punctuation.accessor
+3:20	"func"	variable.other.member
+3:24	" "
+3:25	"+"	keyword.operator
+3:26	" "
+3:27	"x"	variable.other
+3:28	"."	punctuation.accessor
+3:29	"else"	variable.other.member
+3:33	" "
+3:34	"+"	keyword.operator
+3:35	" "
+3:36	"x"	variable.other
+3:37	"."	punctuation.accessor
+3:38	"\""	meta.string punctuation.definition.string.begin
+3:39	"a-b"	meta.string string.quoted.double
+3:42	"\""	meta.string punctuation.definition.string.end
+4:0	""

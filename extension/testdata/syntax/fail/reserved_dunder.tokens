@@ -1,6 +1,6 @@
 1:0	"//"	comment.line punctuation.definition.comment
 1:2	" error: 2:1: identifiers starting with '__' are reserved"	comment.line
-2:0	"__x"	variable.other
+2:0	"__x"	invalid.illegal
 2:3	":"	punctuation.colon
 2:4	" "
 2:5	"1"	constant.numeric.integer.decimal

@@ -97,3 +97,54 @@ suite('TextMate grammar', () => {
 		});
 	}
 });
+
+// The grammar marks a field label starting with __ and an ellipsis element of
+// a closed list as invalid, as CUE's parser rejects them, but not the valid
+// forms next to them.
+suite('TextMate grammar: reserved labels and closed lists', () => {
+	const valid = [
+		'a: __self',
+		'b~__X: 1',
+		'c: d.__e',
+		'e: f(__g: 1)',
+		'h: func(__p: int) -> int',
+		'#__a: 1',
+		'i: #[j...]',
+		'k: #[1, j...]',
+		'l: #[j ...]',
+		'm: #[[1, ...]]',
+		'n: #[{o: 1, ...}]',
+		'p: [1, ...]'
+	];
+	for (const src of valid) {
+		test(`no invalid scope: ${src}`, async () => {
+			const tokens = tokenize(await loadGrammar(), src + '\n');
+			assert.deepStrictEqual(invalidTokens(tokens).map(formatToken), []);
+		});
+	}
+
+	const invalid: [string, string][] = [
+		['__x: 1', '__x'],
+		['__x?: 1', '__x'],
+		['__x~X: 1', '__x'],
+		['q: #[1, ...]', '...'],
+		['r: #[...]', '...'],
+		['s: #[...int]', '...'],
+		[
+			`t: #[
+	1,
+	...,
+]`,
+			'...'
+		]
+	];
+	for (const [src, text] of invalid) {
+		test(`invalid ${text}: ${JSON.stringify(src)}`, async () => {
+			const tokens = tokenize(await loadGrammar(), src + '\n');
+			assert.deepStrictEqual(
+				invalidTokens(tokens).map((t) => t.text),
+				[text]
+			);
+		});
+	}
+});

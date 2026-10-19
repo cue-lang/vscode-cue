@@ -125,6 +125,17 @@
 		}
 	],
 	"repository": {
+		"alias": {
+			"match": "(?<![\\p{L}\\p{Nd}_\\$\\#])([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+)[ \\t]*(=)(?![=~])",
+			"captures": {
+				"1": {
+					"name": "variable.other"
+				},
+				"2": {
+					"name": "punctuation.alias"
+				}
+			}
+		},
 		"alias_postfix": {
 			"match": "(~)[ \\t]*(?:([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+|_)|(\\()[ \\t]*([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+|_)(?:[ \\t]*(,)[ \\t]*([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+|_))?[ \\t]*(\\)))",
 			"captures": {
@@ -274,6 +285,10 @@
 		},
 		"declaration": {
 			"patterns": [
+				{
+					"match": "(?<![\\p{L}\\p{Nd}_\\$\\#])__[\\p{L}\\p{Nd}_\\$\\#]*+(?=[ \\t]*+(?:~[ \\t]*+(?:[\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+|_|\\([^)]*\\)))?[ \\t]*+[?!]?[ \\t]*+:(?!:))",
+					"name": "invalid.illegal"
+				},
 				{
 					"include": "#attribute"
 				},
@@ -664,6 +679,72 @@
 							"name": "meta.struct"
 						},
 						{
+							"begin": "(?<=^#|[^\\p{L}\\p{Nd}_\\$\\#]#)(\\[)(?:[ \\t]*+(\\.{3})(?!\\.))?",
+							"beginCaptures": {
+								"1": {
+									"name": "punctuation.section.brackets.begin"
+								},
+								"2": {
+									"name": "invalid.illegal"
+								}
+							},
+							"end": "\\]",
+							"endCaptures": {
+								"0": {
+									"name": "punctuation.section.brackets.end"
+								}
+							},
+							"patterns": [
+								{
+									"match": "(,)[ \\t]*+(\\.{3})(?!\\.)",
+									"captures": {
+										"1": {
+											"name": "punctuation.separator"
+										},
+										"2": {
+											"name": "invalid.illegal"
+										}
+									}
+								},
+								{
+									"match": "^[ \\t]*+(\\.{3})(?!\\.)",
+									"captures": {
+										"1": {
+											"name": "invalid.illegal"
+										}
+									}
+								},
+								{
+									"include": "#whitespace"
+								},
+								{
+									"include": "#comment"
+								},
+								{
+									"include": "#punctuation_colon"
+								},
+								{
+									"include": "#punctuation_comma"
+								},
+								{
+									"include": "#punctuation_ellipsis"
+								},
+								{
+									"include": "#punctuation_option"
+								},
+								{
+									"include": "#alias"
+								},
+								{
+									"include": "#expression"
+								},
+								{
+									"include": "#invalid_in_brakets"
+								}
+							],
+							"name": "meta.brackets"
+						},
+						{
 							"begin": "\\[",
 							"beginCaptures": {
 								"0": {
@@ -696,22 +777,13 @@
 									"include": "#punctuation_option"
 								},
 								{
-									"match": "(?<![\\p{L}\\p{Nd}_\\$\\#])([\\p{L}\\$\\#][\\p{L}\\p{Nd}_\\$\\#]*|_[\\p{L}\\p{Nd}_\\$\\#]+)[ \\t]*(=)(?![=~])",
-									"captures": {
-										"1": {
-											"name": "variable.other"
-										},
-										"2": {
-											"name": "punctuation.alias"
-										}
-									}
+									"include": "#alias"
 								},
 								{
 									"include": "#expression"
 								},
 								{
-									"match": "[^\\s\\]]",
-									"name": "invalid"
+									"include": "#invalid_in_brakets"
 								}
 							],
 							"name": "meta.brackets"
@@ -772,6 +844,10 @@
 		},
 		"invalid_in_braces": {
 			"match": "[^\\s\\}]",
+			"name": "invalid"
+		},
+		"invalid_in_brakets": {
+			"match": "[^\\s\\]]",
 			"name": "invalid"
 		},
 		"invalid_in_parens": {

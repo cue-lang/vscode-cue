@@ -14,6 +14,6 @@
 4:5	"1"	meta.brackets constant.numeric.integer.decimal
 4:6	","	meta.brackets punctuation.separator
 4:7	" "	meta.brackets
-4:8	"..."	meta.brackets punctuation.ellipsis
+4:8	"..."	meta.brackets invalid.illegal
 4:11	"]"	meta.brackets punctuation.section.brackets.end
 5:0	""

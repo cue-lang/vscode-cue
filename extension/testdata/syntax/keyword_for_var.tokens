@@ -1,0 +1,28 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: ok"	comment.line
+2:0	"x"	variable.other
+2:1	":"	punctuation.colon
+2:2	" "
+2:3	"["	meta.brackets punctuation.section.brackets.begin
+2:4	"1"	meta.brackets constant.numeric.integer.decimal
+2:5	","	meta.brackets punctuation.separator
+2:6	" "	meta.brackets
+2:7	"2"	meta.brackets constant.numeric.integer.decimal
+2:8	"]"	meta.brackets punctuation.section.brackets.end
+3:0	"y"	variable.other
+3:1	":"	punctuation.colon
+3:2	" "
+3:3	"["	meta.brackets punctuation.section.brackets.begin
+3:4	"for"	meta.brackets keyword.control.for
+3:7	" "	meta.brackets
+3:8	"import"	meta.brackets variable.other
+3:14	" "	meta.brackets
+3:15	"in"	meta.brackets keyword.control.in
+3:17	" "	meta.brackets
+3:18	"x"	meta.brackets variable.other
+3:19	" "	meta.brackets
+3:20	"{"	meta.brackets meta.struct punctuation.definition.struct.begin
+3:21	"import"	meta.brackets meta.struct variable.other
+3:27	"}"	meta.brackets meta.struct punctuation.definition.struct.end
+3:28	"]"	meta.brackets punctuation.section.brackets.end
+4:0	""

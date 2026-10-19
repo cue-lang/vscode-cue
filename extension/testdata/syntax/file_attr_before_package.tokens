@@ -1,0 +1,22 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: ok"	comment.line
+2:0	"@"	meta.annotation punctuation.definition.annotation
+2:1	"extern"	meta.annotation variable.annotation
+2:7	"("	meta.annotation punctuation.attribute-elements.begin
+2:8	"embed"	meta.annotation string.unquoted
+2:13	")"	meta.annotation punctuation.attribute-elements.end
+3:0	"@"	meta.annotation punctuation.definition.annotation
+3:1	"other"	meta.annotation variable.annotation
+3:6	"("	meta.annotation punctuation.attribute-elements.begin
+3:7	"x"	meta.annotation string.unquoted
+3:8	")"	meta.annotation punctuation.attribute-elements.end
+4:0	""
+5:0	"package"	keyword.other.package
+5:7	" "
+5:8	"p"	entity.name.namespace
+6:0	""
+7:0	"a"	variable.other
+7:1	":"	punctuation.colon
+7:2	" "
+7:3	"1"	constant.numeric.integer.decimal
+8:0	""

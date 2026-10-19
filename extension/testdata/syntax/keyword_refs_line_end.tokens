@@ -1,0 +1,61 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: ok"	comment.line
+2:0	"if"	keyword.control.conditional
+2:2	":"	punctuation.colon
+2:3	"  "
+2:5	"1"	constant.numeric.integer.decimal
+3:0	"for"	variable.other
+3:3	":"	punctuation.colon
+3:4	" "
+3:5	"2"	constant.numeric.integer.decimal
+4:0	"let"	variable.other
+4:3	":"	punctuation.colon
+4:4	" "
+4:5	"3"	constant.numeric.integer.decimal
+5:0	"x"	variable.other
+5:1	":"	punctuation.colon
+5:2	" "
+5:3	"{"	meta.struct punctuation.definition.struct.begin
+6:0	"\t"	meta.struct
+6:1	"if"	meta.struct keyword.control.conditional
+7:0	"\t"	meta.struct
+7:1	"b"	meta.struct variable.other
+7:2	":"	meta.struct punctuation.colon
+7:3	" "	meta.struct
+7:4	"1"	meta.struct constant.numeric.integer.decimal
+8:0	"}"	meta.struct punctuation.definition.struct.end
+9:0	"y"	variable.other
+9:1	":"	punctuation.colon
+9:2	" "
+9:3	"{"	meta.struct punctuation.definition.struct.begin
+10:0	"\t"	meta.struct
+10:1	"for"	meta.struct variable.other
+11:0	"\t"	meta.struct
+11:1	"c"	meta.struct variable.other
+11:2	":"	meta.struct punctuation.colon
+11:3	" "	meta.struct
+11:4	"1"	meta.struct constant.numeric.integer.decimal
+12:0	"}"	meta.struct punctuation.definition.struct.end
+13:0	"z"	variable.other
+13:1	":"	punctuation.colon
+13:2	" "
+13:3	"{"	meta.struct punctuation.definition.struct.begin
+14:0	"\t"	meta.struct
+14:1	"let"	meta.struct variable.other
+15:0	"\t"	meta.struct
+15:1	"d"	meta.struct variable.other
+15:2	":"	meta.struct punctuation.colon
+15:3	" "	meta.struct
+15:4	"1"	meta.struct constant.numeric.integer.decimal
+16:0	"}"	meta.struct punctuation.definition.struct.end
+17:0	"w"	variable.other
+17:1	":"	punctuation.colon
+17:2	" "
+17:3	"{"	meta.struct punctuation.definition.struct.begin
+18:0	"\t"	meta.struct
+18:1	"if"	meta.struct keyword.control.conditional
+19:0	"\t"	meta.struct
+19:1	"-"	meta.struct keyword.operator
+19:2	"1"	meta.struct constant.numeric.integer.decimal
+20:0	"}"	meta.struct punctuation.definition.struct.end
+21:0	""

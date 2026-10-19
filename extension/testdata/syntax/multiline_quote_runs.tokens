@@ -1,0 +1,39 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: ok"	comment.line
+2:0	"a"	variable.other
+2:1	":"	punctuation.colon
+2:2	" "
+2:3	"1"	constant.numeric.integer.decimal
+3:0	"b"	variable.other
+3:1	":"	punctuation.colon
+3:2	" "
+3:3	"2"	constant.numeric.integer.decimal
+4:0	"x"	variable.other
+4:1	":"	punctuation.colon
+4:2	" "
+4:3	"\"\"\""	meta.string punctuation.definition.string.begin
+5:0	"\tuse '\"\"' for empty"	meta.string string.quoted.double-multiline
+6:0	"\t"	meta.string string.quoted.double-multiline
+6:1	"\"\"\""	meta.string punctuation.definition.string.end
+7:0	"y"	variable.other
+7:1	":"	punctuation.colon
+7:2	" "
+7:3	"'''"	meta.string punctuation.definition.string.begin
+8:0	"\tuse \"''\" for empty"	meta.string string.quoted.single-multiline
+9:0	"\t"	meta.string string.quoted.single-multiline
+9:1	"'''"	meta.string punctuation.definition.string.end
+10:0	"z"	variable.other
+10:1	":"	punctuation.colon
+10:2	" "
+10:3	"\"\"\""	meta.string punctuation.definition.string.begin
+11:0	"\t"	meta.string string.quoted.double-multiline
+11:1	"\\("	meta.string string.quoted.double-multiline meta.interpolation punctuation.section.interpolation.begin
+11:3	"a"	meta.string string.quoted.double-multiline meta.interpolation source.cue.embedded variable.other
+11:4	")"	meta.string string.quoted.double-multiline meta.interpolation punctuation.section.interpolation.end
+11:5	"'\"\""	meta.string string.quoted.double-multiline
+11:8	"\\("	meta.string string.quoted.double-multiline meta.interpolation punctuation.section.interpolation.begin
+11:10	"b"	meta.string string.quoted.double-multiline meta.interpolation source.cue.embedded variable.other
+11:11	")"	meta.string string.quoted.double-multiline meta.interpolation punctuation.section.interpolation.end
+12:0	"\t"	meta.string string.quoted.double-multiline
+12:1	"\"\"\""	meta.string punctuation.definition.string.end
+13:0	""

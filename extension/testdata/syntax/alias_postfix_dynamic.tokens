@@ -1,0 +1,37 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..v0.17.0; outcome: error 4:4: postfix alias syntax requires @experiment(aliasv2)"	comment.line
+2:0	"//"	comment.line punctuation.definition.comment
+2:2	" versions: v0.18.0..; outcome: ok"	comment.line
+3:0	"k"	variable.other
+3:1	":"	punctuation.colon
+3:2	" "
+3:3	"\""	meta.string punctuation.definition.string.begin
+3:4	"foo"	meta.string string.quoted.double
+3:7	"\""	meta.string punctuation.definition.string.end
+4:0	"("	meta.parens punctuation.section.parens.begin
+4:1	"k"	meta.parens variable.other
+4:2	")"	meta.parens punctuation.section.parens.end
+4:3	"~"	punctuation.alias
+4:4	"X"	variable.other
+4:5	":"	punctuation.colon
+4:6	" "
+4:7	"1"	constant.numeric.integer.decimal
+5:0	"\""	meta.string punctuation.definition.string.begin
+5:1	"quoted"	meta.string string.quoted.double
+5:7	"\""	meta.string punctuation.definition.string.end
+5:8	"~"	punctuation.alias
+5:9	"("	punctuation.section.parens.begin
+5:10	"Y"	variable.other
+5:11	")"	punctuation.section.parens.end
+5:12	":"	punctuation.colon
+5:13	" "
+5:14	"2"	constant.numeric.integer.decimal
+6:0	"z"	variable.other
+6:1	":"	punctuation.colon
+6:2	" "
+6:3	"X"	variable.other
+6:4	" "
+6:5	"+"	keyword.operator
+6:6	" "
+6:7	"Y"	variable.other
+7:0	""

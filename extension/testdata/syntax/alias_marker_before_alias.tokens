@@ -1,0 +1,10 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: error 2:3: missing ',' in struct literal"	comment.line
+2:0	"a"	variable.other
+2:1	"?"	punctuation.option
+2:2	"~"	punctuation.alias
+2:3	"X"	variable.other
+2:4	":"	punctuation.colon
+2:5	" "
+2:6	"int"	support.type
+3:0	""

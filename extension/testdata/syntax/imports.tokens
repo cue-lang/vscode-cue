@@ -1,0 +1,72 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: ok"	comment.line
+2:0	"package"	keyword.other.package
+2:7	" "
+2:8	"p"	entity.name.namespace
+3:0	""
+4:0	"import"	meta.imports keyword.other.import
+4:6	" "	meta.imports
+4:7	"("	meta.imports punctuation.section.parens.begin
+5:0	"\t"	meta.imports
+5:1	"s"	meta.imports meta.import-spec entity.name.namespace
+5:2	" "	meta.imports meta.import-spec
+5:3	"\""	meta.imports meta.import-spec punctuation.definition.string.begin
+5:4	"strings"	meta.imports meta.import-spec string.quoted.double-import
+5:11	"\""	meta.imports meta.import-spec punctuation.definition.string.end
+6:0	"\t"	meta.imports
+6:1	"\""	meta.imports meta.import-spec punctuation.definition.string.begin
+6:2	"list"	meta.imports meta.import-spec string.quoted.double-import
+6:6	"\""	meta.imports meta.import-spec punctuation.definition.string.end
+7:0	"\t"	meta.imports
+7:1	"\""	meta.imports meta.import-spec punctuation.definition.string.begin
+7:2	"encoding/json"	meta.imports meta.import-spec string.quoted.double-import
+7:15	"\""	meta.imports meta.import-spec punctuation.definition.string.end
+8:0	")"	meta.imports punctuation.section.parens.end
+9:0	""
+10:0	"import"	meta.import keyword.other.import
+10:6	" "	meta.import
+10:7	"\""	meta.import punctuation.definition.string.begin
+10:8	"example.com/foo/bar"	meta.import string.quoted.double-import
+10:27	":"	meta.import punctuation.colon
+10:28	"baz"	meta.import entity.name
+10:31	"\""	meta.import punctuation.definition.string.end
+11:0	""
+12:0	"a"	variable.other
+12:1	":"	punctuation.colon
+12:2	" "
+12:3	"s"	meta.function-call support.module
+12:4	"."	meta.function-call punctuation
+12:5	"ToUpper"	meta.function-call support.function
+12:12	"("	meta.function-call punctuation.section.parens.begin
+12:13	"\""	meta.function-call meta.string punctuation.definition.string.begin
+12:14	"x"	meta.function-call meta.string string.quoted.double
+12:15	"\""	meta.function-call meta.string punctuation.definition.string.end
+12:16	")"	meta.function-call punctuation.section.parens.end
+13:0	"b"	variable.other
+13:1	":"	punctuation.colon
+13:2	" "
+13:3	"list"	meta.function-call support.module
+13:7	"."	meta.function-call punctuation
+13:8	"Sum"	meta.function-call support.function
+13:11	"("	meta.function-call punctuation.section.parens.begin
+13:12	"["	meta.function-call meta.brackets punctuation.section.brackets.begin
+13:13	"1"	meta.function-call meta.brackets constant.numeric.integer.decimal
+13:14	"]"	meta.function-call meta.brackets punctuation.section.brackets.end
+13:15	")"	meta.function-call punctuation.section.parens.end
+14:0	"c"	variable.other
+14:1	":"	punctuation.colon
+14:2	" "
+14:3	"json"	meta.function-call support.module
+14:7	"."	meta.function-call punctuation
+14:8	"Marshal"	meta.function-call support.function
+14:15	"("	meta.function-call punctuation.section.parens.begin
+14:16	"{"	meta.function-call meta.struct punctuation.definition.struct.begin
+14:17	"}"	meta.function-call meta.struct punctuation.definition.struct.end
+14:18	")"	meta.function-call punctuation.section.parens.end
+15:0	"d"	variable.other
+15:1	":"	punctuation.colon
+15:2	" "
+15:3	"baz"	variable.other
+15:6	"."	punctuation.accessor
+15:7	"X"	variable.other.member
+16:0	""

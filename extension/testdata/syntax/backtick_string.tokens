@@ -1,0 +1,9 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: error 2:4: illegal character U+0060 '`'"	comment.line
+2:0	"a"	variable.other
+2:1	":"	punctuation.colon
+2:2	" "
+2:3	"`"	invalid
+2:4	"foo"	variable.other
+2:7	"`"	invalid
+3:0	""

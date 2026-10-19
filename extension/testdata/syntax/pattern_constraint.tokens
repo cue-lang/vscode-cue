@@ -1,0 +1,27 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: ok"	comment.line
+2:0	"["	meta.brackets punctuation.section.brackets.begin
+2:1	"string"	meta.brackets support.type
+2:7	"]"	meta.brackets punctuation.section.brackets.end
+2:8	":"	punctuation.colon
+2:9	" "
+2:10	"int"	support.type
+3:0	"["	meta.brackets punctuation.section.brackets.begin
+3:1	"=~"	meta.brackets keyword.operator.comparison
+3:3	"\""	meta.brackets meta.string punctuation.definition.string.begin
+3:4	"^a"	meta.brackets meta.string string.quoted.double
+3:6	"\""	meta.brackets meta.string punctuation.definition.string.end
+3:7	"]"	meta.brackets punctuation.section.brackets.end
+3:8	":"	punctuation.colon
+3:9	" "
+3:10	"int"	support.type
+4:0	"["	meta.brackets punctuation.section.brackets.begin
+4:1	"!="	meta.brackets keyword.operator.comparison
+4:3	"\""	meta.brackets meta.string punctuation.definition.string.begin
+4:4	"b"	meta.brackets meta.string string.quoted.double
+4:5	"\""	meta.brackets meta.string punctuation.definition.string.end
+4:6	"]"	meta.brackets punctuation.section.brackets.end
+4:7	":"	punctuation.colon
+4:8	" "
+4:9	"int"	support.type
+5:0	""

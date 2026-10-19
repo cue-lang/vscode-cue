@@ -1,0 +1,24 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: ok"	comment.line
+2:0	"#A"	variable.other
+2:2	":"	punctuation.colon
+2:3	" "
+2:4	"{"	meta.struct punctuation.definition.struct.begin
+2:5	"a"	meta.struct variable.other
+2:6	":"	meta.struct punctuation.colon
+2:7	" "	meta.struct
+2:8	"int"	meta.struct support.type
+2:11	"}"	meta.struct punctuation.definition.struct.end
+3:0	"b"	variable.other
+3:1	":"	punctuation.colon
+3:2	" "
+3:3	"{"	meta.struct punctuation.definition.struct.begin
+4:0	"\t"	meta.struct
+4:1	"#A"	meta.struct variable.other
+5:0	"\t"	meta.struct
+5:1	"a"	meta.struct variable.other
+5:2	":"	meta.struct punctuation.colon
+5:3	" "	meta.struct
+5:4	"1"	meta.struct constant.numeric.integer.decimal
+6:0	"}"	meta.struct punctuation.definition.struct.end
+7:0	""

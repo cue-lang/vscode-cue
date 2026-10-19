@@ -1,0 +1,27 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: ok"	comment.line
+2:0	"in"	variable.other
+2:2	":"	punctuation.colon
+2:3	" "
+2:4	"1"	constant.numeric.integer.decimal
+3:0	"try"	variable.other
+3:3	":"	punctuation.colon
+3:4	" "
+3:5	"2"	constant.numeric.integer.decimal
+4:0	"func"	variable.other
+4:4	":"	punctuation.colon
+4:5	" "
+4:6	"3"	constant.numeric.integer.decimal
+5:0	"y"	variable.other
+5:1	":"	punctuation.colon
+5:2	" "
+5:3	"in"	variable.other
+5:5	" "
+5:6	"+"	keyword.operator
+5:7	" "
+5:8	"try"	variable.other
+5:11	" "
+5:12	"+"	keyword.operator
+5:13	" "
+5:14	"func"	variable.other
+6:0	""

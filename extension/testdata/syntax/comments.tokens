@@ -1,0 +1,26 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: ok"	comment.line
+2:0	"//"	comment.line punctuation.definition.comment
+2:2	" A comment before a field."	comment.line
+3:0	"a"	variable.other
+3:1	":"	punctuation.colon
+3:2	" "
+3:3	"1"	constant.numeric.integer.decimal
+3:4	" "
+3:5	"//"	comment.line punctuation.definition.comment
+3:7	" A comment after a field."	comment.line
+4:0	""
+5:0	"b"	variable.other
+5:1	":"	punctuation.colon
+5:2	" "
+5:3	"{"	meta.struct punctuation.definition.struct.begin
+6:0	"\t"	meta.struct
+6:1	"//"	meta.struct comment.line punctuation.definition.comment
+6:3	" A comment inside a struct."	meta.struct comment.line
+7:0	"\t"	meta.struct
+7:1	"c"	meta.struct variable.other
+7:2	":"	meta.struct punctuation.colon
+7:3	" "	meta.struct
+7:4	"2"	meta.struct constant.numeric.integer.decimal
+8:0	"}"	meta.struct punctuation.definition.struct.end
+9:0	""

@@ -1,0 +1,20 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..v0.14.0; outcome: error 3:4: expected operand, found '=='"	comment.line
+2:0	"//"	comment.line punctuation.definition.comment
+2:2	" versions: v0.15.0..; outcome: ok"	comment.line
+3:0	"a"	variable.other
+3:1	":"	punctuation.colon
+3:2	" "
+3:3	"=="	keyword.operator.comparison
+3:5	"5"	constant.numeric.integer.decimal
+4:0	"b"	variable.other
+4:1	":"	punctuation.colon
+4:2	" "
+4:3	"=="	keyword.operator.comparison
+4:5	"["	meta.brackets punctuation.section.brackets.begin
+4:6	"1"	meta.brackets constant.numeric.integer.decimal
+4:7	","	meta.brackets punctuation.separator
+4:8	" "	meta.brackets
+4:9	"2"	meta.brackets constant.numeric.integer.decimal
+4:10	"]"	meta.brackets punctuation.section.brackets.end
+5:0	""

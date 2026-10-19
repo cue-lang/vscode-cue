@@ -1,0 +1,32 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: ok"	comment.line
+2:0	"a"	variable.other
+2:1	":"	punctuation.colon
+2:2	" "
+2:3	"{"	meta.struct punctuation.definition.struct.begin
+3:0	"\t"	meta.struct
+3:1	"func"	meta.struct variable.other
+3:5	"?"	meta.struct punctuation.option
+3:6	":"	meta.struct punctuation.colon
+3:7	"      "	meta.struct
+3:13	"int"	meta.struct support.type
+4:0	"\t"	meta.struct
+4:1	"func"	meta.struct variable.other
+4:5	"!"	meta.struct keyword.operator.logical
+4:6	":"	meta.struct punctuation.colon
+4:7	"      "	meta.struct
+4:13	"int"	meta.struct support.type
+5:0	"\t"	meta.struct
+5:1	"try"	meta.struct variable.other
+5:4	"?"	meta.struct punctuation.option
+5:5	":"	meta.struct punctuation.colon
+5:6	"       "	meta.struct
+5:13	"int"	meta.struct support.type
+6:0	"\t"	meta.struct
+6:1	"otherwise"	meta.struct variable.other
+6:10	"!"	meta.struct keyword.operator.logical
+6:11	":"	meta.struct punctuation.colon
+6:12	" "	meta.struct
+6:13	"int"	meta.struct support.type
+7:0	"}"	meta.struct punctuation.definition.struct.end
+8:0	""

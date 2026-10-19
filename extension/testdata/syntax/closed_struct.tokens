@@ -1,0 +1,21 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: error 5:4: closed literals require @experiment(openlists)"	comment.line
+2:0	"//"	comment.line punctuation.definition.comment
+2:2	" versions: v0.18.0..; experiments: openlists; outcome: ok"	comment.line
+3:0	"@"	meta.annotation punctuation.definition.annotation
+3:1	"experiment"	meta.annotation variable.annotation
+3:11	"("	meta.annotation punctuation.attribute-elements.begin
+3:12	"openlists"	meta.annotation string.unquoted
+3:21	")"	meta.annotation punctuation.attribute-elements.end
+4:0	""
+5:0	"a"	variable.other
+5:1	":"	punctuation.colon
+5:2	" "
+5:3	"#"	variable.other
+5:4	"{"	meta.struct punctuation.definition.struct.begin
+5:5	"b"	meta.struct variable.other
+5:6	":"	meta.struct punctuation.colon
+5:7	" "	meta.struct
+5:8	"1"	meta.struct constant.numeric.integer.decimal
+5:9	"}"	meta.struct punctuation.definition.struct.end
+6:0	""

@@ -1,0 +1,12 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: ok"	comment.line
+2:0	"a"	variable.other
+2:1	":"	punctuation.colon
+2:2	" "
+2:3	"\"\"\""	meta.string punctuation.definition.string.begin
+3:0	"\tfoo "	meta.string string.quoted.double-multiline
+3:5	"\\"	meta.string string.quoted.double-multiline constant.character.escape
+4:0	"\tbar"	meta.string string.quoted.double-multiline
+5:0	"\t"	meta.string string.quoted.double-multiline
+5:1	"\"\"\""	meta.string punctuation.definition.string.end
+6:0	""

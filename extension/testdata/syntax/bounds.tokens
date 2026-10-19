@@ -1,0 +1,37 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: ok"	comment.line
+2:0	"a"	variable.other
+2:1	":"	punctuation.colon
+2:2	" "
+2:3	">="	keyword.operator.comparison
+2:5	"1"	constant.numeric.integer.decimal
+2:6	" "
+2:7	"&"	keyword.operator.set
+2:8	" "
+2:9	"<"	keyword.operator.comparison
+2:10	"10"	constant.numeric.integer.decimal
+3:0	"b"	variable.other
+3:1	":"	punctuation.colon
+3:2	" "
+3:3	"!="	keyword.operator.comparison
+3:5	"0"	constant.numeric.integer.decimal
+4:0	"c"	variable.other
+4:1	":"	punctuation.colon
+4:2	" "
+4:3	"=~"	keyword.operator.comparison
+4:5	"\""	meta.string punctuation.definition.string.begin
+4:6	"x"	meta.string string.quoted.double
+4:7	"\""	meta.string punctuation.definition.string.end
+5:0	"d"	variable.other
+5:1	":"	punctuation.colon
+5:2	" "
+5:3	"!~"	keyword.operator.comparison
+5:5	"\""	meta.string punctuation.definition.string.begin
+5:6	"y"	meta.string string.quoted.double
+5:7	"\""	meta.string punctuation.definition.string.end
+6:0	"e"	variable.other
+6:1	":"	punctuation.colon
+6:2	" "
+6:3	">"	keyword.operator.comparison
+6:4	"1.5"	constant.numeric.float.decimal
+7:0	""

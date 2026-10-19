@@ -1,0 +1,84 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: ok"	comment.line
+2:0	"l"	variable.other
+2:1	":"	punctuation.colon
+2:2	" "
+2:3	"["	meta.brackets punctuation.section.brackets.begin
+2:4	"1"	meta.brackets constant.numeric.integer.decimal
+2:5	","	meta.brackets punctuation.separator
+2:6	" "	meta.brackets
+2:7	"2"	meta.brackets constant.numeric.integer.decimal
+2:8	"]"	meta.brackets punctuation.section.brackets.end
+3:0	"a"	variable.other
+3:1	":"	punctuation.colon
+3:2	" "
+3:3	"{"	meta.struct punctuation.definition.struct.begin
+4:0	"\t"	meta.struct
+4:1	"for"	meta.struct keyword.control.for
+4:4	" "	meta.struct
+4:5	"x"	meta.struct variable.other
+4:6	" "	meta.struct
+4:7	"in"	meta.struct keyword.control.in
+4:9	" "	meta.struct
+4:10	"l"	meta.struct variable.other
+5:0	"\t"	meta.struct
+5:1	"if"	meta.struct keyword.control.conditional
+5:3	" "	meta.struct
+5:4	"x"	meta.struct variable.other
+5:5	" "	meta.struct
+5:6	">"	meta.struct keyword.operator.comparison
+5:7	" "	meta.struct
+5:8	"1"	meta.struct constant.numeric.integer.decimal
+5:9	" "	meta.struct
+5:10	"{"	meta.struct meta.struct punctuation.definition.struct.begin
+6:0	"\t\t"	meta.struct meta.struct
+6:2	"\""	meta.struct meta.struct meta.string punctuation.definition.string.begin
+6:3	"\\("	meta.struct meta.struct meta.string string.quoted.double meta.interpolation punctuation.section.interpolation.begin
+6:5	"x"	meta.struct meta.struct meta.string string.quoted.double meta.interpolation source.cue.embedded variable.other
+6:6	")"	meta.struct meta.struct meta.string string.quoted.double meta.interpolation punctuation.section.interpolation.end
+6:7	"\""	meta.struct meta.struct meta.string punctuation.definition.string.end
+6:8	":"	meta.struct meta.struct punctuation.colon
+6:9	" "	meta.struct meta.struct
+6:10	"x"	meta.struct meta.struct variable.other
+7:0	"\t"	meta.struct meta.struct
+7:1	"}"	meta.struct meta.struct punctuation.definition.struct.end
+8:0	"}"	meta.struct punctuation.definition.struct.end
+9:0	"b"	variable.other
+9:1	":"	punctuation.colon
+9:2	" "
+9:3	"["	meta.brackets punctuation.section.brackets.begin
+10:0	"\t"	meta.brackets
+10:1	"for"	meta.brackets keyword.control.for
+10:4	" "	meta.brackets
+10:5	"x"	meta.brackets variable.other
+10:6	" "	meta.brackets
+10:7	"in"	meta.brackets keyword.control.in
+10:9	" "	meta.brackets
+10:10	"l"	meta.brackets variable.other
+11:0	"\t"	meta.brackets
+11:1	"let"	meta.brackets keyword.control.let
+11:4	" "	meta.brackets
+11:5	"y"	meta.brackets variable.other
+11:6	" "	meta.brackets
+11:7	"="	meta.brackets punctuation.bind
+11:8	" "	meta.brackets
+11:9	"x"	meta.brackets variable.other
+11:10	" "	meta.brackets
+11:11	"+"	meta.brackets keyword.operator
+11:12	" "	meta.brackets
+11:13	"1"	meta.brackets constant.numeric.integer.decimal
+12:0	"\t"	meta.brackets
+12:1	"if"	meta.brackets keyword.control.conditional
+12:3	" "	meta.brackets
+12:4	"y"	meta.brackets variable.other
+12:5	" "	meta.brackets
+12:6	">"	meta.brackets keyword.operator.comparison
+12:7	" "	meta.brackets
+12:8	"2"	meta.brackets constant.numeric.integer.decimal
+12:9	" "	meta.brackets
+12:10	"{"	meta.brackets meta.struct punctuation.definition.struct.begin
+12:11	"y"	meta.brackets meta.struct variable.other
+12:12	"}"	meta.brackets meta.struct punctuation.definition.struct.end
+12:13	","	meta.brackets punctuation.separator
+13:0	"]"	meta.brackets punctuation.section.brackets.end
+14:0	""

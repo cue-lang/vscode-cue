@@ -1,0 +1,35 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: ok"	comment.line
+2:0	"package"	keyword.other.package
+2:7	" "
+2:8	"p"	entity.name.namespace
+3:0	""
+4:0	"@"	meta.annotation punctuation.definition.annotation
+4:1	"other"	meta.annotation variable.annotation
+4:6	"("	meta.annotation punctuation.attribute-elements.begin
+4:7	"x"	meta.annotation string.unquoted
+4:8	")"	meta.annotation punctuation.attribute-elements.end
+5:0	"@"	meta.annotation punctuation.definition.annotation
+5:1	"another"	meta.annotation variable.annotation
+5:8	"("	meta.annotation punctuation.attribute-elements.begin
+5:9	"y"	meta.annotation string.unquoted
+5:10	")"	meta.annotation punctuation.attribute-elements.end
+6:0	""
+7:0	"import"	meta.import keyword.other.import
+7:6	" "	meta.import
+7:7	"\""	meta.import punctuation.definition.string.begin
+7:8	"strings"	meta.import string.quoted.double-import
+7:15	"\""	meta.import punctuation.definition.string.end
+8:0	""
+9:0	"a"	variable.other
+9:1	":"	punctuation.colon
+9:2	" "
+9:3	"strings"	meta.function-call support.module
+9:10	"."	meta.function-call punctuation
+9:11	"ToUpper"	meta.function-call support.function
+9:18	"("	meta.function-call punctuation.section.parens.begin
+9:19	"\""	meta.function-call meta.string punctuation.definition.string.begin
+9:20	"x"	meta.function-call meta.string string.quoted.double
+9:21	"\""	meta.function-call meta.string punctuation.definition.string.end
+9:22	")"	meta.function-call punctuation.section.parens.end
+10:0	""

@@ -1,0 +1,16 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: ok"	comment.line
+2:0	"a"	variable.other
+2:1	":"	punctuation.colon
+2:2	" "
+2:3	"null"	constant.language.null
+3:0	"b"	variable.other
+3:1	":"	punctuation.colon
+3:2	" "
+3:3	"*"	keyword.operator
+3:4	"null"	constant.language.null
+3:8	" "
+3:9	"|"	keyword.operator.set
+3:10	" "
+3:11	"int"	support.type
+4:0	""

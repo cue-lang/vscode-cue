@@ -1,0 +1,23 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: ok"	comment.line
+2:0	"a"	variable.other
+2:1	":"	punctuation.colon
+2:2	" "
+2:3	"1"	constant.numeric.integer.decimal
+2:4	" "
+2:5	"@"	meta.annotation punctuation.definition.annotation
+2:6	"foo"	meta.annotation variable.annotation
+2:9	"("	meta.annotation punctuation.attribute-elements.begin
+2:10	"x"	meta.annotation string.unquoted
+2:11	")"	meta.annotation punctuation.attribute-elements.end
+2:12	" "
+2:13	"@"	meta.annotation punctuation.definition.annotation
+2:14	"bar"	meta.annotation variable.annotation
+2:17	"("	meta.annotation punctuation.attribute-elements.begin
+2:18	"y"	meta.annotation variable.other
+2:19	"="	meta.annotation punctuation.bind
+2:20	"1"	meta.annotation string.unquoted
+2:21	","	meta.annotation punctuation.separator
+2:22	" z"	meta.annotation string.unquoted
+2:24	")"	meta.annotation punctuation.attribute-elements.end
+3:0	""

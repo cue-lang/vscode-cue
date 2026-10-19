@@ -1,0 +1,24 @@
+1:0	"//"	comment.line punctuation.definition.comment
+1:2	" versions: v0.8.0..; outcome: ok"	comment.line
+2:0	"a"	variable.other
+2:1	":"	punctuation.colon
+2:2	" "
+2:3	"'"	meta.string punctuation.definition.string.begin
+2:4	"abc"	meta.string string.quoted.single
+2:7	"'"	meta.string punctuation.definition.string.end
+3:0	"b"	variable.other
+3:1	":"	punctuation.colon
+3:2	" "
+3:3	"'"	meta.string punctuation.definition.string.begin
+3:4	"\\x00"	meta.string string.quoted.single constant.character.escape
+3:8	"\\xff"	meta.string string.quoted.single constant.character.escape
+3:12	"\\101"	meta.string string.quoted.single constant.character.escape
+3:16	"'"	meta.string punctuation.definition.string.end
+4:0	"c"	variable.other
+4:1	":"	punctuation.colon
+4:2	" "
+4:3	"'''"	meta.string punctuation.definition.string.begin
+5:0	"\tab"	meta.string string.quoted.single-multiline
+6:0	"\t"	meta.string string.quoted.single-multiline
+6:1	"'''"	meta.string punctuation.definition.string.end
+7:0	""

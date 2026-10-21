@@ -47,6 +47,16 @@ Mirroring normally takes a minute or two. If GitHub's master has not
 caught up, the post-submit TryBot run cannot have happened, so do not
 tag until it has caught up and that run has passed.
 
+GerritHub mirrors this repository using the GitHub OAuth token of the
+cueckoo account, which imported it, and changes to `.github/workflows`
+only mirror if that token has the `workflow` scope. If GitHub's master
+is stuck, log in to GerritHub as cueckoo through
+https://cue.gerrithub.io/plugins/github-plugin/static/scope.html,
+choosing the Privateworkflow level, then submit another change. Log in
+through cue.gerrithub.io, the hostname this repository uses: a login
+through review.gerrithub.io may not reach the GerritHub site that does
+the mirroring.
+
 Confirm the tag does not already exist, and that the version check CI
 will run passes:
 
